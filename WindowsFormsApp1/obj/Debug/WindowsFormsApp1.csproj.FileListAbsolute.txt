@@ -1,0 +1,17 @@
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\MetroFramework.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\FaceIT Checker.exe.config
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\FaceIT Checker.exe
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\FaceIT Checker.pdb
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\FaceIT Checker.exe
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\FaceIT Checker.pdb
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form2.resources

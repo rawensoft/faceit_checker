@@ -1,0 +1,17 @@
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\MetroFramework.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\MetroFramework.Fonts.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Newtonsoft.Json.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\System.Windows.Interactivity.dll
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Newtonsoft.Json.xml
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Form1.resources
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csprojAssemblyReference.cache
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\FaceIT Checker.exe.config
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\FaceIT Checker.exe
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\bin\Release\FaceIT Checker.pdb
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\FaceIT Checker.exe
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\FaceIT Checker.pdb
+C:\Users\RAWENSOFT\source\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Form2.resources
