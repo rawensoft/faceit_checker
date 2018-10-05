@@ -13,18 +13,43 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+
+        #region Variables
         public Profile profile;
         public Profile profile2;
         public Match match;
+
         public bool isLogin1Loaded = false;
         public bool isLogin2Loaded = false;
         public bool isMatchLoaded = false;
+
         public bool showDEmaps = true;
         public bool showAIMmaps = true;
         public bool loadAvatars = true;
 
+        public int tabMatchint;
+        public int tabProfile1int;
+        public int tabProfile2int;
+
+        public List<Member> members;
+        public List<MetroFramework.Controls.MetroLink> lNickname = new List<MetroFramework.Controls.MetroLink>();
+        public List<MetroFramework.Controls.MetroLabel> lAVGHSS = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lMatches = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lWinRate = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lELO = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lJoinType = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lKD = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lRanking = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroComboBox> lLobby = new List<MetroFramework.Controls.MetroComboBox>();
+        public List<PictureBox> lAvatar = new List<PictureBox>();
+        public List<PictureBox> lCountry = new List<PictureBox>();
+        public List<PictureBox> lLevel = new List<PictureBox>();
+        
         private static string client_key_api = "Bearer 3a043af9-c274-4842-8985-83fdb68b7e1c";
 
+        #endregion
+
+        #region Get
         public static JObject GetAPI(string nickname)
         {
             if(ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
@@ -214,7 +239,71 @@ namespace WindowsFormsApp1
                 form.Show();
                 return new JObject();
             }
+
+        }
+        public static JObject GetStatsMatch(string MatchID)
+        {
+            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
+            {
+                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/matches/" + MatchID + "/stats");
+                req.Method = "GET";
+                req.Timeout = 10000;
+                req.Headers.Add("Authorization", client_key_api);
+                req.ContentType = "application / json";
+                try
+                {
+                    using (WebResponse res = req.GetResponse())
+                    using (Stream receiveStream = res.GetResponseStream())
+                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
+                    {
+                        return JObject.Parse(sr.ReadToEnd());
+                    }
+                }
+                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
+                {
+                    if (ex.Response == null) throw; // Убрать в C# 6
+
+                    Form2 form = new Form2();
+                    form.errorMsg.Text = "Bad Match ID. Match not found.";
+                    form.ShowDialog();
+                    return new JObject();
+                }
+            }
+            else
+            {
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Plz check internet connection.";
+                form.Show();
+                return new JObject();
+            }
+
+        }
+        public static JObject GetHistory(string playerID, int matches)
+        {
             
+            WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/players/" + playerID + "/history?game=csgo&from=0&limit=" + matches);
+            req.Method = "GET";
+            req.Headers.Add("Authorization", client_key_api);
+            req.ContentType = "application / json";
+            try
+            {
+                using (WebResponse res = req.GetResponse())
+                using (Stream receiveStream = res.GetResponseStream())
+                using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
+                {
+                    return JObject.Parse(sr.ReadToEnd());
+                }
+            }
+            catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
+            {
+                if (ex.Response == null) throw; // Убрать в C# 6
+
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Match histrory is not loaded.";
+                form.ShowDialog();
+                return new JObject();
+            }
+
         }
 
         public static string GetRanking(string region, string guid)
@@ -289,6 +378,44 @@ namespace WindowsFormsApp1
                 return Image.FromFile(Application.StartupPath + @"\level\10.png");
             }
         }
+        public static bool GetCountry(string countryCode, out Image img)
+        {
+            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
+            {
+                try
+                {
+                    if (countryCode != null)
+                    {
+                        WebRequest req = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + countryCode.ToUpper() + ".png");
+                        WebResponse res = req.GetResponse();
+                        img = Image.FromStream(res.GetResponseStream());
+                        return true;
+                    }
+                    else
+                    {
+                        img = null;
+                        return false;
+                    }
+                }
+                catch (WebException ex) when (ex.Response != null)
+                {
+                    if (ex.Response == null) throw; // Убрать в C# 6
+
+                    Form2 form = new Form2();
+                    form.errorMsg.Text = "Country image not loaded.";
+                    form.ShowDialog();
+                    img = null;
+                    return false;
+                }
+            }
+            else
+            {
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Plz check internet connection.";
+                img = null;
+                return false;
+            }
+        }
 
         public static Uri SetUri(string URL)
         {
@@ -301,22 +428,254 @@ namespace WindowsFormsApp1
             return img;
         }
 
+        #endregion
+
         public Form1()
         {
             InitializeComponent();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             Main();
+            GetInfoMatch1.Enabled = false;
+            lNickname.Add(mNickname1);
+            lNickname.Add(mNickname2);
+            lNickname.Add(mNickname3);
+            lNickname.Add(mNickname4);
+            lNickname.Add(mNickname5);
+            lNickname.Add(mNickname6);
+            lNickname.Add(mNickname7);
+            lNickname.Add(mNickname8);
+            lNickname.Add(mNickname9);
+            lNickname.Add(mNickname10);
+
+            lAVGHSS.Add(mAvgHS1);
+            lAVGHSS.Add(mAvgHS2);
+            lAVGHSS.Add(mAvgHS3);
+            lAVGHSS.Add(mAvgHS4);
+            lAVGHSS.Add(mAvgHS5);
+            lAVGHSS.Add(mAvgHS6);
+            lAVGHSS.Add(mAvgHS7);
+            lAVGHSS.Add(mAvgHS8);
+            lAVGHSS.Add(mAvgHS9);
+            lAVGHSS.Add(mAvgHS10);
+
+            lMatches.Add(mMatches1);
+            lMatches.Add(mMatches2);
+            lMatches.Add(mMatches3);
+            lMatches.Add(mMatches4);
+            lMatches.Add(mMatches5);
+            lMatches.Add(mMatches6);
+            lMatches.Add(mMatches7);
+            lMatches.Add(mMatches8);
+            lMatches.Add(mMatches9);
+            lMatches.Add(mMatches10);
+
+            lWinRate.Add(mWinRate1);
+            lWinRate.Add(mWinRate2);
+            lWinRate.Add(mWinRate3);
+            lWinRate.Add(mWinRate4);
+            lWinRate.Add(mWinRate5);
+            lWinRate.Add(mWinRate6);
+            lWinRate.Add(mWinRate7);
+            lWinRate.Add(mWinRate8);
+            lWinRate.Add(mWinRate9);
+            lWinRate.Add(mWinRate10);
+
+            lJoinType.Add(mJoinType1);
+            lJoinType.Add(mJoinType2);
+            lJoinType.Add(mJoinType3);
+            lJoinType.Add(mJoinType4);
+            lJoinType.Add(mJoinType5);
+            lJoinType.Add(mJoinType6);
+            lJoinType.Add(mJoinType7);
+            lJoinType.Add(mJoinType8);
+            lJoinType.Add(mJoinType9);
+            lJoinType.Add(mJoinType10);
+
+            lELO.Add(mElo1);
+            lELO.Add(mElo2);
+            lELO.Add(mElo3);
+            lELO.Add(mElo4);
+            lELO.Add(mElo5);
+            lELO.Add(mElo6);
+            lELO.Add(mElo7);
+            lELO.Add(mElo8);
+            lELO.Add(mElo9);
+            lELO.Add(mElo10);
+
+            lKD.Add(mKD1);
+            lKD.Add(mKD2);
+            lKD.Add(mKD3);
+            lKD.Add(mKD4);
+            lKD.Add(mKD5);
+            lKD.Add(mKD6);
+            lKD.Add(mKD7);
+            lKD.Add(mKD8);
+            lKD.Add(mKD9);
+            lKD.Add(mKD10);
+
+            lRanking.Add(mRanking1);
+            lRanking.Add(mRanking2);
+            lRanking.Add(mRanking3);
+            lRanking.Add(mRanking4);
+            lRanking.Add(mRanking5);
+            lRanking.Add(mRanking6);
+            lRanking.Add(mRanking7);
+            lRanking.Add(mRanking8);
+            lRanking.Add(mRanking9);
+            lRanking.Add(mRanking10);
+
+            lAvatar.Add(mAvatar1);
+            lAvatar.Add(mAvatar2);
+            lAvatar.Add(mAvatar3);
+            lAvatar.Add(mAvatar4);
+            lAvatar.Add(mAvatar5);
+            lAvatar.Add(mAvatar6);
+            lAvatar.Add(mAvatar7);
+            lAvatar.Add(mAvatar8);
+            lAvatar.Add(mAvatar9);
+            lAvatar.Add(mAvatar10);
+
+            lCountry.Add(mCountry1);
+            lCountry.Add(mCountry2);
+            lCountry.Add(mCountry3);
+            lCountry.Add(mCountry4);
+            lCountry.Add(mCountry5);
+            lCountry.Add(mCountry6);
+            lCountry.Add(mCountry7);
+            lCountry.Add(mCountry8);
+            lCountry.Add(mCountry9);
+            lCountry.Add(mCountry10);
+
+            lLevel.Add(mLevel1);
+            lLevel.Add(mLevel2);
+            lLevel.Add(mLevel3);
+            lLevel.Add(mLevel4);
+            lLevel.Add(mLevel5);
+            lLevel.Add(mLevel6);
+            lLevel.Add(mLevel7);
+            lLevel.Add(mLevel8);
+            lLevel.Add(mLevel9);
+            lLevel.Add(mLevel10);
+
+            lLobby.Add(mLobby1);
+            lLobby.Add(mLobby2);
+            lLobby.Add(mLobby3);
+            lLobby.Add(mLobby4);
+            lLobby.Add(mLobby5);
+            lLobby.Add(mLobby6);
+            lLobby.Add(mLobby7);
+            lLobby.Add(mLobby8);
+            lLobby.Add(mLobby9);
+            lLobby.Add(mLobby10);
         }
 
+        public void LoadMapInComboBox(ComboBox box, List<Map> maps)
+        {
+            for (int i = 0; i < maps.Count; i++)
+            {
+
+                if (maps[i].mapName.StartsWith("aim_"))
+                {
+                    box.Items.Add(maps[i].mapName + " (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_cache")
+                {
+
+                    box.Items.Add("Cache (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_cbble")
+                {
+                    box.Items.Add("Cobblestone (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_dust2")
+                {
+                    box.Items.Add("Dust2 (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_mirage")
+                {
+                    box.Items.Add("Mirage (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_inferno")
+                {
+                    box.Items.Add("Inferno (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_nuke")
+                {
+                    box.Items.Add("Nuke (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_train")
+                {
+                    box.Items.Add("Train (" + maps[i].mode + ")");
+                }
+                if (maps[i].mapName == "de_overpass")
+                {
+                    box.Items.Add("Overpass (" + maps[i].mode + ")");
+                }
+            }
+        }
+
+        public void LoadMembers()
+        {
+            for (int i = 0; i < members.Count; i++)
+            {
+                Member memb = members[i];
+                lNickname[i].Text = memb.nickname;
+                lAVGHSS[i].Text = "Avg. HS: " + memb.avgHS.ToString() + "%";
+                lMatches[i].Text = "Matches: " + memb.matches.ToString();
+                lWinRate[i].Text = "Win Rate: " + memb.winRate.ToString() + "%";
+                lELO[i].Text = memb.faceit_elo + " ELO";
+                lJoinType[i].Text = memb.join_type;
+                lKD[i].Text = "Avg. KD: " + memb.avgKDr.ToString();
+                lRanking[i].Text = "Ranking: " + memb.ranking;
+
+                for (int r = 0; r < memb.select_members_id.Count; r++)
+                {
+                    JObject dec = GetProfile(memb.select_members_id[r], false);
+                    lLobby[i].Items.Add(dec["nickname"].ToString());
+                }
+                lLobby[i].SelectedIndex = 0;
+                if (GetCountry(memb.country, out Image img))
+                {
+                    lCountry[i].Image = img;
+                }
+                lAvatar[i].Image = memb.avatar;
+                if (memb.join_type == "mix")
+                {
+                    lJoinType[i].Style = MetroFramework.MetroColorStyle.Blue;
+                }
+                else
+                {
+                    lJoinType[i].Style = MetroFramework.MetroColorStyle.Green;
+                }
+            }
+        } //Вывод тиммейтов
+        
         private void Main()
         {
-
-            metroPanel1.Visible = false;
+            metroPanel1.Visible = true;
             metroPanel3.Visible = false;
-            metroPanel4.Visible = false;
+            metroPanel2.Visible = true;
             metroTabControl1.SelectedIndex = 0;
+            for(int i = 0; i < metroTabControl1.TabPages.Count; i++)
+            {
+                if(metroTabControl1.TabPages[i].Text == "Match")
+                {
+                    tabMatchint = i;
+                }
+                else if (metroTabControl1.TabPages[i].Text == "Profile #1")
+                {
+                    tabProfile1int = i;
+                }
+                else if (metroTabControl1.TabPages[i].Text == "Profile #2")
+                {
+                    tabProfile2int = i;
+                }
+            }
+            
         }
         
         #region Login1
+
         // Очистить табло логин1
         public void ClearProfileTab()
         {
@@ -324,18 +683,21 @@ namespace WindowsFormsApp1
             map1BoxProfile1.Items.Clear();
             map2BoxProfile1.Items.Clear();
         }
+
         // Показать информацию о map1
         private void map1BoxProfile1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateMapBox();
             loginMapBox1Profile1_defaultStyle();
         }
+
         // Показать информацию о map2
         private void map2BoxProfile1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateMapBox2();
             loginMapBox2Profile1_defaultStyle();
         }
+
         // Показать информацию профиля
         public void ShowInfoProfileTab(Profile acc)
         {
@@ -348,7 +710,6 @@ namespace WindowsFormsApp1
                         friendsBoxProfile1.Items.Add(profile.friends[i]);
                     }
                 }
-
                 avatarProfile1.Image = profile.imgAvatar;
                 levelProfile1.Text = profile.faceit_level.ToString();
                 eloProfile1.Text = profile.faceit_elo.ToString();
@@ -356,7 +717,6 @@ namespace WindowsFormsApp1
                 countryProfile1.Text = profile.country;
                 membershipProfile1.Text = profile.membership_type;
                 steamid64Profile1.Text = profile.steamid64;
-
                 avgHSProfile1.Text = profile.avgHS.ToString() + "%";
                 avgKDProfile1.Text = profile.avgKD.ToString();
                 curWinStrikeProfile1.Text = profile.currrentWinStreak.ToString();
@@ -368,9 +728,9 @@ namespace WindowsFormsApp1
                 LoadMapInComboBox(map2BoxProfile1, profile.maps);
                 map1BoxProfile1.SelectedIndex = 0;
                 map2BoxProfile1.SelectedIndex = 0;
-                metroPanel1.Visible = true;
             }
         }
+
         // Обновить информацию о map1
         public void UpdateMapBox()
         {
@@ -402,6 +762,7 @@ namespace WindowsFormsApp1
             avgAssistsProfile1Map1.Text = profile.maps[index].avgAssist.ToString();
             avgHSsProfile1Map1.Text = profile.maps[index].avgHS.ToString();
         }
+
         // Обновить информацию о map2
         public void UpdateMapBox2()
         {
@@ -434,6 +795,7 @@ namespace WindowsFormsApp1
             avgHSsProfile1Map2.Text = profile.maps[index].avgHS.ToString();
         }
 
+        //
         private void compareMaps1_Click(object sender, EventArgs e)
         {
             DisableStatsCompareProfile();
@@ -444,62 +806,86 @@ namespace WindowsFormsApp1
             SelectBestMapProfile1();
         }
 
-        private void metroButton2_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://steamcommunity.com/profiles/" + profile.steamid64);
-        }
-
-        private void goToFaceit1_Click(object sender, EventArgs e)
+        //
+        private void goToFaceITProfile1_Click(object sender, EventArgs e)
         {
             Process.Start(profile.faceit_url);
         }
 
-        #endregion
-        public void LoadMapInComboBox(ComboBox box, List<Map> maps)
+        //
+        private void goToSteamProfile1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < maps.Count; i++)
-            {
+            Process.Start("https://steamcommunity.com/profiles/" + profile.steamid64);
+        }
 
-                if (maps[i].mapName.StartsWith("aim_"))
+        //
+        public void Combine20MatchesProfile1(List<Statistics> stats)
+        {
+            Statistics last20 = profile.last20;
+            profileLast20mode.Text = "";
+            for (int i = 0; i < stats.Count; i++)
+            {
+                if (!profileLast20mode.Text.Contains(stats[i].mode))
                 {
-                    box.Items.Add(maps[i].mapName + " " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_cache")
-                {
-                    
-                    box.Items.Add("Cache " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_cbble")
-                {
-                    box.Items.Add("Cobblestone " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_dust2")
-                {
-                    box.Items.Add("Dust2 " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_mirage")
-                {
-                    box.Items.Add("Mirage " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_inferno")
-                {
-                    box.Items.Add("Inferno " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_nuke")
-                {
-                    box.Items.Add("Nuke " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_train")
-                {
-                    box.Items.Add("Train " + maps[i].mode);
-                }
-                if (maps[i].mapName == "de_overpass")
-                {
-                    box.Items.Add("Overpass " + maps[i].mode);
+                    profileLast20mode.Text += '"' + stats[i].mode + '"' + " ";
                 }
             }
+            profile1Last20Death.Text = last20.death.ToString();
+            profile1Last20Assists.Text = last20.assists.ToString();
+            profile1Last20Kills.Text = last20.kills.ToString();
+            profile1Last20KDr.Text = last20.kdRatio.ToString();
+            profile1Last20KRr.Text = last20.krRatio.ToString();
+            profile1Last20Matches.Text = stats.Count.ToString();
+            profile1Last20MVPs.Text = last20.mvps.ToString();
+            profile1Last20Penta.Text = last20.pentaKills.ToString();
+            profile1Last20Quadro.Text = last20.quadroKills.ToString();
+            profile1Last20Triple.Text = last20.tripleKills.ToString();
+            profile1Last20WinRate.Text = Math.Round(last20.winRate, 0).ToString() + "%";
+            profile1Last20Wins.Text = last20.wins.ToString();
+            profileLast20HS.Text = last20.totalHeadshots.ToString();
+            profile1Last20Rounds.Text = last20.roudns.ToString();
+            profileLast20HSperMatch.Text = last20.hsPerMatch.ToString();
+            profile1Last20avgRounds.Text = Math.Round(last20.avgRounds, 2).ToString();
+            profile1Last20avgKills.Text = Math.Round(last20.avgKills, 2).ToString();
+            profile1Last20avgDeath.Text = Math.Round(last20.avgDeaths, 2).ToString();
+            profile1Last20avgAssists.Text = Math.Round(last20.avgAssists, 2).ToString();
+            profile1Last20avgHSs.Text = Math.Round(last20.avgHSs, 2).ToString();
+            profile1Last20avgHSp.Text = Math.Round(last20.avgHSPercent, 2).ToString() + "%";
+            profile1Last20avgKDR.Text = Math.Round(last20.avgKDRation, 2).ToString();
+            profile1Last20avgKRR.Text = Math.Round(last20.avgKRRatio, 2).ToString();
+            profile1Last20avgMVPs.Text = Math.Round(last20.avgMVPs, 2).ToString();
+            profile1Last20avgPenta.Text = Math.Round(last20.avgPentaKills, 2).ToString();
+            profile1Last20avgQuadro.Text = Math.Round(last20.avgQuadroKills, 2).ToString();
+            profile1Last20avgTriple.Text = Math.Round(last20.avgTripleKills, 2).ToString();
         }
+
+    //
+    private void map1BoxProfile1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            UpdateMapBox();
+            loginMapBox1Profile1_defaultStyle();
+        }
+
+        //
+        private void map2BoxProfile1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            UpdateMapBox2();
+            loginMapBox2Profile1_defaultStyle();
+        }
+
+        //
+        private void getFriendInfoProfile1_Click_1(object sender, EventArgs e)
+        {
+            login2.Text = friendsBoxProfile1.Items[friendsBoxProfile1.SelectedIndex].ToString();
+            getProfile2.PerformClick();
+        }
+
+
+
+        #endregion
+        
         #region Login2
+
         // 
         public void ShowInfoProfile2Tab(Profile acc)
         {
@@ -532,10 +918,11 @@ namespace WindowsFormsApp1
                 LoadMapInComboBox(map2BoxProfile2, profile2.maps);
                 map1BoxProfile2.SelectedIndex = 0;
                 map2BoxProfile2.SelectedIndex = 0;
-                metroPanel4.Visible = true;
+                metroPanel2.Visible = false;
             }   
             
         }
+
         // Обновить информацию о map1
         public void UpdateMapBoxProfile2()
         {
@@ -567,6 +954,7 @@ namespace WindowsFormsApp1
             avgAssistsProfile2Map1.Text = profile2.maps[index].avgAssist.ToString();
             avgHSsProfile2Map1.Text = profile2.maps[index].avgHS.ToString();
         }
+
         // Обновить информацию о map2
         public void UpdateMap2BoxProfile2()
         {
@@ -598,25 +986,30 @@ namespace WindowsFormsApp1
             avgAssistsProfile2Map2.Text = profile2.maps[index].avgAssist.ToString();
             avgHSsProfile2Map2.Text = profile2.maps[index].avgHS.ToString();
         }
+
         // Показать информацию о map1
-        private void map1BoxProfile2_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void map1BoxProfile2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             UpdateMapBoxProfile2();
             loginMapBox1Profile2_defaultStyle();
         }
+
         // Показать информацию о map2
-        private void map2BoxProfile2_SelectedIndexChanged(object sender, EventArgs e)
+        private void map2BoxProfile2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             UpdateMap2BoxProfile2();
             loginMapBox2Profile2_defaultStyle();
         }
-        // Очистить табло логин1
+
+        // Очистить табло логин2
         public void ClearProfile2Tab()
         {
             friendsBoxProfile2.Items.Clear();
             map1BoxProfile2.Items.Clear();
             map2BoxProfile2.Items.Clear();
         }
+
         // 
         private void compareMapsProfile2_Click(object sender, EventArgs e)
         {
@@ -627,12 +1020,14 @@ namespace WindowsFormsApp1
             CompareMap1andMap2Profile2_Style();
             SelectBestMapProfile2();
         }
+
         // Загрузка login2
         private void metroButton4_Click(object sender, EventArgs e)
         {
+            Last20StyleProfile2_DefaultStyle();
             isLogin2Loaded = false;
             CheckOnLoadedLogins();
-            metroPanel4.Visible = false;
+            metroPanel2.Visible = true;
             ClearProfile2Tab();
             profile2 = new Profile();
             profile2.SetInfo(login2.Text);
@@ -649,7 +1044,7 @@ namespace WindowsFormsApp1
                     loginProfileProfile2_defaultStyle();
                     loginMapBox1Profile2_defaultStyle();
                     loginMapBox2Profile2_defaultStyle();
-                    metroTabControl1.SelectTab(1);
+                    metroTabControl1.SelectTab(tabProfile2int);
                     if (profile2.friends.Count != 0)
                     {
                         friendsBoxProfile2.Enabled = true;
@@ -661,13 +1056,63 @@ namespace WindowsFormsApp1
                         friendsBoxProfile2.Enabled = false;
                         getFriendInfoProfile2.Enabled = false;
                     }
+                    profile2.LoadMatchHistory();
+                    Combine20MatchesProfile2(profile2.stats20matches);
+                    metroPanel2.Visible = false;
                 }
             }
 
         }
 
+        //
+        private void getFriendInfoProfile2_Click_1(object sender, EventArgs e)
+        {
+            login1.Text = friendsBoxProfile2.Items[friendsBoxProfile2.SelectedIndex].ToString();
+            getProfile1.PerformClick();
+        }
+
+        //
+        public void Combine20MatchesProfile2(List<Statistics> stats)
+        {
+            Statistics last20 = profile2.last20;
+            profile2Last20mode.Text = "";
+            for (int i = 0; i < stats.Count; i++)
+            {
+                if (!profile2Last20mode.Text.Contains(stats[i].mode))
+                {
+                    profile2Last20mode.Text += '"' + stats[i].mode + '"' + " ";
+                }
+            }
+            profile2Last20Death.Text = last20.death.ToString();
+            profile2Last20Assists.Text = last20.assists.ToString();
+            profile2Last20Kills.Text = last20.kills.ToString();
+            profile2Last20KDr.Text = last20.kdRatio.ToString();
+            profile2Last20KRr.Text = last20.krRatio.ToString();
+            profile2Last20Matches.Text = stats.Count.ToString();
+            profile2Last20MVPs.Text = last20.mvps.ToString();
+            profile2Last20Penta.Text = last20.pentaKills.ToString();
+            profile2Last20Quadro.Text = last20.quadroKills.ToString();
+            profile2Last20Triple.Text = last20.tripleKills.ToString();
+            profile2Last20WinRate.Text = Math.Round(last20.winRate, 0).ToString() + "%";
+            profile2Last20Wins.Text = last20.wins.ToString();
+            profile2Last20HS.Text = last20.totalHeadshots.ToString();
+            profile2Last20Rounds.Text = last20.roudns.ToString();
+            profile2Last20HSperMatch.Text = last20.hsPerMatch.ToString();
+            profile2Last20avgKills.Text = Math.Round(last20.avgKills, 2).ToString();
+            profile2Last20avgDeath.Text = Math.Round(last20.avgDeaths, 2).ToString();
+            profile2Last20avgAssists.Text = Math.Round(last20.avgAssists, 2).ToString();
+            profile2Last20avgHSs.Text = Math.Round(last20.avgHSs, 2).ToString();
+            profile2Last20avgHSp.Text = Math.Round(last20.avgHSPercent, 2).ToString() + "%";
+            profile2Last20avgKDR.Text = Math.Round(last20.avgKDRation, 2).ToString();
+            profile2Last20avgKRR.Text = Math.Round(last20.avgKRRatio, 2).ToString();
+            profile2Last20avgMVPs.Text = Math.Round(last20.avgMVPs, 2).ToString();
+            profile2Last20avgPenta.Text = Math.Round(last20.avgPentaKills, 2).ToString();
+            profile2Last20avgQuadro.Text = Math.Round(last20.avgQuadroKills, 2).ToString();
+            profile2Last20avgTriple.Text = Math.Round(last20.avgTripleKills, 2).ToString();
+            profile2Last20avgRounds.Text = Math.Round(last20.avgRounds, 2).ToString();
+        }
         #endregion
-        
+
         #region Match
 
         // Открыть в браузере и скачать демо файл
@@ -690,6 +1135,11 @@ namespace WindowsFormsApp1
         {
             if (match.TeamA.leader != null)
             {
+                //Настройка игроков
+
+                LoadMembers();
+
+                //настройка матча
                 teamnameA.Text = match.TeamA.teamName;
                 teamnameB.Text = match.TeamB.teamName;
                 scoreTeamA.Text = match.scoreTeamA;
@@ -702,6 +1152,7 @@ namespace WindowsFormsApp1
 
                 int memberOldA = 0;
                 List<Member> membOldA = new List<Member>();
+
                 membOldA.Add(match.TeamA.leader);
                 membOldA.Add(match.TeamA.member2);
                 membOldA.Add(match.TeamA.member3);
@@ -864,367 +1315,6 @@ namespace WindowsFormsApp1
                 {
                     avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Blue;
                     avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-
-                //Team A
-                //Leader Team A
-                mNickname1.Text = match.TeamA.leader.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamA.leader.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry1.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel1.Image = GetImageLevel(match.TeamA.leader.faceit_level);
-                mAvatar1.Image = match.TeamA.leader.avatar;
-                mMatches1.Text = "Matches: " + match.TeamA.leader.matches.ToString();
-                mWinRate1.Text = "Win Rate: " + match.TeamA.leader.winRate.ToString() + "%";
-                mElo1.Text = match.TeamA.leader.faceit_elo.ToString() + " ELO";
-                mJoinType1.Text = match.TeamA.leader.join_type;
-                mAvgHS1.Text = "Avg. HS: " + match.TeamA.leader.avgHS.ToString() + "%";
-                mKD1.Text = "Avg. KD: " + match.TeamA.leader.avgKDr;
-                mRanking1.Text = "Ranking: " + match.TeamA.leader.ranking;
-                for (int i = 0; i < match.TeamA.leader.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamA.leader.select_members_id[i], false);
-                    mLobby1.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby1.SelectedIndex = 0;
-                if (match.TeamA.leader.join_type == "mix")
-                {
-                    mJoinType1.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType1.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-
-                //Member2
-                mNickname2.Text = match.TeamA.member2.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamA.member2.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry2.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel2.Image = GetImageLevel(match.TeamA.member2.faceit_level);
-                mAvatar2.Image = match.TeamA.member2.avatar;
-                mMatches2.Text = "Matches: " + match.TeamA.member2.matches.ToString();
-                mWinRate2.Text = "Win Rate: " + match.TeamA.member2.winRate.ToString() + "%";
-                mElo2.Text = match.TeamA.member2.faceit_elo.ToString() + " ELO";
-                mJoinType2.Text = match.TeamA.member2.join_type;
-                mAvgHS2.Text = "Avg. HS: " + match.TeamA.member2.avgHS.ToString() + "%";
-                mKD2.Text = "Avg. KD: " + match.TeamA.member2.avgKDr;
-                mRanking2.Text = "Ranking: " + match.TeamA.member2.ranking;
-                for (int i = 0; i < match.TeamA.member2.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamA.member2.select_members_id[i], false);
-                    mLobby2.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby2.SelectedIndex = 0;
-                if (match.TeamA.member2.join_type == "mix")
-                {
-                    mJoinType2.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType2.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-                //Member3
-                mNickname3.Text = match.TeamA.member3.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamA.member3.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry3.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel3.Image = GetImageLevel(match.TeamA.member3.faceit_level);
-                mAvatar3.Image = match.TeamA.member3.avatar;
-                mMatches3.Text = "Matches: " + match.TeamA.member3.matches.ToString();
-                mWinRate3.Text = "Win Rate: " + match.TeamA.member3.winRate.ToString() + "%";
-                mElo3.Text = match.TeamA.member3.faceit_elo.ToString() + " ELO";
-                mJoinType3.Text = match.TeamA.member3.join_type;
-                mAvgHS3.Text = "Avg. HS: " + match.TeamA.member3.avgHS.ToString() + "%";
-                mKD3.Text = "Avg. KD: " + match.TeamA.member3.avgKDr;
-                mRanking3.Text = "Ranking: " + match.TeamA.member3.ranking;
-                for (int i = 0; i < match.TeamA.member3.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamA.member3.select_members_id[i], false);
-                    mLobby3.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby3.SelectedIndex = 0;
-                if (match.TeamA.member3.join_type == "mix")
-                {
-                    mJoinType3.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType3.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-                //Member4
-                mNickname4.Text = match.TeamA.member4.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamA.member4.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry4.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel4.Image = GetImageLevel(match.TeamA.member4.faceit_level);
-                mAvatar4.Image = match.TeamA.member4.avatar;
-                mMatches4.Text = "Matches: " + match.TeamA.member4.matches.ToString();
-                mWinRate4.Text = "Win Rate: " + match.TeamA.member4.winRate.ToString() + "%";
-                mElo4.Text = match.TeamA.member4.faceit_elo.ToString() + " ELO";
-                mJoinType4.Text = match.TeamA.member4.join_type;
-                mAvgHS4.Text = "Avg. HS: " + match.TeamA.member4.avgHS.ToString() + "%";
-                mKD4.Text = "Avg. KD: " + match.TeamA.member4.avgKDr;
-                mRanking4.Text = "Ranking: " + match.TeamA.member4.ranking;
-                for (int i = 0; i < match.TeamA.member4.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamA.member4.select_members_id[i], false);
-                    mLobby4.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby4.SelectedIndex = 0;
-                if (match.TeamA.member4.join_type == "mix")
-                {
-                    mJoinType4.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType4.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-                //Member5
-                mNickname5.Text = match.TeamA.member5.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamA.member5.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry5.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel5.Image = GetImageLevel(match.TeamA.member5.faceit_level);
-                mAvatar5.Image = match.TeamA.member5.avatar;
-                mMatches5.Text = "Matches: " + match.TeamA.member5.matches.ToString();
-                mWinRate5.Text = "Win Rate: " + match.TeamA.member5.winRate.ToString() + "%";
-                mElo5.Text = match.TeamA.member5.faceit_elo.ToString() + " ELO";
-                mJoinType5.Text = match.TeamA.member5.join_type;
-                mAvgHS5.Text = "Avg. HS: " + match.TeamA.member5.avgHS.ToString() + "%";
-                mKD5.Text = "Avg. KD: " + match.TeamA.member5.avgKDr;
-                mRanking5.Text = "Ranking: " + match.TeamA.member5.ranking;
-                for (int i = 0; i < match.TeamA.member5.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamA.member5.select_members_id[i], false);
-                    mLobby5.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby5.SelectedIndex = 0;
-                if (match.TeamA.member5.join_type == "mix")
-                {
-                    mJoinType5.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType5.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-                //Team B
-                //Leader - Team B
-                mNickname6.Text = match.TeamB.leader.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamB.leader.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry6.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel6.Image = GetImageLevel(match.TeamB.leader.faceit_level);
-                mAvatar6.Image = match.TeamB.leader.avatar;
-                mMatches6.Text = "Matches: " + match.TeamB.leader.matches.ToString();
-                mWinRate6.Text = "Win Rate: " + match.TeamB.leader.winRate.ToString() + "%";
-                mElo6.Text = match.TeamB.leader.faceit_elo.ToString() + " ELO";
-                mJoinType6.Text = match.TeamB.leader.join_type;
-                mAvgHS6.Text = "Avg. HS: " + match.TeamB.leader.avgHS.ToString() + "%";
-                mKD6.Text = "Avg. KD: " + match.TeamB.leader.avgKDr;
-                mRanking6.Text = "Ranking: " + match.TeamB.leader.ranking;
-                for (int i = 0; i < match.TeamB.leader.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamB.leader.select_members_id[i], false);
-                    mLobby6.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby6.SelectedIndex = 0;
-                if (match.TeamB.leader.join_type == "mix")
-                {
-                    mJoinType6.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType6.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                //Member2
-                mNickname7.Text = match.TeamB.member2.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamB.member2.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry7.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel7.Image = GetImageLevel(match.TeamB.member2.faceit_level);
-                mAvatar7.Image = match.TeamB.member2.avatar;
-                mMatches7.Text = "Matches: " + match.TeamB.member2.matches.ToString();
-                mWinRate7.Text = "Win Rate: " + match.TeamB.member2.winRate.ToString() + "%";
-                mElo7.Text = match.TeamB.member2.faceit_elo.ToString() + " ELO";
-                mJoinType7.Text = match.TeamB.member2.join_type;
-                mAvgHS7.Text = "Avg. HS: " + match.TeamB.member2.avgHS.ToString() + "%";
-                mKD7.Text = "Avg. KD: " + match.TeamB.member2.avgKDr;
-                mRanking7.Text = "Ranking: " + match.TeamB.member2.ranking;
-                for (int i = 0; i < match.TeamB.member2.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamB.member2.select_members_id[i], false);
-                    mLobby7.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby7.SelectedIndex = 0;
-                if (match.TeamB.member2.join_type == "mix")
-                {
-                    mJoinType7.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType7.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-                //Member3
-                mNickname8.Text = match.TeamB.member3.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamB.member3.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry8.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel8.Image = GetImageLevel(match.TeamB.member3.faceit_level);
-                mAvatar8.Image = match.TeamB.member3.avatar;
-                mMatches8.Text = "Matches: " + match.TeamB.member3.matches.ToString();
-                mWinRate8.Text = "Win Rate: " + match.TeamB.member3.winRate.ToString() + "%";
-                mElo8.Text = match.TeamB.member3.faceit_elo.ToString() + " ELO";
-                mJoinType8.Text = match.TeamB.member3.join_type;
-                mAvgHS8.Text = "Avg. HS: " + match.TeamB.member3.avgHS.ToString() + "%";
-                mKD8.Text = "Avg. KD: " + match.TeamB.member3.avgKDr;
-                mRanking8.Text = "Ranking: " + match.TeamB.member3.ranking;
-                for (int i = 0; i < match.TeamB.member3.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamB.member3.select_members_id[i], false);
-                    mLobby8.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby8.SelectedIndex = 0;
-                if (match.TeamB.member3.join_type == "mix")
-                {
-                    mJoinType8.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType8.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                //Member4
-                mNickname9.Text = match.TeamB.member4.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamB.member4.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry9.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel9.Image = GetImageLevel(match.TeamB.member4.faceit_level);
-                mAvatar9.Image = match.TeamB.member4.avatar;
-                mMatches9.Text = "Matches: " + match.TeamB.member4.matches.ToString();
-                mWinRate9.Text = "Win Rate: " + match.TeamB.member4.winRate.ToString() + "%";
-                mElo9.Text = match.TeamB.member4.faceit_elo.ToString() + " ELO";
-                mJoinType9.Text = match.TeamB.member4.join_type;
-                mAvgHS9.Text = "Avg. HS: " + match.TeamB.member4.avgHS.ToString() + "%";
-                mKD9.Text = "Avg. KD: " + match.TeamB.member4.avgKDr;
-                mRanking9.Text = "Ranking: " + match.TeamB.member4.ranking;
-                for (int i = 0; i < match.TeamB.member4.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamB.member4.select_members_id[i], false);
-                    mLobby9.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby9.SelectedIndex = 0;
-                if (match.TeamB.member4.join_type == "mix")
-                {
-                    mJoinType9.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType9.Style = MetroFramework.MetroColorStyle.Green;
-                }
-
-                //Member5
-                mNickname10.Text = match.TeamB.member5.nickname;
-                try
-                {
-                    WebRequest web2 = WebRequest.Create("https://cdn-frontend.faceit.com/web/56-1534534293/src/app/assets/images-compress/flags/" + match.TeamB.member5.country.ToUpper() + ".png");
-                    WebResponse web3 = web2.GetResponse();
-                    mCountry10.Image = Image.FromStream(web3.GetResponseStream());
-                }
-                catch (Exception)
-                {
-
-                }
-                mLevel10.Image = GetImageLevel(match.TeamB.member5.faceit_level);
-                mAvatar10.Image = match.TeamB.member5.avatar;
-                mMatches10.Text = "Matches: " + match.TeamB.member5.matches.ToString();
-                mWinRate10.Text = "Win Rate: " + match.TeamB.member5.winRate.ToString() + "%";
-                mElo10.Text = match.TeamB.member5.faceit_elo.ToString() + " ELO";
-                mJoinType10.Text = match.TeamB.member5.join_type;
-                mAvgHS10.Text = "Avg. HS: " + match.TeamB.member5.avgHS.ToString() + "%";
-                mKD10.Text = "Avg. KD: " + match.TeamB.member5.avgKDr;
-                mRanking10.Text = "Ranking: " + match.TeamB.member5.ranking;
-                for (int i = 0; i < match.TeamB.member5.select_members_id.Count; i++)
-                {
-                    JObject dec = GetProfile(match.TeamB.member5.select_members_id[i], false);
-                    mLobby10.Items.Add(dec["nickname"].ToString());
-                }
-                mLobby10.SelectedIndex = 0;
-                if (match.TeamB.member5.join_type == "mix")
-                {
-                    mJoinType10.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    mJoinType10.Style = MetroFramework.MetroColorStyle.Green;
                 }
             }
         }
@@ -1508,12 +1598,12 @@ namespace WindowsFormsApp1
             if (map1.pentaKills > map2.pentaKills)
             {
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
-                metrolabel.Style = MetroFramework.MetroColorStyle.Green;
+                pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
             else if (map1.pentaKills < map2.pentaKills)
             {
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
-                metrolabel.Style = MetroFramework.MetroColorStyle.Red;
+                pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
             }
             else
             {
@@ -2042,8 +2132,8 @@ namespace WindowsFormsApp1
             avgPentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Black;
             avgQuadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Black;
             avgTripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Black;
-            avgKRRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Black;
             avgKDRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Black;
+            avgKRRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Black;
         }
         // Загрузка обычных стилей о profile
         public void loginProfileProfile2_defaultStyle()
@@ -2726,7 +2816,7 @@ namespace WindowsFormsApp1
                 bestMapProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
                 bestMapProfile2Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
-            metroLabel147.Visible = true;
+            metroLabel74.Visible = true;
             bestMapProfile2Map1.Visible = true;
             bestMapProfile2Map2.Visible = true;
         }
@@ -2736,7 +2826,7 @@ namespace WindowsFormsApp1
         
         public void EnableStatsCompareProfile()
         {
-            metroLabel147.Visible = true;
+            metroLabel74.Visible = true;
             metro.Visible = true;
             bestMapProfile1Map1.Visible = true;
             bestMapProfile1Map2.Visible = true;
@@ -2763,26 +2853,33 @@ namespace WindowsFormsApp1
             profileMap2Profile2Map1.Visible = true;
             profileMap2Profile2Map2.Visible = true;
 
+            profileLast20Profile1Map1.Visible = true;
+            profileLast20Profile1Map2.Visible = true;
+            profileLast20Profile2Map1.Visible = true;
+            profileLast20Profile2Map2.Visible = true;
+
             //Для профиля #1
-            metroLabel214.Visible = true;
-            metroLabel213.Visible = true;
-            metroLabel247.Visible = true;
-            metroLabel245.Visible = true;
-            metroLabel249.Visible = true;
-            metroLabel253.Visible = true;
+            metroLabel85.Visible = true;
+            metroLabel86.Visible = true;
+            metroLabel101.Visible = true;
+            metroLabel78.Visible = true;
+            metroLabel90.Visible = true;
+            metroLabel70.Visible = true;
+            metroLabel2.Visible = true;
 
             //Для профиля #2
-            metroLabel265.Visible = true;
-            metroLabel272.Visible = true;
-            metroLabel258.Visible = true;
-            metroLabel270.Visible = true;
-            metroLabel243.Visible = true;
-            metroLabel266.Visible = true;
+            metroLabel55.Visible = true;
+            metroLabel57.Visible = true;
+            metroLabel62.Visible = true;
+            metroLabel49.Visible = true;
+            metroLabel65.Visible = true;
+            metroLabel42.Visible = true;
+            metroLabel33.Visible = true;
         }
 
         public void DisableStatsCompareProfile()
         {
-            metroLabel147.Visible = false;
+            metroLabel74.Visible = false;
             metro.Visible = false;
             bestMapProfile1Map1.Visible = false;
             bestMapProfile1Map2.Visible = false;
@@ -2809,21 +2906,28 @@ namespace WindowsFormsApp1
             profileMap2Profile2Map1.Visible = false;
             profileMap2Profile2Map2.Visible = false;
 
+            profileLast20Profile1Map1.Visible = false;
+            profileLast20Profile1Map2.Visible = false;
+            profileLast20Profile2Map1.Visible = false;
+            profileLast20Profile2Map2.Visible = false;
+
             //Для профиля #1
-            metroLabel214.Visible = false;
-            metroLabel213.Visible = false;
-            metroLabel247.Visible = false;
-            metroLabel245.Visible = false;
-            metroLabel249.Visible = false;
-            metroLabel253.Visible = false;
+            metroLabel85.Visible = false;
+            metroLabel86.Visible = false;
+            metroLabel101.Visible = false;
+            metroLabel78.Visible = false;
+            metroLabel90.Visible = false;
+            metroLabel70.Visible = false;
+            metroLabel2.Visible = false;
 
             //Для профиля #2
-            metroLabel265.Visible = false;
-            metroLabel272.Visible = false;
-            metroLabel258.Visible = false;
-            metroLabel270.Visible = false;
-            metroLabel243.Visible = false;
-            metroLabel266.Visible = false;
+            metroLabel55.Visible = false;
+            metroLabel57.Visible = false;
+            metroLabel62.Visible = false;
+            metroLabel49.Visible = false;
+            metroLabel65.Visible = false;
+            metroLabel42.Visible = false;
+            metroLabel33.Visible = false;
         }
 
         #endregion
@@ -2845,6 +2949,7 @@ namespace WindowsFormsApp1
         private void GetInfoMatch1_Click(object sender, EventArgs e)
         {
             metroPanel3.Visible = false;
+            members = new List<Member>();
             mLobby1.Items.Clear();
             mLobby2.Items.Clear();
             mLobby3.Items.Clear();
@@ -2862,15 +2967,16 @@ namespace WindowsFormsApp1
                 isMatchLoaded = true;
                 ShowInfoMatch();
                 metroPanel3.Visible = true;
-                metroTabControl1.SelectTab(2);
+                metroTabControl1.SelectTab(tabMatchint);
             }
         }
 
         private void getProfile1_Click_1(object sender, EventArgs e)
         {
+            Last20StyleProfile2_DefaultStyle();
             isLogin1Loaded = false;
             CheckOnLoadedLogins();
-            metroPanel1.Visible = false;
+            metroPanel1.Visible = true;
             ClearProfileTab();
             profile = new Profile();
             profile.SetInfo(login1.Text);
@@ -2878,7 +2984,6 @@ namespace WindowsFormsApp1
             {
                 if (profile.dec.HasValues & profile.dec.Type != JTokenType.Null)
                 {
-                    
                     isLogin1Loaded = true;
                     ShowInfoProfileTab(profile);
                     CheckOnLoadedLogins();
@@ -2886,7 +2991,7 @@ namespace WindowsFormsApp1
                     loginProfileProfile1_defaultStyle();
                     loginMapBox1Profile1_defaultStyle();
                     loginMapBox2Profile1_defaultStyle();
-                    metroTabControl1.SelectTab(0);
+                    metroTabControl1.SelectTab(tabProfile1int);
                     if(profile.friends.Count != 0)
                     {
                         friendsBoxProfile1.Enabled = true;
@@ -2898,7 +3003,9 @@ namespace WindowsFormsApp1
                         friendsBoxProfile1.Enabled = false;
                         getFriendInfoProfile1.Enabled = false;
                     }
-                    
+                    profile.LoadMatchHistory();
+                    Combine20MatchesProfile1(profile.stats20matches);
+                    metroPanel1.Visible = false;
                 }
             }
         }
@@ -2986,6 +3093,10 @@ namespace WindowsFormsApp1
 
             int indexAllProfile1 = 0;
             int indexAllProfile2 = 0;
+
+            int indexLast20Profile1 = 0;
+            int indexLast20Profile2 = 0;
+
 
             #region Map1
             if (map1.wins > map2.wins)
@@ -4121,6 +4232,511 @@ namespace WindowsFormsApp1
             }
             #endregion
 
+            #region Last20
+
+            Statistics last20profile1 = profile.last20;
+            Statistics last20profile2 = profile2.last20;
+
+            if (last20profile1.kills > last20profile2.kills)
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if(last20profile1.kills < last20profile2.kills)
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.death < last20profile2.death)
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.death > last20profile2.death)
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.assists > last20profile2.assists)
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.assists < last20profile2.assists)
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.mvps > last20profile2.mvps)
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.mvps < last20profile2.mvps)
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.totalHeadshots > last20profile2.totalHeadshots)
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.totalHeadshots < last20profile2.totalHeadshots)
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.kdRatio > last20profile2.kdRatio)
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.kdRatio < last20profile2.kdRatio)
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.krRatio > last20profile2.krRatio)
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.krRatio < last20profile2.krRatio)
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.tripleKills > last20profile2.tripleKills)
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.tripleKills < last20profile2.tripleKills)
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.quadroKills > last20profile2.quadroKills)
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.quadroKills < last20profile2.quadroKills)
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.pentaKills > last20profile2.pentaKills)
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.pentaKills < last20profile2.pentaKills)
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.hsPerMatch > last20profile2.hsPerMatch)
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.hsPerMatch < last20profile2.hsPerMatch)
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.matches > last20profile2.matches)
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.matches < last20profile2.matches)
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.wins > last20profile2.wins)
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.wins < last20profile2.wins)
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.winRate > last20profile2.winRate)
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.winRate < last20profile2.winRate)
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.roudns > last20profile2.roudns)
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.roudns < last20profile2.roudns)
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.mode == last20profile2.mode)
+            {
+                profileLast20mode.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20mode.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+            else
+            {
+                profileLast20mode.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            if (last20profile1.avgKills > last20profile2.avgKills)
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKills < last20profile2.avgKills)
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgDeaths < last20profile2.avgDeaths)
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgDeaths > last20profile2.avgDeaths)
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgAssists > last20profile2.avgAssists)
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgAssists < last20profile2.avgAssists)
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgHSs > last20profile2.avgHSs)
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgHSs < last20profile2.avgHSs)
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgKDRation > last20profile2.avgKDRation)
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKDRation < last20profile2.avgKDRation)
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgKRRatio > last20profile2.avgKRRatio)
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKRRatio < last20profile2.avgKRRatio)
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgMVPs > last20profile2.avgMVPs)
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgMVPs < last20profile2.avgMVPs)
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgTripleKills > last20profile2.avgTripleKills)
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgTripleKills < last20profile2.avgTripleKills)
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgQuadroKills > last20profile2.avgQuadroKills)
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgQuadroKills < last20profile2.avgQuadroKills)
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgPentaKills > last20profile2.avgPentaKills)
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgPentaKills < last20profile2.avgPentaKills)
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgRounds > last20profile2.avgRounds)
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgRounds < last20profile2.avgRounds)
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgHSPercent > last20profile2.avgHSPercent)
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgHSPercent < last20profile2.avgHSPercent)
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            
+            #endregion
+
             //Для первой карты двух профилей
             if (indexMap1Profile1 > indexMap1Profile2)
             {
@@ -4191,8 +4807,44 @@ namespace WindowsFormsApp1
                 profileMap2Profile2Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            indexAllProfile1 = indexMap1Profile1 + indexMap2Profile1 + indexAllProfile1;
-            indexAllProfile2 = indexMap1Profile2 + indexMap2Profile2 + indexAllProfile2;
+            //Для 20-и последних матчей двух профилей
+            if (indexLast20Profile1 > indexLast20Profile2)
+            {
+                profileLast20Profile1Map1.Text = "Best"; //Отображение в Profile #1 графе Map1
+                profileLast20Profile1Map2.Text = "Worst"; //Отображение в Profile #1 графе Map2
+                profileLast20Profile2Map1.Text = "Best"; //Отображение в Profile #2 графе Map1
+                profileLast20Profile2Map2.Text = "Worst"; //Отображение в Profile #2 графе Map2
+                profileLast20Profile1Map1.Style = MetroFramework.MetroColorStyle.Green;
+                profileLast20Profile1Map2.Style = MetroFramework.MetroColorStyle.Red;
+                profileLast20Profile2Map1.Style = MetroFramework.MetroColorStyle.Green;
+                profileLast20Profile2Map2.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else if (indexLast20Profile1 < indexLast20Profile2)
+            {
+                profileLast20Profile1Map1.Text = "Worst"; //Отображение в Profile #1 графе Map1
+                profileLast20Profile1Map2.Text = "Best"; //Отображение в Profile #1 графе Map2
+                profileLast20Profile2Map1.Text = "Worst"; //Отображение в Profile #2 графе Map1
+                profileLast20Profile2Map2.Text = "Best"; //Отображение в Profile #2 графе Map2
+                profileLast20Profile1Map1.Style = MetroFramework.MetroColorStyle.Red;
+                profileLast20Profile1Map2.Style = MetroFramework.MetroColorStyle.Green;
+                profileLast20Profile2Map1.Style = MetroFramework.MetroColorStyle.Red;
+                profileLast20Profile2Map2.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else
+            {
+                profileLast20Profile1Map1.Text = "Best"; //Отображение в Profile #1 графе Map1
+                profileLast20Profile1Map2.Text = "Best"; //Отображение в Profile #1 графе Map2
+                profileLast20Profile2Map1.Text = "Best"; //Отображение в Profile #2 графе Map1
+                profileLast20Profile2Map2.Text = "Best"; //Отображение в Profile #2 графе Map2
+                profileLast20Profile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
+                profileLast20Profile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
+                profileLast20Profile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
+                profileLast20Profile2Map2.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+
+            indexAllProfile1 = indexMap1Profile1 + indexMap2Profile1 + indexAllProfile1 + indexLast20Profile1;
+            indexAllProfile2 = indexMap1Profile2 + indexMap2Profile2 + indexAllProfile2 + indexLast20Profile2;
 
             //Для всего профиля двух профилей
             if (indexAllProfile1 > indexAllProfile2)
@@ -4266,19 +4918,7 @@ namespace WindowsFormsApp1
 
             EnableStatsCompareProfile();
         }
-
-        private void getFriendInfoProfile1_Click(object sender, EventArgs e)
-        {
-            login2.Text = friendsBoxProfile1.Items[friendsBoxProfile1.SelectedIndex].ToString();
-            getProfile2.PerformClick();
-        }
-
-        private void getFriendInfoProfile2_Click(object sender, EventArgs e)
-        {
-            login1.Text = friendsBoxProfile2.Items[friendsBoxProfile2.SelectedIndex].ToString();
-            getProfile1.PerformClick();
-        }
-
+        
         private void matchIDbox1_Enter(object sender, EventArgs e)
         {
             this.AcceptButton = GetInfoMatch1;
@@ -4296,14 +4936,7 @@ namespace WindowsFormsApp1
 
         private void settings1_Click(object sender, EventArgs e)
         {
-            if (metroPanel2.Visible)
-            {
-                metroPanel2.Visible = false;
-            }
-            else
-            {
-                metroPanel2.Visible = true;
-            }
+            
         }
 
         private void metroCheckBox2_CheckedChanged(object sender, EventArgs e)
@@ -4349,6 +4982,1137 @@ namespace WindowsFormsApp1
                 loginMapBox2Profile2_defaultStyle();
             }
         }
+        
+        private void metroButton1_Click_1(object sender, EventArgs e)
+        {
+            DisableStatsCompareProfile();
+            loginProfileProfile1_defaultStyle();
+            loginMapBox1Profile1_defaultStyle();
+            loginMapBox2Profile1_defaultStyle();
+            CompareMap1andMap2Profile1_Style();
+            SelectBestMapProfile1();
+        }
+
+        private void metroButton5_Click(object sender, EventArgs e)
+        {
+            DisableStatsCompareProfile();
+            loginProfileProfile2_defaultStyle();
+            loginMapBox1Profile2_defaultStyle();
+            loginMapBox2Profile2_defaultStyle();
+            CompareMap1andMap2Profile2_Style();
+            SelectBestMapProfile2();
+        }
+
+        private void metroButton7_Click(object sender, EventArgs e)
+        {
+            CompareLast20Profile1andProfile2();
+            Last20EnableStyleProfile1();
+        }
+
+        public void CompareLast20Profile1andProfile2()
+        {
+            int indexLast20Profile1 = 0;
+            int indexLast20Profile2 = 0;
+            Statistics last20profile1 = profile.last20;
+            Statistics last20profile2 = profile2.last20;
+            if (last20profile1.kills > last20profile2.kills)
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.kills < last20profile2.kills)
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.death < last20profile2.death)
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.death > last20profile2.death)
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.assists > last20profile2.assists)
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.assists < last20profile2.assists)
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.mvps > last20profile2.mvps)
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.mvps < last20profile2.mvps)
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.totalHeadshots > last20profile2.totalHeadshots)
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.totalHeadshots < last20profile2.totalHeadshots)
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.kdRatio > last20profile2.kdRatio)
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.kdRatio < last20profile2.kdRatio)
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.krRatio > last20profile2.krRatio)
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.krRatio < last20profile2.krRatio)
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.tripleKills > last20profile2.tripleKills)
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.tripleKills < last20profile2.tripleKills)
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.quadroKills > last20profile2.quadroKills)
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.quadroKills < last20profile2.quadroKills)
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.pentaKills > last20profile2.pentaKills)
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.pentaKills < last20profile2.pentaKills)
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.hsPerMatch > last20profile2.hsPerMatch)
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.hsPerMatch < last20profile2.hsPerMatch)
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.matches > last20profile2.matches)
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.matches < last20profile2.matches)
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.wins > last20profile2.wins)
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.wins < last20profile2.wins)
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.winRate > last20profile2.winRate)
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.winRate < last20profile2.winRate)
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.roudns > last20profile2.roudns)
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.roudns < last20profile2.roudns)
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.mode == last20profile2.mode)
+            {
+                profileLast20mode.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20mode.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+            else
+            {
+                profileLast20mode.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            if (last20profile1.avgKills > last20profile2.avgKills)
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKills < last20profile2.avgKills)
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgDeaths < last20profile2.avgDeaths)
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgDeaths > last20profile2.avgDeaths)
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgAssists > last20profile2.avgAssists)
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgAssists < last20profile2.avgAssists)
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgHSs > last20profile2.avgHSs)
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgHSs < last20profile2.avgHSs)
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgKDRation > last20profile2.avgKDRation)
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKDRation < last20profile2.avgKDRation)
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgKRRatio > last20profile2.avgKRRatio)
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKRRatio < last20profile2.avgKRRatio)
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgMVPs > last20profile2.avgMVPs)
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgMVPs < last20profile2.avgMVPs)
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgTripleKills > last20profile2.avgTripleKills)
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgTripleKills < last20profile2.avgTripleKills)
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgQuadroKills > last20profile2.avgQuadroKills)
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgQuadroKills < last20profile2.avgQuadroKills)
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgPentaKills > last20profile2.avgPentaKills)
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgPentaKills < last20profile2.avgPentaKills)
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgRounds > last20profile2.avgRounds)
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgRounds < last20profile2.avgRounds)
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgHSPercent > last20profile2.avgHSPercent)
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgHSPercent < last20profile2.avgHSPercent)
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            //Для профиля #1
+            metroLabel28.Visible = true;
+            metroLabel26.Visible = true;
+            metroLabel16.Visible = true;
+            profile1last20Profile1.Visible = true;
+            profile2last20Profile1.Visible = true;
+            //Для профиля #2
+            metroLabel12.Visible = true;
+            metroLabel18.Visible = true;
+            metroLabel20.Visible = true;
+            profile1last20profile2.Visible = true;
+            profile2last20Profile2.Visible = true;
+
+            if (indexLast20Profile1 > indexLast20Profile2)
+            {
+                profile1last20Profile1.Text = "Best"; //Отображение в Profile #1 графе Map1
+                profile2last20Profile1.Text = "Worst"; //Отображение в Profile #1 графе Map2
+                profile1last20profile2.Text = "Best"; //Отображение в Profile #2 графе Map1
+                profile2last20Profile2.Text = "Worst"; //Отображение в Profile #2 графе Map2
+                profile1last20Profile1.Style = MetroFramework.MetroColorStyle.Green;
+                profile2last20Profile1.Style = MetroFramework.MetroColorStyle.Red;
+                profile1last20profile2.Style = MetroFramework.MetroColorStyle.Green;
+                profile2last20Profile2.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else if (indexLast20Profile1 < indexLast20Profile2)
+            {
+                profile1last20Profile1.Text = "Worst"; //Отображение в Profile #1 графе Map1
+                profile2last20Profile1.Text = "Best"; //Отображение в Profile #1 графе Map2
+                profile1last20profile2.Text = "Worst"; //Отображение в Profile #2 графе Map1
+                profile2last20Profile2.Text = "Best"; //Отображение в Profile #2 графе Map2
+                profile1last20Profile1.Style = MetroFramework.MetroColorStyle.Red;
+                profile2last20Profile1.Style = MetroFramework.MetroColorStyle.Green;
+                profile1last20profile2.Style = MetroFramework.MetroColorStyle.Red;
+                profile2last20Profile2.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else
+            {
+                profile1last20Profile1.Text = "Best"; //Отображение в Profile #1 графе Map1
+                profile2last20Profile1.Text = "Best"; //Отображение в Profile #1 графе Map2
+                profile1last20profile2.Text = "Best"; //Отображение в Profile #2 графе Map1
+                profile2last20Profile2.Text = "Best"; //Отображение в Profile #2 графе Map2
+                profile1last20Profile1.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2last20Profile1.Style = MetroFramework.MetroColorStyle.Blue;
+                profile1last20profile2.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2last20Profile2.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+        }
+        public void Last20EnableStyleProfile1()
+        {
+            int indexLast20Profile1 = 0;
+            int indexLast20Profile2 = 0;
+            Statistics last20profile1 = profile.last20;
+            Statistics last20profile2 = profile2.last20;
+            if (last20profile1.kills > last20profile2.kills)
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.kills < last20profile2.kills)
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.death < last20profile2.death)
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.death > last20profile2.death)
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.assists > last20profile2.assists)
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.assists < last20profile2.assists)
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.mvps > last20profile2.mvps)
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.mvps < last20profile2.mvps)
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.totalHeadshots > last20profile2.totalHeadshots)
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.totalHeadshots < last20profile2.totalHeadshots)
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profileLast20HS.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.kdRatio > last20profile2.kdRatio)
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.kdRatio < last20profile2.kdRatio)
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.krRatio > last20profile2.krRatio)
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.krRatio < last20profile2.krRatio)
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.tripleKills > last20profile2.tripleKills)
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.tripleKills < last20profile2.tripleKills)
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.quadroKills > last20profile2.quadroKills)
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.quadroKills < last20profile2.quadroKills)
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.pentaKills > last20profile2.pentaKills)
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.pentaKills < last20profile2.pentaKills)
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.hsPerMatch > last20profile2.hsPerMatch)
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.hsPerMatch < last20profile2.hsPerMatch)
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.matches > last20profile2.matches)
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.matches < last20profile2.matches)
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.wins > last20profile2.wins)
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.wins < last20profile2.wins)
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.winRate > last20profile2.winRate)
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.winRate < last20profile2.winRate)
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.roudns > last20profile2.roudns)
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.roudns < last20profile2.roudns)
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.mode == last20profile2.mode)
+            {
+                profileLast20mode.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20mode.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+            else
+            {
+                profileLast20mode.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            if (last20profile1.avgKills > last20profile2.avgKills)
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKills < last20profile2.avgKills)
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgDeaths < last20profile2.avgDeaths)
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgDeaths > last20profile2.avgDeaths)
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgAssists > last20profile2.avgAssists)
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgAssists < last20profile2.avgAssists)
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgHSs > last20profile2.avgHSs)
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgHSs < last20profile2.avgHSs)
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgKDRation > last20profile2.avgKDRation)
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKDRation < last20profile2.avgKDRation)
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgKRRatio > last20profile2.avgKRRatio)
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgKRRatio < last20profile2.avgKRRatio)
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgMVPs > last20profile2.avgMVPs)
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgMVPs < last20profile2.avgMVPs)
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgTripleKills > last20profile2.avgTripleKills)
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgTripleKills < last20profile2.avgTripleKills)
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgQuadroKills > last20profile2.avgQuadroKills)
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgQuadroKills < last20profile2.avgQuadroKills)
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgPentaKills > last20profile2.avgPentaKills)
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgPentaKills < last20profile2.avgPentaKills)
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgRounds > last20profile2.avgRounds)
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgRounds < last20profile2.avgRounds)
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (last20profile1.avgHSPercent > last20profile2.avgHSPercent)
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+                indexLast20Profile1 += 1;
+            }
+            else if (last20profile1.avgHSPercent < last20profile2.avgHSPercent)
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
+                indexLast20Profile2 += 1;
+            }
+            else
+            {
+                profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Blue;
+                profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+        }
+
+        public void Last20StyleProfile2_DefaultStyle()
+        {
+            profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+            profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+            profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+            profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+            profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+            profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+            profileLast20mode.Style = MetroFramework.MetroColorStyle.Green;
+            profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+            profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+            profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+            profileLast20HS.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+            profile1Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+            //Для профиля #1
+            metroLabel28.Visible = false;
+            metroLabel26.Visible = false;
+            metroLabel16.Visible = false;
+            //Для профиля #2
+            metroLabel12.Visible = false;
+            metroLabel18.Visible = false;
+            metroLabel20.Visible = false;
+        }
+
+        private void metroButton6_Click(object sender, EventArgs e)
+        {
+            CompareLast20Profile1andProfile2();
+            Last20EnableStyleProfile1();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ParserInteger
@@ -4363,6 +6127,7 @@ namespace WindowsFormsApp1
             return double.Parse(temp.Replace(".",","));
         }
     }
+
     public class Map
     {
         public Image imgRegular;
@@ -4401,6 +6166,7 @@ namespace WindowsFormsApp1
     {
         public JObject json;
         public JObject dec = new JObject();
+        public JObject his;
         public Image imgAvatar;
         public string faceit_url;
         public string player_id;
@@ -4420,7 +6186,9 @@ namespace WindowsFormsApp1
         public int winMatches;
         public double winRate;
         public List<Map> maps = new List<Map>();
-
+        public List<Map> allMatches = new List<Map>();
+        public List<Statistics> stats20matches = new List<Statistics>();
+        public Statistics last20 = new Statistics();
         public void SetInfo(string login)
         {
             friends_ids = new List<string>();
@@ -4535,10 +6303,120 @@ namespace WindowsFormsApp1
             }
         }
         
+        public void LoadMatchHistory()
+        {
+            stats20matches = new List<Statistics>();
+            last20 = new Statistics();
+            his = GetHistory(player_id, 20);
+            if (his.HasValues & his.Type != JTokenType.Null)
+            {
+                for (int i = 0; i < his["items"].ToList().Count; i++)
+                {
+                    var hir = GetStatsMatch(his["items"][i]["match_id"].ToString());
+                    if (hir.HasValues & hir.Type != JTokenType.Null)
+                    {
+                        for(int a = 0; a < hir["rounds"][0]["teams"].ToList().Count; a++)
+                        {
+                            for(int c = 0; c < hir["rounds"][0]["teams"][a]["players"].ToList().Count; c++)
+                            {
+                                if (hir["rounds"][0]["teams"][a]["players"][c]["nickname"].ToString() == nickname)
+                                {
+                                    Statistics stats = new Statistics();
+                                    stats.assists = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Assists"].ToString());
+                                    stats.kills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Kills"].ToString());
+                                    stats.death = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Deaths"].ToString());
+                                    stats.mvps = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["MVPs"].ToString());
+                                    stats.Headshots = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Headshot"].ToString());
+                                    stats.hsPercent = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Headshots %"].ToString());
+                                    stats.kdRatio = ParserInteger.ParsDouble(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["K/D Ratio"].ToString());
+                                    stats.krRatio = ParserInteger.ParsDouble(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["K/R Ratio"].ToString());
+                                    stats.pentaKills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Penta Kills"].ToString());
+                                    stats.quadroKills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Quadro Kills"].ToString());
+                                    stats.tripleKills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Triple Kills"].ToString());
+                                    stats.mode = (hir["rounds"][0]["game_mode"].ToString());
+                                    stats.roudns = ParserInteger.ParsInt(hir["rounds"][0]["round_stats"]["Rounds"].ToString());
+                                    if (ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Result"].ToString()) != 0)
+                                    {
+                                        stats.wins += 1;
+                                    }
+                                    stats20matches.Add(stats);
+                                }
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < stats20matches.Count; i++)
+                {
+                    last20.kills += stats20matches[i].kills;
+                    last20.death += stats20matches[i].death;
+                    last20.assists += stats20matches[i].assists;
+                    last20.mvps += stats20matches[i].mvps;
+                    last20.totalHeadshots += stats20matches[i].Headshots;
+                    last20.hsPercent += stats20matches[i].hsPercent;
+                    last20.kdRatio += stats20matches[i].kdRatio;
+                    last20.krRatio += stats20matches[i].krRatio;
+                    last20.pentaKills += stats20matches[i].pentaKills;
+                    last20.quadroKills += stats20matches[i].quadroKills;
+                    last20.tripleKills += stats20matches[i].tripleKills;
+                    last20.wins += stats20matches[i].wins;
+                    last20.roudns += stats20matches[i].roudns;
+                }
+                last20.matches = stats20matches.Count;
+                last20.hsPerMatch = last20.totalHeadshots / last20.matches;
+                last20.winRate = (last20.wins * 100) / last20.matches;
+                last20.avgKills = last20.kills / last20.matches;
+                last20.avgDeaths = last20.death / last20.matches;
+                last20.avgHSs = last20.totalHeadshots / last20.matches;
+                last20.avgHSPercent = last20.hsPercent / last20.matches;
+                last20.avgMVPs = last20.mvps / last20.matches;
+                last20.avgAssists = last20.assists / last20.matches;
+                last20.avgPentaKills = last20.pentaKills / last20.matches;
+                last20.avgQuadroKills = last20.quadroKills / last20.matches;
+                last20.avgTripleKills = last20.tripleKills / last20.matches;
+                last20.avgRounds = last20.roudns / last20.matches;
+                last20.avgKDRation = last20.kdRatio / last20.matches;
+                last20.avgKRRatio = last20.krRatio / last20.matches;
+            }
+        }
     }
+    public class Statistics
+    {
+        public string mode;
+        public int kills;
+        public int death;
+        public int assists;
+        public int totalHeadshots;
+        public int Headshots;
+        public double hsPercent;
+        public int mvps;
+        public int tripleKills;
+        public int quadroKills;
+        public int pentaKills;
+        public double matches;
+        public int wins;
+        public int roudns;
+        public double winRate;
+        public double kdRatio;
+        public double krRatio;
+        public double hsPerMatch;
+        public double avgKills;
+        public double avgDeaths;
+        public double avgAssists;
+        public double avgHSs;
+        public double avgHSPercent;
+        public double avgMVPs;
+        public double avgKDRation;
+        public double avgKRRatio;
+        public double avgTripleKills;
+        public double avgQuadroKills;
+        public double avgPentaKills;
+        public double avgRounds;
+    }
+
 
     public class Match
     {
+        
         public JObject json;
         public string serverCountry;
         public string region;
@@ -4556,6 +6434,7 @@ namespace WindowsFormsApp1
 
         public void GetInfoMatch(string id)
         {
+            
             json = Form1.GetMatch(id);
             if (json.HasValues && json.Type != JTokenType.Null)
             {
@@ -4587,11 +6466,12 @@ namespace WindowsFormsApp1
                 }
                 TeamA.SetTeam(json);
                 TeamB.SetTeam(json);
+
             }
             
         }
     }
-    public class Team1
+    public class Team1 : Form1
     {
         public Member leader;
         public Member member2;
@@ -4630,30 +6510,35 @@ namespace WindowsFormsApp1
                         leader = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member2 == null)
                     {
                         member2 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member3 == null)
                     {
                         member3 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member4 == null)
                     {
                         member4 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member5 == null)
                     {
                         member5 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                 }
                 teamName = dec["teams"]["faction1"]["name"].ToString();
@@ -4667,7 +6552,7 @@ namespace WindowsFormsApp1
             }
         }
     }
-    public class Team2
+    public class Team2 : Form1
     {
         public Member leader;
         public Member member2;
@@ -4706,30 +6591,35 @@ namespace WindowsFormsApp1
                         leader = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member2 == null)
                     {
                         member2 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member3 == null)
                     {
                         member3 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member4 == null)
                     {
                         member4 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                     else if (member5 == null)
                     {
                         member5 = memb[i];
                         memb[i].GetInfo();
                         memb[i].GetRanking(dec["region"].ToString());
+                        members.Add(memb[i]);
                     }
                 }
                 teamName = dec["teams"]["faction2"]["name"].ToString();
@@ -4743,7 +6633,7 @@ namespace WindowsFormsApp1
             }
         }
     }
-    public class Member
+    public class Member : Form1
     {
         public string country;
         public Image avatar;
@@ -4812,6 +6702,7 @@ namespace WindowsFormsApp1
             ranking = ParserInteger.ParsInt(dec2["position"].ToString());
         }
     }
+
     public static class JsonExtensions
     {
         public static bool IsNullOrEmpty(this JToken token)
@@ -4885,3 +6776,4 @@ namespace WindowsFormsApp1
         }
     }
 }
+
