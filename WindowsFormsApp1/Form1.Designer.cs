@@ -44,147 +44,229 @@
             this.metroTabControl2 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.metroLabel522 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking10 = new MetroFramework.Controls.MetroLabel();
+            this.mElo10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel525 = new MetroFramework.Controls.MetroLabel();
+            this.mLevel10 = new MetroFramework.Controls.MetroLabel();
+            this.mKD10 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches10 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS10 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel531 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton29 = new MetroFramework.Controls.MetroButton();
+            this.metroButton30 = new MetroFramework.Controls.MetroButton();
+            this.metroButton31 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar10 = new System.Windows.Forms.PictureBox();
+            this.mCountry10 = new System.Windows.Forms.PictureBox();
+            this.metroLabel532 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel533 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel534 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname10 = new MetroFramework.Controls.MetroLink();
+            this.mLevelPicture10 = new System.Windows.Forms.PictureBox();
+            this.metroLabel535 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat10 = new System.Windows.Forms.PictureBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.metroLabel236 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking9 = new MetroFramework.Controls.MetroLabel();
+            this.mElo9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel239 = new MetroFramework.Controls.MetroLabel();
+            this.mLevel9 = new MetroFramework.Controls.MetroLabel();
+            this.mKD9 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches9 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS9 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel285 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton26 = new MetroFramework.Controls.MetroButton();
+            this.metroButton27 = new MetroFramework.Controls.MetroButton();
+            this.metroButton28 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar9 = new System.Windows.Forms.PictureBox();
+            this.mCountry9 = new System.Windows.Forms.PictureBox();
+            this.metroLabel286 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel287 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel288 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname9 = new MetroFramework.Controls.MetroLink();
+            this.mLevelPicture9 = new System.Windows.Forms.PictureBox();
+            this.metroLabel521 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat9 = new System.Windows.Forms.PictureBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.metroLabel222 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking8 = new MetroFramework.Controls.MetroLabel();
+            this.mElo8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel225 = new MetroFramework.Controls.MetroLabel();
+            this.mLevel8 = new MetroFramework.Controls.MetroLabel();
+            this.mKD8 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches8 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS8 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel231 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton23 = new MetroFramework.Controls.MetroButton();
+            this.metroButton24 = new MetroFramework.Controls.MetroButton();
+            this.metroButton25 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar8 = new System.Windows.Forms.PictureBox();
+            this.mCountry8 = new System.Windows.Forms.PictureBox();
+            this.metroLabel232 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel233 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel234 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname8 = new MetroFramework.Controls.MetroLink();
+            this.mLevelPicture8 = new System.Windows.Forms.PictureBox();
+            this.metroLabel235 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat8 = new System.Windows.Forms.PictureBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.metroLabel164 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking7 = new MetroFramework.Controls.MetroLabel();
+            this.mElo7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel167 = new MetroFramework.Controls.MetroLabel();
+            this.mLevel7 = new MetroFramework.Controls.MetroLabel();
+            this.mKD7 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches7 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS7 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel217 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton20 = new MetroFramework.Controls.MetroButton();
+            this.metroButton21 = new MetroFramework.Controls.MetroButton();
+            this.metroButton22 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar7 = new System.Windows.Forms.PictureBox();
+            this.mCountry7 = new System.Windows.Forms.PictureBox();
+            this.metroLabel218 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel219 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel220 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname7 = new MetroFramework.Controls.MetroLink();
+            this.mLevelPicture7 = new System.Windows.Forms.PictureBox();
+            this.metroLabel221 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat7 = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.mLevelPicture5 = new System.Windows.Forms.PictureBox();
+            this.mLevel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel149 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS5 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking5 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat5 = new System.Windows.Forms.PictureBox();
+            this.mElo5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel153 = new MetroFramework.Controls.MetroLabel();
+            this.mKD5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel157 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches5 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate5 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton17 = new MetroFramework.Controls.MetroButton();
+            this.metroButton18 = new MetroFramework.Controls.MetroButton();
+            this.metroButton19 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar5 = new System.Windows.Forms.PictureBox();
+            this.metroLabel160 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel161 = new MetroFramework.Controls.MetroLabel();
+            this.mCountry5 = new System.Windows.Forms.PictureBox();
+            this.metroLabel162 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel163 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname5 = new MetroFramework.Controls.MetroLink();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.mLevelPicture4 = new System.Windows.Forms.PictureBox();
+            this.mLevel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel134 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS4 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking4 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat4 = new System.Windows.Forms.PictureBox();
+            this.mElo4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel138 = new MetroFramework.Controls.MetroLabel();
+            this.mKD4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel140 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches4 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate4 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton14 = new MetroFramework.Controls.MetroButton();
+            this.metroButton15 = new MetroFramework.Controls.MetroButton();
+            this.metroButton16 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar4 = new System.Windows.Forms.PictureBox();
+            this.metroLabel144 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel145 = new MetroFramework.Controls.MetroLabel();
+            this.mCountry4 = new System.Windows.Forms.PictureBox();
+            this.metroLabel146 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel147 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname4 = new MetroFramework.Controls.MetroLink();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.mLevelPicture3 = new System.Windows.Forms.PictureBox();
+            this.mLevel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel115 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS3 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking3 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat3 = new System.Windows.Forms.PictureBox();
+            this.mElo3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel121 = new MetroFramework.Controls.MetroLabel();
+            this.mKD3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel123 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches3 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate3 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton11 = new MetroFramework.Controls.MetroButton();
+            this.metroButton12 = new MetroFramework.Controls.MetroButton();
+            this.metroButton13 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar3 = new System.Windows.Forms.PictureBox();
+            this.metroLabel126 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel127 = new MetroFramework.Controls.MetroLabel();
+            this.mCountry3 = new System.Windows.Forms.PictureBox();
+            this.metroLabel130 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel131 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname3 = new MetroFramework.Controls.MetroLink();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.mLevelPicture2 = new System.Windows.Forms.PictureBox();
+            this.mLevel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel99 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS2 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking2 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat2 = new System.Windows.Forms.PictureBox();
+            this.mElo2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel105 = new MetroFramework.Controls.MetroLabel();
+            this.mKD2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel107 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches2 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate2 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
+            this.metroButton4 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar2 = new System.Windows.Forms.PictureBox();
+            this.metroLabel110 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel111 = new MetroFramework.Controls.MetroLabel();
+            this.mCountry2 = new System.Windows.Forms.PictureBox();
+            this.metroLabel112 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel113 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname2 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel79 = new MetroFramework.Controls.MetroLabel();
+            this.countryServer1 = new MetroFramework.Controls.MetroLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.metroLabel41 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking6 = new MetroFramework.Controls.MetroLabel();
+            this.mElo6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel82 = new MetroFramework.Controls.MetroLabel();
+            this.mLevel6 = new MetroFramework.Controls.MetroLabel();
+            this.mKD6 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches6 = new MetroFramework.Controls.MetroLabel();
+            this.mAvgHS6 = new MetroFramework.Controls.MetroLabel();
+            this.mWinRate6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel94 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton8 = new MetroFramework.Controls.MetroButton();
+            this.metroButton9 = new MetroFramework.Controls.MetroButton();
+            this.metroButton10 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar6 = new System.Windows.Forms.PictureBox();
+            this.mCountry6 = new System.Windows.Forms.PictureBox();
+            this.metroLabel80 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel88 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel95 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname6 = new MetroFramework.Controls.MetroLink();
+            this.mLevelPicture6 = new System.Windows.Forms.PictureBox();
+            this.metroLabel96 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat6 = new System.Windows.Forms.PictureBox();
+            this.mapName1 = new MetroFramework.Controls.MetroLabel();
+            this.countryServerImg1 = new System.Windows.Forms.PictureBox();
+            this.metroLabel51 = new MetroFramework.Controls.MetroLabel();
+            this.finishedDate1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel45 = new MetroFramework.Controls.MetroLabel();
+            this.startedDate1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel23 = new MetroFramework.Controls.MetroLabel();
+            this.configuredDate1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel98 = new MetroFramework.Controls.MetroLabel();
             this.avgWinRateTeamB = new MetroFramework.Controls.MetroLabel();
             this.metroLabel104 = new MetroFramework.Controls.MetroLabel();
             this.avgMatchesTeamB = new MetroFramework.Controls.MetroLabel();
             this.metroLabel87 = new MetroFramework.Controls.MetroLabel();
             this.avgRankingTeamB = new MetroFramework.Controls.MetroLabel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.metroLabel140 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking10 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel151 = new MetroFramework.Controls.MetroLabel();
-            this.mAvatar10 = new System.Windows.Forms.PictureBox();
-            this.mLobby10 = new MetroFramework.Controls.MetroComboBox();
-            this.mCountry10 = new System.Windows.Forms.PictureBox();
-            this.mAvgHS10 = new MetroFramework.Controls.MetroLabel();
-            this.mKD10 = new MetroFramework.Controls.MetroLabel();
-            this.mMatches10 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType10 = new MetroFramework.Controls.MetroLabel();
-            this.mNickname10 = new MetroFramework.Controls.MetroLink();
-            this.mElo10 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel10 = new System.Windows.Forms.PictureBox();
-            this.mWinRate10 = new MetroFramework.Controls.MetroLabel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.metroLabel138 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking9 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel143 = new MetroFramework.Controls.MetroLabel();
-            this.mAvatar9 = new System.Windows.Forms.PictureBox();
-            this.mLobby9 = new MetroFramework.Controls.MetroComboBox();
-            this.mCountry9 = new System.Windows.Forms.PictureBox();
-            this.mAvgHS9 = new MetroFramework.Controls.MetroLabel();
-            this.mKD9 = new MetroFramework.Controls.MetroLabel();
-            this.mMatches9 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType9 = new MetroFramework.Controls.MetroLabel();
-            this.mNickname9 = new MetroFramework.Controls.MetroLink();
-            this.mElo9 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel9 = new System.Windows.Forms.PictureBox();
-            this.mWinRate9 = new MetroFramework.Controls.MetroLabel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.metroLabel105 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking8 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel135 = new MetroFramework.Controls.MetroLabel();
-            this.mAvatar8 = new System.Windows.Forms.PictureBox();
-            this.mLobby8 = new MetroFramework.Controls.MetroComboBox();
-            this.mCountry8 = new System.Windows.Forms.PictureBox();
-            this.mAvgHS8 = new MetroFramework.Controls.MetroLabel();
-            this.mKD8 = new MetroFramework.Controls.MetroLabel();
-            this.mMatches8 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType8 = new MetroFramework.Controls.MetroLabel();
-            this.mNickname8 = new MetroFramework.Controls.MetroLink();
-            this.mElo8 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel8 = new System.Windows.Forms.PictureBox();
-            this.mWinRate8 = new MetroFramework.Controls.MetroLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.metroLabel106 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking7 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel102 = new MetroFramework.Controls.MetroLabel();
-            this.mAvatar7 = new System.Windows.Forms.PictureBox();
-            this.mLobby7 = new MetroFramework.Controls.MetroComboBox();
-            this.mCountry7 = new System.Windows.Forms.PictureBox();
-            this.mAvgHS7 = new MetroFramework.Controls.MetroLabel();
-            this.mKD7 = new MetroFramework.Controls.MetroLabel();
-            this.mMatches7 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType7 = new MetroFramework.Controls.MetroLabel();
-            this.mNickname7 = new MetroFramework.Controls.MetroLink();
-            this.mElo7 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel7 = new System.Windows.Forms.PictureBox();
-            this.mWinRate7 = new MetroFramework.Controls.MetroLabel();
-            this.mPanel6 = new System.Windows.Forms.Panel();
-            this.metroLabel133 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking6 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel100 = new MetroFramework.Controls.MetroLabel();
-            this.mAvatar6 = new System.Windows.Forms.PictureBox();
-            this.mLobby6 = new MetroFramework.Controls.MetroComboBox();
-            this.mCountry6 = new System.Windows.Forms.PictureBox();
-            this.mAvgHS6 = new MetroFramework.Controls.MetroLabel();
-            this.mKD6 = new MetroFramework.Controls.MetroLabel();
-            this.mMatches6 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType6 = new MetroFramework.Controls.MetroLabel();
-            this.mNickname6 = new MetroFramework.Controls.MetroLink();
-            this.mElo6 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel6 = new System.Windows.Forms.PictureBox();
-            this.mWinRate6 = new MetroFramework.Controls.MetroLabel();
-            this.mPanel5 = new System.Windows.Forms.Panel();
-            this.metroLabel134 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking5 = new MetroFramework.Controls.MetroLabel();
-            this.mLobby5 = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel146 = new MetroFramework.Controls.MetroLabel();
-            this.mElo5 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel5 = new System.Windows.Forms.PictureBox();
-            this.mAvatar5 = new System.Windows.Forms.PictureBox();
-            this.mCountry5 = new System.Windows.Forms.PictureBox();
-            this.mNickname5 = new MetroFramework.Controls.MetroLink();
-            this.mMatches5 = new MetroFramework.Controls.MetroLabel();
-            this.mAvgHS5 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType5 = new MetroFramework.Controls.MetroLabel();
-            this.mKD5 = new MetroFramework.Controls.MetroLabel();
-            this.mWinRate5 = new MetroFramework.Controls.MetroLabel();
-            this.mPanel4 = new System.Windows.Forms.Panel();
-            this.metroLabel136 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking4 = new MetroFramework.Controls.MetroLabel();
-            this.mLobby4 = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel139 = new MetroFramework.Controls.MetroLabel();
-            this.mElo4 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel4 = new System.Windows.Forms.PictureBox();
-            this.mAvatar4 = new System.Windows.Forms.PictureBox();
-            this.mCountry4 = new System.Windows.Forms.PictureBox();
-            this.mNickname4 = new MetroFramework.Controls.MetroLink();
-            this.mMatches4 = new MetroFramework.Controls.MetroLabel();
-            this.mAvgHS4 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType4 = new MetroFramework.Controls.MetroLabel();
-            this.mKD4 = new MetroFramework.Controls.MetroLabel();
-            this.mWinRate4 = new MetroFramework.Controls.MetroLabel();
-            this.mPanel3 = new System.Windows.Forms.Panel();
-            this.metroLabel137 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking3 = new MetroFramework.Controls.MetroLabel();
-            this.mLobby3 = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel107 = new MetroFramework.Controls.MetroLabel();
-            this.mElo3 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel3 = new System.Windows.Forms.PictureBox();
-            this.mAvatar3 = new System.Windows.Forms.PictureBox();
-            this.mCountry3 = new System.Windows.Forms.PictureBox();
-            this.mNickname3 = new MetroFramework.Controls.MetroLink();
-            this.mMatches3 = new MetroFramework.Controls.MetroLabel();
-            this.mAvgHS3 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType3 = new MetroFramework.Controls.MetroLabel();
-            this.mKD3 = new MetroFramework.Controls.MetroLabel();
-            this.mWinRate3 = new MetroFramework.Controls.MetroLabel();
-            this.mPanel2 = new System.Windows.Forms.Panel();
-            this.mRanking2 = new MetroFramework.Controls.MetroLabel();
-            this.mLobby2 = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel99 = new MetroFramework.Controls.MetroLabel();
-            this.mElo2 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel2 = new System.Windows.Forms.PictureBox();
-            this.mAvatar2 = new System.Windows.Forms.PictureBox();
-            this.metroLabel103 = new MetroFramework.Controls.MetroLabel();
-            this.mCountry2 = new System.Windows.Forms.PictureBox();
-            this.mNickname2 = new MetroFramework.Controls.MetroLink();
-            this.mMatches2 = new MetroFramework.Controls.MetroLabel();
-            this.mAvgHS2 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType2 = new MetroFramework.Controls.MetroLabel();
-            this.mKD2 = new MetroFramework.Controls.MetroLabel();
-            this.mWinRate2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel73 = new MetroFramework.Controls.MetroLabel();
             this.avgRankingTeamA = new MetroFramework.Controls.MetroLabel();
             this.metroLabel92 = new MetroFramework.Controls.MetroLabel();
@@ -192,20 +274,28 @@
             this.metroLabel97 = new MetroFramework.Controls.MetroLabel();
             this.avgMatchesTeamA = new MetroFramework.Controls.MetroLabel();
             this.mPanel1 = new System.Windows.Forms.Panel();
-            this.metroLabel96 = new MetroFramework.Controls.MetroLabel();
-            this.mRanking1 = new MetroFramework.Controls.MetroLabel();
-            this.mLobby1 = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel71 = new MetroFramework.Controls.MetroLabel();
-            this.mElo1 = new MetroFramework.Controls.MetroLabel();
-            this.mLevel1 = new System.Windows.Forms.PictureBox();
-            this.mAvatar1 = new System.Windows.Forms.PictureBox();
-            this.mCountry1 = new System.Windows.Forms.PictureBox();
-            this.mNickname1 = new MetroFramework.Controls.MetroLink();
-            this.mMatches1 = new MetroFramework.Controls.MetroLabel();
+            this.mLevelPicture1 = new System.Windows.Forms.PictureBox();
+            this.mLevel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel43 = new MetroFramework.Controls.MetroLabel();
             this.mAvgHS1 = new MetroFramework.Controls.MetroLabel();
-            this.mJoinType1 = new MetroFramework.Controls.MetroLabel();
+            this.mRanking1 = new MetroFramework.Controls.MetroLabel();
+            this.mAnticheat1 = new System.Windows.Forms.PictureBox();
+            this.mElo1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel34 = new MetroFramework.Controls.MetroLabel();
             this.mKD1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel243233 = new MetroFramework.Controls.MetroLabel();
+            this.mMatches1 = new MetroFramework.Controls.MetroLabel();
             this.mWinRate1 = new MetroFramework.Controls.MetroLabel();
+            this.mSteamBtn1 = new MetroFramework.Controls.MetroButton();
+            this.mLoadProfileBtn1 = new MetroFramework.Controls.MetroButton();
+            this.mFaceitBtn1 = new MetroFramework.Controls.MetroButton();
+            this.mAvatar1 = new System.Windows.Forms.PictureBox();
+            this.metroLabel37 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel35 = new MetroFramework.Controls.MetroLabel();
+            this.mCountry1 = new System.Windows.Forms.PictureBox();
+            this.metroLabel32 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel29 = new MetroFramework.Controls.MetroLabel();
+            this.mNickname1 = new MetroFramework.Controls.MetroLink();
             this.metroLabel83 = new MetroFramework.Controls.MetroLabel();
             this.avgKDTeamB = new MetroFramework.Controls.MetroLabel();
             this.metroLabel91 = new MetroFramework.Controls.MetroLabel();
@@ -218,14 +308,11 @@
             this.avgHSTeamA = new MetroFramework.Controls.MetroLabel();
             this.metroLabel89 = new MetroFramework.Controls.MetroLabel();
             this.avgEloTeamA = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel79 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel77 = new MetroFramework.Controls.MetroLabel();
             this.downloadDemo1 = new MetroFramework.Controls.MetroLink();
             this.metroLabel75 = new MetroFramework.Controls.MetroLabel();
             this.OpenInWeb1 = new MetroFramework.Controls.MetroLink();
             this.gameType1 = new MetroFramework.Controls.MetroLabel();
-            this.countryServer1 = new MetroFramework.Controls.MetroLabel();
-            this.mapName1 = new MetroFramework.Controls.MetroLabel();
             this.bestOfMatch1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel174 = new MetroFramework.Controls.MetroLabel();
             this.statusMatch1 = new MetroFramework.Controls.MetroLabel();
@@ -235,8 +322,290 @@
             this.scoreTeamA = new MetroFramework.Controls.MetroLabel();
             this.teamnameA = new MetroFramework.Controls.MetroLabel();
             this.metroTabPage5 = new MetroFramework.Controls.MetroTabPage();
+            this.metroPanel6 = new MetroFramework.Controls.MetroPanel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.statsMVP1 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton35 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel299 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS1 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton36 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel300 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR1 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths1 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton37 = new MetroFramework.Controls.MetroButton();
+            this.statsNickname1 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel301 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills1 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD1 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists1 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel298 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel296 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel290 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel289 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel305 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel303 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel304 = new MetroFramework.Controls.MetroLabel();
+            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
+            this.teamAPremade = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel332 = new MetroFramework.Controls.MetroLabel();
+            this.teamBPremade = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel60 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel329 = new MetroFramework.Controls.MetroLabel();
+            this.teamAFinalScore = new MetroFramework.Controls.MetroLabel();
+            this.teamBFinalScore = new MetroFramework.Controls.MetroLabel();
+            this.teamAResult = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel333 = new MetroFramework.Controls.MetroLabel();
+            this.teamBResult = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel330 = new MetroFramework.Controls.MetroLabel();
+            this.teamATeamHS = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel331 = new MetroFramework.Controls.MetroLabel();
+            this.teamBTeamHS = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel334 = new MetroFramework.Controls.MetroLabel();
+            this.teamBOTScore = new MetroFramework.Controls.MetroLabel();
+            this.teamAFirstHalfScore = new MetroFramework.Controls.MetroLabel();
+            this.teamAOTScore = new MetroFramework.Controls.MetroLabel();
+            this.teamBFirstHalfScore = new MetroFramework.Controls.MetroLabel();
+            this.teamBSecondHalfScore = new MetroFramework.Controls.MetroLabel();
+            this.teamASecondHalfScore = new MetroFramework.Controls.MetroLabel();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.statsMVP10 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton62 = new MetroFramework.Controls.MetroButton();
+            this.metroButton63 = new MetroFramework.Controls.MetroButton();
+            this.metroButton64 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel502 = new MetroFramework.Controls.MetroLabel();
+            this.statsNickname10 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel503 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths10 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR10 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel507 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills10 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel510 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel511 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel513 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel514 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel516 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel517 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills10 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel520 = new MetroFramework.Controls.MetroLabel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.statsMVP9 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton59 = new MetroFramework.Controls.MetroButton();
+            this.metroButton60 = new MetroFramework.Controls.MetroButton();
+            this.metroButton61 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel482 = new MetroFramework.Controls.MetroLabel();
+            this.statsNickname9 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel483 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths9 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR9 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel487 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills9 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel490 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel491 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel493 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel494 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel496 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel497 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills9 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel500 = new MetroFramework.Controls.MetroLabel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.statsMVP8 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton56 = new MetroFramework.Controls.MetroButton();
+            this.metroButton57 = new MetroFramework.Controls.MetroButton();
+            this.metroButton58 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel462 = new MetroFramework.Controls.MetroLabel();
+            this.statsNickname8 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel463 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths8 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR8 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel467 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills8 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel470 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel471 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel473 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel474 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel476 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel477 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills8 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel480 = new MetroFramework.Controls.MetroLabel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.statsMVP7 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton53 = new MetroFramework.Controls.MetroButton();
+            this.metroButton54 = new MetroFramework.Controls.MetroButton();
+            this.metroButton55 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel442 = new MetroFramework.Controls.MetroLabel();
+            this.statsNickname7 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel443 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths7 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR7 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel447 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills7 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel450 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel451 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel453 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel454 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel456 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel457 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills7 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel460 = new MetroFramework.Controls.MetroLabel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.statsMVP5 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton44 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel356 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS5 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton45 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel384 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR5 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths5 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton46 = new MetroFramework.Controls.MetroButton();
+            this.statsNickname5 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel387 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills5 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD5 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists5 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel392 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel393 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel394 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel396 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel397 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel399 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel400 = new MetroFramework.Controls.MetroLabel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.statsMVP4 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton47 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel402 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS4 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton48 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel404 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR4 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths4 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton49 = new MetroFramework.Controls.MetroButton();
+            this.statsNickname4 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel407 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills4 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD4 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists4 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel412 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel413 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel414 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel416 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel417 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel419 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel420 = new MetroFramework.Controls.MetroLabel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.statsMVP2 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton41 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel336 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS2 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton42 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel338 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR2 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths2 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton43 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel341 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills2 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD2 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists2 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel346 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel347 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel348 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel350 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel351 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel353 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel354 = new MetroFramework.Controls.MetroLabel();
+            this.statsNickname2 = new MetroFramework.Controls.MetroLink();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.statsMVP3 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton50 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel422 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS3 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton51 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel424 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR3 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths3 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton52 = new MetroFramework.Controls.MetroButton();
+            this.statsNickname3 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel427 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills3 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD3 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists3 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel432 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel433 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel434 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel436 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel437 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel439 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel440 = new MetroFramework.Controls.MetroLabel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.statsMVP6 = new MetroFramework.Controls.MetroLabel();
+            this.metroButton38 = new MetroFramework.Controls.MetroButton();
+            this.metroButton39 = new MetroFramework.Controls.MetroButton();
+            this.metroButton40 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel310 = new MetroFramework.Controls.MetroLabel();
+            this.statsNickname6 = new MetroFramework.Controls.MetroLink();
+            this.metroLabel312 = new MetroFramework.Controls.MetroLabel();
+            this.statsDeaths6 = new MetroFramework.Controls.MetroLabel();
+            this.statsKR6 = new MetroFramework.Controls.MetroLabel();
+            this.statsHS6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel320 = new MetroFramework.Controls.MetroLabel();
+            this.statsTripleKills6 = new MetroFramework.Controls.MetroLabel();
+            this.statsKD6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel315 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel327 = new MetroFramework.Controls.MetroLabel();
+            this.statsAssists6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel324 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel325 = new MetroFramework.Controls.MetroLabel();
+            this.statsPentaKills6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel321 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel322 = new MetroFramework.Controls.MetroLabel();
+            this.statsQuadroKills6 = new MetroFramework.Controls.MetroLabel();
+            this.statsKills6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel328 = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage6 = new MetroFramework.Controls.MetroTabPage();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.metroCheckBox2 = new MetroFramework.Controls.MetroCheckBox();
+            this.metroRadioButton3 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroCheckBox3 = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
             this.nicknameProfile1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.avatarProfile1 = new System.Windows.Forms.PictureBox();
@@ -445,8 +814,8 @@
             this.metroLabel380 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel381 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel382 = new MetroFramework.Controls.MetroLabel();
-            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.nicknameProfile2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.avatarProfile2 = new System.Windows.Forms.PictureBox();
@@ -655,54 +1024,80 @@
             this.metroLabel280 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel281 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel282 = new MetroFramework.Controls.MetroLabel();
-            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.settings1 = new MetroFramework.Controls.MetroButton();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroProgressBar3 = new MetroFramework.Controls.MetroProgressBar();
             this.metroTabPage3.SuspendLayout();
             this.metroTabControl2.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
             this.metroPanel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel10)).BeginInit();
-            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat10)).BeginInit();
+            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel9)).BeginInit();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat9)).BeginInit();
+            this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel8)).BeginInit();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat8)).BeginInit();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel7)).BeginInit();
-            this.mPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mAvatar6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mCountry6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel6)).BeginInit();
-            this.mPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat7)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry5)).BeginInit();
-            this.mPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel4)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry4)).BeginInit();
-            this.mPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel3)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry3)).BeginInit();
-            this.mPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel2)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mAvatar6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mCountry6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countryServerImg1)).BeginInit();
             this.mPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry1)).BeginInit();
+            this.metroTabPage5.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.metroPanel5.SuspendLayout();
+            this.panel19.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage6.SuspendLayout();
+            this.metroPanel1.SuspendLayout();
+            this.metroPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarProfile1)).BeginInit();
             this.metroTabControl3.SuspendLayout();
             this.metroTabPage9.SuspendLayout();
@@ -720,6 +1115,7 @@
             this.login1.Name = "login1";
             this.login1.Size = new System.Drawing.Size(322, 19);
             this.login1.TabIndex = 3;
+            this.login1.Text = "xaray98";
             this.login1.Enter += new System.EventHandler(this.login1_Enter);
             // 
             // loginLabel
@@ -746,6 +1142,7 @@
             this.matchIDbox1.Name = "matchIDbox1";
             this.matchIDbox1.Size = new System.Drawing.Size(322, 19);
             this.matchIDbox1.TabIndex = 1;
+            this.matchIDbox1.Text = "1-de375e9b-ecba-4a25-9315-665698c08062";
             this.matchIDbox1.Enter += new System.EventHandler(this.matchIDbox1_Enter);
             // 
             // GetInfoMatch1
@@ -828,7 +1225,7 @@
             this.metroTabControl2.Controls.Add(this.metroTabPage5);
             this.metroTabControl2.Location = new System.Drawing.Point(0, 2);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 0;
+            this.metroTabControl2.SelectedIndex = 1;
             this.metroTabControl2.Size = new System.Drawing.Size(887, 487);
             this.metroTabControl2.TabIndex = 105;
             // 
@@ -845,21 +1242,31 @@
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.panel9);
+            this.metroPanel3.Controls.Add(this.panel8);
+            this.metroPanel3.Controls.Add(this.panel7);
+            this.metroPanel3.Controls.Add(this.panel6);
+            this.metroPanel3.Controls.Add(this.panel5);
+            this.metroPanel3.Controls.Add(this.panel4);
+            this.metroPanel3.Controls.Add(this.panel3);
+            this.metroPanel3.Controls.Add(this.panel2);
+            this.metroPanel3.Controls.Add(this.metroLabel79);
+            this.metroPanel3.Controls.Add(this.countryServer1);
+            this.metroPanel3.Controls.Add(this.panel1);
+            this.metroPanel3.Controls.Add(this.mapName1);
+            this.metroPanel3.Controls.Add(this.countryServerImg1);
+            this.metroPanel3.Controls.Add(this.metroLabel51);
+            this.metroPanel3.Controls.Add(this.finishedDate1);
+            this.metroPanel3.Controls.Add(this.metroLabel45);
+            this.metroPanel3.Controls.Add(this.startedDate1);
+            this.metroPanel3.Controls.Add(this.metroLabel23);
+            this.metroPanel3.Controls.Add(this.configuredDate1);
             this.metroPanel3.Controls.Add(this.metroLabel98);
             this.metroPanel3.Controls.Add(this.avgWinRateTeamB);
             this.metroPanel3.Controls.Add(this.metroLabel104);
             this.metroPanel3.Controls.Add(this.avgMatchesTeamB);
             this.metroPanel3.Controls.Add(this.metroLabel87);
             this.metroPanel3.Controls.Add(this.avgRankingTeamB);
-            this.metroPanel3.Controls.Add(this.panel4);
-            this.metroPanel3.Controls.Add(this.panel3);
-            this.metroPanel3.Controls.Add(this.panel2);
-            this.metroPanel3.Controls.Add(this.panel1);
-            this.metroPanel3.Controls.Add(this.mPanel6);
-            this.metroPanel3.Controls.Add(this.mPanel5);
-            this.metroPanel3.Controls.Add(this.mPanel4);
-            this.metroPanel3.Controls.Add(this.mPanel3);
-            this.metroPanel3.Controls.Add(this.mPanel2);
             this.metroPanel3.Controls.Add(this.metroLabel73);
             this.metroPanel3.Controls.Add(this.avgRankingTeamA);
             this.metroPanel3.Controls.Add(this.metroLabel92);
@@ -879,14 +1286,11 @@
             this.metroPanel3.Controls.Add(this.avgHSTeamA);
             this.metroPanel3.Controls.Add(this.metroLabel89);
             this.metroPanel3.Controls.Add(this.avgEloTeamA);
-            this.metroPanel3.Controls.Add(this.metroLabel79);
             this.metroPanel3.Controls.Add(this.metroLabel77);
             this.metroPanel3.Controls.Add(this.downloadDemo1);
             this.metroPanel3.Controls.Add(this.metroLabel75);
             this.metroPanel3.Controls.Add(this.OpenInWeb1);
             this.metroPanel3.Controls.Add(this.gameType1);
-            this.metroPanel3.Controls.Add(this.countryServer1);
-            this.metroPanel3.Controls.Add(this.mapName1);
             this.metroPanel3.Controls.Add(this.bestOfMatch1);
             this.metroPanel3.Controls.Add(this.metroLabel174);
             this.metroPanel3.Controls.Add(this.statusMatch1);
@@ -898,13 +1302,2536 @@
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(-4, 3);
+            this.metroPanel3.Location = new System.Drawing.Point(-4, 0);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(890, 439);
+            this.metroPanel3.Size = new System.Drawing.Size(890, 442);
             this.metroPanel3.TabIndex = 104;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Controls.Add(this.metroLabel522);
+            this.panel9.Controls.Add(this.mRanking10);
+            this.panel9.Controls.Add(this.mElo10);
+            this.panel9.Controls.Add(this.metroLabel525);
+            this.panel9.Controls.Add(this.mLevel10);
+            this.panel9.Controls.Add(this.mKD10);
+            this.panel9.Controls.Add(this.mMatches10);
+            this.panel9.Controls.Add(this.mAvgHS10);
+            this.panel9.Controls.Add(this.mWinRate10);
+            this.panel9.Controls.Add(this.metroLabel531);
+            this.panel9.Controls.Add(this.metroButton29);
+            this.panel9.Controls.Add(this.metroButton30);
+            this.panel9.Controls.Add(this.metroButton31);
+            this.panel9.Controls.Add(this.mAvatar10);
+            this.panel9.Controls.Add(this.mCountry10);
+            this.panel9.Controls.Add(this.metroLabel532);
+            this.panel9.Controls.Add(this.metroLabel533);
+            this.panel9.Controls.Add(this.metroLabel534);
+            this.panel9.Controls.Add(this.mNickname10);
+            this.panel9.Controls.Add(this.mLevelPicture10);
+            this.panel9.Controls.Add(this.metroLabel535);
+            this.panel9.Controls.Add(this.mAnticheat10);
+            this.panel9.Location = new System.Drawing.Point(546, 360);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(335, 74);
+            this.panel9.TabIndex = 132;
+            // 
+            // metroLabel522
+            // 
+            this.metroLabel522.AutoSize = true;
+            this.metroLabel522.BackColor = System.Drawing.Color.Black;
+            this.metroLabel522.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel522.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel522.Location = new System.Drawing.Point(26, 38);
+            this.metroLabel522.Name = "metroLabel522";
+            this.metroLabel522.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel522.TabIndex = 125;
+            this.metroLabel522.Text = "Rank:";
+            this.metroLabel522.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mRanking10
+            // 
+            this.mRanking10.AutoSize = true;
+            this.mRanking10.BackColor = System.Drawing.Color.Black;
+            this.mRanking10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking10.Location = new System.Drawing.Point(59, 38);
+            this.mRanking10.Name = "mRanking10";
+            this.mRanking10.Size = new System.Drawing.Size(49, 15);
+            this.mRanking10.TabIndex = 126;
+            this.mRanking10.Text = "7654321";
+            this.mRanking10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mElo10
+            // 
+            this.mElo10.AutoSize = true;
+            this.mElo10.BackColor = System.Drawing.Color.Black;
+            this.mElo10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo10.Location = new System.Drawing.Point(53, 23);
+            this.mElo10.Name = "mElo10";
+            this.mElo10.Size = new System.Drawing.Size(37, 15);
+            this.mElo10.TabIndex = 119;
+            this.mElo10.Text = "10000";
+            this.mElo10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel525
+            // 
+            this.metroLabel525.AutoSize = true;
+            this.metroLabel525.BackColor = System.Drawing.Color.Black;
+            this.metroLabel525.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel525.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel525.Location = new System.Drawing.Point(26, 23);
+            this.metroLabel525.Name = "metroLabel525";
+            this.metroLabel525.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel525.TabIndex = 12;
+            this.metroLabel525.Text = "ELO:";
+            this.metroLabel525.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mLevel10
+            // 
+            this.mLevel10.AutoSize = true;
+            this.mLevel10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel10.Location = new System.Drawing.Point(49, 5);
+            this.mLevel10.Name = "mLevel10";
+            this.mLevel10.Size = new System.Drawing.Size(19, 15);
+            this.mLevel10.TabIndex = 122;
+            this.mLevel10.Text = "10";
+            // 
+            // mKD10
+            // 
+            this.mKD10.AutoSize = true;
+            this.mKD10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD10.Location = new System.Drawing.Point(235, 38);
+            this.mKD10.Name = "mKD10";
+            this.mKD10.Size = new System.Drawing.Size(28, 15);
+            this.mKD10.TabIndex = 120;
+            this.mKD10.Text = "1.00";
+            // 
+            // mMatches10
+            // 
+            this.mMatches10.AutoSize = true;
+            this.mMatches10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches10.Location = new System.Drawing.Point(141, 23);
+            this.mMatches10.Name = "mMatches10";
+            this.mMatches10.Size = new System.Drawing.Size(37, 15);
+            this.mMatches10.TabIndex = 118;
+            this.mMatches10.Text = "10000";
+            this.mMatches10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS10
+            // 
+            this.mAvgHS10.AutoSize = true;
+            this.mAvgHS10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS10.Location = new System.Drawing.Point(153, 38);
+            this.mAvgHS10.Name = "mAvgHS10";
+            this.mAvgHS10.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS10.TabIndex = 121;
+            this.mAvgHS10.Text = "100";
+            // 
+            // mWinRate10
+            // 
+            this.mWinRate10.AutoSize = true;
+            this.mWinRate10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate10.Location = new System.Drawing.Point(228, 23);
+            this.mWinRate10.Name = "mWinRate10";
+            this.mWinRate10.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate10.TabIndex = 117;
+            this.mWinRate10.Text = "100%";
+            // 
+            // metroLabel531
+            // 
+            this.metroLabel531.AutoSize = true;
+            this.metroLabel531.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel531.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel531.Location = new System.Drawing.Point(181, 38);
+            this.metroLabel531.Name = "metroLabel531";
+            this.metroLabel531.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel531.TabIndex = 14;
+            this.metroLabel531.Text = "K\\D Rat.:";
+            // 
+            // metroButton29
+            // 
+            this.metroButton29.Location = new System.Drawing.Point(89, 56);
+            this.metroButton29.Name = "metroButton29";
+            this.metroButton29.Size = new System.Drawing.Size(75, 15);
+            this.metroButton29.TabIndex = 115;
+            this.metroButton29.Text = "STEAM";
+            // 
+            // metroButton30
+            // 
+            this.metroButton30.Location = new System.Drawing.Point(170, 56);
+            this.metroButton30.Name = "metroButton30";
+            this.metroButton30.Size = new System.Drawing.Size(93, 15);
+            this.metroButton30.TabIndex = 114;
+            this.metroButton30.Text = "LOAD PROFILE";
+            // 
+            // metroButton31
+            // 
+            this.metroButton31.Location = new System.Drawing.Point(8, 56);
+            this.metroButton31.Name = "metroButton31";
+            this.metroButton31.Size = new System.Drawing.Size(75, 15);
+            this.metroButton31.TabIndex = 113;
+            this.metroButton31.Text = "FACEIT";
+            // 
+            // mAvatar10
+            // 
+            this.mAvatar10.Location = new System.Drawing.Point(264, 3);
+            this.mAvatar10.Name = "mAvatar10";
+            this.mAvatar10.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar10.TabIndex = 7;
+            this.mAvatar10.TabStop = false;
+            // 
+            // mCountry10
+            // 
+            this.mCountry10.Location = new System.Drawing.Point(236, 3);
+            this.mCountry10.Name = "mCountry10";
+            this.mCountry10.Size = new System.Drawing.Size(27, 17);
+            this.mCountry10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry10.TabIndex = 104;
+            this.mCountry10.TabStop = false;
+            // 
+            // metroLabel532
+            // 
+            this.metroLabel532.AutoSize = true;
+            this.metroLabel532.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel532.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel532.Location = new System.Drawing.Point(26, 5);
+            this.metroLabel532.Name = "metroLabel532";
+            this.metroLabel532.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel532.TabIndex = 111;
+            this.metroLabel532.Text = "Lvl:";
+            // 
+            // metroLabel533
+            // 
+            this.metroLabel533.AutoSize = true;
+            this.metroLabel533.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel533.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel533.Location = new System.Drawing.Point(105, 38);
+            this.metroLabel533.Name = "metroLabel533";
+            this.metroLabel533.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel533.TabIndex = 108;
+            this.metroLabel533.Text = "Avg. HS:";
+            // 
+            // metroLabel534
+            // 
+            this.metroLabel534.AutoSize = true;
+            this.metroLabel534.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel534.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel534.Location = new System.Drawing.Point(89, 23);
+            this.metroLabel534.Name = "metroLabel534";
+            this.metroLabel534.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel534.TabIndex = 11;
+            this.metroLabel534.Text = "Matches:";
+            this.metroLabel534.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mNickname10
+            // 
+            this.mNickname10.Location = new System.Drawing.Point(64, 3);
+            this.mNickname10.Name = "mNickname10";
+            this.mNickname10.Size = new System.Drawing.Size(170, 17);
+            this.mNickname10.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname10.TabIndex = 8;
+            this.mNickname10.Text = "nickname";
+            this.mNickname10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mNickname10.UseStyleColors = true;
+            // 
+            // mLevelPicture10
+            // 
+            this.mLevelPicture10.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture10.Location = new System.Drawing.Point(3, 3);
+            this.mLevelPicture10.Name = "mLevelPicture10";
+            this.mLevelPicture10.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture10.TabIndex = 106;
+            this.mLevelPicture10.TabStop = false;
+            // 
+            // metroLabel535
+            // 
+            this.metroLabel535.AutoSize = true;
+            this.metroLabel535.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel535.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel535.Location = new System.Drawing.Point(175, 23);
+            this.metroLabel535.Name = "metroLabel535";
+            this.metroLabel535.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel535.TabIndex = 9;
+            this.metroLabel535.Text = "Win Rate:";
+            // 
+            // mAnticheat10
+            // 
+            this.mAnticheat10.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat10.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat10.Image")));
+            this.mAnticheat10.Location = new System.Drawing.Point(3, 28);
+            this.mAnticheat10.Name = "mAnticheat10";
+            this.mAnticheat10.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat10.TabIndex = 116;
+            this.mAnticheat10.TabStop = false;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Controls.Add(this.metroLabel236);
+            this.panel8.Controls.Add(this.mRanking9);
+            this.panel8.Controls.Add(this.mElo9);
+            this.panel8.Controls.Add(this.metroLabel239);
+            this.panel8.Controls.Add(this.mLevel9);
+            this.panel8.Controls.Add(this.mKD9);
+            this.panel8.Controls.Add(this.mMatches9);
+            this.panel8.Controls.Add(this.mAvgHS9);
+            this.panel8.Controls.Add(this.mWinRate9);
+            this.panel8.Controls.Add(this.metroLabel285);
+            this.panel8.Controls.Add(this.metroButton26);
+            this.panel8.Controls.Add(this.metroButton27);
+            this.panel8.Controls.Add(this.metroButton28);
+            this.panel8.Controls.Add(this.mAvatar9);
+            this.panel8.Controls.Add(this.mCountry9);
+            this.panel8.Controls.Add(this.metroLabel286);
+            this.panel8.Controls.Add(this.metroLabel287);
+            this.panel8.Controls.Add(this.metroLabel288);
+            this.panel8.Controls.Add(this.mNickname9);
+            this.panel8.Controls.Add(this.mLevelPicture9);
+            this.panel8.Controls.Add(this.metroLabel521);
+            this.panel8.Controls.Add(this.mAnticheat9);
+            this.panel8.Location = new System.Drawing.Point(546, 283);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(335, 74);
+            this.panel8.TabIndex = 132;
+            // 
+            // metroLabel236
+            // 
+            this.metroLabel236.AutoSize = true;
+            this.metroLabel236.BackColor = System.Drawing.Color.Black;
+            this.metroLabel236.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel236.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel236.Location = new System.Drawing.Point(26, 38);
+            this.metroLabel236.Name = "metroLabel236";
+            this.metroLabel236.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel236.TabIndex = 125;
+            this.metroLabel236.Text = "Rank:";
+            this.metroLabel236.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mRanking9
+            // 
+            this.mRanking9.AutoSize = true;
+            this.mRanking9.BackColor = System.Drawing.Color.Black;
+            this.mRanking9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking9.Location = new System.Drawing.Point(59, 38);
+            this.mRanking9.Name = "mRanking9";
+            this.mRanking9.Size = new System.Drawing.Size(49, 15);
+            this.mRanking9.TabIndex = 126;
+            this.mRanking9.Text = "7654321";
+            this.mRanking9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mElo9
+            // 
+            this.mElo9.AutoSize = true;
+            this.mElo9.BackColor = System.Drawing.Color.Black;
+            this.mElo9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo9.Location = new System.Drawing.Point(53, 23);
+            this.mElo9.Name = "mElo9";
+            this.mElo9.Size = new System.Drawing.Size(37, 15);
+            this.mElo9.TabIndex = 119;
+            this.mElo9.Text = "10000";
+            this.mElo9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel239
+            // 
+            this.metroLabel239.AutoSize = true;
+            this.metroLabel239.BackColor = System.Drawing.Color.Black;
+            this.metroLabel239.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel239.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel239.Location = new System.Drawing.Point(26, 23);
+            this.metroLabel239.Name = "metroLabel239";
+            this.metroLabel239.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel239.TabIndex = 12;
+            this.metroLabel239.Text = "ELO:";
+            this.metroLabel239.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mLevel9
+            // 
+            this.mLevel9.AutoSize = true;
+            this.mLevel9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel9.Location = new System.Drawing.Point(49, 5);
+            this.mLevel9.Name = "mLevel9";
+            this.mLevel9.Size = new System.Drawing.Size(19, 15);
+            this.mLevel9.TabIndex = 122;
+            this.mLevel9.Text = "10";
+            // 
+            // mKD9
+            // 
+            this.mKD9.AutoSize = true;
+            this.mKD9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD9.Location = new System.Drawing.Point(235, 38);
+            this.mKD9.Name = "mKD9";
+            this.mKD9.Size = new System.Drawing.Size(28, 15);
+            this.mKD9.TabIndex = 120;
+            this.mKD9.Text = "1.00";
+            // 
+            // mMatches9
+            // 
+            this.mMatches9.AutoSize = true;
+            this.mMatches9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches9.Location = new System.Drawing.Point(141, 23);
+            this.mMatches9.Name = "mMatches9";
+            this.mMatches9.Size = new System.Drawing.Size(37, 15);
+            this.mMatches9.TabIndex = 118;
+            this.mMatches9.Text = "10000";
+            this.mMatches9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS9
+            // 
+            this.mAvgHS9.AutoSize = true;
+            this.mAvgHS9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS9.Location = new System.Drawing.Point(153, 38);
+            this.mAvgHS9.Name = "mAvgHS9";
+            this.mAvgHS9.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS9.TabIndex = 121;
+            this.mAvgHS9.Text = "100";
+            // 
+            // mWinRate9
+            // 
+            this.mWinRate9.AutoSize = true;
+            this.mWinRate9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate9.Location = new System.Drawing.Point(228, 23);
+            this.mWinRate9.Name = "mWinRate9";
+            this.mWinRate9.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate9.TabIndex = 117;
+            this.mWinRate9.Text = "100%";
+            // 
+            // metroLabel285
+            // 
+            this.metroLabel285.AutoSize = true;
+            this.metroLabel285.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel285.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel285.Location = new System.Drawing.Point(181, 38);
+            this.metroLabel285.Name = "metroLabel285";
+            this.metroLabel285.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel285.TabIndex = 14;
+            this.metroLabel285.Text = "K\\D Rat.:";
+            // 
+            // metroButton26
+            // 
+            this.metroButton26.Location = new System.Drawing.Point(89, 56);
+            this.metroButton26.Name = "metroButton26";
+            this.metroButton26.Size = new System.Drawing.Size(75, 15);
+            this.metroButton26.TabIndex = 115;
+            this.metroButton26.Text = "STEAM";
+            // 
+            // metroButton27
+            // 
+            this.metroButton27.Location = new System.Drawing.Point(170, 56);
+            this.metroButton27.Name = "metroButton27";
+            this.metroButton27.Size = new System.Drawing.Size(93, 15);
+            this.metroButton27.TabIndex = 114;
+            this.metroButton27.Text = "LOAD PROFILE";
+            // 
+            // metroButton28
+            // 
+            this.metroButton28.Location = new System.Drawing.Point(8, 56);
+            this.metroButton28.Name = "metroButton28";
+            this.metroButton28.Size = new System.Drawing.Size(75, 15);
+            this.metroButton28.TabIndex = 113;
+            this.metroButton28.Text = "FACEIT";
+            // 
+            // mAvatar9
+            // 
+            this.mAvatar9.Location = new System.Drawing.Point(264, 3);
+            this.mAvatar9.Name = "mAvatar9";
+            this.mAvatar9.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar9.TabIndex = 7;
+            this.mAvatar9.TabStop = false;
+            // 
+            // mCountry9
+            // 
+            this.mCountry9.Location = new System.Drawing.Point(236, 3);
+            this.mCountry9.Name = "mCountry9";
+            this.mCountry9.Size = new System.Drawing.Size(27, 17);
+            this.mCountry9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry9.TabIndex = 104;
+            this.mCountry9.TabStop = false;
+            // 
+            // metroLabel286
+            // 
+            this.metroLabel286.AutoSize = true;
+            this.metroLabel286.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel286.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel286.Location = new System.Drawing.Point(26, 5);
+            this.metroLabel286.Name = "metroLabel286";
+            this.metroLabel286.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel286.TabIndex = 111;
+            this.metroLabel286.Text = "Lvl:";
+            // 
+            // metroLabel287
+            // 
+            this.metroLabel287.AutoSize = true;
+            this.metroLabel287.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel287.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel287.Location = new System.Drawing.Point(105, 38);
+            this.metroLabel287.Name = "metroLabel287";
+            this.metroLabel287.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel287.TabIndex = 108;
+            this.metroLabel287.Text = "Avg. HS:";
+            // 
+            // metroLabel288
+            // 
+            this.metroLabel288.AutoSize = true;
+            this.metroLabel288.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel288.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel288.Location = new System.Drawing.Point(89, 23);
+            this.metroLabel288.Name = "metroLabel288";
+            this.metroLabel288.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel288.TabIndex = 11;
+            this.metroLabel288.Text = "Matches:";
+            this.metroLabel288.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mNickname9
+            // 
+            this.mNickname9.Location = new System.Drawing.Point(64, 3);
+            this.mNickname9.Name = "mNickname9";
+            this.mNickname9.Size = new System.Drawing.Size(170, 17);
+            this.mNickname9.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname9.TabIndex = 8;
+            this.mNickname9.Text = "nickname";
+            this.mNickname9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mNickname9.UseStyleColors = true;
+            // 
+            // mLevelPicture9
+            // 
+            this.mLevelPicture9.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture9.Location = new System.Drawing.Point(3, 3);
+            this.mLevelPicture9.Name = "mLevelPicture9";
+            this.mLevelPicture9.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture9.TabIndex = 106;
+            this.mLevelPicture9.TabStop = false;
+            // 
+            // metroLabel521
+            // 
+            this.metroLabel521.AutoSize = true;
+            this.metroLabel521.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel521.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel521.Location = new System.Drawing.Point(175, 23);
+            this.metroLabel521.Name = "metroLabel521";
+            this.metroLabel521.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel521.TabIndex = 9;
+            this.metroLabel521.Text = "Win Rate:";
+            // 
+            // mAnticheat9
+            // 
+            this.mAnticheat9.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat9.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat9.Image")));
+            this.mAnticheat9.Location = new System.Drawing.Point(3, 28);
+            this.mAnticheat9.Name = "mAnticheat9";
+            this.mAnticheat9.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat9.TabIndex = 116;
+            this.mAnticheat9.TabStop = false;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Controls.Add(this.metroLabel222);
+            this.panel7.Controls.Add(this.mRanking8);
+            this.panel7.Controls.Add(this.mElo8);
+            this.panel7.Controls.Add(this.metroLabel225);
+            this.panel7.Controls.Add(this.mLevel8);
+            this.panel7.Controls.Add(this.mKD8);
+            this.panel7.Controls.Add(this.mMatches8);
+            this.panel7.Controls.Add(this.mAvgHS8);
+            this.panel7.Controls.Add(this.mWinRate8);
+            this.panel7.Controls.Add(this.metroLabel231);
+            this.panel7.Controls.Add(this.metroButton23);
+            this.panel7.Controls.Add(this.metroButton24);
+            this.panel7.Controls.Add(this.metroButton25);
+            this.panel7.Controls.Add(this.mAvatar8);
+            this.panel7.Controls.Add(this.mCountry8);
+            this.panel7.Controls.Add(this.metroLabel232);
+            this.panel7.Controls.Add(this.metroLabel233);
+            this.panel7.Controls.Add(this.metroLabel234);
+            this.panel7.Controls.Add(this.mNickname8);
+            this.panel7.Controls.Add(this.mLevelPicture8);
+            this.panel7.Controls.Add(this.metroLabel235);
+            this.panel7.Controls.Add(this.mAnticheat8);
+            this.panel7.Location = new System.Drawing.Point(546, 206);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(335, 74);
+            this.panel7.TabIndex = 132;
+            // 
+            // metroLabel222
+            // 
+            this.metroLabel222.AutoSize = true;
+            this.metroLabel222.BackColor = System.Drawing.Color.Black;
+            this.metroLabel222.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel222.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel222.Location = new System.Drawing.Point(26, 38);
+            this.metroLabel222.Name = "metroLabel222";
+            this.metroLabel222.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel222.TabIndex = 125;
+            this.metroLabel222.Text = "Rank:";
+            this.metroLabel222.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mRanking8
+            // 
+            this.mRanking8.AutoSize = true;
+            this.mRanking8.BackColor = System.Drawing.Color.Black;
+            this.mRanking8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking8.Location = new System.Drawing.Point(59, 38);
+            this.mRanking8.Name = "mRanking8";
+            this.mRanking8.Size = new System.Drawing.Size(49, 15);
+            this.mRanking8.TabIndex = 126;
+            this.mRanking8.Text = "7654321";
+            this.mRanking8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mElo8
+            // 
+            this.mElo8.AutoSize = true;
+            this.mElo8.BackColor = System.Drawing.Color.Black;
+            this.mElo8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo8.Location = new System.Drawing.Point(53, 23);
+            this.mElo8.Name = "mElo8";
+            this.mElo8.Size = new System.Drawing.Size(37, 15);
+            this.mElo8.TabIndex = 119;
+            this.mElo8.Text = "10000";
+            this.mElo8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel225
+            // 
+            this.metroLabel225.AutoSize = true;
+            this.metroLabel225.BackColor = System.Drawing.Color.Black;
+            this.metroLabel225.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel225.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel225.Location = new System.Drawing.Point(26, 23);
+            this.metroLabel225.Name = "metroLabel225";
+            this.metroLabel225.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel225.TabIndex = 12;
+            this.metroLabel225.Text = "ELO:";
+            this.metroLabel225.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mLevel8
+            // 
+            this.mLevel8.AutoSize = true;
+            this.mLevel8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel8.Location = new System.Drawing.Point(49, 5);
+            this.mLevel8.Name = "mLevel8";
+            this.mLevel8.Size = new System.Drawing.Size(19, 15);
+            this.mLevel8.TabIndex = 122;
+            this.mLevel8.Text = "10";
+            // 
+            // mKD8
+            // 
+            this.mKD8.AutoSize = true;
+            this.mKD8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD8.Location = new System.Drawing.Point(235, 38);
+            this.mKD8.Name = "mKD8";
+            this.mKD8.Size = new System.Drawing.Size(28, 15);
+            this.mKD8.TabIndex = 120;
+            this.mKD8.Text = "1.00";
+            // 
+            // mMatches8
+            // 
+            this.mMatches8.AutoSize = true;
+            this.mMatches8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches8.Location = new System.Drawing.Point(141, 23);
+            this.mMatches8.Name = "mMatches8";
+            this.mMatches8.Size = new System.Drawing.Size(37, 15);
+            this.mMatches8.TabIndex = 118;
+            this.mMatches8.Text = "10000";
+            this.mMatches8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS8
+            // 
+            this.mAvgHS8.AutoSize = true;
+            this.mAvgHS8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS8.Location = new System.Drawing.Point(153, 38);
+            this.mAvgHS8.Name = "mAvgHS8";
+            this.mAvgHS8.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS8.TabIndex = 121;
+            this.mAvgHS8.Text = "100";
+            // 
+            // mWinRate8
+            // 
+            this.mWinRate8.AutoSize = true;
+            this.mWinRate8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate8.Location = new System.Drawing.Point(228, 23);
+            this.mWinRate8.Name = "mWinRate8";
+            this.mWinRate8.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate8.TabIndex = 117;
+            this.mWinRate8.Text = "100%";
+            // 
+            // metroLabel231
+            // 
+            this.metroLabel231.AutoSize = true;
+            this.metroLabel231.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel231.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel231.Location = new System.Drawing.Point(181, 38);
+            this.metroLabel231.Name = "metroLabel231";
+            this.metroLabel231.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel231.TabIndex = 14;
+            this.metroLabel231.Text = "K\\D Rat.:";
+            // 
+            // metroButton23
+            // 
+            this.metroButton23.Location = new System.Drawing.Point(89, 56);
+            this.metroButton23.Name = "metroButton23";
+            this.metroButton23.Size = new System.Drawing.Size(75, 15);
+            this.metroButton23.TabIndex = 115;
+            this.metroButton23.Text = "STEAM";
+            // 
+            // metroButton24
+            // 
+            this.metroButton24.Location = new System.Drawing.Point(170, 56);
+            this.metroButton24.Name = "metroButton24";
+            this.metroButton24.Size = new System.Drawing.Size(93, 15);
+            this.metroButton24.TabIndex = 114;
+            this.metroButton24.Text = "LOAD PROFILE";
+            // 
+            // metroButton25
+            // 
+            this.metroButton25.Location = new System.Drawing.Point(8, 56);
+            this.metroButton25.Name = "metroButton25";
+            this.metroButton25.Size = new System.Drawing.Size(75, 15);
+            this.metroButton25.TabIndex = 113;
+            this.metroButton25.Text = "FACEIT";
+            // 
+            // mAvatar8
+            // 
+            this.mAvatar8.Location = new System.Drawing.Point(264, 3);
+            this.mAvatar8.Name = "mAvatar8";
+            this.mAvatar8.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar8.TabIndex = 7;
+            this.mAvatar8.TabStop = false;
+            // 
+            // mCountry8
+            // 
+            this.mCountry8.Location = new System.Drawing.Point(236, 3);
+            this.mCountry8.Name = "mCountry8";
+            this.mCountry8.Size = new System.Drawing.Size(27, 17);
+            this.mCountry8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry8.TabIndex = 104;
+            this.mCountry8.TabStop = false;
+            // 
+            // metroLabel232
+            // 
+            this.metroLabel232.AutoSize = true;
+            this.metroLabel232.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel232.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel232.Location = new System.Drawing.Point(26, 5);
+            this.metroLabel232.Name = "metroLabel232";
+            this.metroLabel232.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel232.TabIndex = 111;
+            this.metroLabel232.Text = "Lvl:";
+            // 
+            // metroLabel233
+            // 
+            this.metroLabel233.AutoSize = true;
+            this.metroLabel233.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel233.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel233.Location = new System.Drawing.Point(105, 38);
+            this.metroLabel233.Name = "metroLabel233";
+            this.metroLabel233.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel233.TabIndex = 108;
+            this.metroLabel233.Text = "Avg. HS:";
+            // 
+            // metroLabel234
+            // 
+            this.metroLabel234.AutoSize = true;
+            this.metroLabel234.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel234.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel234.Location = new System.Drawing.Point(89, 23);
+            this.metroLabel234.Name = "metroLabel234";
+            this.metroLabel234.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel234.TabIndex = 11;
+            this.metroLabel234.Text = "Matches:";
+            this.metroLabel234.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mNickname8
+            // 
+            this.mNickname8.Location = new System.Drawing.Point(64, 3);
+            this.mNickname8.Name = "mNickname8";
+            this.mNickname8.Size = new System.Drawing.Size(170, 17);
+            this.mNickname8.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname8.TabIndex = 8;
+            this.mNickname8.Text = "nickname";
+            this.mNickname8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mNickname8.UseStyleColors = true;
+            // 
+            // mLevelPicture8
+            // 
+            this.mLevelPicture8.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture8.Location = new System.Drawing.Point(3, 3);
+            this.mLevelPicture8.Name = "mLevelPicture8";
+            this.mLevelPicture8.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture8.TabIndex = 106;
+            this.mLevelPicture8.TabStop = false;
+            // 
+            // metroLabel235
+            // 
+            this.metroLabel235.AutoSize = true;
+            this.metroLabel235.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel235.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel235.Location = new System.Drawing.Point(175, 23);
+            this.metroLabel235.Name = "metroLabel235";
+            this.metroLabel235.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel235.TabIndex = 9;
+            this.metroLabel235.Text = "Win Rate:";
+            // 
+            // mAnticheat8
+            // 
+            this.mAnticheat8.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat8.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat8.Image")));
+            this.mAnticheat8.Location = new System.Drawing.Point(3, 28);
+            this.mAnticheat8.Name = "mAnticheat8";
+            this.mAnticheat8.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat8.TabIndex = 116;
+            this.mAnticheat8.TabStop = false;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.metroLabel164);
+            this.panel6.Controls.Add(this.mRanking7);
+            this.panel6.Controls.Add(this.mElo7);
+            this.panel6.Controls.Add(this.metroLabel167);
+            this.panel6.Controls.Add(this.mLevel7);
+            this.panel6.Controls.Add(this.mKD7);
+            this.panel6.Controls.Add(this.mMatches7);
+            this.panel6.Controls.Add(this.mAvgHS7);
+            this.panel6.Controls.Add(this.mWinRate7);
+            this.panel6.Controls.Add(this.metroLabel217);
+            this.panel6.Controls.Add(this.metroButton20);
+            this.panel6.Controls.Add(this.metroButton21);
+            this.panel6.Controls.Add(this.metroButton22);
+            this.panel6.Controls.Add(this.mAvatar7);
+            this.panel6.Controls.Add(this.mCountry7);
+            this.panel6.Controls.Add(this.metroLabel218);
+            this.panel6.Controls.Add(this.metroLabel219);
+            this.panel6.Controls.Add(this.metroLabel220);
+            this.panel6.Controls.Add(this.mNickname7);
+            this.panel6.Controls.Add(this.mLevelPicture7);
+            this.panel6.Controls.Add(this.metroLabel221);
+            this.panel6.Controls.Add(this.mAnticheat7);
+            this.panel6.Location = new System.Drawing.Point(546, 129);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(335, 74);
+            this.panel6.TabIndex = 132;
+            // 
+            // metroLabel164
+            // 
+            this.metroLabel164.AutoSize = true;
+            this.metroLabel164.BackColor = System.Drawing.Color.Black;
+            this.metroLabel164.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel164.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel164.Location = new System.Drawing.Point(26, 38);
+            this.metroLabel164.Name = "metroLabel164";
+            this.metroLabel164.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel164.TabIndex = 125;
+            this.metroLabel164.Text = "Rank:";
+            this.metroLabel164.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mRanking7
+            // 
+            this.mRanking7.AutoSize = true;
+            this.mRanking7.BackColor = System.Drawing.Color.Black;
+            this.mRanking7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking7.Location = new System.Drawing.Point(59, 38);
+            this.mRanking7.Name = "mRanking7";
+            this.mRanking7.Size = new System.Drawing.Size(49, 15);
+            this.mRanking7.TabIndex = 126;
+            this.mRanking7.Text = "7654321";
+            this.mRanking7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mElo7
+            // 
+            this.mElo7.AutoSize = true;
+            this.mElo7.BackColor = System.Drawing.Color.Black;
+            this.mElo7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo7.Location = new System.Drawing.Point(53, 23);
+            this.mElo7.Name = "mElo7";
+            this.mElo7.Size = new System.Drawing.Size(37, 15);
+            this.mElo7.TabIndex = 119;
+            this.mElo7.Text = "10000";
+            this.mElo7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel167
+            // 
+            this.metroLabel167.AutoSize = true;
+            this.metroLabel167.BackColor = System.Drawing.Color.Black;
+            this.metroLabel167.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel167.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel167.Location = new System.Drawing.Point(26, 23);
+            this.metroLabel167.Name = "metroLabel167";
+            this.metroLabel167.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel167.TabIndex = 12;
+            this.metroLabel167.Text = "ELO:";
+            this.metroLabel167.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mLevel7
+            // 
+            this.mLevel7.AutoSize = true;
+            this.mLevel7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel7.Location = new System.Drawing.Point(49, 5);
+            this.mLevel7.Name = "mLevel7";
+            this.mLevel7.Size = new System.Drawing.Size(19, 15);
+            this.mLevel7.TabIndex = 122;
+            this.mLevel7.Text = "10";
+            // 
+            // mKD7
+            // 
+            this.mKD7.AutoSize = true;
+            this.mKD7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD7.Location = new System.Drawing.Point(235, 38);
+            this.mKD7.Name = "mKD7";
+            this.mKD7.Size = new System.Drawing.Size(28, 15);
+            this.mKD7.TabIndex = 120;
+            this.mKD7.Text = "1.00";
+            // 
+            // mMatches7
+            // 
+            this.mMatches7.AutoSize = true;
+            this.mMatches7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches7.Location = new System.Drawing.Point(141, 23);
+            this.mMatches7.Name = "mMatches7";
+            this.mMatches7.Size = new System.Drawing.Size(37, 15);
+            this.mMatches7.TabIndex = 118;
+            this.mMatches7.Text = "10000";
+            this.mMatches7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS7
+            // 
+            this.mAvgHS7.AutoSize = true;
+            this.mAvgHS7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS7.Location = new System.Drawing.Point(153, 38);
+            this.mAvgHS7.Name = "mAvgHS7";
+            this.mAvgHS7.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS7.TabIndex = 121;
+            this.mAvgHS7.Text = "100";
+            // 
+            // mWinRate7
+            // 
+            this.mWinRate7.AutoSize = true;
+            this.mWinRate7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate7.Location = new System.Drawing.Point(228, 23);
+            this.mWinRate7.Name = "mWinRate7";
+            this.mWinRate7.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate7.TabIndex = 117;
+            this.mWinRate7.Text = "100%";
+            // 
+            // metroLabel217
+            // 
+            this.metroLabel217.AutoSize = true;
+            this.metroLabel217.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel217.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel217.Location = new System.Drawing.Point(181, 38);
+            this.metroLabel217.Name = "metroLabel217";
+            this.metroLabel217.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel217.TabIndex = 14;
+            this.metroLabel217.Text = "K\\D Rat.:";
+            // 
+            // metroButton20
+            // 
+            this.metroButton20.Location = new System.Drawing.Point(89, 56);
+            this.metroButton20.Name = "metroButton20";
+            this.metroButton20.Size = new System.Drawing.Size(75, 15);
+            this.metroButton20.TabIndex = 115;
+            this.metroButton20.Text = "STEAM";
+            // 
+            // metroButton21
+            // 
+            this.metroButton21.Location = new System.Drawing.Point(170, 56);
+            this.metroButton21.Name = "metroButton21";
+            this.metroButton21.Size = new System.Drawing.Size(93, 15);
+            this.metroButton21.TabIndex = 114;
+            this.metroButton21.Text = "LOAD PROFILE";
+            // 
+            // metroButton22
+            // 
+            this.metroButton22.Location = new System.Drawing.Point(8, 56);
+            this.metroButton22.Name = "metroButton22";
+            this.metroButton22.Size = new System.Drawing.Size(75, 15);
+            this.metroButton22.TabIndex = 113;
+            this.metroButton22.Text = "FACEIT";
+            // 
+            // mAvatar7
+            // 
+            this.mAvatar7.Location = new System.Drawing.Point(264, 3);
+            this.mAvatar7.Name = "mAvatar7";
+            this.mAvatar7.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar7.TabIndex = 7;
+            this.mAvatar7.TabStop = false;
+            // 
+            // mCountry7
+            // 
+            this.mCountry7.Location = new System.Drawing.Point(236, 3);
+            this.mCountry7.Name = "mCountry7";
+            this.mCountry7.Size = new System.Drawing.Size(27, 17);
+            this.mCountry7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry7.TabIndex = 104;
+            this.mCountry7.TabStop = false;
+            // 
+            // metroLabel218
+            // 
+            this.metroLabel218.AutoSize = true;
+            this.metroLabel218.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel218.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel218.Location = new System.Drawing.Point(26, 5);
+            this.metroLabel218.Name = "metroLabel218";
+            this.metroLabel218.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel218.TabIndex = 111;
+            this.metroLabel218.Text = "Lvl:";
+            // 
+            // metroLabel219
+            // 
+            this.metroLabel219.AutoSize = true;
+            this.metroLabel219.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel219.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel219.Location = new System.Drawing.Point(105, 38);
+            this.metroLabel219.Name = "metroLabel219";
+            this.metroLabel219.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel219.TabIndex = 108;
+            this.metroLabel219.Text = "Avg. HS:";
+            // 
+            // metroLabel220
+            // 
+            this.metroLabel220.AutoSize = true;
+            this.metroLabel220.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel220.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel220.Location = new System.Drawing.Point(89, 23);
+            this.metroLabel220.Name = "metroLabel220";
+            this.metroLabel220.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel220.TabIndex = 11;
+            this.metroLabel220.Text = "Matches:";
+            this.metroLabel220.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mNickname7
+            // 
+            this.mNickname7.Location = new System.Drawing.Point(64, 3);
+            this.mNickname7.Name = "mNickname7";
+            this.mNickname7.Size = new System.Drawing.Size(170, 17);
+            this.mNickname7.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname7.TabIndex = 8;
+            this.mNickname7.Text = "nickname";
+            this.mNickname7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mNickname7.UseStyleColors = true;
+            // 
+            // mLevelPicture7
+            // 
+            this.mLevelPicture7.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture7.Location = new System.Drawing.Point(3, 3);
+            this.mLevelPicture7.Name = "mLevelPicture7";
+            this.mLevelPicture7.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture7.TabIndex = 106;
+            this.mLevelPicture7.TabStop = false;
+            // 
+            // metroLabel221
+            // 
+            this.metroLabel221.AutoSize = true;
+            this.metroLabel221.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel221.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel221.Location = new System.Drawing.Point(175, 23);
+            this.metroLabel221.Name = "metroLabel221";
+            this.metroLabel221.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel221.TabIndex = 9;
+            this.metroLabel221.Text = "Win Rate:";
+            // 
+            // mAnticheat7
+            // 
+            this.mAnticheat7.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat7.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat7.Image")));
+            this.mAnticheat7.Location = new System.Drawing.Point(3, 28);
+            this.mAnticheat7.Name = "mAnticheat7";
+            this.mAnticheat7.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat7.TabIndex = 116;
+            this.mAnticheat7.TabStop = false;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.mLevelPicture5);
+            this.panel5.Controls.Add(this.mLevel5);
+            this.panel5.Controls.Add(this.metroLabel149);
+            this.panel5.Controls.Add(this.mAvgHS5);
+            this.panel5.Controls.Add(this.mRanking5);
+            this.panel5.Controls.Add(this.mAnticheat5);
+            this.panel5.Controls.Add(this.mElo5);
+            this.panel5.Controls.Add(this.metroLabel153);
+            this.panel5.Controls.Add(this.mKD5);
+            this.panel5.Controls.Add(this.metroLabel157);
+            this.panel5.Controls.Add(this.mMatches5);
+            this.panel5.Controls.Add(this.mWinRate5);
+            this.panel5.Controls.Add(this.metroButton17);
+            this.panel5.Controls.Add(this.metroButton18);
+            this.panel5.Controls.Add(this.metroButton19);
+            this.panel5.Controls.Add(this.mAvatar5);
+            this.panel5.Controls.Add(this.metroLabel160);
+            this.panel5.Controls.Add(this.metroLabel161);
+            this.panel5.Controls.Add(this.mCountry5);
+            this.panel5.Controls.Add(this.metroLabel162);
+            this.panel5.Controls.Add(this.metroLabel163);
+            this.panel5.Controls.Add(this.mNickname5);
+            this.panel5.Location = new System.Drawing.Point(4, 360);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(335, 74);
+            this.panel5.TabIndex = 131;
+            // 
+            // mLevelPicture5
+            // 
+            this.mLevelPicture5.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture5.Location = new System.Drawing.Point(310, 3);
+            this.mLevelPicture5.Name = "mLevelPicture5";
+            this.mLevelPicture5.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture5.TabIndex = 106;
+            this.mLevelPicture5.TabStop = false;
+            // 
+            // mLevel5
+            // 
+            this.mLevel5.AutoSize = true;
+            this.mLevel5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel5.Location = new System.Drawing.Point(292, 5);
+            this.mLevel5.Name = "mLevel5";
+            this.mLevel5.Size = new System.Drawing.Size(19, 15);
+            this.mLevel5.TabIndex = 122;
+            this.mLevel5.Text = "10";
+            // 
+            // metroLabel149
+            // 
+            this.metroLabel149.AutoSize = true;
+            this.metroLabel149.BackColor = System.Drawing.Color.Black;
+            this.metroLabel149.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel149.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel149.Location = new System.Drawing.Point(223, 38);
+            this.metroLabel149.Name = "metroLabel149";
+            this.metroLabel149.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel149.TabIndex = 123;
+            this.metroLabel149.Text = "Rank:";
+            this.metroLabel149.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS5
+            // 
+            this.mAvgHS5.AutoSize = true;
+            this.mAvgHS5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS5.Location = new System.Drawing.Point(198, 38);
+            this.mAvgHS5.Name = "mAvgHS5";
+            this.mAvgHS5.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS5.TabIndex = 121;
+            this.mAvgHS5.Text = "100";
+            // 
+            // mRanking5
+            // 
+            this.mRanking5.AutoSize = true;
+            this.mRanking5.BackColor = System.Drawing.Color.Black;
+            this.mRanking5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking5.Location = new System.Drawing.Point(256, 38);
+            this.mRanking5.Name = "mRanking5";
+            this.mRanking5.Size = new System.Drawing.Size(49, 15);
+            this.mRanking5.TabIndex = 124;
+            this.mRanking5.Text = "7654321";
+            this.mRanking5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAnticheat5
+            // 
+            this.mAnticheat5.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat5.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat5.Image")));
+            this.mAnticheat5.Location = new System.Drawing.Point(310, 28);
+            this.mAnticheat5.Name = "mAnticheat5";
+            this.mAnticheat5.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat5.TabIndex = 116;
+            this.mAnticheat5.TabStop = false;
+            // 
+            // mElo5
+            // 
+            this.mElo5.AutoSize = true;
+            this.mElo5.BackColor = System.Drawing.Color.Black;
+            this.mElo5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo5.Location = new System.Drawing.Point(274, 23);
+            this.mElo5.Name = "mElo5";
+            this.mElo5.Size = new System.Drawing.Size(37, 15);
+            this.mElo5.TabIndex = 119;
+            this.mElo5.Text = "10000";
+            this.mElo5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel153
+            // 
+            this.metroLabel153.AutoSize = true;
+            this.metroLabel153.BackColor = System.Drawing.Color.Black;
+            this.metroLabel153.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel153.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel153.Location = new System.Drawing.Point(246, 23);
+            this.metroLabel153.Name = "metroLabel153";
+            this.metroLabel153.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel153.TabIndex = 12;
+            this.metroLabel153.Text = "ELO:";
+            this.metroLabel153.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mKD5
+            // 
+            this.mKD5.AutoSize = true;
+            this.mKD5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD5.Location = new System.Drawing.Point(126, 38);
+            this.mKD5.Name = "mKD5";
+            this.mKD5.Size = new System.Drawing.Size(28, 15);
+            this.mKD5.TabIndex = 120;
+            this.mKD5.Text = "1.00";
+            // 
+            // metroLabel157
+            // 
+            this.metroLabel157.AutoSize = true;
+            this.metroLabel157.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel157.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel157.Location = new System.Drawing.Point(270, 5);
+            this.metroLabel157.Name = "metroLabel157";
+            this.metroLabel157.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel157.TabIndex = 111;
+            this.metroLabel157.Text = "Lvl:";
+            // 
+            // mMatches5
+            // 
+            this.mMatches5.AutoSize = true;
+            this.mMatches5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches5.Location = new System.Drawing.Point(211, 23);
+            this.mMatches5.Name = "mMatches5";
+            this.mMatches5.Size = new System.Drawing.Size(37, 15);
+            this.mMatches5.TabIndex = 118;
+            this.mMatches5.Text = "10000";
+            this.mMatches5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mWinRate5
+            // 
+            this.mWinRate5.AutoSize = true;
+            this.mWinRate5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate5.Location = new System.Drawing.Point(126, 23);
+            this.mWinRate5.Name = "mWinRate5";
+            this.mWinRate5.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate5.TabIndex = 117;
+            this.mWinRate5.Text = "100%";
+            // 
+            // metroButton17
+            // 
+            this.metroButton17.Location = new System.Drawing.Point(171, 56);
+            this.metroButton17.Name = "metroButton17";
+            this.metroButton17.Size = new System.Drawing.Size(75, 15);
+            this.metroButton17.TabIndex = 115;
+            this.metroButton17.Text = "STEAM";
+            // 
+            // metroButton18
+            // 
+            this.metroButton18.Location = new System.Drawing.Point(72, 56);
+            this.metroButton18.Name = "metroButton18";
+            this.metroButton18.Size = new System.Drawing.Size(93, 15);
+            this.metroButton18.TabIndex = 114;
+            this.metroButton18.Text = "LOAD PROFILE";
+            // 
+            // metroButton19
+            // 
+            this.metroButton19.Location = new System.Drawing.Point(252, 56);
+            this.metroButton19.Name = "metroButton19";
+            this.metroButton19.Size = new System.Drawing.Size(75, 15);
+            this.metroButton19.TabIndex = 113;
+            this.metroButton19.Text = "FACEIT";
+            // 
+            // mAvatar5
+            // 
+            this.mAvatar5.Location = new System.Drawing.Point(3, 3);
+            this.mAvatar5.Name = "mAvatar5";
+            this.mAvatar5.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar5.TabIndex = 7;
+            this.mAvatar5.TabStop = false;
+            // 
+            // metroLabel160
+            // 
+            this.metroLabel160.AutoSize = true;
+            this.metroLabel160.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel160.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel160.Location = new System.Drawing.Point(150, 38);
+            this.metroLabel160.Name = "metroLabel160";
+            this.metroLabel160.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel160.TabIndex = 108;
+            this.metroLabel160.Text = "Avg. HS:";
+            // 
+            // metroLabel161
+            // 
+            this.metroLabel161.AutoSize = true;
+            this.metroLabel161.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel161.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel161.Location = new System.Drawing.Point(72, 38);
+            this.metroLabel161.Name = "metroLabel161";
+            this.metroLabel161.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel161.TabIndex = 14;
+            this.metroLabel161.Text = "K\\D Rat.:";
+            // 
+            // mCountry5
+            // 
+            this.mCountry5.Location = new System.Drawing.Point(72, 3);
+            this.mCountry5.Name = "mCountry5";
+            this.mCountry5.Size = new System.Drawing.Size(27, 17);
+            this.mCountry5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry5.TabIndex = 104;
+            this.mCountry5.TabStop = false;
+            // 
+            // metroLabel162
+            // 
+            this.metroLabel162.AutoSize = true;
+            this.metroLabel162.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel162.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel162.Location = new System.Drawing.Point(159, 23);
+            this.metroLabel162.Name = "metroLabel162";
+            this.metroLabel162.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel162.TabIndex = 11;
+            this.metroLabel162.Text = "Matches:";
+            this.metroLabel162.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel163
+            // 
+            this.metroLabel163.AutoSize = true;
+            this.metroLabel163.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel163.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel163.Location = new System.Drawing.Point(72, 23);
+            this.metroLabel163.Name = "metroLabel163";
+            this.metroLabel163.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel163.TabIndex = 9;
+            this.metroLabel163.Text = "Win Rate:";
+            // 
+            // mNickname5
+            // 
+            this.mNickname5.Location = new System.Drawing.Point(105, 3);
+            this.mNickname5.Name = "mNickname5";
+            this.mNickname5.Size = new System.Drawing.Size(166, 17);
+            this.mNickname5.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname5.TabIndex = 8;
+            this.mNickname5.Text = "nickname";
+            this.mNickname5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mNickname5.UseStyleColors = true;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.mLevelPicture4);
+            this.panel4.Controls.Add(this.mLevel4);
+            this.panel4.Controls.Add(this.metroLabel134);
+            this.panel4.Controls.Add(this.mAvgHS4);
+            this.panel4.Controls.Add(this.mRanking4);
+            this.panel4.Controls.Add(this.mAnticheat4);
+            this.panel4.Controls.Add(this.mElo4);
+            this.panel4.Controls.Add(this.metroLabel138);
+            this.panel4.Controls.Add(this.mKD4);
+            this.panel4.Controls.Add(this.metroLabel140);
+            this.panel4.Controls.Add(this.mMatches4);
+            this.panel4.Controls.Add(this.mWinRate4);
+            this.panel4.Controls.Add(this.metroButton14);
+            this.panel4.Controls.Add(this.metroButton15);
+            this.panel4.Controls.Add(this.metroButton16);
+            this.panel4.Controls.Add(this.mAvatar4);
+            this.panel4.Controls.Add(this.metroLabel144);
+            this.panel4.Controls.Add(this.metroLabel145);
+            this.panel4.Controls.Add(this.mCountry4);
+            this.panel4.Controls.Add(this.metroLabel146);
+            this.panel4.Controls.Add(this.metroLabel147);
+            this.panel4.Controls.Add(this.mNickname4);
+            this.panel4.Location = new System.Drawing.Point(4, 283);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(335, 74);
+            this.panel4.TabIndex = 131;
+            // 
+            // mLevelPicture4
+            // 
+            this.mLevelPicture4.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture4.Location = new System.Drawing.Point(310, 3);
+            this.mLevelPicture4.Name = "mLevelPicture4";
+            this.mLevelPicture4.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture4.TabIndex = 106;
+            this.mLevelPicture4.TabStop = false;
+            // 
+            // mLevel4
+            // 
+            this.mLevel4.AutoSize = true;
+            this.mLevel4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel4.Location = new System.Drawing.Point(292, 5);
+            this.mLevel4.Name = "mLevel4";
+            this.mLevel4.Size = new System.Drawing.Size(19, 15);
+            this.mLevel4.TabIndex = 122;
+            this.mLevel4.Text = "10";
+            // 
+            // metroLabel134
+            // 
+            this.metroLabel134.AutoSize = true;
+            this.metroLabel134.BackColor = System.Drawing.Color.Black;
+            this.metroLabel134.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel134.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel134.Location = new System.Drawing.Point(223, 38);
+            this.metroLabel134.Name = "metroLabel134";
+            this.metroLabel134.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel134.TabIndex = 123;
+            this.metroLabel134.Text = "Rank:";
+            this.metroLabel134.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS4
+            // 
+            this.mAvgHS4.AutoSize = true;
+            this.mAvgHS4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS4.Location = new System.Drawing.Point(198, 38);
+            this.mAvgHS4.Name = "mAvgHS4";
+            this.mAvgHS4.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS4.TabIndex = 121;
+            this.mAvgHS4.Text = "100";
+            // 
+            // mRanking4
+            // 
+            this.mRanking4.AutoSize = true;
+            this.mRanking4.BackColor = System.Drawing.Color.Black;
+            this.mRanking4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking4.Location = new System.Drawing.Point(256, 38);
+            this.mRanking4.Name = "mRanking4";
+            this.mRanking4.Size = new System.Drawing.Size(49, 15);
+            this.mRanking4.TabIndex = 124;
+            this.mRanking4.Text = "7654321";
+            this.mRanking4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAnticheat4
+            // 
+            this.mAnticheat4.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat4.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat4.Image")));
+            this.mAnticheat4.Location = new System.Drawing.Point(310, 28);
+            this.mAnticheat4.Name = "mAnticheat4";
+            this.mAnticheat4.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat4.TabIndex = 116;
+            this.mAnticheat4.TabStop = false;
+            // 
+            // mElo4
+            // 
+            this.mElo4.AutoSize = true;
+            this.mElo4.BackColor = System.Drawing.Color.Black;
+            this.mElo4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo4.Location = new System.Drawing.Point(274, 23);
+            this.mElo4.Name = "mElo4";
+            this.mElo4.Size = new System.Drawing.Size(37, 15);
+            this.mElo4.TabIndex = 119;
+            this.mElo4.Text = "10000";
+            this.mElo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel138
+            // 
+            this.metroLabel138.AutoSize = true;
+            this.metroLabel138.BackColor = System.Drawing.Color.Black;
+            this.metroLabel138.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel138.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel138.Location = new System.Drawing.Point(246, 23);
+            this.metroLabel138.Name = "metroLabel138";
+            this.metroLabel138.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel138.TabIndex = 12;
+            this.metroLabel138.Text = "ELO:";
+            this.metroLabel138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mKD4
+            // 
+            this.mKD4.AutoSize = true;
+            this.mKD4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD4.Location = new System.Drawing.Point(126, 38);
+            this.mKD4.Name = "mKD4";
+            this.mKD4.Size = new System.Drawing.Size(28, 15);
+            this.mKD4.TabIndex = 120;
+            this.mKD4.Text = "1.00";
+            // 
+            // metroLabel140
+            // 
+            this.metroLabel140.AutoSize = true;
+            this.metroLabel140.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel140.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel140.Location = new System.Drawing.Point(270, 5);
+            this.metroLabel140.Name = "metroLabel140";
+            this.metroLabel140.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel140.TabIndex = 111;
+            this.metroLabel140.Text = "Lvl:";
+            // 
+            // mMatches4
+            // 
+            this.mMatches4.AutoSize = true;
+            this.mMatches4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches4.Location = new System.Drawing.Point(211, 23);
+            this.mMatches4.Name = "mMatches4";
+            this.mMatches4.Size = new System.Drawing.Size(37, 15);
+            this.mMatches4.TabIndex = 118;
+            this.mMatches4.Text = "10000";
+            this.mMatches4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mWinRate4
+            // 
+            this.mWinRate4.AutoSize = true;
+            this.mWinRate4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate4.Location = new System.Drawing.Point(126, 23);
+            this.mWinRate4.Name = "mWinRate4";
+            this.mWinRate4.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate4.TabIndex = 117;
+            this.mWinRate4.Text = "100%";
+            // 
+            // metroButton14
+            // 
+            this.metroButton14.Location = new System.Drawing.Point(171, 56);
+            this.metroButton14.Name = "metroButton14";
+            this.metroButton14.Size = new System.Drawing.Size(75, 15);
+            this.metroButton14.TabIndex = 115;
+            this.metroButton14.Text = "STEAM";
+            // 
+            // metroButton15
+            // 
+            this.metroButton15.Location = new System.Drawing.Point(72, 56);
+            this.metroButton15.Name = "metroButton15";
+            this.metroButton15.Size = new System.Drawing.Size(93, 15);
+            this.metroButton15.TabIndex = 114;
+            this.metroButton15.Text = "LOAD PROFILE";
+            // 
+            // metroButton16
+            // 
+            this.metroButton16.Location = new System.Drawing.Point(252, 56);
+            this.metroButton16.Name = "metroButton16";
+            this.metroButton16.Size = new System.Drawing.Size(75, 15);
+            this.metroButton16.TabIndex = 113;
+            this.metroButton16.Text = "FACEIT";
+            // 
+            // mAvatar4
+            // 
+            this.mAvatar4.Location = new System.Drawing.Point(3, 3);
+            this.mAvatar4.Name = "mAvatar4";
+            this.mAvatar4.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar4.TabIndex = 7;
+            this.mAvatar4.TabStop = false;
+            // 
+            // metroLabel144
+            // 
+            this.metroLabel144.AutoSize = true;
+            this.metroLabel144.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel144.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel144.Location = new System.Drawing.Point(150, 38);
+            this.metroLabel144.Name = "metroLabel144";
+            this.metroLabel144.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel144.TabIndex = 108;
+            this.metroLabel144.Text = "Avg. HS:";
+            // 
+            // metroLabel145
+            // 
+            this.metroLabel145.AutoSize = true;
+            this.metroLabel145.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel145.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel145.Location = new System.Drawing.Point(72, 38);
+            this.metroLabel145.Name = "metroLabel145";
+            this.metroLabel145.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel145.TabIndex = 14;
+            this.metroLabel145.Text = "K\\D Rat.:";
+            // 
+            // mCountry4
+            // 
+            this.mCountry4.Location = new System.Drawing.Point(72, 3);
+            this.mCountry4.Name = "mCountry4";
+            this.mCountry4.Size = new System.Drawing.Size(27, 17);
+            this.mCountry4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry4.TabIndex = 104;
+            this.mCountry4.TabStop = false;
+            // 
+            // metroLabel146
+            // 
+            this.metroLabel146.AutoSize = true;
+            this.metroLabel146.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel146.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel146.Location = new System.Drawing.Point(159, 23);
+            this.metroLabel146.Name = "metroLabel146";
+            this.metroLabel146.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel146.TabIndex = 11;
+            this.metroLabel146.Text = "Matches:";
+            this.metroLabel146.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel147
+            // 
+            this.metroLabel147.AutoSize = true;
+            this.metroLabel147.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel147.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel147.Location = new System.Drawing.Point(72, 23);
+            this.metroLabel147.Name = "metroLabel147";
+            this.metroLabel147.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel147.TabIndex = 9;
+            this.metroLabel147.Text = "Win Rate:";
+            // 
+            // mNickname4
+            // 
+            this.mNickname4.Location = new System.Drawing.Point(105, 3);
+            this.mNickname4.Name = "mNickname4";
+            this.mNickname4.Size = new System.Drawing.Size(166, 17);
+            this.mNickname4.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname4.TabIndex = 8;
+            this.mNickname4.Text = "nickname";
+            this.mNickname4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mNickname4.UseStyleColors = true;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.mLevelPicture3);
+            this.panel3.Controls.Add(this.mLevel3);
+            this.panel3.Controls.Add(this.metroLabel115);
+            this.panel3.Controls.Add(this.mAvgHS3);
+            this.panel3.Controls.Add(this.mRanking3);
+            this.panel3.Controls.Add(this.mAnticheat3);
+            this.panel3.Controls.Add(this.mElo3);
+            this.panel3.Controls.Add(this.metroLabel121);
+            this.panel3.Controls.Add(this.mKD3);
+            this.panel3.Controls.Add(this.metroLabel123);
+            this.panel3.Controls.Add(this.mMatches3);
+            this.panel3.Controls.Add(this.mWinRate3);
+            this.panel3.Controls.Add(this.metroButton11);
+            this.panel3.Controls.Add(this.metroButton12);
+            this.panel3.Controls.Add(this.metroButton13);
+            this.panel3.Controls.Add(this.mAvatar3);
+            this.panel3.Controls.Add(this.metroLabel126);
+            this.panel3.Controls.Add(this.metroLabel127);
+            this.panel3.Controls.Add(this.mCountry3);
+            this.panel3.Controls.Add(this.metroLabel130);
+            this.panel3.Controls.Add(this.metroLabel131);
+            this.panel3.Controls.Add(this.mNickname3);
+            this.panel3.Location = new System.Drawing.Point(4, 206);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(335, 74);
+            this.panel3.TabIndex = 131;
+            // 
+            // mLevelPicture3
+            // 
+            this.mLevelPicture3.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture3.Location = new System.Drawing.Point(310, 3);
+            this.mLevelPicture3.Name = "mLevelPicture3";
+            this.mLevelPicture3.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture3.TabIndex = 106;
+            this.mLevelPicture3.TabStop = false;
+            // 
+            // mLevel3
+            // 
+            this.mLevel3.AutoSize = true;
+            this.mLevel3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel3.Location = new System.Drawing.Point(292, 5);
+            this.mLevel3.Name = "mLevel3";
+            this.mLevel3.Size = new System.Drawing.Size(19, 15);
+            this.mLevel3.TabIndex = 122;
+            this.mLevel3.Text = "10";
+            // 
+            // metroLabel115
+            // 
+            this.metroLabel115.AutoSize = true;
+            this.metroLabel115.BackColor = System.Drawing.Color.Black;
+            this.metroLabel115.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel115.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel115.Location = new System.Drawing.Point(223, 38);
+            this.metroLabel115.Name = "metroLabel115";
+            this.metroLabel115.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel115.TabIndex = 123;
+            this.metroLabel115.Text = "Rank:";
+            this.metroLabel115.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS3
+            // 
+            this.mAvgHS3.AutoSize = true;
+            this.mAvgHS3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS3.Location = new System.Drawing.Point(198, 38);
+            this.mAvgHS3.Name = "mAvgHS3";
+            this.mAvgHS3.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS3.TabIndex = 121;
+            this.mAvgHS3.Text = "100";
+            // 
+            // mRanking3
+            // 
+            this.mRanking3.AutoSize = true;
+            this.mRanking3.BackColor = System.Drawing.Color.Black;
+            this.mRanking3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking3.Location = new System.Drawing.Point(256, 38);
+            this.mRanking3.Name = "mRanking3";
+            this.mRanking3.Size = new System.Drawing.Size(49, 15);
+            this.mRanking3.TabIndex = 124;
+            this.mRanking3.Text = "7654321";
+            this.mRanking3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAnticheat3
+            // 
+            this.mAnticheat3.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat3.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat3.Image")));
+            this.mAnticheat3.Location = new System.Drawing.Point(310, 28);
+            this.mAnticheat3.Name = "mAnticheat3";
+            this.mAnticheat3.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat3.TabIndex = 116;
+            this.mAnticheat3.TabStop = false;
+            // 
+            // mElo3
+            // 
+            this.mElo3.AutoSize = true;
+            this.mElo3.BackColor = System.Drawing.Color.Black;
+            this.mElo3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo3.Location = new System.Drawing.Point(274, 23);
+            this.mElo3.Name = "mElo3";
+            this.mElo3.Size = new System.Drawing.Size(37, 15);
+            this.mElo3.TabIndex = 119;
+            this.mElo3.Text = "10000";
+            this.mElo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel121
+            // 
+            this.metroLabel121.AutoSize = true;
+            this.metroLabel121.BackColor = System.Drawing.Color.Black;
+            this.metroLabel121.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel121.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel121.Location = new System.Drawing.Point(246, 23);
+            this.metroLabel121.Name = "metroLabel121";
+            this.metroLabel121.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel121.TabIndex = 12;
+            this.metroLabel121.Text = "ELO:";
+            this.metroLabel121.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mKD3
+            // 
+            this.mKD3.AutoSize = true;
+            this.mKD3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD3.Location = new System.Drawing.Point(126, 38);
+            this.mKD3.Name = "mKD3";
+            this.mKD3.Size = new System.Drawing.Size(28, 15);
+            this.mKD3.TabIndex = 120;
+            this.mKD3.Text = "1.00";
+            // 
+            // metroLabel123
+            // 
+            this.metroLabel123.AutoSize = true;
+            this.metroLabel123.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel123.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel123.Location = new System.Drawing.Point(270, 5);
+            this.metroLabel123.Name = "metroLabel123";
+            this.metroLabel123.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel123.TabIndex = 111;
+            this.metroLabel123.Text = "Lvl:";
+            // 
+            // mMatches3
+            // 
+            this.mMatches3.AutoSize = true;
+            this.mMatches3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches3.Location = new System.Drawing.Point(211, 23);
+            this.mMatches3.Name = "mMatches3";
+            this.mMatches3.Size = new System.Drawing.Size(37, 15);
+            this.mMatches3.TabIndex = 118;
+            this.mMatches3.Text = "10000";
+            this.mMatches3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mWinRate3
+            // 
+            this.mWinRate3.AutoSize = true;
+            this.mWinRate3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate3.Location = new System.Drawing.Point(126, 23);
+            this.mWinRate3.Name = "mWinRate3";
+            this.mWinRate3.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate3.TabIndex = 117;
+            this.mWinRate3.Text = "100%";
+            // 
+            // metroButton11
+            // 
+            this.metroButton11.Location = new System.Drawing.Point(171, 56);
+            this.metroButton11.Name = "metroButton11";
+            this.metroButton11.Size = new System.Drawing.Size(75, 15);
+            this.metroButton11.TabIndex = 115;
+            this.metroButton11.Text = "STEAM";
+            // 
+            // metroButton12
+            // 
+            this.metroButton12.Location = new System.Drawing.Point(72, 56);
+            this.metroButton12.Name = "metroButton12";
+            this.metroButton12.Size = new System.Drawing.Size(93, 15);
+            this.metroButton12.TabIndex = 114;
+            this.metroButton12.Text = "LOAD PROFILE";
+            // 
+            // metroButton13
+            // 
+            this.metroButton13.Location = new System.Drawing.Point(252, 56);
+            this.metroButton13.Name = "metroButton13";
+            this.metroButton13.Size = new System.Drawing.Size(75, 15);
+            this.metroButton13.TabIndex = 113;
+            this.metroButton13.Text = "FACEIT";
+            // 
+            // mAvatar3
+            // 
+            this.mAvatar3.Location = new System.Drawing.Point(3, 3);
+            this.mAvatar3.Name = "mAvatar3";
+            this.mAvatar3.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar3.TabIndex = 7;
+            this.mAvatar3.TabStop = false;
+            // 
+            // metroLabel126
+            // 
+            this.metroLabel126.AutoSize = true;
+            this.metroLabel126.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel126.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel126.Location = new System.Drawing.Point(150, 38);
+            this.metroLabel126.Name = "metroLabel126";
+            this.metroLabel126.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel126.TabIndex = 108;
+            this.metroLabel126.Text = "Avg. HS:";
+            // 
+            // metroLabel127
+            // 
+            this.metroLabel127.AutoSize = true;
+            this.metroLabel127.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel127.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel127.Location = new System.Drawing.Point(72, 38);
+            this.metroLabel127.Name = "metroLabel127";
+            this.metroLabel127.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel127.TabIndex = 14;
+            this.metroLabel127.Text = "K\\D Rat.:";
+            // 
+            // mCountry3
+            // 
+            this.mCountry3.Location = new System.Drawing.Point(72, 3);
+            this.mCountry3.Name = "mCountry3";
+            this.mCountry3.Size = new System.Drawing.Size(27, 17);
+            this.mCountry3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry3.TabIndex = 104;
+            this.mCountry3.TabStop = false;
+            // 
+            // metroLabel130
+            // 
+            this.metroLabel130.AutoSize = true;
+            this.metroLabel130.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel130.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel130.Location = new System.Drawing.Point(159, 23);
+            this.metroLabel130.Name = "metroLabel130";
+            this.metroLabel130.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel130.TabIndex = 11;
+            this.metroLabel130.Text = "Matches:";
+            this.metroLabel130.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel131
+            // 
+            this.metroLabel131.AutoSize = true;
+            this.metroLabel131.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel131.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel131.Location = new System.Drawing.Point(72, 23);
+            this.metroLabel131.Name = "metroLabel131";
+            this.metroLabel131.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel131.TabIndex = 9;
+            this.metroLabel131.Text = "Win Rate:";
+            // 
+            // mNickname3
+            // 
+            this.mNickname3.Location = new System.Drawing.Point(105, 3);
+            this.mNickname3.Name = "mNickname3";
+            this.mNickname3.Size = new System.Drawing.Size(166, 17);
+            this.mNickname3.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname3.TabIndex = 8;
+            this.mNickname3.Text = "nickname";
+            this.mNickname3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mNickname3.UseStyleColors = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.mLevelPicture2);
+            this.panel2.Controls.Add(this.mLevel2);
+            this.panel2.Controls.Add(this.metroLabel99);
+            this.panel2.Controls.Add(this.mAvgHS2);
+            this.panel2.Controls.Add(this.mRanking2);
+            this.panel2.Controls.Add(this.mAnticheat2);
+            this.panel2.Controls.Add(this.mElo2);
+            this.panel2.Controls.Add(this.metroLabel105);
+            this.panel2.Controls.Add(this.mKD2);
+            this.panel2.Controls.Add(this.metroLabel107);
+            this.panel2.Controls.Add(this.mMatches2);
+            this.panel2.Controls.Add(this.mWinRate2);
+            this.panel2.Controls.Add(this.metroButton2);
+            this.panel2.Controls.Add(this.metroButton3);
+            this.panel2.Controls.Add(this.metroButton4);
+            this.panel2.Controls.Add(this.mAvatar2);
+            this.panel2.Controls.Add(this.metroLabel110);
+            this.panel2.Controls.Add(this.metroLabel111);
+            this.panel2.Controls.Add(this.mCountry2);
+            this.panel2.Controls.Add(this.metroLabel112);
+            this.panel2.Controls.Add(this.metroLabel113);
+            this.panel2.Controls.Add(this.mNickname2);
+            this.panel2.Location = new System.Drawing.Point(4, 129);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(335, 74);
+            this.panel2.TabIndex = 131;
+            // 
+            // mLevelPicture2
+            // 
+            this.mLevelPicture2.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture2.Location = new System.Drawing.Point(310, 3);
+            this.mLevelPicture2.Name = "mLevelPicture2";
+            this.mLevelPicture2.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture2.TabIndex = 106;
+            this.mLevelPicture2.TabStop = false;
+            // 
+            // mLevel2
+            // 
+            this.mLevel2.AutoSize = true;
+            this.mLevel2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel2.Location = new System.Drawing.Point(292, 5);
+            this.mLevel2.Name = "mLevel2";
+            this.mLevel2.Size = new System.Drawing.Size(19, 15);
+            this.mLevel2.TabIndex = 122;
+            this.mLevel2.Text = "10";
+            // 
+            // metroLabel99
+            // 
+            this.metroLabel99.AutoSize = true;
+            this.metroLabel99.BackColor = System.Drawing.Color.Black;
+            this.metroLabel99.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel99.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel99.Location = new System.Drawing.Point(223, 38);
+            this.metroLabel99.Name = "metroLabel99";
+            this.metroLabel99.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel99.TabIndex = 123;
+            this.metroLabel99.Text = "Rank:";
+            this.metroLabel99.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS2
+            // 
+            this.mAvgHS2.AutoSize = true;
+            this.mAvgHS2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS2.Location = new System.Drawing.Point(198, 38);
+            this.mAvgHS2.Name = "mAvgHS2";
+            this.mAvgHS2.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS2.TabIndex = 121;
+            this.mAvgHS2.Text = "100";
+            // 
+            // mRanking2
+            // 
+            this.mRanking2.AutoSize = true;
+            this.mRanking2.BackColor = System.Drawing.Color.Black;
+            this.mRanking2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking2.Location = new System.Drawing.Point(256, 38);
+            this.mRanking2.Name = "mRanking2";
+            this.mRanking2.Size = new System.Drawing.Size(49, 15);
+            this.mRanking2.TabIndex = 124;
+            this.mRanking2.Text = "7654321";
+            this.mRanking2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAnticheat2
+            // 
+            this.mAnticheat2.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat2.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat2.Image")));
+            this.mAnticheat2.Location = new System.Drawing.Point(310, 28);
+            this.mAnticheat2.Name = "mAnticheat2";
+            this.mAnticheat2.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat2.TabIndex = 116;
+            this.mAnticheat2.TabStop = false;
+            // 
+            // mElo2
+            // 
+            this.mElo2.AutoSize = true;
+            this.mElo2.BackColor = System.Drawing.Color.Black;
+            this.mElo2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo2.Location = new System.Drawing.Point(274, 23);
+            this.mElo2.Name = "mElo2";
+            this.mElo2.Size = new System.Drawing.Size(37, 15);
+            this.mElo2.TabIndex = 119;
+            this.mElo2.Text = "10000";
+            this.mElo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel105
+            // 
+            this.metroLabel105.AutoSize = true;
+            this.metroLabel105.BackColor = System.Drawing.Color.Black;
+            this.metroLabel105.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel105.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel105.Location = new System.Drawing.Point(246, 23);
+            this.metroLabel105.Name = "metroLabel105";
+            this.metroLabel105.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel105.TabIndex = 12;
+            this.metroLabel105.Text = "ELO:";
+            this.metroLabel105.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mKD2
+            // 
+            this.mKD2.AutoSize = true;
+            this.mKD2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD2.Location = new System.Drawing.Point(126, 38);
+            this.mKD2.Name = "mKD2";
+            this.mKD2.Size = new System.Drawing.Size(28, 15);
+            this.mKD2.TabIndex = 120;
+            this.mKD2.Text = "1.00";
+            // 
+            // metroLabel107
+            // 
+            this.metroLabel107.AutoSize = true;
+            this.metroLabel107.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel107.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel107.Location = new System.Drawing.Point(270, 5);
+            this.metroLabel107.Name = "metroLabel107";
+            this.metroLabel107.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel107.TabIndex = 111;
+            this.metroLabel107.Text = "Lvl:";
+            // 
+            // mMatches2
+            // 
+            this.mMatches2.AutoSize = true;
+            this.mMatches2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches2.Location = new System.Drawing.Point(211, 23);
+            this.mMatches2.Name = "mMatches2";
+            this.mMatches2.Size = new System.Drawing.Size(37, 15);
+            this.mMatches2.TabIndex = 118;
+            this.mMatches2.Text = "10000";
+            this.mMatches2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mWinRate2
+            // 
+            this.mWinRate2.AutoSize = true;
+            this.mWinRate2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate2.Location = new System.Drawing.Point(126, 23);
+            this.mWinRate2.Name = "mWinRate2";
+            this.mWinRate2.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate2.TabIndex = 117;
+            this.mWinRate2.Text = "100%";
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.Location = new System.Drawing.Point(171, 56);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(75, 15);
+            this.metroButton2.TabIndex = 115;
+            this.metroButton2.Text = "STEAM";
+            // 
+            // metroButton3
+            // 
+            this.metroButton3.Location = new System.Drawing.Point(72, 56);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(93, 15);
+            this.metroButton3.TabIndex = 114;
+            this.metroButton3.Text = "LOAD PROFILE";
+            // 
+            // metroButton4
+            // 
+            this.metroButton4.Location = new System.Drawing.Point(252, 56);
+            this.metroButton4.Name = "metroButton4";
+            this.metroButton4.Size = new System.Drawing.Size(75, 15);
+            this.metroButton4.TabIndex = 113;
+            this.metroButton4.Text = "FACEIT";
+            // 
+            // mAvatar2
+            // 
+            this.mAvatar2.Location = new System.Drawing.Point(3, 3);
+            this.mAvatar2.Name = "mAvatar2";
+            this.mAvatar2.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar2.TabIndex = 7;
+            this.mAvatar2.TabStop = false;
+            // 
+            // metroLabel110
+            // 
+            this.metroLabel110.AutoSize = true;
+            this.metroLabel110.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel110.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel110.Location = new System.Drawing.Point(150, 38);
+            this.metroLabel110.Name = "metroLabel110";
+            this.metroLabel110.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel110.TabIndex = 108;
+            this.metroLabel110.Text = "Avg. HS:";
+            // 
+            // metroLabel111
+            // 
+            this.metroLabel111.AutoSize = true;
+            this.metroLabel111.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel111.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel111.Location = new System.Drawing.Point(72, 38);
+            this.metroLabel111.Name = "metroLabel111";
+            this.metroLabel111.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel111.TabIndex = 14;
+            this.metroLabel111.Text = "K\\D Rat.:";
+            // 
+            // mCountry2
+            // 
+            this.mCountry2.Location = new System.Drawing.Point(72, 3);
+            this.mCountry2.Name = "mCountry2";
+            this.mCountry2.Size = new System.Drawing.Size(27, 17);
+            this.mCountry2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry2.TabIndex = 104;
+            this.mCountry2.TabStop = false;
+            // 
+            // metroLabel112
+            // 
+            this.metroLabel112.AutoSize = true;
+            this.metroLabel112.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel112.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel112.Location = new System.Drawing.Point(159, 23);
+            this.metroLabel112.Name = "metroLabel112";
+            this.metroLabel112.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel112.TabIndex = 11;
+            this.metroLabel112.Text = "Matches:";
+            this.metroLabel112.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel113
+            // 
+            this.metroLabel113.AutoSize = true;
+            this.metroLabel113.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel113.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel113.Location = new System.Drawing.Point(72, 23);
+            this.metroLabel113.Name = "metroLabel113";
+            this.metroLabel113.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel113.TabIndex = 9;
+            this.metroLabel113.Text = "Win Rate:";
+            // 
+            // mNickname2
+            // 
+            this.mNickname2.Location = new System.Drawing.Point(105, 3);
+            this.mNickname2.Name = "mNickname2";
+            this.mNickname2.Size = new System.Drawing.Size(166, 17);
+            this.mNickname2.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname2.TabIndex = 8;
+            this.mNickname2.Text = "nickname";
+            this.mNickname2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mNickname2.UseStyleColors = true;
+            // 
+            // metroLabel79
+            // 
+            this.metroLabel79.AutoSize = true;
+            this.metroLabel79.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel79.Location = new System.Drawing.Point(362, 83);
+            this.metroLabel79.Name = "metroLabel79";
+            this.metroLabel79.Size = new System.Drawing.Size(59, 19);
+            this.metroLabel79.TabIndex = 111;
+            this.metroLabel79.Text = "Server:";
+            this.metroLabel79.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // countryServer1
+            // 
+            this.countryServer1.AutoSize = true;
+            this.countryServer1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.countryServer1.Location = new System.Drawing.Point(460, 83);
+            this.countryServer1.Name = "countryServer1";
+            this.countryServer1.Size = new System.Drawing.Size(83, 19);
+            this.countryServer1.TabIndex = 154;
+            this.countryServer1.Text = "Netherlands";
+            this.countryServer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.metroLabel41);
+            this.panel1.Controls.Add(this.mRanking6);
+            this.panel1.Controls.Add(this.mElo6);
+            this.panel1.Controls.Add(this.metroLabel82);
+            this.panel1.Controls.Add(this.mLevel6);
+            this.panel1.Controls.Add(this.mKD6);
+            this.panel1.Controls.Add(this.mMatches6);
+            this.panel1.Controls.Add(this.mAvgHS6);
+            this.panel1.Controls.Add(this.mWinRate6);
+            this.panel1.Controls.Add(this.metroLabel94);
+            this.panel1.Controls.Add(this.metroButton8);
+            this.panel1.Controls.Add(this.metroButton9);
+            this.panel1.Controls.Add(this.metroButton10);
+            this.panel1.Controls.Add(this.mAvatar6);
+            this.panel1.Controls.Add(this.mCountry6);
+            this.panel1.Controls.Add(this.metroLabel80);
+            this.panel1.Controls.Add(this.metroLabel88);
+            this.panel1.Controls.Add(this.metroLabel95);
+            this.panel1.Controls.Add(this.mNickname6);
+            this.panel1.Controls.Add(this.mLevelPicture6);
+            this.panel1.Controls.Add(this.metroLabel96);
+            this.panel1.Controls.Add(this.mAnticheat6);
+            this.panel1.Location = new System.Drawing.Point(546, 52);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(335, 74);
+            this.panel1.TabIndex = 131;
+            // 
+            // metroLabel41
+            // 
+            this.metroLabel41.AutoSize = true;
+            this.metroLabel41.BackColor = System.Drawing.Color.Black;
+            this.metroLabel41.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel41.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel41.Location = new System.Drawing.Point(26, 38);
+            this.metroLabel41.Name = "metroLabel41";
+            this.metroLabel41.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel41.TabIndex = 125;
+            this.metroLabel41.Text = "Rank:";
+            this.metroLabel41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mRanking6
+            // 
+            this.mRanking6.AutoSize = true;
+            this.mRanking6.BackColor = System.Drawing.Color.Black;
+            this.mRanking6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mRanking6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mRanking6.Location = new System.Drawing.Point(59, 38);
+            this.mRanking6.Name = "mRanking6";
+            this.mRanking6.Size = new System.Drawing.Size(49, 15);
+            this.mRanking6.TabIndex = 126;
+            this.mRanking6.Text = "7654321";
+            this.mRanking6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mElo6
+            // 
+            this.mElo6.AutoSize = true;
+            this.mElo6.BackColor = System.Drawing.Color.Black;
+            this.mElo6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mElo6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mElo6.Location = new System.Drawing.Point(53, 23);
+            this.mElo6.Name = "mElo6";
+            this.mElo6.Size = new System.Drawing.Size(37, 15);
+            this.mElo6.TabIndex = 119;
+            this.mElo6.Text = "10000";
+            this.mElo6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel82
+            // 
+            this.metroLabel82.AutoSize = true;
+            this.metroLabel82.BackColor = System.Drawing.Color.Black;
+            this.metroLabel82.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel82.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel82.Location = new System.Drawing.Point(26, 23);
+            this.metroLabel82.Name = "metroLabel82";
+            this.metroLabel82.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel82.TabIndex = 12;
+            this.metroLabel82.Text = "ELO:";
+            this.metroLabel82.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mLevel6
+            // 
+            this.mLevel6.AutoSize = true;
+            this.mLevel6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel6.Location = new System.Drawing.Point(49, 5);
+            this.mLevel6.Name = "mLevel6";
+            this.mLevel6.Size = new System.Drawing.Size(19, 15);
+            this.mLevel6.TabIndex = 122;
+            this.mLevel6.Text = "10";
+            // 
+            // mKD6
+            // 
+            this.mKD6.AutoSize = true;
+            this.mKD6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD6.Location = new System.Drawing.Point(235, 38);
+            this.mKD6.Name = "mKD6";
+            this.mKD6.Size = new System.Drawing.Size(28, 15);
+            this.mKD6.TabIndex = 120;
+            this.mKD6.Text = "1.00";
+            // 
+            // mMatches6
+            // 
+            this.mMatches6.AutoSize = true;
+            this.mMatches6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches6.Location = new System.Drawing.Point(141, 23);
+            this.mMatches6.Name = "mMatches6";
+            this.mMatches6.Size = new System.Drawing.Size(37, 15);
+            this.mMatches6.TabIndex = 118;
+            this.mMatches6.Text = "10000";
+            this.mMatches6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS6
+            // 
+            this.mAvgHS6.AutoSize = true;
+            this.mAvgHS6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS6.Location = new System.Drawing.Point(153, 38);
+            this.mAvgHS6.Name = "mAvgHS6";
+            this.mAvgHS6.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS6.TabIndex = 121;
+            this.mAvgHS6.Text = "100";
+            // 
+            // mWinRate6
+            // 
+            this.mWinRate6.AutoSize = true;
+            this.mWinRate6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate6.Location = new System.Drawing.Point(228, 23);
+            this.mWinRate6.Name = "mWinRate6";
+            this.mWinRate6.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate6.TabIndex = 117;
+            this.mWinRate6.Text = "100%";
+            // 
+            // metroLabel94
+            // 
+            this.metroLabel94.AutoSize = true;
+            this.metroLabel94.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel94.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel94.Location = new System.Drawing.Point(181, 38);
+            this.metroLabel94.Name = "metroLabel94";
+            this.metroLabel94.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel94.TabIndex = 14;
+            this.metroLabel94.Text = "K\\D Rat.:";
+            // 
+            // metroButton8
+            // 
+            this.metroButton8.Location = new System.Drawing.Point(89, 56);
+            this.metroButton8.Name = "metroButton8";
+            this.metroButton8.Size = new System.Drawing.Size(75, 15);
+            this.metroButton8.TabIndex = 115;
+            this.metroButton8.Text = "STEAM";
+            // 
+            // metroButton9
+            // 
+            this.metroButton9.Location = new System.Drawing.Point(170, 56);
+            this.metroButton9.Name = "metroButton9";
+            this.metroButton9.Size = new System.Drawing.Size(93, 15);
+            this.metroButton9.TabIndex = 114;
+            this.metroButton9.Text = "LOAD PROFILE";
+            // 
+            // metroButton10
+            // 
+            this.metroButton10.Location = new System.Drawing.Point(8, 56);
+            this.metroButton10.Name = "metroButton10";
+            this.metroButton10.Size = new System.Drawing.Size(75, 15);
+            this.metroButton10.TabIndex = 113;
+            this.metroButton10.Text = "FACEIT";
+            // 
+            // mAvatar6
+            // 
+            this.mAvatar6.Location = new System.Drawing.Point(264, 3);
+            this.mAvatar6.Name = "mAvatar6";
+            this.mAvatar6.Size = new System.Drawing.Size(68, 68);
+            this.mAvatar6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAvatar6.TabIndex = 7;
+            this.mAvatar6.TabStop = false;
+            this.mAvatar6.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // mCountry6
+            // 
+            this.mCountry6.Location = new System.Drawing.Point(236, 3);
+            this.mCountry6.Name = "mCountry6";
+            this.mCountry6.Size = new System.Drawing.Size(27, 17);
+            this.mCountry6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mCountry6.TabIndex = 104;
+            this.mCountry6.TabStop = false;
+            // 
+            // metroLabel80
+            // 
+            this.metroLabel80.AutoSize = true;
+            this.metroLabel80.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel80.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel80.Location = new System.Drawing.Point(26, 5);
+            this.metroLabel80.Name = "metroLabel80";
+            this.metroLabel80.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel80.TabIndex = 111;
+            this.metroLabel80.Text = "Lvl:";
+            // 
+            // metroLabel88
+            // 
+            this.metroLabel88.AutoSize = true;
+            this.metroLabel88.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel88.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel88.Location = new System.Drawing.Point(105, 38);
+            this.metroLabel88.Name = "metroLabel88";
+            this.metroLabel88.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel88.TabIndex = 108;
+            this.metroLabel88.Text = "Avg. HS:";
+            // 
+            // metroLabel95
+            // 
+            this.metroLabel95.AutoSize = true;
+            this.metroLabel95.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel95.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel95.Location = new System.Drawing.Point(89, 23);
+            this.metroLabel95.Name = "metroLabel95";
+            this.metroLabel95.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel95.TabIndex = 11;
+            this.metroLabel95.Text = "Matches:";
+            this.metroLabel95.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mNickname6
+            // 
+            this.mNickname6.Location = new System.Drawing.Point(64, 3);
+            this.mNickname6.Name = "mNickname6";
+            this.mNickname6.Size = new System.Drawing.Size(170, 17);
+            this.mNickname6.Style = MetroFramework.MetroColorStyle.Black;
+            this.mNickname6.TabIndex = 8;
+            this.mNickname6.Text = "nickname";
+            this.mNickname6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mNickname6.UseStyleColors = true;
+            // 
+            // mLevelPicture6
+            // 
+            this.mLevelPicture6.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture6.Location = new System.Drawing.Point(3, 3);
+            this.mLevelPicture6.Name = "mLevelPicture6";
+            this.mLevelPicture6.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture6.TabIndex = 106;
+            this.mLevelPicture6.TabStop = false;
+            // 
+            // metroLabel96
+            // 
+            this.metroLabel96.AutoSize = true;
+            this.metroLabel96.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel96.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel96.Location = new System.Drawing.Point(175, 23);
+            this.metroLabel96.Name = "metroLabel96";
+            this.metroLabel96.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel96.TabIndex = 9;
+            this.metroLabel96.Text = "Win Rate:";
+            // 
+            // mAnticheat6
+            // 
+            this.mAnticheat6.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat6.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat6.Image")));
+            this.mAnticheat6.Location = new System.Drawing.Point(3, 28);
+            this.mAnticheat6.Name = "mAnticheat6";
+            this.mAnticheat6.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat6.TabIndex = 116;
+            this.mAnticheat6.TabStop = false;
+            // 
+            // mapName1
+            // 
+            this.mapName1.AutoSize = true;
+            this.mapName1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mapName1.Location = new System.Drawing.Point(422, 102);
+            this.mapName1.Name = "mapName1";
+            this.mapName1.Size = new System.Drawing.Size(64, 19);
+            this.mapName1.TabIndex = 103;
+            this.mapName1.Text = "de_cache";
+            this.mapName1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // countryServerImg1
+            // 
+            this.countryServerImg1.BackColor = System.Drawing.Color.White;
+            this.countryServerImg1.Image = ((System.Drawing.Image)(resources.GetObject("countryServerImg1.Image")));
+            this.countryServerImg1.Location = new System.Drawing.Point(422, 83);
+            this.countryServerImg1.Name = "countryServerImg1";
+            this.countryServerImg1.Size = new System.Drawing.Size(38, 19);
+            this.countryServerImg1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.countryServerImg1.TabIndex = 153;
+            this.countryServerImg1.TabStop = false;
+            // 
+            // metroLabel51
+            // 
+            this.metroLabel51.AutoSize = true;
+            this.metroLabel51.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel51.Location = new System.Drawing.Point(352, 159);
+            this.metroLabel51.Name = "metroLabel51";
+            this.metroLabel51.Size = new System.Drawing.Size(67, 19);
+            this.metroLabel51.TabIndex = 152;
+            this.metroLabel51.Text = "Finished:";
+            this.metroLabel51.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // finishedDate1
+            // 
+            this.finishedDate1.AutoSize = true;
+            this.finishedDate1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.finishedDate1.Location = new System.Drawing.Point(422, 159);
+            this.finishedDate1.Name = "finishedDate1";
+            this.finishedDate1.Size = new System.Drawing.Size(121, 19);
+            this.finishedDate1.TabIndex = 151;
+            this.finishedDate1.Text = "22:27:17 01.01.19";
+            this.finishedDate1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel45
+            // 
+            this.metroLabel45.AutoSize = true;
+            this.metroLabel45.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel45.Location = new System.Drawing.Point(357, 140);
+            this.metroLabel45.Name = "metroLabel45";
+            this.metroLabel45.Size = new System.Drawing.Size(62, 19);
+            this.metroLabel45.TabIndex = 150;
+            this.metroLabel45.Text = "Started:";
+            this.metroLabel45.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // startedDate1
+            // 
+            this.startedDate1.AutoSize = true;
+            this.startedDate1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.startedDate1.Location = new System.Drawing.Point(422, 140);
+            this.startedDate1.Name = "startedDate1";
+            this.startedDate1.Size = new System.Drawing.Size(121, 19);
+            this.startedDate1.TabIndex = 149;
+            this.startedDate1.Text = "21:39:43 01.01.19";
+            this.startedDate1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel23
+            // 
+            this.metroLabel23.AutoSize = true;
+            this.metroLabel23.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel23.Location = new System.Drawing.Point(345, 121);
+            this.metroLabel23.Name = "metroLabel23";
+            this.metroLabel23.Size = new System.Drawing.Size(74, 19);
+            this.metroLabel23.TabIndex = 148;
+            this.metroLabel23.Text = "Configur.:";
+            this.metroLabel23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // configuredDate1
+            // 
+            this.configuredDate1.AutoSize = true;
+            this.configuredDate1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.configuredDate1.Location = new System.Drawing.Point(422, 121);
+            this.configuredDate1.Name = "configuredDate1";
+            this.configuredDate1.Size = new System.Drawing.Size(121, 19);
+            this.configuredDate1.TabIndex = 147;
+            this.configuredDate1.Text = "21:35:01 01.01.19";
+            this.configuredDate1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel98
             // 
@@ -974,1609 +3901,6 @@
             this.avgRankingTeamB.TabIndex = 141;
             this.avgRankingTeamB.Text = "1.199.999";
             this.avgRankingTeamB.UseStyleColors = true;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.metroLabel140);
-            this.panel4.Controls.Add(this.mRanking10);
-            this.panel4.Controls.Add(this.metroLabel151);
-            this.panel4.Controls.Add(this.mAvatar10);
-            this.panel4.Controls.Add(this.mLobby10);
-            this.panel4.Controls.Add(this.mCountry10);
-            this.panel4.Controls.Add(this.mAvgHS10);
-            this.panel4.Controls.Add(this.mKD10);
-            this.panel4.Controls.Add(this.mMatches10);
-            this.panel4.Controls.Add(this.mJoinType10);
-            this.panel4.Controls.Add(this.mNickname10);
-            this.panel4.Controls.Add(this.mElo10);
-            this.panel4.Controls.Add(this.mLevel10);
-            this.panel4.Controls.Add(this.mWinRate10);
-            this.panel4.Location = new System.Drawing.Point(549, 360);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(335, 74);
-            this.panel4.TabIndex = 139;
-            // 
-            // metroLabel140
-            // 
-            this.metroLabel140.AutoSize = true;
-            this.metroLabel140.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel140.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel140.Location = new System.Drawing.Point(204, 56);
-            this.metroLabel140.Name = "metroLabel140";
-            this.metroLabel140.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel140.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel140.TabIndex = 148;
-            this.metroLabel140.Text = "Join:";
-            this.metroLabel140.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel140.UseStyleColors = true;
-            // 
-            // mRanking10
-            // 
-            this.mRanking10.AutoSize = true;
-            this.mRanking10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking10.Location = new System.Drawing.Point(1, 28);
-            this.mRanking10.Name = "mRanking10";
-            this.mRanking10.Size = new System.Drawing.Size(104, 15);
-            this.mRanking10.TabIndex = 116;
-            this.mRanking10.Text = "Ranking: 1.199.999";
-            // 
-            // metroLabel151
-            // 
-            this.metroLabel151.AutoSize = true;
-            this.metroLabel151.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel151.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel151.Location = new System.Drawing.Point(129, 41);
-            this.metroLabel151.Name = "metroLabel151";
-            this.metroLabel151.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel151.TabIndex = 110;
-            this.metroLabel151.Text = ":Lobby";
-            // 
-            // mAvatar10
-            // 
-            this.mAvatar10.Location = new System.Drawing.Point(264, 3);
-            this.mAvatar10.Name = "mAvatar10";
-            this.mAvatar10.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar10.TabIndex = 7;
-            this.mAvatar10.TabStop = false;
-            // 
-            // mLobby10
-            // 
-            this.mLobby10.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby10.FormattingEnabled = true;
-            this.mLobby10.ItemHeight = 19;
-            this.mLobby10.Location = new System.Drawing.Point(3, 46);
-            this.mLobby10.Name = "mLobby10";
-            this.mLobby10.Size = new System.Drawing.Size(120, 25);
-            this.mLobby10.TabIndex = 109;
-            // 
-            // mCountry10
-            // 
-            this.mCountry10.Location = new System.Drawing.Point(231, 3);
-            this.mCountry10.Name = "mCountry10";
-            this.mCountry10.Size = new System.Drawing.Size(27, 17);
-            this.mCountry10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry10.TabIndex = 104;
-            this.mCountry10.TabStop = false;
-            // 
-            // mAvgHS10
-            // 
-            this.mAvgHS10.AutoSize = true;
-            this.mAvgHS10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS10.Location = new System.Drawing.Point(121, 56);
-            this.mAvgHS10.Name = "mAvgHS10";
-            this.mAvgHS10.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS10.TabIndex = 108;
-            this.mAvgHS10.Text = "Avg. HS: 50%";
-            // 
-            // mKD10
-            // 
-            this.mKD10.AutoSize = true;
-            this.mKD10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD10.Location = new System.Drawing.Point(190, 43);
-            this.mKD10.Name = "mKD10";
-            this.mKD10.Size = new System.Drawing.Size(68, 15);
-            this.mKD10.TabIndex = 14;
-            this.mKD10.Text = "K/D Rat: 1.4";
-            // 
-            // mMatches10
-            // 
-            this.mMatches10.AutoSize = true;
-            this.mMatches10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches10.Location = new System.Drawing.Point(182, 28);
-            this.mMatches10.Name = "mMatches10";
-            this.mMatches10.Size = new System.Drawing.Size(76, 15);
-            this.mMatches10.TabIndex = 11;
-            this.mMatches10.Text = "Mathes: 1999";
-            this.mMatches10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mJoinType10
-            // 
-            this.mJoinType10.AutoSize = true;
-            this.mJoinType10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType10.Location = new System.Drawing.Point(231, 56);
-            this.mJoinType10.Name = "mJoinType10";
-            this.mJoinType10.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType10.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType10.TabIndex = 107;
-            this.mJoinType10.Text = "Solo";
-            this.mJoinType10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType10.UseStyleColors = true;
-            // 
-            // mNickname10
-            // 
-            this.mNickname10.Location = new System.Drawing.Point(90, 3);
-            this.mNickname10.Name = "mNickname10";
-            this.mNickname10.Size = new System.Drawing.Size(135, 17);
-            this.mNickname10.TabIndex = 8;
-            this.mNickname10.Text = "STRife_Team";
-            this.mNickname10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mNickname10.Click += new System.EventHandler(this.mNickname10_Click);
-            // 
-            // mElo10
-            // 
-            this.mElo10.AutoSize = true;
-            this.mElo10.BackColor = System.Drawing.Color.Black;
-            this.mElo10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo10.Location = new System.Drawing.Point(29, 5);
-            this.mElo10.Name = "mElo10";
-            this.mElo10.Size = new System.Drawing.Size(55, 15);
-            this.mElo10.TabIndex = 12;
-            this.mElo10.Text = "2123 ELO";
-            this.mElo10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel10
-            // 
-            this.mLevel10.BackColor = System.Drawing.Color.White;
-            this.mLevel10.Location = new System.Drawing.Point(3, 3);
-            this.mLevel10.Name = "mLevel10";
-            this.mLevel10.Size = new System.Drawing.Size(22, 22);
-            this.mLevel10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel10.TabIndex = 106;
-            this.mLevel10.TabStop = false;
-            // 
-            // mWinRate10
-            // 
-            this.mWinRate10.AutoSize = true;
-            this.mWinRate10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate10.Location = new System.Drawing.Point(102, 28);
-            this.mWinRate10.Name = "mWinRate10";
-            this.mWinRate10.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate10.TabIndex = 9;
-            this.mWinRate10.Text = "Win Rate: 99%";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.metroLabel138);
-            this.panel3.Controls.Add(this.mRanking9);
-            this.panel3.Controls.Add(this.metroLabel143);
-            this.panel3.Controls.Add(this.mAvatar9);
-            this.panel3.Controls.Add(this.mLobby9);
-            this.panel3.Controls.Add(this.mCountry9);
-            this.panel3.Controls.Add(this.mAvgHS9);
-            this.panel3.Controls.Add(this.mKD9);
-            this.panel3.Controls.Add(this.mMatches9);
-            this.panel3.Controls.Add(this.mJoinType9);
-            this.panel3.Controls.Add(this.mNickname9);
-            this.panel3.Controls.Add(this.mElo9);
-            this.panel3.Controls.Add(this.mLevel9);
-            this.panel3.Controls.Add(this.mWinRate9);
-            this.panel3.Location = new System.Drawing.Point(549, 283);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(335, 74);
-            this.panel3.TabIndex = 138;
-            // 
-            // metroLabel138
-            // 
-            this.metroLabel138.AutoSize = true;
-            this.metroLabel138.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel138.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel138.Location = new System.Drawing.Point(204, 56);
-            this.metroLabel138.Name = "metroLabel138";
-            this.metroLabel138.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel138.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel138.TabIndex = 147;
-            this.metroLabel138.Text = "Join:";
-            this.metroLabel138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel138.UseStyleColors = true;
-            // 
-            // mRanking9
-            // 
-            this.mRanking9.AutoSize = true;
-            this.mRanking9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking9.Location = new System.Drawing.Point(0, 28);
-            this.mRanking9.Name = "mRanking9";
-            this.mRanking9.Size = new System.Drawing.Size(104, 15);
-            this.mRanking9.TabIndex = 115;
-            this.mRanking9.Text = "Ranking: 1.199.999";
-            // 
-            // metroLabel143
-            // 
-            this.metroLabel143.AutoSize = true;
-            this.metroLabel143.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel143.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel143.Location = new System.Drawing.Point(129, 41);
-            this.metroLabel143.Name = "metroLabel143";
-            this.metroLabel143.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel143.TabIndex = 110;
-            this.metroLabel143.Text = ":Lobby";
-            // 
-            // mAvatar9
-            // 
-            this.mAvatar9.Location = new System.Drawing.Point(264, 3);
-            this.mAvatar9.Name = "mAvatar9";
-            this.mAvatar9.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar9.TabIndex = 7;
-            this.mAvatar9.TabStop = false;
-            // 
-            // mLobby9
-            // 
-            this.mLobby9.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby9.FormattingEnabled = true;
-            this.mLobby9.ItemHeight = 19;
-            this.mLobby9.Location = new System.Drawing.Point(3, 46);
-            this.mLobby9.Name = "mLobby9";
-            this.mLobby9.Size = new System.Drawing.Size(120, 25);
-            this.mLobby9.TabIndex = 109;
-            // 
-            // mCountry9
-            // 
-            this.mCountry9.Location = new System.Drawing.Point(231, 3);
-            this.mCountry9.Name = "mCountry9";
-            this.mCountry9.Size = new System.Drawing.Size(27, 17);
-            this.mCountry9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry9.TabIndex = 104;
-            this.mCountry9.TabStop = false;
-            // 
-            // mAvgHS9
-            // 
-            this.mAvgHS9.AutoSize = true;
-            this.mAvgHS9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS9.Location = new System.Drawing.Point(121, 56);
-            this.mAvgHS9.Name = "mAvgHS9";
-            this.mAvgHS9.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS9.TabIndex = 108;
-            this.mAvgHS9.Text = "Avg. HS: 50%";
-            // 
-            // mKD9
-            // 
-            this.mKD9.AutoSize = true;
-            this.mKD9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD9.Location = new System.Drawing.Point(190, 43);
-            this.mKD9.Name = "mKD9";
-            this.mKD9.Size = new System.Drawing.Size(68, 15);
-            this.mKD9.TabIndex = 14;
-            this.mKD9.Text = "K/D Rat: 1.4";
-            // 
-            // mMatches9
-            // 
-            this.mMatches9.AutoSize = true;
-            this.mMatches9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches9.Location = new System.Drawing.Point(182, 28);
-            this.mMatches9.Name = "mMatches9";
-            this.mMatches9.Size = new System.Drawing.Size(76, 15);
-            this.mMatches9.TabIndex = 11;
-            this.mMatches9.Text = "Mathes: 1999";
-            this.mMatches9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mJoinType9
-            // 
-            this.mJoinType9.AutoSize = true;
-            this.mJoinType9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType9.Location = new System.Drawing.Point(231, 56);
-            this.mJoinType9.Name = "mJoinType9";
-            this.mJoinType9.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType9.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType9.TabIndex = 107;
-            this.mJoinType9.Text = "Solo";
-            this.mJoinType9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType9.UseStyleColors = true;
-            // 
-            // mNickname9
-            // 
-            this.mNickname9.Location = new System.Drawing.Point(90, 3);
-            this.mNickname9.Name = "mNickname9";
-            this.mNickname9.Size = new System.Drawing.Size(135, 17);
-            this.mNickname9.TabIndex = 8;
-            this.mNickname9.Text = "STRife_Team";
-            this.mNickname9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mNickname9.Click += new System.EventHandler(this.mNickname9_Click);
-            // 
-            // mElo9
-            // 
-            this.mElo9.AutoSize = true;
-            this.mElo9.BackColor = System.Drawing.Color.Black;
-            this.mElo9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo9.Location = new System.Drawing.Point(29, 5);
-            this.mElo9.Name = "mElo9";
-            this.mElo9.Size = new System.Drawing.Size(55, 15);
-            this.mElo9.TabIndex = 12;
-            this.mElo9.Text = "2123 ELO";
-            this.mElo9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel9
-            // 
-            this.mLevel9.BackColor = System.Drawing.Color.White;
-            this.mLevel9.Location = new System.Drawing.Point(3, 3);
-            this.mLevel9.Name = "mLevel9";
-            this.mLevel9.Size = new System.Drawing.Size(22, 22);
-            this.mLevel9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel9.TabIndex = 106;
-            this.mLevel9.TabStop = false;
-            // 
-            // mWinRate9
-            // 
-            this.mWinRate9.AutoSize = true;
-            this.mWinRate9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate9.Location = new System.Drawing.Point(102, 28);
-            this.mWinRate9.Name = "mWinRate9";
-            this.mWinRate9.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate9.TabIndex = 9;
-            this.mWinRate9.Text = "Win Rate: 99%";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.metroLabel105);
-            this.panel2.Controls.Add(this.mRanking8);
-            this.panel2.Controls.Add(this.metroLabel135);
-            this.panel2.Controls.Add(this.mAvatar8);
-            this.panel2.Controls.Add(this.mLobby8);
-            this.panel2.Controls.Add(this.mCountry8);
-            this.panel2.Controls.Add(this.mAvgHS8);
-            this.panel2.Controls.Add(this.mKD8);
-            this.panel2.Controls.Add(this.mMatches8);
-            this.panel2.Controls.Add(this.mJoinType8);
-            this.panel2.Controls.Add(this.mNickname8);
-            this.panel2.Controls.Add(this.mElo8);
-            this.panel2.Controls.Add(this.mLevel8);
-            this.panel2.Controls.Add(this.mWinRate8);
-            this.panel2.Location = new System.Drawing.Point(549, 206);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(335, 74);
-            this.panel2.TabIndex = 137;
-            // 
-            // metroLabel105
-            // 
-            this.metroLabel105.AutoSize = true;
-            this.metroLabel105.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel105.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel105.Location = new System.Drawing.Point(204, 56);
-            this.metroLabel105.Name = "metroLabel105";
-            this.metroLabel105.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel105.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel105.TabIndex = 146;
-            this.metroLabel105.Text = "Join:";
-            this.metroLabel105.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel105.UseStyleColors = true;
-            // 
-            // mRanking8
-            // 
-            this.mRanking8.AutoSize = true;
-            this.mRanking8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking8.Location = new System.Drawing.Point(0, 28);
-            this.mRanking8.Name = "mRanking8";
-            this.mRanking8.Size = new System.Drawing.Size(104, 15);
-            this.mRanking8.TabIndex = 114;
-            this.mRanking8.Text = "Ranking: 1.199.999";
-            // 
-            // metroLabel135
-            // 
-            this.metroLabel135.AutoSize = true;
-            this.metroLabel135.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel135.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel135.Location = new System.Drawing.Point(129, 41);
-            this.metroLabel135.Name = "metroLabel135";
-            this.metroLabel135.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel135.TabIndex = 110;
-            this.metroLabel135.Text = ":Lobby";
-            // 
-            // mAvatar8
-            // 
-            this.mAvatar8.Location = new System.Drawing.Point(264, 3);
-            this.mAvatar8.Name = "mAvatar8";
-            this.mAvatar8.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar8.TabIndex = 7;
-            this.mAvatar8.TabStop = false;
-            // 
-            // mLobby8
-            // 
-            this.mLobby8.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby8.FormattingEnabled = true;
-            this.mLobby8.ItemHeight = 19;
-            this.mLobby8.Location = new System.Drawing.Point(3, 46);
-            this.mLobby8.Name = "mLobby8";
-            this.mLobby8.Size = new System.Drawing.Size(120, 25);
-            this.mLobby8.TabIndex = 109;
-            // 
-            // mCountry8
-            // 
-            this.mCountry8.Location = new System.Drawing.Point(231, 3);
-            this.mCountry8.Name = "mCountry8";
-            this.mCountry8.Size = new System.Drawing.Size(27, 17);
-            this.mCountry8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry8.TabIndex = 104;
-            this.mCountry8.TabStop = false;
-            // 
-            // mAvgHS8
-            // 
-            this.mAvgHS8.AutoSize = true;
-            this.mAvgHS8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS8.Location = new System.Drawing.Point(121, 56);
-            this.mAvgHS8.Name = "mAvgHS8";
-            this.mAvgHS8.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS8.TabIndex = 108;
-            this.mAvgHS8.Text = "Avg. HS: 50%";
-            // 
-            // mKD8
-            // 
-            this.mKD8.AutoSize = true;
-            this.mKD8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD8.Location = new System.Drawing.Point(190, 43);
-            this.mKD8.Name = "mKD8";
-            this.mKD8.Size = new System.Drawing.Size(68, 15);
-            this.mKD8.TabIndex = 14;
-            this.mKD8.Text = "K/D Rat: 1.4";
-            // 
-            // mMatches8
-            // 
-            this.mMatches8.AutoSize = true;
-            this.mMatches8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches8.Location = new System.Drawing.Point(182, 28);
-            this.mMatches8.Name = "mMatches8";
-            this.mMatches8.Size = new System.Drawing.Size(76, 15);
-            this.mMatches8.TabIndex = 11;
-            this.mMatches8.Text = "Mathes: 1999";
-            this.mMatches8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mJoinType8
-            // 
-            this.mJoinType8.AutoSize = true;
-            this.mJoinType8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType8.Location = new System.Drawing.Point(231, 56);
-            this.mJoinType8.Name = "mJoinType8";
-            this.mJoinType8.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType8.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType8.TabIndex = 107;
-            this.mJoinType8.Text = "Solo";
-            this.mJoinType8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType8.UseStyleColors = true;
-            // 
-            // mNickname8
-            // 
-            this.mNickname8.Location = new System.Drawing.Point(90, 3);
-            this.mNickname8.Name = "mNickname8";
-            this.mNickname8.Size = new System.Drawing.Size(135, 17);
-            this.mNickname8.TabIndex = 8;
-            this.mNickname8.Text = "STRife_Team";
-            this.mNickname8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mNickname8.Click += new System.EventHandler(this.mNickname8_Click);
-            // 
-            // mElo8
-            // 
-            this.mElo8.AutoSize = true;
-            this.mElo8.BackColor = System.Drawing.Color.Black;
-            this.mElo8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo8.Location = new System.Drawing.Point(29, 5);
-            this.mElo8.Name = "mElo8";
-            this.mElo8.Size = new System.Drawing.Size(55, 15);
-            this.mElo8.TabIndex = 12;
-            this.mElo8.Text = "2123 ELO";
-            this.mElo8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel8
-            // 
-            this.mLevel8.BackColor = System.Drawing.Color.White;
-            this.mLevel8.Location = new System.Drawing.Point(3, 3);
-            this.mLevel8.Name = "mLevel8";
-            this.mLevel8.Size = new System.Drawing.Size(22, 22);
-            this.mLevel8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel8.TabIndex = 106;
-            this.mLevel8.TabStop = false;
-            // 
-            // mWinRate8
-            // 
-            this.mWinRate8.AutoSize = true;
-            this.mWinRate8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate8.Location = new System.Drawing.Point(102, 28);
-            this.mWinRate8.Name = "mWinRate8";
-            this.mWinRate8.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate8.TabIndex = 9;
-            this.mWinRate8.Text = "Win Rate: 99%";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.metroLabel106);
-            this.panel1.Controls.Add(this.mRanking7);
-            this.panel1.Controls.Add(this.metroLabel102);
-            this.panel1.Controls.Add(this.mAvatar7);
-            this.panel1.Controls.Add(this.mLobby7);
-            this.panel1.Controls.Add(this.mCountry7);
-            this.panel1.Controls.Add(this.mAvgHS7);
-            this.panel1.Controls.Add(this.mKD7);
-            this.panel1.Controls.Add(this.mMatches7);
-            this.panel1.Controls.Add(this.mJoinType7);
-            this.panel1.Controls.Add(this.mNickname7);
-            this.panel1.Controls.Add(this.mElo7);
-            this.panel1.Controls.Add(this.mLevel7);
-            this.panel1.Controls.Add(this.mWinRate7);
-            this.panel1.Location = new System.Drawing.Point(549, 129);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 74);
-            this.panel1.TabIndex = 136;
-            // 
-            // metroLabel106
-            // 
-            this.metroLabel106.AutoSize = true;
-            this.metroLabel106.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel106.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel106.Location = new System.Drawing.Point(204, 56);
-            this.metroLabel106.Name = "metroLabel106";
-            this.metroLabel106.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel106.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel106.TabIndex = 147;
-            this.metroLabel106.Text = "Join:";
-            this.metroLabel106.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel106.UseStyleColors = true;
-            // 
-            // mRanking7
-            // 
-            this.mRanking7.AutoSize = true;
-            this.mRanking7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking7.Location = new System.Drawing.Point(0, 28);
-            this.mRanking7.Name = "mRanking7";
-            this.mRanking7.Size = new System.Drawing.Size(104, 15);
-            this.mRanking7.TabIndex = 113;
-            this.mRanking7.Text = "Ranking: 1.199.999";
-            // 
-            // metroLabel102
-            // 
-            this.metroLabel102.AutoSize = true;
-            this.metroLabel102.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel102.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel102.Location = new System.Drawing.Point(129, 41);
-            this.metroLabel102.Name = "metroLabel102";
-            this.metroLabel102.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel102.TabIndex = 110;
-            this.metroLabel102.Text = ":Lobby";
-            // 
-            // mAvatar7
-            // 
-            this.mAvatar7.Location = new System.Drawing.Point(264, 3);
-            this.mAvatar7.Name = "mAvatar7";
-            this.mAvatar7.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar7.TabIndex = 7;
-            this.mAvatar7.TabStop = false;
-            // 
-            // mLobby7
-            // 
-            this.mLobby7.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby7.FormattingEnabled = true;
-            this.mLobby7.ItemHeight = 19;
-            this.mLobby7.Location = new System.Drawing.Point(3, 46);
-            this.mLobby7.Name = "mLobby7";
-            this.mLobby7.Size = new System.Drawing.Size(120, 25);
-            this.mLobby7.TabIndex = 109;
-            // 
-            // mCountry7
-            // 
-            this.mCountry7.Location = new System.Drawing.Point(231, 3);
-            this.mCountry7.Name = "mCountry7";
-            this.mCountry7.Size = new System.Drawing.Size(27, 17);
-            this.mCountry7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry7.TabIndex = 104;
-            this.mCountry7.TabStop = false;
-            // 
-            // mAvgHS7
-            // 
-            this.mAvgHS7.AutoSize = true;
-            this.mAvgHS7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS7.Location = new System.Drawing.Point(121, 56);
-            this.mAvgHS7.Name = "mAvgHS7";
-            this.mAvgHS7.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS7.TabIndex = 108;
-            this.mAvgHS7.Text = "Avg. HS: 50%";
-            // 
-            // mKD7
-            // 
-            this.mKD7.AutoSize = true;
-            this.mKD7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD7.Location = new System.Drawing.Point(190, 41);
-            this.mKD7.Name = "mKD7";
-            this.mKD7.Size = new System.Drawing.Size(68, 15);
-            this.mKD7.TabIndex = 14;
-            this.mKD7.Text = "K/D Rat: 1.4";
-            // 
-            // mMatches7
-            // 
-            this.mMatches7.AutoSize = true;
-            this.mMatches7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches7.Location = new System.Drawing.Point(182, 28);
-            this.mMatches7.Name = "mMatches7";
-            this.mMatches7.Size = new System.Drawing.Size(76, 15);
-            this.mMatches7.TabIndex = 11;
-            this.mMatches7.Text = "Mathes: 1999";
-            this.mMatches7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mJoinType7
-            // 
-            this.mJoinType7.AutoSize = true;
-            this.mJoinType7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType7.Location = new System.Drawing.Point(231, 56);
-            this.mJoinType7.Name = "mJoinType7";
-            this.mJoinType7.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType7.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType7.TabIndex = 107;
-            this.mJoinType7.Text = "Solo";
-            this.mJoinType7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType7.UseStyleColors = true;
-            // 
-            // mNickname7
-            // 
-            this.mNickname7.Location = new System.Drawing.Point(90, 3);
-            this.mNickname7.Name = "mNickname7";
-            this.mNickname7.Size = new System.Drawing.Size(135, 17);
-            this.mNickname7.TabIndex = 8;
-            this.mNickname7.Text = "STRife_Team";
-            this.mNickname7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mNickname7.Click += new System.EventHandler(this.mNickname7_Click);
-            // 
-            // mElo7
-            // 
-            this.mElo7.AutoSize = true;
-            this.mElo7.BackColor = System.Drawing.Color.Black;
-            this.mElo7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo7.Location = new System.Drawing.Point(29, 5);
-            this.mElo7.Name = "mElo7";
-            this.mElo7.Size = new System.Drawing.Size(55, 15);
-            this.mElo7.TabIndex = 12;
-            this.mElo7.Text = "2123 ELO";
-            this.mElo7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel7
-            // 
-            this.mLevel7.BackColor = System.Drawing.Color.White;
-            this.mLevel7.Location = new System.Drawing.Point(3, 3);
-            this.mLevel7.Name = "mLevel7";
-            this.mLevel7.Size = new System.Drawing.Size(22, 22);
-            this.mLevel7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel7.TabIndex = 106;
-            this.mLevel7.TabStop = false;
-            // 
-            // mWinRate7
-            // 
-            this.mWinRate7.AutoSize = true;
-            this.mWinRate7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate7.Location = new System.Drawing.Point(102, 28);
-            this.mWinRate7.Name = "mWinRate7";
-            this.mWinRate7.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate7.TabIndex = 9;
-            this.mWinRate7.Text = "Win Rate: 99%";
-            // 
-            // mPanel6
-            // 
-            this.mPanel6.BackColor = System.Drawing.Color.White;
-            this.mPanel6.Controls.Add(this.metroLabel133);
-            this.mPanel6.Controls.Add(this.mRanking6);
-            this.mPanel6.Controls.Add(this.metroLabel100);
-            this.mPanel6.Controls.Add(this.mAvatar6);
-            this.mPanel6.Controls.Add(this.mLobby6);
-            this.mPanel6.Controls.Add(this.mCountry6);
-            this.mPanel6.Controls.Add(this.mAvgHS6);
-            this.mPanel6.Controls.Add(this.mKD6);
-            this.mPanel6.Controls.Add(this.mMatches6);
-            this.mPanel6.Controls.Add(this.mJoinType6);
-            this.mPanel6.Controls.Add(this.mNickname6);
-            this.mPanel6.Controls.Add(this.mElo6);
-            this.mPanel6.Controls.Add(this.mLevel6);
-            this.mPanel6.Controls.Add(this.mWinRate6);
-            this.mPanel6.Location = new System.Drawing.Point(549, 52);
-            this.mPanel6.Name = "mPanel6";
-            this.mPanel6.Size = new System.Drawing.Size(335, 74);
-            this.mPanel6.TabIndex = 135;
-            // 
-            // metroLabel133
-            // 
-            this.metroLabel133.AutoSize = true;
-            this.metroLabel133.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel133.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel133.Location = new System.Drawing.Point(204, 56);
-            this.metroLabel133.Name = "metroLabel133";
-            this.metroLabel133.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel133.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel133.TabIndex = 148;
-            this.metroLabel133.Text = "Join:";
-            this.metroLabel133.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel133.UseStyleColors = true;
-            // 
-            // mRanking6
-            // 
-            this.mRanking6.AutoSize = true;
-            this.mRanking6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking6.Location = new System.Drawing.Point(0, 28);
-            this.mRanking6.Name = "mRanking6";
-            this.mRanking6.Size = new System.Drawing.Size(104, 15);
-            this.mRanking6.TabIndex = 112;
-            this.mRanking6.Text = "Ranking: 1.199.999";
-            // 
-            // metroLabel100
-            // 
-            this.metroLabel100.AutoSize = true;
-            this.metroLabel100.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel100.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel100.Location = new System.Drawing.Point(129, 41);
-            this.metroLabel100.Name = "metroLabel100";
-            this.metroLabel100.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel100.TabIndex = 110;
-            this.metroLabel100.Text = ":Lobby";
-            // 
-            // mAvatar6
-            // 
-            this.mAvatar6.Location = new System.Drawing.Point(264, 3);
-            this.mAvatar6.Name = "mAvatar6";
-            this.mAvatar6.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar6.TabIndex = 7;
-            this.mAvatar6.TabStop = false;
-            // 
-            // mLobby6
-            // 
-            this.mLobby6.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby6.FormattingEnabled = true;
-            this.mLobby6.ItemHeight = 19;
-            this.mLobby6.Location = new System.Drawing.Point(3, 46);
-            this.mLobby6.Name = "mLobby6";
-            this.mLobby6.Size = new System.Drawing.Size(120, 25);
-            this.mLobby6.TabIndex = 109;
-            // 
-            // mCountry6
-            // 
-            this.mCountry6.Location = new System.Drawing.Point(231, 3);
-            this.mCountry6.Name = "mCountry6";
-            this.mCountry6.Size = new System.Drawing.Size(27, 17);
-            this.mCountry6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry6.TabIndex = 104;
-            this.mCountry6.TabStop = false;
-            // 
-            // mAvgHS6
-            // 
-            this.mAvgHS6.AutoSize = true;
-            this.mAvgHS6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS6.Location = new System.Drawing.Point(121, 56);
-            this.mAvgHS6.Name = "mAvgHS6";
-            this.mAvgHS6.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS6.TabIndex = 108;
-            this.mAvgHS6.Text = "Avg. HS: 50%";
-            // 
-            // mKD6
-            // 
-            this.mKD6.AutoSize = true;
-            this.mKD6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD6.Location = new System.Drawing.Point(190, 43);
-            this.mKD6.Name = "mKD6";
-            this.mKD6.Size = new System.Drawing.Size(68, 15);
-            this.mKD6.TabIndex = 14;
-            this.mKD6.Text = "K/D Rat: 1.4";
-            // 
-            // mMatches6
-            // 
-            this.mMatches6.AutoSize = true;
-            this.mMatches6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches6.Location = new System.Drawing.Point(182, 28);
-            this.mMatches6.Name = "mMatches6";
-            this.mMatches6.Size = new System.Drawing.Size(76, 15);
-            this.mMatches6.TabIndex = 11;
-            this.mMatches6.Text = "Mathes: 1999";
-            this.mMatches6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mJoinType6
-            // 
-            this.mJoinType6.AutoSize = true;
-            this.mJoinType6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType6.Location = new System.Drawing.Point(231, 56);
-            this.mJoinType6.Name = "mJoinType6";
-            this.mJoinType6.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType6.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType6.TabIndex = 107;
-            this.mJoinType6.Text = "Solo";
-            this.mJoinType6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType6.UseStyleColors = true;
-            // 
-            // mNickname6
-            // 
-            this.mNickname6.Location = new System.Drawing.Point(90, 3);
-            this.mNickname6.Name = "mNickname6";
-            this.mNickname6.Size = new System.Drawing.Size(135, 17);
-            this.mNickname6.TabIndex = 8;
-            this.mNickname6.Text = "STRife_Team";
-            this.mNickname6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mNickname6.Click += new System.EventHandler(this.mNickname6_Click);
-            // 
-            // mElo6
-            // 
-            this.mElo6.AutoSize = true;
-            this.mElo6.BackColor = System.Drawing.Color.Black;
-            this.mElo6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo6.Location = new System.Drawing.Point(29, 5);
-            this.mElo6.Name = "mElo6";
-            this.mElo6.Size = new System.Drawing.Size(55, 15);
-            this.mElo6.TabIndex = 12;
-            this.mElo6.Text = "2123 ELO";
-            this.mElo6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel6
-            // 
-            this.mLevel6.BackColor = System.Drawing.Color.White;
-            this.mLevel6.Location = new System.Drawing.Point(3, 3);
-            this.mLevel6.Name = "mLevel6";
-            this.mLevel6.Size = new System.Drawing.Size(22, 22);
-            this.mLevel6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel6.TabIndex = 106;
-            this.mLevel6.TabStop = false;
-            // 
-            // mWinRate6
-            // 
-            this.mWinRate6.AutoSize = true;
-            this.mWinRate6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate6.Location = new System.Drawing.Point(102, 28);
-            this.mWinRate6.Name = "mWinRate6";
-            this.mWinRate6.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate6.TabIndex = 9;
-            this.mWinRate6.Text = "Win Rate: 99%";
-            // 
-            // mPanel5
-            // 
-            this.mPanel5.BackColor = System.Drawing.Color.White;
-            this.mPanel5.Controls.Add(this.metroLabel134);
-            this.mPanel5.Controls.Add(this.mRanking5);
-            this.mPanel5.Controls.Add(this.mLobby5);
-            this.mPanel5.Controls.Add(this.metroLabel146);
-            this.mPanel5.Controls.Add(this.mElo5);
-            this.mPanel5.Controls.Add(this.mLevel5);
-            this.mPanel5.Controls.Add(this.mAvatar5);
-            this.mPanel5.Controls.Add(this.mCountry5);
-            this.mPanel5.Controls.Add(this.mNickname5);
-            this.mPanel5.Controls.Add(this.mMatches5);
-            this.mPanel5.Controls.Add(this.mAvgHS5);
-            this.mPanel5.Controls.Add(this.mJoinType5);
-            this.mPanel5.Controls.Add(this.mKD5);
-            this.mPanel5.Controls.Add(this.mWinRate5);
-            this.mPanel5.Location = new System.Drawing.Point(4, 360);
-            this.mPanel5.Name = "mPanel5";
-            this.mPanel5.Size = new System.Drawing.Size(335, 74);
-            this.mPanel5.TabIndex = 134;
-            // 
-            // metroLabel134
-            // 
-            this.metroLabel134.AutoSize = true;
-            this.metroLabel134.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel134.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel134.Location = new System.Drawing.Point(72, 57);
-            this.metroLabel134.Margin = new System.Windows.Forms.Padding(0);
-            this.metroLabel134.Name = "metroLabel134";
-            this.metroLabel134.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel134.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel134.TabIndex = 149;
-            this.metroLabel134.Text = "Join:";
-            this.metroLabel134.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel134.UseStyleColors = true;
-            // 
-            // mRanking5
-            // 
-            this.mRanking5.AutoSize = true;
-            this.mRanking5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking5.Location = new System.Drawing.Point(228, 28);
-            this.mRanking5.Name = "mRanking5";
-            this.mRanking5.Size = new System.Drawing.Size(104, 15);
-            this.mRanking5.TabIndex = 115;
-            this.mRanking5.Text = "Ranking: 1.199.999";
-            // 
-            // mLobby5
-            // 
-            this.mLobby5.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby5.FormattingEnabled = true;
-            this.mLobby5.ItemHeight = 19;
-            this.mLobby5.Location = new System.Drawing.Point(212, 46);
-            this.mLobby5.Name = "mLobby5";
-            this.mLobby5.Size = new System.Drawing.Size(120, 25);
-            this.mLobby5.TabIndex = 109;
-            // 
-            // metroLabel146
-            // 
-            this.metroLabel146.AutoSize = true;
-            this.metroLabel146.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel146.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel146.Location = new System.Drawing.Point(163, 41);
-            this.metroLabel146.Name = "metroLabel146";
-            this.metroLabel146.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel146.TabIndex = 110;
-            this.metroLabel146.Text = "Lobby:";
-            // 
-            // mElo5
-            // 
-            this.mElo5.AutoSize = true;
-            this.mElo5.BackColor = System.Drawing.Color.Black;
-            this.mElo5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo5.Location = new System.Drawing.Point(249, 5);
-            this.mElo5.Name = "mElo5";
-            this.mElo5.Size = new System.Drawing.Size(55, 15);
-            this.mElo5.TabIndex = 12;
-            this.mElo5.Text = "2123 ELO";
-            this.mElo5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel5
-            // 
-            this.mLevel5.BackColor = System.Drawing.Color.White;
-            this.mLevel5.Location = new System.Drawing.Point(310, 3);
-            this.mLevel5.Name = "mLevel5";
-            this.mLevel5.Size = new System.Drawing.Size(22, 22);
-            this.mLevel5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel5.TabIndex = 106;
-            this.mLevel5.TabStop = false;
-            // 
-            // mAvatar5
-            // 
-            this.mAvatar5.Location = new System.Drawing.Point(3, 3);
-            this.mAvatar5.Name = "mAvatar5";
-            this.mAvatar5.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar5.TabIndex = 7;
-            this.mAvatar5.TabStop = false;
-            // 
-            // mCountry5
-            // 
-            this.mCountry5.Location = new System.Drawing.Point(72, 3);
-            this.mCountry5.Name = "mCountry5";
-            this.mCountry5.Size = new System.Drawing.Size(27, 17);
-            this.mCountry5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry5.TabIndex = 104;
-            this.mCountry5.TabStop = false;
-            // 
-            // mNickname5
-            // 
-            this.mNickname5.Location = new System.Drawing.Point(102, 3);
-            this.mNickname5.Name = "mNickname5";
-            this.mNickname5.Size = new System.Drawing.Size(135, 17);
-            this.mNickname5.TabIndex = 8;
-            this.mNickname5.Text = "STRife_Team";
-            this.mNickname5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mNickname5.Click += new System.EventHandler(this.mNickname5_Click);
-            // 
-            // mMatches5
-            // 
-            this.mMatches5.AutoSize = true;
-            this.mMatches5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches5.Location = new System.Drawing.Point(72, 28);
-            this.mMatches5.Name = "mMatches5";
-            this.mMatches5.Size = new System.Drawing.Size(76, 15);
-            this.mMatches5.TabIndex = 11;
-            this.mMatches5.Text = "Mathes: 1999";
-            this.mMatches5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mAvgHS5
-            // 
-            this.mAvgHS5.AutoSize = true;
-            this.mAvgHS5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS5.Location = new System.Drawing.Point(129, 56);
-            this.mAvgHS5.Name = "mAvgHS5";
-            this.mAvgHS5.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS5.TabIndex = 108;
-            this.mAvgHS5.Text = "Avg. HS: 50%";
-            // 
-            // mJoinType5
-            // 
-            this.mJoinType5.AutoSize = true;
-            this.mJoinType5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType5.Location = new System.Drawing.Point(102, 56);
-            this.mJoinType5.Name = "mJoinType5";
-            this.mJoinType5.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType5.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType5.TabIndex = 107;
-            this.mJoinType5.Text = "Solo";
-            this.mJoinType5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType5.UseStyleColors = true;
-            // 
-            // mKD5
-            // 
-            this.mKD5.AutoSize = true;
-            this.mKD5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD5.Location = new System.Drawing.Point(72, 43);
-            this.mKD5.Name = "mKD5";
-            this.mKD5.Size = new System.Drawing.Size(68, 15);
-            this.mKD5.TabIndex = 14;
-            this.mKD5.Text = "K/D Rat: 1.4";
-            // 
-            // mWinRate5
-            // 
-            this.mWinRate5.AutoSize = true;
-            this.mWinRate5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate5.Location = new System.Drawing.Point(147, 28);
-            this.mWinRate5.Name = "mWinRate5";
-            this.mWinRate5.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate5.TabIndex = 9;
-            this.mWinRate5.Text = "Win Rate: 99%";
-            // 
-            // mPanel4
-            // 
-            this.mPanel4.BackColor = System.Drawing.Color.White;
-            this.mPanel4.Controls.Add(this.metroLabel136);
-            this.mPanel4.Controls.Add(this.mRanking4);
-            this.mPanel4.Controls.Add(this.mLobby4);
-            this.mPanel4.Controls.Add(this.metroLabel139);
-            this.mPanel4.Controls.Add(this.mElo4);
-            this.mPanel4.Controls.Add(this.mLevel4);
-            this.mPanel4.Controls.Add(this.mAvatar4);
-            this.mPanel4.Controls.Add(this.mCountry4);
-            this.mPanel4.Controls.Add(this.mNickname4);
-            this.mPanel4.Controls.Add(this.mMatches4);
-            this.mPanel4.Controls.Add(this.mAvgHS4);
-            this.mPanel4.Controls.Add(this.mJoinType4);
-            this.mPanel4.Controls.Add(this.mKD4);
-            this.mPanel4.Controls.Add(this.mWinRate4);
-            this.mPanel4.Location = new System.Drawing.Point(4, 283);
-            this.mPanel4.Name = "mPanel4";
-            this.mPanel4.Size = new System.Drawing.Size(335, 74);
-            this.mPanel4.TabIndex = 133;
-            // 
-            // metroLabel136
-            // 
-            this.metroLabel136.AutoSize = true;
-            this.metroLabel136.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel136.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel136.Location = new System.Drawing.Point(72, 56);
-            this.metroLabel136.Name = "metroLabel136";
-            this.metroLabel136.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel136.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel136.TabIndex = 150;
-            this.metroLabel136.Text = "Join:";
-            this.metroLabel136.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel136.UseStyleColors = true;
-            // 
-            // mRanking4
-            // 
-            this.mRanking4.AutoSize = true;
-            this.mRanking4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking4.Location = new System.Drawing.Point(225, 28);
-            this.mRanking4.Name = "mRanking4";
-            this.mRanking4.Size = new System.Drawing.Size(104, 15);
-            this.mRanking4.TabIndex = 114;
-            this.mRanking4.Text = "Ranking: 1.199.999";
-            // 
-            // mLobby4
-            // 
-            this.mLobby4.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby4.FormattingEnabled = true;
-            this.mLobby4.ItemHeight = 19;
-            this.mLobby4.Location = new System.Drawing.Point(212, 46);
-            this.mLobby4.Name = "mLobby4";
-            this.mLobby4.Size = new System.Drawing.Size(120, 25);
-            this.mLobby4.TabIndex = 109;
-            // 
-            // metroLabel139
-            // 
-            this.metroLabel139.AutoSize = true;
-            this.metroLabel139.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel139.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel139.Location = new System.Drawing.Point(163, 41);
-            this.metroLabel139.Name = "metroLabel139";
-            this.metroLabel139.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel139.TabIndex = 110;
-            this.metroLabel139.Text = "Lobby:";
-            // 
-            // mElo4
-            // 
-            this.mElo4.AutoSize = true;
-            this.mElo4.BackColor = System.Drawing.Color.Black;
-            this.mElo4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo4.Location = new System.Drawing.Point(249, 5);
-            this.mElo4.Name = "mElo4";
-            this.mElo4.Size = new System.Drawing.Size(55, 15);
-            this.mElo4.TabIndex = 12;
-            this.mElo4.Text = "2123 ELO";
-            this.mElo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel4
-            // 
-            this.mLevel4.BackColor = System.Drawing.Color.White;
-            this.mLevel4.Location = new System.Drawing.Point(310, 3);
-            this.mLevel4.Name = "mLevel4";
-            this.mLevel4.Size = new System.Drawing.Size(22, 22);
-            this.mLevel4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel4.TabIndex = 106;
-            this.mLevel4.TabStop = false;
-            // 
-            // mAvatar4
-            // 
-            this.mAvatar4.Location = new System.Drawing.Point(3, 3);
-            this.mAvatar4.Name = "mAvatar4";
-            this.mAvatar4.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar4.TabIndex = 7;
-            this.mAvatar4.TabStop = false;
-            // 
-            // mCountry4
-            // 
-            this.mCountry4.Location = new System.Drawing.Point(72, 3);
-            this.mCountry4.Name = "mCountry4";
-            this.mCountry4.Size = new System.Drawing.Size(27, 17);
-            this.mCountry4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry4.TabIndex = 104;
-            this.mCountry4.TabStop = false;
-            // 
-            // mNickname4
-            // 
-            this.mNickname4.Location = new System.Drawing.Point(102, 3);
-            this.mNickname4.Name = "mNickname4";
-            this.mNickname4.Size = new System.Drawing.Size(135, 17);
-            this.mNickname4.TabIndex = 8;
-            this.mNickname4.Text = "STRife_Team";
-            this.mNickname4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mNickname4.Click += new System.EventHandler(this.mNickname4_Click);
-            // 
-            // mMatches4
-            // 
-            this.mMatches4.AutoSize = true;
-            this.mMatches4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches4.Location = new System.Drawing.Point(72, 28);
-            this.mMatches4.Name = "mMatches4";
-            this.mMatches4.Size = new System.Drawing.Size(76, 15);
-            this.mMatches4.TabIndex = 11;
-            this.mMatches4.Text = "Mathes: 1999";
-            this.mMatches4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mAvgHS4
-            // 
-            this.mAvgHS4.AutoSize = true;
-            this.mAvgHS4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS4.Location = new System.Drawing.Point(129, 56);
-            this.mAvgHS4.Name = "mAvgHS4";
-            this.mAvgHS4.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS4.TabIndex = 108;
-            this.mAvgHS4.Text = "Avg. HS: 50%";
-            // 
-            // mJoinType4
-            // 
-            this.mJoinType4.AutoSize = true;
-            this.mJoinType4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType4.Location = new System.Drawing.Point(102, 56);
-            this.mJoinType4.Name = "mJoinType4";
-            this.mJoinType4.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType4.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType4.TabIndex = 107;
-            this.mJoinType4.Text = "Solo";
-            this.mJoinType4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType4.UseStyleColors = true;
-            // 
-            // mKD4
-            // 
-            this.mKD4.AutoSize = true;
-            this.mKD4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD4.Location = new System.Drawing.Point(72, 43);
-            this.mKD4.Name = "mKD4";
-            this.mKD4.Size = new System.Drawing.Size(68, 15);
-            this.mKD4.TabIndex = 14;
-            this.mKD4.Text = "K/D Rat: 1.4";
-            // 
-            // mWinRate4
-            // 
-            this.mWinRate4.AutoSize = true;
-            this.mWinRate4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate4.Location = new System.Drawing.Point(147, 28);
-            this.mWinRate4.Name = "mWinRate4";
-            this.mWinRate4.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate4.TabIndex = 9;
-            this.mWinRate4.Text = "Win Rate: 99%";
-            // 
-            // mPanel3
-            // 
-            this.mPanel3.BackColor = System.Drawing.Color.White;
-            this.mPanel3.Controls.Add(this.metroLabel137);
-            this.mPanel3.Controls.Add(this.mRanking3);
-            this.mPanel3.Controls.Add(this.mLobby3);
-            this.mPanel3.Controls.Add(this.metroLabel107);
-            this.mPanel3.Controls.Add(this.mElo3);
-            this.mPanel3.Controls.Add(this.mLevel3);
-            this.mPanel3.Controls.Add(this.mAvatar3);
-            this.mPanel3.Controls.Add(this.mCountry3);
-            this.mPanel3.Controls.Add(this.mNickname3);
-            this.mPanel3.Controls.Add(this.mMatches3);
-            this.mPanel3.Controls.Add(this.mAvgHS3);
-            this.mPanel3.Controls.Add(this.mJoinType3);
-            this.mPanel3.Controls.Add(this.mKD3);
-            this.mPanel3.Controls.Add(this.mWinRate3);
-            this.mPanel3.Location = new System.Drawing.Point(4, 206);
-            this.mPanel3.Name = "mPanel3";
-            this.mPanel3.Size = new System.Drawing.Size(335, 74);
-            this.mPanel3.TabIndex = 132;
-            // 
-            // metroLabel137
-            // 
-            this.metroLabel137.AutoSize = true;
-            this.metroLabel137.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel137.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel137.Location = new System.Drawing.Point(72, 56);
-            this.metroLabel137.Name = "metroLabel137";
-            this.metroLabel137.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel137.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel137.TabIndex = 151;
-            this.metroLabel137.Text = "Join:";
-            this.metroLabel137.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel137.UseStyleColors = true;
-            // 
-            // mRanking3
-            // 
-            this.mRanking3.AutoSize = true;
-            this.mRanking3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking3.Location = new System.Drawing.Point(228, 28);
-            this.mRanking3.Name = "mRanking3";
-            this.mRanking3.Size = new System.Drawing.Size(104, 15);
-            this.mRanking3.TabIndex = 113;
-            this.mRanking3.Text = "Ranking: 1.199.999";
-            // 
-            // mLobby3
-            // 
-            this.mLobby3.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby3.FormattingEnabled = true;
-            this.mLobby3.ItemHeight = 19;
-            this.mLobby3.Location = new System.Drawing.Point(212, 46);
-            this.mLobby3.Name = "mLobby3";
-            this.mLobby3.Size = new System.Drawing.Size(120, 25);
-            this.mLobby3.TabIndex = 109;
-            // 
-            // metroLabel107
-            // 
-            this.metroLabel107.AutoSize = true;
-            this.metroLabel107.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel107.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel107.Location = new System.Drawing.Point(163, 41);
-            this.metroLabel107.Name = "metroLabel107";
-            this.metroLabel107.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel107.TabIndex = 110;
-            this.metroLabel107.Text = "Lobby:";
-            // 
-            // mElo3
-            // 
-            this.mElo3.AutoSize = true;
-            this.mElo3.BackColor = System.Drawing.Color.Black;
-            this.mElo3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo3.Location = new System.Drawing.Point(249, 5);
-            this.mElo3.Name = "mElo3";
-            this.mElo3.Size = new System.Drawing.Size(55, 15);
-            this.mElo3.TabIndex = 12;
-            this.mElo3.Text = "2123 ELO";
-            this.mElo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel3
-            // 
-            this.mLevel3.BackColor = System.Drawing.Color.White;
-            this.mLevel3.Location = new System.Drawing.Point(310, 3);
-            this.mLevel3.Name = "mLevel3";
-            this.mLevel3.Size = new System.Drawing.Size(22, 22);
-            this.mLevel3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel3.TabIndex = 106;
-            this.mLevel3.TabStop = false;
-            // 
-            // mAvatar3
-            // 
-            this.mAvatar3.Location = new System.Drawing.Point(3, 3);
-            this.mAvatar3.Name = "mAvatar3";
-            this.mAvatar3.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar3.TabIndex = 7;
-            this.mAvatar3.TabStop = false;
-            // 
-            // mCountry3
-            // 
-            this.mCountry3.Location = new System.Drawing.Point(72, 0);
-            this.mCountry3.Name = "mCountry3";
-            this.mCountry3.Size = new System.Drawing.Size(27, 17);
-            this.mCountry3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry3.TabIndex = 104;
-            this.mCountry3.TabStop = false;
-            // 
-            // mNickname3
-            // 
-            this.mNickname3.Location = new System.Drawing.Point(102, 0);
-            this.mNickname3.Name = "mNickname3";
-            this.mNickname3.Size = new System.Drawing.Size(135, 17);
-            this.mNickname3.TabIndex = 8;
-            this.mNickname3.Text = "STRife_Team";
-            this.mNickname3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mNickname3.Click += new System.EventHandler(this.mNickname3_Click);
-            // 
-            // mMatches3
-            // 
-            this.mMatches3.AutoSize = true;
-            this.mMatches3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches3.Location = new System.Drawing.Point(72, 28);
-            this.mMatches3.Name = "mMatches3";
-            this.mMatches3.Size = new System.Drawing.Size(76, 15);
-            this.mMatches3.TabIndex = 11;
-            this.mMatches3.Text = "Mathes: 1999";
-            this.mMatches3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mAvgHS3
-            // 
-            this.mAvgHS3.AutoSize = true;
-            this.mAvgHS3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS3.Location = new System.Drawing.Point(129, 56);
-            this.mAvgHS3.Name = "mAvgHS3";
-            this.mAvgHS3.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS3.TabIndex = 108;
-            this.mAvgHS3.Text = "Avg. HS: 50%";
-            // 
-            // mJoinType3
-            // 
-            this.mJoinType3.AutoSize = true;
-            this.mJoinType3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType3.Location = new System.Drawing.Point(102, 56);
-            this.mJoinType3.Name = "mJoinType3";
-            this.mJoinType3.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType3.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType3.TabIndex = 107;
-            this.mJoinType3.Text = "Solo";
-            this.mJoinType3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType3.UseStyleColors = true;
-            // 
-            // mKD3
-            // 
-            this.mKD3.AutoSize = true;
-            this.mKD3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD3.Location = new System.Drawing.Point(72, 41);
-            this.mKD3.Name = "mKD3";
-            this.mKD3.Size = new System.Drawing.Size(68, 15);
-            this.mKD3.TabIndex = 14;
-            this.mKD3.Text = "K/D Rat: 1.4";
-            // 
-            // mWinRate3
-            // 
-            this.mWinRate3.AutoSize = true;
-            this.mWinRate3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate3.Location = new System.Drawing.Point(147, 28);
-            this.mWinRate3.Name = "mWinRate3";
-            this.mWinRate3.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate3.TabIndex = 9;
-            this.mWinRate3.Text = "Win Rate: 99%";
-            // 
-            // mPanel2
-            // 
-            this.mPanel2.BackColor = System.Drawing.Color.White;
-            this.mPanel2.Controls.Add(this.mRanking2);
-            this.mPanel2.Controls.Add(this.mLobby2);
-            this.mPanel2.Controls.Add(this.metroLabel99);
-            this.mPanel2.Controls.Add(this.mElo2);
-            this.mPanel2.Controls.Add(this.mLevel2);
-            this.mPanel2.Controls.Add(this.mAvatar2);
-            this.mPanel2.Controls.Add(this.metroLabel103);
-            this.mPanel2.Controls.Add(this.mCountry2);
-            this.mPanel2.Controls.Add(this.mNickname2);
-            this.mPanel2.Controls.Add(this.mMatches2);
-            this.mPanel2.Controls.Add(this.mAvgHS2);
-            this.mPanel2.Controls.Add(this.mJoinType2);
-            this.mPanel2.Controls.Add(this.mKD2);
-            this.mPanel2.Controls.Add(this.mWinRate2);
-            this.mPanel2.Location = new System.Drawing.Point(4, 129);
-            this.mPanel2.Name = "mPanel2";
-            this.mPanel2.Size = new System.Drawing.Size(335, 74);
-            this.mPanel2.TabIndex = 131;
-            // 
-            // mRanking2
-            // 
-            this.mRanking2.AutoSize = true;
-            this.mRanking2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mRanking2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking2.Location = new System.Drawing.Point(231, 28);
-            this.mRanking2.Name = "mRanking2";
-            this.mRanking2.Size = new System.Drawing.Size(104, 15);
-            this.mRanking2.TabIndex = 112;
-            this.mRanking2.Text = "Ranking: 1.199.999";
-            // 
-            // mLobby2
-            // 
-            this.mLobby2.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby2.FormattingEnabled = true;
-            this.mLobby2.ItemHeight = 19;
-            this.mLobby2.Location = new System.Drawing.Point(212, 46);
-            this.mLobby2.Name = "mLobby2";
-            this.mLobby2.Size = new System.Drawing.Size(120, 25);
-            this.mLobby2.TabIndex = 109;
-            // 
-            // metroLabel99
-            // 
-            this.metroLabel99.AutoSize = true;
-            this.metroLabel99.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel99.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel99.Location = new System.Drawing.Point(163, 41);
-            this.metroLabel99.Name = "metroLabel99";
-            this.metroLabel99.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel99.TabIndex = 110;
-            this.metroLabel99.Text = "Lobby:";
-            // 
-            // mElo2
-            // 
-            this.mElo2.AutoSize = true;
-            this.mElo2.BackColor = System.Drawing.Color.Black;
-            this.mElo2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mElo2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo2.Location = new System.Drawing.Point(249, 5);
-            this.mElo2.Name = "mElo2";
-            this.mElo2.Size = new System.Drawing.Size(55, 15);
-            this.mElo2.TabIndex = 12;
-            this.mElo2.Text = "2123 ELO";
-            this.mElo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mLevel2
-            // 
-            this.mLevel2.BackColor = System.Drawing.Color.White;
-            this.mLevel2.Location = new System.Drawing.Point(310, 3);
-            this.mLevel2.Name = "mLevel2";
-            this.mLevel2.Size = new System.Drawing.Size(22, 22);
-            this.mLevel2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel2.TabIndex = 106;
-            this.mLevel2.TabStop = false;
-            // 
-            // mAvatar2
-            // 
-            this.mAvatar2.Location = new System.Drawing.Point(3, 3);
-            this.mAvatar2.Name = "mAvatar2";
-            this.mAvatar2.Size = new System.Drawing.Size(68, 68);
-            this.mAvatar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mAvatar2.TabIndex = 7;
-            this.mAvatar2.TabStop = false;
-            // 
-            // metroLabel103
-            // 
-            this.metroLabel103.AutoSize = true;
-            this.metroLabel103.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel103.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel103.Location = new System.Drawing.Point(72, 56);
-            this.metroLabel103.Name = "metroLabel103";
-            this.metroLabel103.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel103.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel103.TabIndex = 113;
-            this.metroLabel103.Text = "Join:";
-            this.metroLabel103.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel103.UseStyleColors = true;
-            // 
-            // mCountry2
-            // 
-            this.mCountry2.Location = new System.Drawing.Point(72, 3);
-            this.mCountry2.Name = "mCountry2";
-            this.mCountry2.Size = new System.Drawing.Size(27, 17);
-            this.mCountry2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mCountry2.TabIndex = 104;
-            this.mCountry2.TabStop = false;
-            // 
-            // mNickname2
-            // 
-            this.mNickname2.Location = new System.Drawing.Point(102, 3);
-            this.mNickname2.Name = "mNickname2";
-            this.mNickname2.Size = new System.Drawing.Size(135, 17);
-            this.mNickname2.TabIndex = 8;
-            this.mNickname2.Text = "STRife_Team";
-            this.mNickname2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mNickname2.Click += new System.EventHandler(this.mNickname2_Click);
-            // 
-            // mMatches2
-            // 
-            this.mMatches2.AutoSize = true;
-            this.mMatches2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches2.Location = new System.Drawing.Point(72, 26);
-            this.mMatches2.Name = "mMatches2";
-            this.mMatches2.Size = new System.Drawing.Size(76, 15);
-            this.mMatches2.TabIndex = 11;
-            this.mMatches2.Text = "Mathes: 1999";
-            this.mMatches2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mAvgHS2
-            // 
-            this.mAvgHS2.AutoSize = true;
-            this.mAvgHS2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS2.Location = new System.Drawing.Point(129, 56);
-            this.mAvgHS2.Name = "mAvgHS2";
-            this.mAvgHS2.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS2.TabIndex = 108;
-            this.mAvgHS2.Text = "Avg. HS: 50%";
-            // 
-            // mJoinType2
-            // 
-            this.mJoinType2.AutoSize = true;
-            this.mJoinType2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType2.Location = new System.Drawing.Point(102, 56);
-            this.mJoinType2.Name = "mJoinType2";
-            this.mJoinType2.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType2.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType2.TabIndex = 107;
-            this.mJoinType2.Text = "Solo";
-            this.mJoinType2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType2.UseStyleColors = true;
-            // 
-            // mKD2
-            // 
-            this.mKD2.AutoSize = true;
-            this.mKD2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD2.Location = new System.Drawing.Point(72, 41);
-            this.mKD2.Name = "mKD2";
-            this.mKD2.Size = new System.Drawing.Size(68, 15);
-            this.mKD2.TabIndex = 14;
-            this.mKD2.Text = "K/D Rat: 1.4";
-            // 
-            // mWinRate2
-            // 
-            this.mWinRate2.AutoSize = true;
-            this.mWinRate2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate2.Location = new System.Drawing.Point(149, 28);
-            this.mWinRate2.Name = "mWinRate2";
-            this.mWinRate2.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate2.TabIndex = 9;
-            this.mWinRate2.Text = "Win Rate: 99%";
             // 
             // metroLabel73
             // 
@@ -2650,70 +3974,102 @@
             // mPanel1
             // 
             this.mPanel1.BackColor = System.Drawing.Color.White;
-            this.mPanel1.Controls.Add(this.metroLabel96);
-            this.mPanel1.Controls.Add(this.mRanking1);
-            this.mPanel1.Controls.Add(this.mLobby1);
-            this.mPanel1.Controls.Add(this.metroLabel71);
-            this.mPanel1.Controls.Add(this.mElo1);
+            this.mPanel1.Controls.Add(this.mLevelPicture1);
             this.mPanel1.Controls.Add(this.mLevel1);
-            this.mPanel1.Controls.Add(this.mAvatar1);
-            this.mPanel1.Controls.Add(this.mCountry1);
-            this.mPanel1.Controls.Add(this.mNickname1);
-            this.mPanel1.Controls.Add(this.mMatches1);
+            this.mPanel1.Controls.Add(this.metroLabel43);
             this.mPanel1.Controls.Add(this.mAvgHS1);
-            this.mPanel1.Controls.Add(this.mJoinType1);
+            this.mPanel1.Controls.Add(this.mRanking1);
+            this.mPanel1.Controls.Add(this.mAnticheat1);
+            this.mPanel1.Controls.Add(this.mElo1);
+            this.mPanel1.Controls.Add(this.metroLabel34);
             this.mPanel1.Controls.Add(this.mKD1);
+            this.mPanel1.Controls.Add(this.metroLabel243233);
+            this.mPanel1.Controls.Add(this.mMatches1);
             this.mPanel1.Controls.Add(this.mWinRate1);
+            this.mPanel1.Controls.Add(this.mSteamBtn1);
+            this.mPanel1.Controls.Add(this.mLoadProfileBtn1);
+            this.mPanel1.Controls.Add(this.mFaceitBtn1);
+            this.mPanel1.Controls.Add(this.mAvatar1);
+            this.mPanel1.Controls.Add(this.metroLabel37);
+            this.mPanel1.Controls.Add(this.metroLabel35);
+            this.mPanel1.Controls.Add(this.mCountry1);
+            this.mPanel1.Controls.Add(this.metroLabel32);
+            this.mPanel1.Controls.Add(this.metroLabel29);
+            this.mPanel1.Controls.Add(this.mNickname1);
             this.mPanel1.Location = new System.Drawing.Point(4, 52);
             this.mPanel1.Name = "mPanel1";
             this.mPanel1.Size = new System.Drawing.Size(335, 74);
             this.mPanel1.TabIndex = 130;
             // 
-            // metroLabel96
+            // mLevelPicture1
             // 
-            this.metroLabel96.AutoSize = true;
-            this.metroLabel96.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel96.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel96.Location = new System.Drawing.Point(72, 56);
-            this.metroLabel96.Name = "metroLabel96";
-            this.metroLabel96.Size = new System.Drawing.Size(31, 15);
-            this.metroLabel96.Style = MetroFramework.MetroColorStyle.Black;
-            this.metroLabel96.TabIndex = 112;
-            this.metroLabel96.Text = "Join:";
-            this.metroLabel96.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroLabel96.UseStyleColors = true;
+            this.mLevelPicture1.BackColor = System.Drawing.Color.White;
+            this.mLevelPicture1.Location = new System.Drawing.Point(310, 3);
+            this.mLevelPicture1.Name = "mLevelPicture1";
+            this.mLevelPicture1.Size = new System.Drawing.Size(22, 22);
+            this.mLevelPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mLevelPicture1.TabIndex = 106;
+            this.mLevelPicture1.TabStop = false;
+            // 
+            // mLevel1
+            // 
+            this.mLevel1.AutoSize = true;
+            this.mLevel1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mLevel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mLevel1.Location = new System.Drawing.Point(292, 5);
+            this.mLevel1.Name = "mLevel1";
+            this.mLevel1.Size = new System.Drawing.Size(19, 15);
+            this.mLevel1.TabIndex = 122;
+            this.mLevel1.Text = "10";
+            // 
+            // metroLabel43
+            // 
+            this.metroLabel43.AutoSize = true;
+            this.metroLabel43.BackColor = System.Drawing.Color.Black;
+            this.metroLabel43.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel43.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel43.Location = new System.Drawing.Point(223, 38);
+            this.metroLabel43.Name = "metroLabel43";
+            this.metroLabel43.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel43.TabIndex = 123;
+            this.metroLabel43.Text = "Rank:";
+            this.metroLabel43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mAvgHS1
+            // 
+            this.mAvgHS1.AutoSize = true;
+            this.mAvgHS1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mAvgHS1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mAvgHS1.Location = new System.Drawing.Point(198, 38);
+            this.mAvgHS1.Name = "mAvgHS1";
+            this.mAvgHS1.Size = new System.Drawing.Size(25, 15);
+            this.mAvgHS1.TabIndex = 121;
+            this.mAvgHS1.Text = "100";
             // 
             // mRanking1
             // 
             this.mRanking1.AutoSize = true;
+            this.mRanking1.BackColor = System.Drawing.Color.Black;
             this.mRanking1.FontSize = MetroFramework.MetroLabelSize.Small;
             this.mRanking1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mRanking1.Location = new System.Drawing.Point(228, 28);
+            this.mRanking1.Location = new System.Drawing.Point(256, 38);
             this.mRanking1.Name = "mRanking1";
-            this.mRanking1.Size = new System.Drawing.Size(104, 15);
-            this.mRanking1.TabIndex = 111;
-            this.mRanking1.Text = "Ranking: 1.199.999";
+            this.mRanking1.Size = new System.Drawing.Size(49, 15);
+            this.mRanking1.TabIndex = 124;
+            this.mRanking1.Text = "7654321";
+            this.mRanking1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mRanking1.Click += new System.EventHandler(this.metroLabel41_Click);
             // 
-            // mLobby1
+            // mAnticheat1
             // 
-            this.mLobby1.FontSize = MetroFramework.MetroLinkSize.Small;
-            this.mLobby1.FormattingEnabled = true;
-            this.mLobby1.ItemHeight = 19;
-            this.mLobby1.Location = new System.Drawing.Point(212, 46);
-            this.mLobby1.Name = "mLobby1";
-            this.mLobby1.Size = new System.Drawing.Size(120, 25);
-            this.mLobby1.TabIndex = 109;
-            // 
-            // metroLabel71
-            // 
-            this.metroLabel71.AutoSize = true;
-            this.metroLabel71.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel71.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel71.Location = new System.Drawing.Point(163, 41);
-            this.metroLabel71.Name = "metroLabel71";
-            this.metroLabel71.Size = new System.Drawing.Size(43, 15);
-            this.metroLabel71.TabIndex = 110;
-            this.metroLabel71.Text = "Lobby:";
+            this.mAnticheat1.BackColor = System.Drawing.Color.Transparent;
+            this.mAnticheat1.Image = ((System.Drawing.Image)(resources.GetObject("mAnticheat1.Image")));
+            this.mAnticheat1.Location = new System.Drawing.Point(310, 28);
+            this.mAnticheat1.Name = "mAnticheat1";
+            this.mAnticheat1.Size = new System.Drawing.Size(22, 22);
+            this.mAnticheat1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mAnticheat1.TabIndex = 116;
+            this.mAnticheat1.TabStop = false;
             // 
             // mElo1
             // 
@@ -2721,22 +4077,94 @@
             this.mElo1.BackColor = System.Drawing.Color.Black;
             this.mElo1.FontSize = MetroFramework.MetroLabelSize.Small;
             this.mElo1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mElo1.Location = new System.Drawing.Point(249, 5);
+            this.mElo1.Location = new System.Drawing.Point(274, 23);
             this.mElo1.Name = "mElo1";
-            this.mElo1.Size = new System.Drawing.Size(55, 15);
-            this.mElo1.TabIndex = 12;
-            this.mElo1.Text = "2123 ELO";
+            this.mElo1.Size = new System.Drawing.Size(37, 15);
+            this.mElo1.TabIndex = 119;
+            this.mElo1.Text = "10000";
             this.mElo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // mLevel1
+            // metroLabel34
             // 
-            this.mLevel1.BackColor = System.Drawing.Color.White;
-            this.mLevel1.Location = new System.Drawing.Point(310, 3);
-            this.mLevel1.Name = "mLevel1";
-            this.mLevel1.Size = new System.Drawing.Size(22, 22);
-            this.mLevel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mLevel1.TabIndex = 106;
-            this.mLevel1.TabStop = false;
+            this.metroLabel34.AutoSize = true;
+            this.metroLabel34.BackColor = System.Drawing.Color.Black;
+            this.metroLabel34.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel34.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel34.Location = new System.Drawing.Point(246, 23);
+            this.metroLabel34.Name = "metroLabel34";
+            this.metroLabel34.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel34.TabIndex = 12;
+            this.metroLabel34.Text = "ELO:";
+            this.metroLabel34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mKD1
+            // 
+            this.mKD1.AutoSize = true;
+            this.mKD1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mKD1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mKD1.Location = new System.Drawing.Point(126, 38);
+            this.mKD1.Name = "mKD1";
+            this.mKD1.Size = new System.Drawing.Size(28, 15);
+            this.mKD1.TabIndex = 120;
+            this.mKD1.Text = "1.00";
+            // 
+            // metroLabel243233
+            // 
+            this.metroLabel243233.AutoSize = true;
+            this.metroLabel243233.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel243233.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel243233.Location = new System.Drawing.Point(270, 5);
+            this.metroLabel243233.Name = "metroLabel243233";
+            this.metroLabel243233.Size = new System.Drawing.Size(24, 15);
+            this.metroLabel243233.TabIndex = 111;
+            this.metroLabel243233.Text = "Lvl:";
+            // 
+            // mMatches1
+            // 
+            this.mMatches1.AutoSize = true;
+            this.mMatches1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mMatches1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mMatches1.Location = new System.Drawing.Point(211, 23);
+            this.mMatches1.Name = "mMatches1";
+            this.mMatches1.Size = new System.Drawing.Size(37, 15);
+            this.mMatches1.TabIndex = 118;
+            this.mMatches1.Text = "10000";
+            this.mMatches1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mWinRate1
+            // 
+            this.mWinRate1.AutoSize = true;
+            this.mWinRate1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.mWinRate1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.mWinRate1.Location = new System.Drawing.Point(126, 23);
+            this.mWinRate1.Name = "mWinRate1";
+            this.mWinRate1.Size = new System.Drawing.Size(35, 15);
+            this.mWinRate1.TabIndex = 117;
+            this.mWinRate1.Text = "100%";
+            // 
+            // mSteamBtn1
+            // 
+            this.mSteamBtn1.Location = new System.Drawing.Point(171, 56);
+            this.mSteamBtn1.Name = "mSteamBtn1";
+            this.mSteamBtn1.Size = new System.Drawing.Size(75, 15);
+            this.mSteamBtn1.TabIndex = 115;
+            this.mSteamBtn1.Text = "STEAM";
+            // 
+            // mLoadProfileBtn1
+            // 
+            this.mLoadProfileBtn1.Location = new System.Drawing.Point(72, 56);
+            this.mLoadProfileBtn1.Name = "mLoadProfileBtn1";
+            this.mLoadProfileBtn1.Size = new System.Drawing.Size(93, 15);
+            this.mLoadProfileBtn1.TabIndex = 114;
+            this.mLoadProfileBtn1.Text = "LOAD PROFILE";
+            // 
+            // mFaceitBtn1
+            // 
+            this.mFaceitBtn1.Location = new System.Drawing.Point(252, 56);
+            this.mFaceitBtn1.Name = "mFaceitBtn1";
+            this.mFaceitBtn1.Size = new System.Drawing.Size(75, 15);
+            this.mFaceitBtn1.TabIndex = 113;
+            this.mFaceitBtn1.Text = "FACEIT";
             // 
             // mAvatar1
             // 
@@ -2747,6 +4175,28 @@
             this.mAvatar1.TabIndex = 7;
             this.mAvatar1.TabStop = false;
             // 
+            // metroLabel37
+            // 
+            this.metroLabel37.AutoSize = true;
+            this.metroLabel37.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel37.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel37.Location = new System.Drawing.Point(150, 38);
+            this.metroLabel37.Name = "metroLabel37";
+            this.metroLabel37.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel37.TabIndex = 108;
+            this.metroLabel37.Text = "Avg. HS:";
+            // 
+            // metroLabel35
+            // 
+            this.metroLabel35.AutoSize = true;
+            this.metroLabel35.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel35.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel35.Location = new System.Drawing.Point(72, 38);
+            this.metroLabel35.Name = "metroLabel35";
+            this.metroLabel35.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel35.TabIndex = 14;
+            this.metroLabel35.Text = "K\\D Rat.:";
+            // 
             // mCountry1
             // 
             this.mCountry1.Location = new System.Drawing.Point(72, 3);
@@ -2756,75 +4206,40 @@
             this.mCountry1.TabIndex = 104;
             this.mCountry1.TabStop = false;
             // 
+            // metroLabel32
+            // 
+            this.metroLabel32.AutoSize = true;
+            this.metroLabel32.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel32.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel32.Location = new System.Drawing.Point(159, 23);
+            this.metroLabel32.Name = "metroLabel32";
+            this.metroLabel32.Size = new System.Drawing.Size(55, 15);
+            this.metroLabel32.TabIndex = 11;
+            this.metroLabel32.Text = "Matches:";
+            this.metroLabel32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel29
+            // 
+            this.metroLabel29.AutoSize = true;
+            this.metroLabel29.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel29.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel29.Location = new System.Drawing.Point(72, 23);
+            this.metroLabel29.Name = "metroLabel29";
+            this.metroLabel29.Size = new System.Drawing.Size(57, 15);
+            this.metroLabel29.TabIndex = 9;
+            this.metroLabel29.Text = "Win Rate:";
+            // 
             // mNickname1
             // 
-            this.mNickname1.Location = new System.Drawing.Point(102, 3);
+            this.mNickname1.Location = new System.Drawing.Point(105, 3);
             this.mNickname1.Name = "mNickname1";
-            this.mNickname1.Size = new System.Drawing.Size(135, 17);
+            this.mNickname1.Size = new System.Drawing.Size(166, 17);
+            this.mNickname1.Style = MetroFramework.MetroColorStyle.Black;
             this.mNickname1.TabIndex = 8;
-            this.mNickname1.Text = "STRife_Team";
+            this.mNickname1.Text = "nickname";
             this.mNickname1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mNickname1.UseStyleColors = true;
             this.mNickname1.Click += new System.EventHandler(this.mNickname1_Click);
-            // 
-            // mMatches1
-            // 
-            this.mMatches1.AutoSize = true;
-            this.mMatches1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mMatches1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mMatches1.Location = new System.Drawing.Point(72, 28);
-            this.mMatches1.Name = "mMatches1";
-            this.mMatches1.Size = new System.Drawing.Size(76, 15);
-            this.mMatches1.TabIndex = 11;
-            this.mMatches1.Text = "Mathes: 1999";
-            this.mMatches1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mAvgHS1
-            // 
-            this.mAvgHS1.AutoSize = true;
-            this.mAvgHS1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mAvgHS1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mAvgHS1.Location = new System.Drawing.Point(129, 56);
-            this.mAvgHS1.Name = "mAvgHS1";
-            this.mAvgHS1.Size = new System.Drawing.Size(77, 15);
-            this.mAvgHS1.TabIndex = 108;
-            this.mAvgHS1.Text = "Avg. HS: 50%";
-            // 
-            // mJoinType1
-            // 
-            this.mJoinType1.AutoSize = true;
-            this.mJoinType1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mJoinType1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mJoinType1.Location = new System.Drawing.Point(102, 56);
-            this.mJoinType1.Margin = new System.Windows.Forms.Padding(0);
-            this.mJoinType1.Name = "mJoinType1";
-            this.mJoinType1.Size = new System.Drawing.Size(30, 15);
-            this.mJoinType1.Style = MetroFramework.MetroColorStyle.Black;
-            this.mJoinType1.TabIndex = 107;
-            this.mJoinType1.Text = "Solo";
-            this.mJoinType1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mJoinType1.UseStyleColors = true;
-            // 
-            // mKD1
-            // 
-            this.mKD1.AutoSize = true;
-            this.mKD1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mKD1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mKD1.Location = new System.Drawing.Point(72, 41);
-            this.mKD1.Name = "mKD1";
-            this.mKD1.Size = new System.Drawing.Size(68, 15);
-            this.mKD1.TabIndex = 14;
-            this.mKD1.Text = "K/D Rat: 1.4";
-            // 
-            // mWinRate1
-            // 
-            this.mWinRate1.AutoSize = true;
-            this.mWinRate1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.mWinRate1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mWinRate1.Location = new System.Drawing.Point(147, 28);
-            this.mWinRate1.Name = "mWinRate1";
-            this.mWinRate1.Size = new System.Drawing.Size(82, 15);
-            this.mWinRate1.TabIndex = 9;
-            this.mWinRate1.Text = "Win Rate: 99%";
             // 
             // metroLabel83
             // 
@@ -2967,22 +4382,11 @@
             this.avgEloTeamA.Text = "1200";
             this.avgEloTeamA.UseStyleColors = true;
             // 
-            // metroLabel79
-            // 
-            this.metroLabel79.AutoSize = true;
-            this.metroLabel79.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel79.Location = new System.Drawing.Point(362, 102);
-            this.metroLabel79.Name = "metroLabel79";
-            this.metroLabel79.Size = new System.Drawing.Size(59, 19);
-            this.metroLabel79.TabIndex = 111;
-            this.metroLabel79.Text = "Server:";
-            this.metroLabel79.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // metroLabel77
             // 
             this.metroLabel77.AutoSize = true;
             this.metroLabel77.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel77.Location = new System.Drawing.Point(376, 83);
+            this.metroLabel77.Location = new System.Drawing.Point(376, 64);
             this.metroLabel77.Name = "metroLabel77";
             this.metroLabel77.Size = new System.Drawing.Size(45, 19);
             this.metroLabel77.TabIndex = 110;
@@ -2991,18 +4395,21 @@
             // 
             // downloadDemo1
             // 
-            this.downloadDemo1.Location = new System.Drawing.Point(378, 124);
+            this.downloadDemo1.Location = new System.Drawing.Point(345, 181);
             this.downloadDemo1.Name = "downloadDemo1";
-            this.downloadDemo1.Size = new System.Drawing.Size(138, 23);
+            this.downloadDemo1.Size = new System.Drawing.Size(198, 23);
+            this.downloadDemo1.Style = MetroFramework.MetroColorStyle.Blue;
             this.downloadDemo1.TabIndex = 87;
             this.downloadDemo1.Text = "DOWNLOAD DEMO";
+            this.downloadDemo1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.downloadDemo1.UseStyleColors = true;
             this.downloadDemo1.Click += new System.EventHandler(this.downloadDemo1_Click);
             // 
             // metroLabel75
             // 
             this.metroLabel75.AutoSize = true;
             this.metroLabel75.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel75.Location = new System.Drawing.Point(378, 64);
+            this.metroLabel75.Location = new System.Drawing.Point(376, 102);
             this.metroLabel75.Name = "metroLabel75";
             this.metroLabel75.Size = new System.Drawing.Size(43, 19);
             this.metroLabel75.TabIndex = 109;
@@ -3011,44 +4418,25 @@
             // 
             // OpenInWeb1
             // 
-            this.OpenInWeb1.Location = new System.Drawing.Point(378, 152);
+            this.OpenInWeb1.Location = new System.Drawing.Point(345, 210);
             this.OpenInWeb1.Name = "OpenInWeb1";
-            this.OpenInWeb1.Size = new System.Drawing.Size(138, 23);
+            this.OpenInWeb1.Size = new System.Drawing.Size(198, 23);
+            this.OpenInWeb1.Style = MetroFramework.MetroColorStyle.Blue;
             this.OpenInWeb1.TabIndex = 105;
             this.OpenInWeb1.Text = "OPEN IN WEB";
+            this.OpenInWeb1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.OpenInWeb1.UseStyleColors = true;
             // 
             // gameType1
             // 
             this.gameType1.AutoSize = true;
             this.gameType1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.gameType1.Location = new System.Drawing.Point(422, 83);
+            this.gameType1.Location = new System.Drawing.Point(422, 64);
             this.gameType1.Name = "gameType1";
-            this.gameType1.Size = new System.Drawing.Size(31, 19);
+            this.gameType1.Size = new System.Drawing.Size(92, 19);
             this.gameType1.TabIndex = 101;
-            this.gameType1.Text = "Mix";
+            this.gameType1.Text = "matchmaking";
             this.gameType1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // countryServer1
-            // 
-            this.countryServer1.AutoSize = true;
-            this.countryServer1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.countryServer1.Location = new System.Drawing.Point(422, 102);
-            this.countryServer1.Name = "countryServer1";
-            this.countryServer1.Size = new System.Drawing.Size(83, 19);
-            this.countryServer1.TabIndex = 102;
-            this.countryServer1.Text = "Netherlands";
-            this.countryServer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mapName1
-            // 
-            this.mapName1.AutoSize = true;
-            this.mapName1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.mapName1.Location = new System.Drawing.Point(422, 64);
-            this.mapName1.Name = "mapName1";
-            this.mapName1.Size = new System.Drawing.Size(116, 19);
-            this.mapName1.TabIndex = 103;
-            this.mapName1.Text = "map_cobblestone";
-            this.mapName1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bestOfMatch1
             // 
@@ -3076,9 +4464,9 @@
             this.statusMatch1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.statusMatch1.Location = new System.Drawing.Point(422, 26);
             this.statusMatch1.Name = "statusMatch1";
-            this.statusMatch1.Size = new System.Drawing.Size(59, 19);
+            this.statusMatch1.Size = new System.Drawing.Size(68, 19);
             this.statusMatch1.TabIndex = 99;
-            this.statusMatch1.Text = "Finished";
+            this.statusMatch1.Text = "FINISHED";
             // 
             // teamnameB
             // 
@@ -3087,20 +4475,20 @@
             this.teamnameB.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.teamnameB.Location = new System.Drawing.Point(725, 4);
             this.teamnameB.Name = "teamnameB";
-            this.teamnameB.Size = new System.Drawing.Size(44, 15);
+            this.teamnameB.Size = new System.Drawing.Size(47, 15);
             this.teamnameB.TabIndex = 93;
-            this.teamnameB.Text = "teamB";
+            this.teamnameB.Text = "team B";
             // 
             // scoreTeamB
             // 
             this.scoreTeamB.AutoSize = true;
             this.scoreTeamB.FontSize = MetroFramework.MetroLabelSize.Small;
             this.scoreTeamB.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.scoreTeamB.Location = new System.Drawing.Point(600, 4);
+            this.scoreTeamB.Location = new System.Drawing.Point(422, 4);
             this.scoreTeamB.Name = "scoreTeamB";
             this.scoreTeamB.Size = new System.Drawing.Size(14, 15);
             this.scoreTeamB.TabIndex = 95;
-            this.scoreTeamB.Text = "0";
+            this.scoreTeamB.Text = "9";
             // 
             // matchBestOf1
             // 
@@ -3117,11 +4505,11 @@
             this.scoreTeamA.AutoSize = true;
             this.scoreTeamA.FontSize = MetroFramework.MetroLabelSize.Small;
             this.scoreTeamA.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.scoreTeamA.Location = new System.Drawing.Point(300, 4);
+            this.scoreTeamA.Location = new System.Drawing.Point(398, 4);
             this.scoreTeamA.Name = "scoreTeamA";
-            this.scoreTeamA.Size = new System.Drawing.Size(14, 15);
+            this.scoreTeamA.Size = new System.Drawing.Size(21, 15);
             this.scoreTeamA.TabIndex = 94;
-            this.scoreTeamA.Text = "1";
+            this.scoreTeamA.Text = "16";
             // 
             // teamnameA
             // 
@@ -3130,28 +4518,3398 @@
             this.teamnameA.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.teamnameA.Location = new System.Drawing.Point(125, 4);
             this.teamnameA.Name = "teamnameA";
-            this.teamnameA.Size = new System.Drawing.Size(44, 15);
+            this.teamnameA.Size = new System.Drawing.Size(47, 15);
             this.teamnameA.TabIndex = 92;
-            this.teamnameA.Text = "teamA";
+            this.teamnameA.Text = "team A";
             // 
             // metroTabPage5
             // 
+            this.metroTabPage5.BackColor = System.Drawing.Color.Transparent;
+            this.metroTabPage5.Controls.Add(this.metroPanel6);
+            this.metroTabPage5.Controls.Add(this.panel10);
+            this.metroTabPage5.Controls.Add(this.metroPanel5);
+            this.metroTabPage5.Controls.Add(this.panel19);
+            this.metroTabPage5.Controls.Add(this.panel18);
+            this.metroTabPage5.Controls.Add(this.panel17);
+            this.metroTabPage5.Controls.Add(this.panel16);
+            this.metroTabPage5.Controls.Add(this.panel13);
+            this.metroTabPage5.Controls.Add(this.panel14);
+            this.metroTabPage5.Controls.Add(this.panel12);
+            this.metroTabPage5.Controls.Add(this.panel15);
+            this.metroTabPage5.Controls.Add(this.panel11);
             this.metroTabPage5.HorizontalScrollbarBarColor = true;
             this.metroTabPage5.Location = new System.Drawing.Point(4, 35);
             this.metroTabPage5.Name = "metroTabPage5";
             this.metroTabPage5.Size = new System.Drawing.Size(879, 448);
             this.metroTabPage5.TabIndex = 1;
             this.metroTabPage5.Text = "Stats";
+            this.metroTabPage5.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTabPage5.VerticalScrollbarBarColor = true;
+            // 
+            // metroPanel6
+            // 
+            this.metroPanel6.HorizontalScrollbarBarColor = true;
+            this.metroPanel6.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel6.HorizontalScrollbarSize = 10;
+            this.metroPanel6.Location = new System.Drawing.Point(-1, 0);
+            this.metroPanel6.Name = "metroPanel6";
+            this.metroPanel6.Size = new System.Drawing.Size(884, 452);
+            this.metroPanel6.TabIndex = 158;
+            this.metroPanel6.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroPanel6.VerticalScrollbarBarColor = true;
+            this.metroPanel6.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel6.VerticalScrollbarSize = 10;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Controls.Add(this.statsMVP1);
+            this.panel10.Controls.Add(this.metroButton35);
+            this.panel10.Controls.Add(this.metroLabel299);
+            this.panel10.Controls.Add(this.statsHS1);
+            this.panel10.Controls.Add(this.metroButton36);
+            this.panel10.Controls.Add(this.metroLabel300);
+            this.panel10.Controls.Add(this.statsKR1);
+            this.panel10.Controls.Add(this.statsDeaths1);
+            this.panel10.Controls.Add(this.metroButton37);
+            this.panel10.Controls.Add(this.statsNickname1);
+            this.panel10.Controls.Add(this.metroLabel301);
+            this.panel10.Controls.Add(this.statsTripleKills1);
+            this.panel10.Controls.Add(this.statsKD1);
+            this.panel10.Controls.Add(this.statsAssists1);
+            this.panel10.Controls.Add(this.statsPentaKills1);
+            this.panel10.Controls.Add(this.metroLabel298);
+            this.panel10.Controls.Add(this.metroLabel296);
+            this.panel10.Controls.Add(this.metroLabel290);
+            this.panel10.Controls.Add(this.statsQuadroKills1);
+            this.panel10.Controls.Add(this.metroLabel289);
+            this.panel10.Controls.Add(this.metroLabel305);
+            this.panel10.Controls.Add(this.statsKills1);
+            this.panel10.Controls.Add(this.metroLabel303);
+            this.panel10.Controls.Add(this.metroLabel304);
+            this.panel10.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel10.Location = new System.Drawing.Point(0, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(367, 74);
+            this.panel10.TabIndex = 131;
+            // 
+            // statsMVP1
+            // 
+            this.statsMVP1.AutoSize = true;
+            this.statsMVP1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP1.Location = new System.Drawing.Point(321, 56);
+            this.statsMVP1.Name = "statsMVP1";
+            this.statsMVP1.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP1.TabIndex = 118;
+            this.statsMVP1.Text = "10";
+            this.statsMVP1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton35
+            // 
+            this.metroButton35.Location = new System.Drawing.Point(3, 38);
+            this.metroButton35.Name = "metroButton35";
+            this.metroButton35.Size = new System.Drawing.Size(93, 15);
+            this.metroButton35.TabIndex = 115;
+            this.metroButton35.Text = "STEAM";
+            // 
+            // metroLabel299
+            // 
+            this.metroLabel299.AutoSize = true;
+            this.metroLabel299.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel299.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel299.Location = new System.Drawing.Point(271, 56);
+            this.metroLabel299.Name = "metroLabel299";
+            this.metroLabel299.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel299.TabIndex = 11;
+            this.metroLabel299.Text = "MVPs:";
+            this.metroLabel299.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsHS1
+            // 
+            this.statsHS1.AutoSize = true;
+            this.statsHS1.BackColor = System.Drawing.Color.Gray;
+            this.statsHS1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS1.Location = new System.Drawing.Point(302, 5);
+            this.statsHS1.Name = "statsHS1";
+            this.statsHS1.Size = new System.Drawing.Size(64, 15);
+            this.statsHS1.TabIndex = 117;
+            this.statsHS1.Text = "100 (100%)";
+            // 
+            // metroButton36
+            // 
+            this.metroButton36.Location = new System.Drawing.Point(3, 56);
+            this.metroButton36.Name = "metroButton36";
+            this.metroButton36.Size = new System.Drawing.Size(93, 15);
+            this.metroButton36.TabIndex = 114;
+            this.metroButton36.Text = "LOAD PROFILE";
+            this.metroButton36.Click += new System.EventHandler(this.metroButton36_Click);
+            // 
+            // metroLabel300
+            // 
+            this.metroLabel300.AutoSize = true;
+            this.metroLabel300.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel300.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel300.Location = new System.Drawing.Point(271, 5);
+            this.metroLabel300.Name = "metroLabel300";
+            this.metroLabel300.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel300.TabIndex = 9;
+            this.metroLabel300.Text = "HS:";
+            // 
+            // statsKR1
+            // 
+            this.statsKR1.AutoSize = true;
+            this.statsKR1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR1.Location = new System.Drawing.Point(321, 38);
+            this.statsKR1.Name = "statsKR1";
+            this.statsKR1.Size = new System.Drawing.Size(28, 15);
+            this.statsKR1.TabIndex = 123;
+            this.statsKR1.Text = "1.00";
+            // 
+            // statsDeaths1
+            // 
+            this.statsDeaths1.AutoSize = true;
+            this.statsDeaths1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths1.Location = new System.Drawing.Point(144, 56);
+            this.statsDeaths1.Name = "statsDeaths1";
+            this.statsDeaths1.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths1.TabIndex = 122;
+            this.statsDeaths1.Text = "100";
+            this.statsDeaths1.Click += new System.EventHandler(this.metroLabel289_Click);
+            // 
+            // metroButton37
+            // 
+            this.metroButton37.Location = new System.Drawing.Point(3, 20);
+            this.metroButton37.Name = "metroButton37";
+            this.metroButton37.Size = new System.Drawing.Size(93, 15);
+            this.metroButton37.TabIndex = 113;
+            this.metroButton37.Text = "FACEIT";
+            // 
+            // statsNickname1
+            // 
+            this.statsNickname1.BackColor = System.Drawing.Color.White;
+            this.statsNickname1.CustomBackground = true;
+            this.statsNickname1.Location = new System.Drawing.Point(3, 3);
+            this.statsNickname1.Name = "statsNickname1";
+            this.statsNickname1.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname1.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname1.TabIndex = 8;
+            this.statsNickname1.Text = "nickname";
+            this.statsNickname1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statsNickname1.UseStyleColors = true;
+            // 
+            // metroLabel301
+            // 
+            this.metroLabel301.AutoSize = true;
+            this.metroLabel301.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel301.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel301.Location = new System.Drawing.Point(271, 38);
+            this.metroLabel301.Name = "metroLabel301";
+            this.metroLabel301.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel301.TabIndex = 132;
+            this.metroLabel301.Text = "K\\R Rat.:";
+            // 
+            // statsTripleKills1
+            // 
+            this.statsTripleKills1.AutoSize = true;
+            this.statsTripleKills1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills1.Location = new System.Drawing.Point(246, 56);
+            this.statsTripleKills1.Name = "statsTripleKills1";
+            this.statsTripleKills1.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills1.TabIndex = 133;
+            this.statsTripleKills1.Text = "10";
+            this.statsTripleKills1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD1
+            // 
+            this.statsKD1.AutoSize = true;
+            this.statsKD1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD1.Location = new System.Drawing.Point(321, 20);
+            this.statsKD1.Name = "statsKD1";
+            this.statsKD1.Size = new System.Drawing.Size(28, 15);
+            this.statsKD1.TabIndex = 120;
+            this.statsKD1.Text = "1.00";
+            // 
+            // statsAssists1
+            // 
+            this.statsAssists1.AutoSize = true;
+            this.statsAssists1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists1.Location = new System.Drawing.Point(144, 38);
+            this.statsAssists1.Name = "statsAssists1";
+            this.statsAssists1.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists1.TabIndex = 121;
+            this.statsAssists1.Text = "100";
+            // 
+            // statsPentaKills1
+            // 
+            this.statsPentaKills1.AutoSize = true;
+            this.statsPentaKills1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills1.Location = new System.Drawing.Point(246, 20);
+            this.statsPentaKills1.Name = "statsPentaKills1";
+            this.statsPentaKills1.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills1.TabIndex = 134;
+            this.statsPentaKills1.Text = "10";
+            this.statsPentaKills1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel298
+            // 
+            this.metroLabel298.AutoSize = true;
+            this.metroLabel298.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel298.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel298.Location = new System.Drawing.Point(271, 20);
+            this.metroLabel298.Name = "metroLabel298";
+            this.metroLabel298.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel298.TabIndex = 14;
+            this.metroLabel298.Text = "K\\D Rat.:";
+            // 
+            // metroLabel296
+            // 
+            this.metroLabel296.AutoSize = true;
+            this.metroLabel296.BackColor = System.Drawing.Color.Black;
+            this.metroLabel296.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel296.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel296.Location = new System.Drawing.Point(102, 20);
+            this.metroLabel296.Name = "metroLabel296";
+            this.metroLabel296.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel296.TabIndex = 12;
+            this.metroLabel296.Text = "Kills:";
+            this.metroLabel296.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel290
+            // 
+            this.metroLabel290.AutoSize = true;
+            this.metroLabel290.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel290.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel290.Location = new System.Drawing.Point(102, 38);
+            this.metroLabel290.Name = "metroLabel290";
+            this.metroLabel290.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel290.TabIndex = 108;
+            this.metroLabel290.Text = "Assists:";
+            // 
+            // statsQuadroKills1
+            // 
+            this.statsQuadroKills1.AutoSize = true;
+            this.statsQuadroKills1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills1.Location = new System.Drawing.Point(246, 38);
+            this.statsQuadroKills1.Name = "statsQuadroKills1";
+            this.statsQuadroKills1.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills1.TabIndex = 135;
+            this.statsQuadroKills1.Text = "10";
+            this.statsQuadroKills1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel289
+            // 
+            this.metroLabel289.AutoSize = true;
+            this.metroLabel289.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel289.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel289.Location = new System.Drawing.Point(102, 56);
+            this.metroLabel289.Name = "metroLabel289";
+            this.metroLabel289.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel289.TabIndex = 111;
+            this.metroLabel289.Text = "Deaths:";
+            // 
+            // metroLabel305
+            // 
+            this.metroLabel305.AutoSize = true;
+            this.metroLabel305.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel305.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel305.Location = new System.Drawing.Point(176, 56);
+            this.metroLabel305.Name = "metroLabel305";
+            this.metroLabel305.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel305.TabIndex = 135;
+            this.metroLabel305.Text = "Triple Kills:";
+            this.metroLabel305.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills1
+            // 
+            this.statsKills1.AutoSize = true;
+            this.statsKills1.BackColor = System.Drawing.Color.Black;
+            this.statsKills1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills1.Location = new System.Drawing.Point(144, 20);
+            this.statsKills1.Name = "statsKills1";
+            this.statsKills1.Size = new System.Drawing.Size(25, 15);
+            this.statsKills1.TabIndex = 119;
+            this.statsKills1.Text = "100";
+            this.statsKills1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel303
+            // 
+            this.metroLabel303.AutoSize = true;
+            this.metroLabel303.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel303.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel303.Location = new System.Drawing.Point(176, 20);
+            this.metroLabel303.Name = "metroLabel303";
+            this.metroLabel303.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel303.TabIndex = 133;
+            this.metroLabel303.Text = "Penta Kills:";
+            this.metroLabel303.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel304
+            // 
+            this.metroLabel304.AutoSize = true;
+            this.metroLabel304.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel304.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel304.Location = new System.Drawing.Point(176, 38);
+            this.metroLabel304.Name = "metroLabel304";
+            this.metroLabel304.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel304.TabIndex = 134;
+            this.metroLabel304.Text = "Quadro Kills:";
+            this.metroLabel304.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroPanel5
+            // 
+            this.metroPanel5.BackColor = System.Drawing.Color.White;
+            this.metroPanel5.Controls.Add(this.teamAPremade);
+            this.metroPanel5.Controls.Add(this.metroLabel332);
+            this.metroPanel5.Controls.Add(this.teamBPremade);
+            this.metroPanel5.Controls.Add(this.metroLabel60);
+            this.metroPanel5.Controls.Add(this.metroLabel329);
+            this.metroPanel5.Controls.Add(this.teamAFinalScore);
+            this.metroPanel5.Controls.Add(this.teamBFinalScore);
+            this.metroPanel5.Controls.Add(this.teamAResult);
+            this.metroPanel5.Controls.Add(this.metroLabel333);
+            this.metroPanel5.Controls.Add(this.teamBResult);
+            this.metroPanel5.Controls.Add(this.metroLabel330);
+            this.metroPanel5.Controls.Add(this.teamATeamHS);
+            this.metroPanel5.Controls.Add(this.metroLabel331);
+            this.metroPanel5.Controls.Add(this.teamBTeamHS);
+            this.metroPanel5.Controls.Add(this.metroLabel334);
+            this.metroPanel5.Controls.Add(this.teamBOTScore);
+            this.metroPanel5.Controls.Add(this.teamAFirstHalfScore);
+            this.metroPanel5.Controls.Add(this.teamAOTScore);
+            this.metroPanel5.Controls.Add(this.teamBFirstHalfScore);
+            this.metroPanel5.Controls.Add(this.teamBSecondHalfScore);
+            this.metroPanel5.Controls.Add(this.teamASecondHalfScore);
+            this.metroPanel5.HorizontalScrollbarBarColor = true;
+            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.HorizontalScrollbarSize = 10;
+            this.metroPanel5.Location = new System.Drawing.Point(373, 133);
+            this.metroPanel5.Name = "metroPanel5";
+            this.metroPanel5.Size = new System.Drawing.Size(137, 168);
+            this.metroPanel5.TabIndex = 157;
+            this.metroPanel5.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroPanel5.VerticalScrollbarBarColor = true;
+            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.VerticalScrollbarSize = 10;
+            // 
+            // teamAPremade
+            // 
+            this.teamAPremade.AutoSize = true;
+            this.teamAPremade.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamAPremade.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamAPremade.Location = new System.Drawing.Point(12, 150);
+            this.teamAPremade.Name = "teamAPremade";
+            this.teamAPremade.Size = new System.Drawing.Size(28, 15);
+            this.teamAPremade.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamAPremade.TabIndex = 156;
+            this.teamAPremade.Text = "true";
+            this.teamAPremade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamAPremade.UseStyleColors = true;
+            // 
+            // metroLabel332
+            // 
+            this.metroLabel332.AutoSize = true;
+            this.metroLabel332.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel332.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel332.Location = new System.Drawing.Point(38, 48);
+            this.metroLabel332.Name = "metroLabel332";
+            this.metroLabel332.Size = new System.Drawing.Size(60, 15);
+            this.metroLabel332.TabIndex = 139;
+            this.metroLabel332.Text = ":OT Score:";
+            this.metroLabel332.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // teamBPremade
+            // 
+            this.teamBPremade.AutoSize = true;
+            this.teamBPremade.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBPremade.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBPremade.Location = new System.Drawing.Point(103, 150);
+            this.teamBPremade.Name = "teamBPremade";
+            this.teamBPremade.Size = new System.Drawing.Size(28, 15);
+            this.teamBPremade.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBPremade.TabIndex = 155;
+            this.teamBPremade.Text = "true";
+            this.teamBPremade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBPremade.UseStyleColors = true;
+            // 
+            // metroLabel60
+            // 
+            this.metroLabel60.AutoSize = true;
+            this.metroLabel60.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel60.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel60.Location = new System.Drawing.Point(38, 150);
+            this.metroLabel60.Name = "metroLabel60";
+            this.metroLabel60.Size = new System.Drawing.Size(66, 15);
+            this.metroLabel60.TabIndex = 154;
+            this.metroLabel60.Text = ":PREMADE:";
+            this.metroLabel60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // metroLabel329
+            // 
+            this.metroLabel329.AutoSize = true;
+            this.metroLabel329.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel329.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel329.Location = new System.Drawing.Point(28, 3);
+            this.metroLabel329.Name = "metroLabel329";
+            this.metroLabel329.Size = new System.Drawing.Size(84, 15);
+            this.metroLabel329.TabIndex = 136;
+            this.metroLabel329.Text = ":FINAL SCORE:";
+            this.metroLabel329.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // teamAFinalScore
+            // 
+            this.teamAFinalScore.AutoSize = true;
+            this.teamAFinalScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamAFinalScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamAFinalScore.Location = new System.Drawing.Point(6, 3);
+            this.teamAFinalScore.Name = "teamAFinalScore";
+            this.teamAFinalScore.Size = new System.Drawing.Size(19, 15);
+            this.teamAFinalScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamAFinalScore.TabIndex = 142;
+            this.teamAFinalScore.Text = "16";
+            this.teamAFinalScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamAFinalScore.UseStyleColors = true;
+            // 
+            // teamBFinalScore
+            // 
+            this.teamBFinalScore.AutoSize = true;
+            this.teamBFinalScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBFinalScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBFinalScore.Location = new System.Drawing.Point(116, 3);
+            this.teamBFinalScore.Name = "teamBFinalScore";
+            this.teamBFinalScore.Size = new System.Drawing.Size(13, 15);
+            this.teamBFinalScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBFinalScore.TabIndex = 143;
+            this.teamBFinalScore.Text = "0";
+            this.teamBFinalScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBFinalScore.UseStyleColors = true;
+            // 
+            // teamAResult
+            // 
+            this.teamAResult.AutoSize = true;
+            this.teamAResult.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamAResult.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamAResult.Location = new System.Drawing.Point(27, 112);
+            this.teamAResult.Name = "teamAResult";
+            this.teamAResult.Size = new System.Drawing.Size(13, 15);
+            this.teamAResult.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamAResult.TabIndex = 153;
+            this.teamAResult.Text = "1";
+            this.teamAResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamAResult.UseStyleColors = true;
+            // 
+            // metroLabel333
+            // 
+            this.metroLabel333.AutoSize = true;
+            this.metroLabel333.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel333.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel333.Location = new System.Drawing.Point(16, 33);
+            this.metroLabel333.Name = "metroLabel333";
+            this.metroLabel333.Size = new System.Drawing.Size(109, 15);
+            this.metroLabel333.TabIndex = 140;
+            this.metroLabel333.Text = ":Second Half Score:";
+            this.metroLabel333.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // teamBResult
+            // 
+            this.teamBResult.AutoSize = true;
+            this.teamBResult.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBResult.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBResult.Location = new System.Drawing.Point(91, 112);
+            this.teamBResult.Name = "teamBResult";
+            this.teamBResult.Size = new System.Drawing.Size(13, 15);
+            this.teamBResult.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBResult.TabIndex = 152;
+            this.teamBResult.Text = "0";
+            this.teamBResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBResult.UseStyleColors = true;
+            this.teamBResult.Click += new System.EventHandler(this.teamBResult_Click);
+            // 
+            // metroLabel330
+            // 
+            this.metroLabel330.AutoSize = true;
+            this.metroLabel330.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel330.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel330.Location = new System.Drawing.Point(38, 112);
+            this.metroLabel330.Name = "metroLabel330";
+            this.metroLabel330.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel330.TabIndex = 137;
+            this.metroLabel330.Text = ":RESULT:";
+            this.metroLabel330.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // teamATeamHS
+            // 
+            this.teamATeamHS.AutoSize = true;
+            this.teamATeamHS.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamATeamHS.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamATeamHS.Location = new System.Drawing.Point(12, 82);
+            this.teamATeamHS.Name = "teamATeamHS";
+            this.teamATeamHS.Size = new System.Drawing.Size(28, 15);
+            this.teamATeamHS.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamATeamHS.TabIndex = 151;
+            this.teamATeamHS.Text = "4.71";
+            this.teamATeamHS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamATeamHS.UseStyleColors = true;
+            // 
+            // metroLabel331
+            // 
+            this.metroLabel331.AutoSize = true;
+            this.metroLabel331.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel331.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel331.Location = new System.Drawing.Point(38, 82);
+            this.metroLabel331.Name = "metroLabel331";
+            this.metroLabel331.Size = new System.Drawing.Size(60, 15);
+            this.metroLabel331.TabIndex = 138;
+            this.metroLabel331.Text = ":Team HS:";
+            this.metroLabel331.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // teamBTeamHS
+            // 
+            this.teamBTeamHS.AutoSize = true;
+            this.teamBTeamHS.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBTeamHS.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBTeamHS.Location = new System.Drawing.Point(97, 82);
+            this.teamBTeamHS.Name = "teamBTeamHS";
+            this.teamBTeamHS.Size = new System.Drawing.Size(28, 15);
+            this.teamBTeamHS.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBTeamHS.TabIndex = 150;
+            this.teamBTeamHS.Text = "0.95";
+            this.teamBTeamHS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBTeamHS.UseStyleColors = true;
+            // 
+            // metroLabel334
+            // 
+            this.metroLabel334.AutoSize = true;
+            this.metroLabel334.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel334.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel334.Location = new System.Drawing.Point(28, 18);
+            this.metroLabel334.Name = "metroLabel334";
+            this.metroLabel334.Size = new System.Drawing.Size(92, 15);
+            this.metroLabel334.TabIndex = 141;
+            this.metroLabel334.Text = ":First Half Score:";
+            this.metroLabel334.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // teamBOTScore
+            // 
+            this.teamBOTScore.AutoSize = true;
+            this.teamBOTScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBOTScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBOTScore.Location = new System.Drawing.Point(116, 48);
+            this.teamBOTScore.Name = "teamBOTScore";
+            this.teamBOTScore.Size = new System.Drawing.Size(13, 15);
+            this.teamBOTScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBOTScore.TabIndex = 149;
+            this.teamBOTScore.Text = "0";
+            this.teamBOTScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBOTScore.UseStyleColors = true;
+            // 
+            // teamAFirstHalfScore
+            // 
+            this.teamAFirstHalfScore.AutoSize = true;
+            this.teamAFirstHalfScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamAFirstHalfScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamAFirstHalfScore.Location = new System.Drawing.Point(6, 18);
+            this.teamAFirstHalfScore.Name = "teamAFirstHalfScore";
+            this.teamAFirstHalfScore.Size = new System.Drawing.Size(19, 15);
+            this.teamAFirstHalfScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamAFirstHalfScore.TabIndex = 144;
+            this.teamAFirstHalfScore.Text = "15";
+            this.teamAFirstHalfScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamAFirstHalfScore.UseStyleColors = true;
+            // 
+            // teamAOTScore
+            // 
+            this.teamAOTScore.AutoSize = true;
+            this.teamAOTScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamAOTScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamAOTScore.Location = new System.Drawing.Point(12, 48);
+            this.teamAOTScore.Name = "teamAOTScore";
+            this.teamAOTScore.Size = new System.Drawing.Size(13, 15);
+            this.teamAOTScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamAOTScore.TabIndex = 148;
+            this.teamAOTScore.Text = "0";
+            this.teamAOTScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamAOTScore.UseStyleColors = true;
+            // 
+            // teamBFirstHalfScore
+            // 
+            this.teamBFirstHalfScore.AutoSize = true;
+            this.teamBFirstHalfScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBFirstHalfScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBFirstHalfScore.Location = new System.Drawing.Point(121, 18);
+            this.teamBFirstHalfScore.Name = "teamBFirstHalfScore";
+            this.teamBFirstHalfScore.Size = new System.Drawing.Size(13, 15);
+            this.teamBFirstHalfScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBFirstHalfScore.TabIndex = 145;
+            this.teamBFirstHalfScore.Text = "0";
+            this.teamBFirstHalfScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBFirstHalfScore.UseStyleColors = true;
+            // 
+            // teamBSecondHalfScore
+            // 
+            this.teamBSecondHalfScore.AutoSize = true;
+            this.teamBSecondHalfScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamBSecondHalfScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamBSecondHalfScore.Location = new System.Drawing.Point(124, 33);
+            this.teamBSecondHalfScore.Name = "teamBSecondHalfScore";
+            this.teamBSecondHalfScore.Size = new System.Drawing.Size(13, 15);
+            this.teamBSecondHalfScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamBSecondHalfScore.TabIndex = 147;
+            this.teamBSecondHalfScore.Text = "0";
+            this.teamBSecondHalfScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamBSecondHalfScore.UseStyleColors = true;
+            // 
+            // teamASecondHalfScore
+            // 
+            this.teamASecondHalfScore.AutoSize = true;
+            this.teamASecondHalfScore.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.teamASecondHalfScore.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.teamASecondHalfScore.Location = new System.Drawing.Point(3, 33);
+            this.teamASecondHalfScore.Name = "teamASecondHalfScore";
+            this.teamASecondHalfScore.Size = new System.Drawing.Size(13, 15);
+            this.teamASecondHalfScore.Style = MetroFramework.MetroColorStyle.Black;
+            this.teamASecondHalfScore.TabIndex = 146;
+            this.teamASecondHalfScore.Text = "1";
+            this.teamASecondHalfScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.teamASecondHalfScore.UseStyleColors = true;
+            // 
+            // panel19
+            // 
+            this.panel19.BackColor = System.Drawing.Color.White;
+            this.panel19.Controls.Add(this.statsMVP10);
+            this.panel19.Controls.Add(this.metroButton62);
+            this.panel19.Controls.Add(this.metroButton63);
+            this.panel19.Controls.Add(this.metroButton64);
+            this.panel19.Controls.Add(this.metroLabel502);
+            this.panel19.Controls.Add(this.statsNickname10);
+            this.panel19.Controls.Add(this.metroLabel503);
+            this.panel19.Controls.Add(this.statsDeaths10);
+            this.panel19.Controls.Add(this.statsKR10);
+            this.panel19.Controls.Add(this.statsHS10);
+            this.panel19.Controls.Add(this.metroLabel507);
+            this.panel19.Controls.Add(this.statsTripleKills10);
+            this.panel19.Controls.Add(this.statsKD10);
+            this.panel19.Controls.Add(this.metroLabel510);
+            this.panel19.Controls.Add(this.metroLabel511);
+            this.panel19.Controls.Add(this.statsAssists10);
+            this.panel19.Controls.Add(this.metroLabel513);
+            this.panel19.Controls.Add(this.metroLabel514);
+            this.panel19.Controls.Add(this.statsPentaKills10);
+            this.panel19.Controls.Add(this.metroLabel516);
+            this.panel19.Controls.Add(this.metroLabel517);
+            this.panel19.Controls.Add(this.statsQuadroKills10);
+            this.panel19.Controls.Add(this.statsKills10);
+            this.panel19.Controls.Add(this.metroLabel520);
+            this.panel19.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel19.Location = new System.Drawing.Point(512, 374);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(367, 74);
+            this.panel19.TabIndex = 137;
+            // 
+            // statsMVP10
+            // 
+            this.statsMVP10.AutoSize = true;
+            this.statsMVP10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP10.Location = new System.Drawing.Point(53, 56);
+            this.statsMVP10.Name = "statsMVP10";
+            this.statsMVP10.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP10.TabIndex = 118;
+            this.statsMVP10.Text = "10";
+            this.statsMVP10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton62
+            // 
+            this.metroButton62.Location = new System.Drawing.Point(271, 38);
+            this.metroButton62.Name = "metroButton62";
+            this.metroButton62.Size = new System.Drawing.Size(93, 15);
+            this.metroButton62.TabIndex = 115;
+            this.metroButton62.Text = "STEAM";
+            // 
+            // metroButton63
+            // 
+            this.metroButton63.Location = new System.Drawing.Point(271, 56);
+            this.metroButton63.Name = "metroButton63";
+            this.metroButton63.Size = new System.Drawing.Size(93, 15);
+            this.metroButton63.TabIndex = 114;
+            this.metroButton63.Text = "LOAD PROFILE";
+            // 
+            // metroButton64
+            // 
+            this.metroButton64.Location = new System.Drawing.Point(271, 20);
+            this.metroButton64.Name = "metroButton64";
+            this.metroButton64.Size = new System.Drawing.Size(93, 15);
+            this.metroButton64.TabIndex = 113;
+            this.metroButton64.Text = "FACEIT";
+            // 
+            // metroLabel502
+            // 
+            this.metroLabel502.AutoSize = true;
+            this.metroLabel502.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel502.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel502.Location = new System.Drawing.Point(3, 56);
+            this.metroLabel502.Name = "metroLabel502";
+            this.metroLabel502.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel502.TabIndex = 11;
+            this.metroLabel502.Text = "MVPs:";
+            this.metroLabel502.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsNickname10
+            // 
+            this.statsNickname10.BackColor = System.Drawing.Color.White;
+            this.statsNickname10.CustomBackground = true;
+            this.statsNickname10.Location = new System.Drawing.Point(165, 3);
+            this.statsNickname10.Name = "statsNickname10";
+            this.statsNickname10.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname10.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname10.TabIndex = 8;
+            this.statsNickname10.Text = "nickname";
+            this.statsNickname10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statsNickname10.UseStyleColors = true;
+            // 
+            // metroLabel503
+            // 
+            this.metroLabel503.AutoSize = true;
+            this.metroLabel503.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel503.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel503.Location = new System.Drawing.Point(3, 5);
+            this.metroLabel503.Name = "metroLabel503";
+            this.metroLabel503.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel503.TabIndex = 9;
+            this.metroLabel503.Text = "HS:";
+            // 
+            // statsDeaths10
+            // 
+            this.statsDeaths10.AutoSize = true;
+            this.statsDeaths10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths10.Location = new System.Drawing.Point(224, 56);
+            this.statsDeaths10.Name = "statsDeaths10";
+            this.statsDeaths10.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths10.TabIndex = 122;
+            this.statsDeaths10.Text = "100";
+            // 
+            // statsKR10
+            // 
+            this.statsKR10.AutoSize = true;
+            this.statsKR10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR10.Location = new System.Drawing.Point(53, 38);
+            this.statsKR10.Name = "statsKR10";
+            this.statsKR10.Size = new System.Drawing.Size(28, 15);
+            this.statsKR10.TabIndex = 123;
+            this.statsKR10.Text = "1.00";
+            // 
+            // statsHS10
+            // 
+            this.statsHS10.AutoSize = true;
+            this.statsHS10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS10.Location = new System.Drawing.Point(34, 5);
+            this.statsHS10.Name = "statsHS10";
+            this.statsHS10.Size = new System.Drawing.Size(64, 15);
+            this.statsHS10.TabIndex = 117;
+            this.statsHS10.Text = "100 (100%)";
+            // 
+            // metroLabel507
+            // 
+            this.metroLabel507.AutoSize = true;
+            this.metroLabel507.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel507.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel507.Location = new System.Drawing.Point(3, 20);
+            this.metroLabel507.Name = "metroLabel507";
+            this.metroLabel507.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel507.TabIndex = 14;
+            this.metroLabel507.Text = "K\\D Rat.:";
+            // 
+            // statsTripleKills10
+            // 
+            this.statsTripleKills10.AutoSize = true;
+            this.statsTripleKills10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills10.Location = new System.Drawing.Point(157, 56);
+            this.statsTripleKills10.Name = "statsTripleKills10";
+            this.statsTripleKills10.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills10.TabIndex = 133;
+            this.statsTripleKills10.Text = "10";
+            this.statsTripleKills10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD10
+            // 
+            this.statsKD10.AutoSize = true;
+            this.statsKD10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD10.Location = new System.Drawing.Point(53, 20);
+            this.statsKD10.Name = "statsKD10";
+            this.statsKD10.Size = new System.Drawing.Size(28, 15);
+            this.statsKD10.TabIndex = 120;
+            this.statsKD10.Text = "1.00";
+            // 
+            // metroLabel510
+            // 
+            this.metroLabel510.AutoSize = true;
+            this.metroLabel510.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel510.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel510.Location = new System.Drawing.Point(3, 38);
+            this.metroLabel510.Name = "metroLabel510";
+            this.metroLabel510.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel510.TabIndex = 132;
+            this.metroLabel510.Text = "K\\R Rat.:";
+            // 
+            // metroLabel511
+            // 
+            this.metroLabel511.AutoSize = true;
+            this.metroLabel511.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel511.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel511.Location = new System.Drawing.Point(87, 20);
+            this.metroLabel511.Name = "metroLabel511";
+            this.metroLabel511.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel511.TabIndex = 133;
+            this.metroLabel511.Text = "Penta Kills:";
+            this.metroLabel511.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsAssists10
+            // 
+            this.statsAssists10.AutoSize = true;
+            this.statsAssists10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists10.Location = new System.Drawing.Point(224, 38);
+            this.statsAssists10.Name = "statsAssists10";
+            this.statsAssists10.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists10.TabIndex = 121;
+            this.statsAssists10.Text = "100";
+            // 
+            // metroLabel513
+            // 
+            this.metroLabel513.AutoSize = true;
+            this.metroLabel513.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel513.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel513.Location = new System.Drawing.Point(182, 56);
+            this.metroLabel513.Name = "metroLabel513";
+            this.metroLabel513.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel513.TabIndex = 111;
+            this.metroLabel513.Text = "Deaths:";
+            // 
+            // metroLabel514
+            // 
+            this.metroLabel514.AutoSize = true;
+            this.metroLabel514.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel514.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel514.Location = new System.Drawing.Point(87, 56);
+            this.metroLabel514.Name = "metroLabel514";
+            this.metroLabel514.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel514.TabIndex = 135;
+            this.metroLabel514.Text = "Triple Kills:";
+            this.metroLabel514.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsPentaKills10
+            // 
+            this.statsPentaKills10.AutoSize = true;
+            this.statsPentaKills10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills10.Location = new System.Drawing.Point(157, 20);
+            this.statsPentaKills10.Name = "statsPentaKills10";
+            this.statsPentaKills10.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills10.TabIndex = 134;
+            this.statsPentaKills10.Text = "10";
+            this.statsPentaKills10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel516
+            // 
+            this.metroLabel516.AutoSize = true;
+            this.metroLabel516.BackColor = System.Drawing.Color.Black;
+            this.metroLabel516.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel516.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel516.Location = new System.Drawing.Point(182, 20);
+            this.metroLabel516.Name = "metroLabel516";
+            this.metroLabel516.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel516.TabIndex = 12;
+            this.metroLabel516.Text = "Kills:";
+            this.metroLabel516.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel517
+            // 
+            this.metroLabel517.AutoSize = true;
+            this.metroLabel517.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel517.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel517.Location = new System.Drawing.Point(182, 38);
+            this.metroLabel517.Name = "metroLabel517";
+            this.metroLabel517.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel517.TabIndex = 108;
+            this.metroLabel517.Text = "Assists:";
+            // 
+            // statsQuadroKills10
+            // 
+            this.statsQuadroKills10.AutoSize = true;
+            this.statsQuadroKills10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills10.Location = new System.Drawing.Point(157, 38);
+            this.statsQuadroKills10.Name = "statsQuadroKills10";
+            this.statsQuadroKills10.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills10.TabIndex = 135;
+            this.statsQuadroKills10.Text = "10";
+            this.statsQuadroKills10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills10
+            // 
+            this.statsKills10.AutoSize = true;
+            this.statsKills10.BackColor = System.Drawing.Color.Black;
+            this.statsKills10.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills10.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills10.Location = new System.Drawing.Point(224, 20);
+            this.statsKills10.Name = "statsKills10";
+            this.statsKills10.Size = new System.Drawing.Size(25, 15);
+            this.statsKills10.TabIndex = 119;
+            this.statsKills10.Text = "100";
+            this.statsKills10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel520
+            // 
+            this.metroLabel520.AutoSize = true;
+            this.metroLabel520.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel520.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel520.Location = new System.Drawing.Point(87, 38);
+            this.metroLabel520.Name = "metroLabel520";
+            this.metroLabel520.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel520.TabIndex = 134;
+            this.metroLabel520.Text = "Quadro Kills:";
+            this.metroLabel520.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.White;
+            this.panel18.Controls.Add(this.statsMVP9);
+            this.panel18.Controls.Add(this.metroButton59);
+            this.panel18.Controls.Add(this.metroButton60);
+            this.panel18.Controls.Add(this.metroButton61);
+            this.panel18.Controls.Add(this.metroLabel482);
+            this.panel18.Controls.Add(this.statsNickname9);
+            this.panel18.Controls.Add(this.metroLabel483);
+            this.panel18.Controls.Add(this.statsDeaths9);
+            this.panel18.Controls.Add(this.statsKR9);
+            this.panel18.Controls.Add(this.statsHS9);
+            this.panel18.Controls.Add(this.metroLabel487);
+            this.panel18.Controls.Add(this.statsTripleKills9);
+            this.panel18.Controls.Add(this.statsKD9);
+            this.panel18.Controls.Add(this.metroLabel490);
+            this.panel18.Controls.Add(this.metroLabel491);
+            this.panel18.Controls.Add(this.statsAssists9);
+            this.panel18.Controls.Add(this.metroLabel493);
+            this.panel18.Controls.Add(this.metroLabel494);
+            this.panel18.Controls.Add(this.statsPentaKills9);
+            this.panel18.Controls.Add(this.metroLabel496);
+            this.panel18.Controls.Add(this.metroLabel497);
+            this.panel18.Controls.Add(this.statsQuadroKills9);
+            this.panel18.Controls.Add(this.statsKills9);
+            this.panel18.Controls.Add(this.metroLabel500);
+            this.panel18.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel18.Location = new System.Drawing.Point(512, 281);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(367, 74);
+            this.panel18.TabIndex = 137;
+            // 
+            // statsMVP9
+            // 
+            this.statsMVP9.AutoSize = true;
+            this.statsMVP9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP9.Location = new System.Drawing.Point(53, 56);
+            this.statsMVP9.Name = "statsMVP9";
+            this.statsMVP9.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP9.TabIndex = 118;
+            this.statsMVP9.Text = "10";
+            this.statsMVP9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton59
+            // 
+            this.metroButton59.Location = new System.Drawing.Point(271, 38);
+            this.metroButton59.Name = "metroButton59";
+            this.metroButton59.Size = new System.Drawing.Size(93, 15);
+            this.metroButton59.TabIndex = 115;
+            this.metroButton59.Text = "STEAM";
+            // 
+            // metroButton60
+            // 
+            this.metroButton60.Location = new System.Drawing.Point(271, 56);
+            this.metroButton60.Name = "metroButton60";
+            this.metroButton60.Size = new System.Drawing.Size(93, 15);
+            this.metroButton60.TabIndex = 114;
+            this.metroButton60.Text = "LOAD PROFILE";
+            // 
+            // metroButton61
+            // 
+            this.metroButton61.Location = new System.Drawing.Point(271, 20);
+            this.metroButton61.Name = "metroButton61";
+            this.metroButton61.Size = new System.Drawing.Size(93, 15);
+            this.metroButton61.TabIndex = 113;
+            this.metroButton61.Text = "FACEIT";
+            // 
+            // metroLabel482
+            // 
+            this.metroLabel482.AutoSize = true;
+            this.metroLabel482.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel482.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel482.Location = new System.Drawing.Point(3, 56);
+            this.metroLabel482.Name = "metroLabel482";
+            this.metroLabel482.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel482.TabIndex = 11;
+            this.metroLabel482.Text = "MVPs:";
+            this.metroLabel482.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsNickname9
+            // 
+            this.statsNickname9.BackColor = System.Drawing.Color.White;
+            this.statsNickname9.CustomBackground = true;
+            this.statsNickname9.Location = new System.Drawing.Point(165, 3);
+            this.statsNickname9.Name = "statsNickname9";
+            this.statsNickname9.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname9.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname9.TabIndex = 8;
+            this.statsNickname9.Text = "nickname";
+            this.statsNickname9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statsNickname9.UseStyleColors = true;
+            // 
+            // metroLabel483
+            // 
+            this.metroLabel483.AutoSize = true;
+            this.metroLabel483.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel483.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel483.Location = new System.Drawing.Point(3, 5);
+            this.metroLabel483.Name = "metroLabel483";
+            this.metroLabel483.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel483.TabIndex = 9;
+            this.metroLabel483.Text = "HS:";
+            // 
+            // statsDeaths9
+            // 
+            this.statsDeaths9.AutoSize = true;
+            this.statsDeaths9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths9.Location = new System.Drawing.Point(224, 56);
+            this.statsDeaths9.Name = "statsDeaths9";
+            this.statsDeaths9.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths9.TabIndex = 122;
+            this.statsDeaths9.Text = "100";
+            // 
+            // statsKR9
+            // 
+            this.statsKR9.AutoSize = true;
+            this.statsKR9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR9.Location = new System.Drawing.Point(53, 38);
+            this.statsKR9.Name = "statsKR9";
+            this.statsKR9.Size = new System.Drawing.Size(28, 15);
+            this.statsKR9.TabIndex = 123;
+            this.statsKR9.Text = "1.00";
+            // 
+            // statsHS9
+            // 
+            this.statsHS9.AutoSize = true;
+            this.statsHS9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS9.Location = new System.Drawing.Point(34, 5);
+            this.statsHS9.Name = "statsHS9";
+            this.statsHS9.Size = new System.Drawing.Size(64, 15);
+            this.statsHS9.TabIndex = 117;
+            this.statsHS9.Text = "100 (100%)";
+            // 
+            // metroLabel487
+            // 
+            this.metroLabel487.AutoSize = true;
+            this.metroLabel487.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel487.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel487.Location = new System.Drawing.Point(3, 20);
+            this.metroLabel487.Name = "metroLabel487";
+            this.metroLabel487.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel487.TabIndex = 14;
+            this.metroLabel487.Text = "K\\D Rat.:";
+            // 
+            // statsTripleKills9
+            // 
+            this.statsTripleKills9.AutoSize = true;
+            this.statsTripleKills9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills9.Location = new System.Drawing.Point(157, 56);
+            this.statsTripleKills9.Name = "statsTripleKills9";
+            this.statsTripleKills9.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills9.TabIndex = 133;
+            this.statsTripleKills9.Text = "10";
+            this.statsTripleKills9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD9
+            // 
+            this.statsKD9.AutoSize = true;
+            this.statsKD9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD9.Location = new System.Drawing.Point(53, 20);
+            this.statsKD9.Name = "statsKD9";
+            this.statsKD9.Size = new System.Drawing.Size(28, 15);
+            this.statsKD9.TabIndex = 120;
+            this.statsKD9.Text = "1.00";
+            // 
+            // metroLabel490
+            // 
+            this.metroLabel490.AutoSize = true;
+            this.metroLabel490.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel490.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel490.Location = new System.Drawing.Point(3, 38);
+            this.metroLabel490.Name = "metroLabel490";
+            this.metroLabel490.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel490.TabIndex = 132;
+            this.metroLabel490.Text = "K\\R Rat.:";
+            // 
+            // metroLabel491
+            // 
+            this.metroLabel491.AutoSize = true;
+            this.metroLabel491.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel491.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel491.Location = new System.Drawing.Point(87, 20);
+            this.metroLabel491.Name = "metroLabel491";
+            this.metroLabel491.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel491.TabIndex = 133;
+            this.metroLabel491.Text = "Penta Kills:";
+            this.metroLabel491.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsAssists9
+            // 
+            this.statsAssists9.AutoSize = true;
+            this.statsAssists9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists9.Location = new System.Drawing.Point(224, 38);
+            this.statsAssists9.Name = "statsAssists9";
+            this.statsAssists9.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists9.TabIndex = 121;
+            this.statsAssists9.Text = "100";
+            // 
+            // metroLabel493
+            // 
+            this.metroLabel493.AutoSize = true;
+            this.metroLabel493.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel493.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel493.Location = new System.Drawing.Point(182, 56);
+            this.metroLabel493.Name = "metroLabel493";
+            this.metroLabel493.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel493.TabIndex = 111;
+            this.metroLabel493.Text = "Deaths:";
+            // 
+            // metroLabel494
+            // 
+            this.metroLabel494.AutoSize = true;
+            this.metroLabel494.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel494.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel494.Location = new System.Drawing.Point(87, 56);
+            this.metroLabel494.Name = "metroLabel494";
+            this.metroLabel494.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel494.TabIndex = 135;
+            this.metroLabel494.Text = "Triple Kills:";
+            this.metroLabel494.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsPentaKills9
+            // 
+            this.statsPentaKills9.AutoSize = true;
+            this.statsPentaKills9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills9.Location = new System.Drawing.Point(157, 20);
+            this.statsPentaKills9.Name = "statsPentaKills9";
+            this.statsPentaKills9.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills9.TabIndex = 134;
+            this.statsPentaKills9.Text = "10";
+            this.statsPentaKills9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel496
+            // 
+            this.metroLabel496.AutoSize = true;
+            this.metroLabel496.BackColor = System.Drawing.Color.Black;
+            this.metroLabel496.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel496.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel496.Location = new System.Drawing.Point(182, 20);
+            this.metroLabel496.Name = "metroLabel496";
+            this.metroLabel496.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel496.TabIndex = 12;
+            this.metroLabel496.Text = "Kills:";
+            this.metroLabel496.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel497
+            // 
+            this.metroLabel497.AutoSize = true;
+            this.metroLabel497.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel497.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel497.Location = new System.Drawing.Point(182, 38);
+            this.metroLabel497.Name = "metroLabel497";
+            this.metroLabel497.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel497.TabIndex = 108;
+            this.metroLabel497.Text = "Assists:";
+            // 
+            // statsQuadroKills9
+            // 
+            this.statsQuadroKills9.AutoSize = true;
+            this.statsQuadroKills9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills9.Location = new System.Drawing.Point(157, 38);
+            this.statsQuadroKills9.Name = "statsQuadroKills9";
+            this.statsQuadroKills9.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills9.TabIndex = 135;
+            this.statsQuadroKills9.Text = "10";
+            this.statsQuadroKills9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills9
+            // 
+            this.statsKills9.AutoSize = true;
+            this.statsKills9.BackColor = System.Drawing.Color.Black;
+            this.statsKills9.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills9.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills9.Location = new System.Drawing.Point(224, 20);
+            this.statsKills9.Name = "statsKills9";
+            this.statsKills9.Size = new System.Drawing.Size(25, 15);
+            this.statsKills9.TabIndex = 119;
+            this.statsKills9.Text = "100";
+            this.statsKills9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel500
+            // 
+            this.metroLabel500.AutoSize = true;
+            this.metroLabel500.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel500.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel500.Location = new System.Drawing.Point(87, 38);
+            this.metroLabel500.Name = "metroLabel500";
+            this.metroLabel500.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel500.TabIndex = 134;
+            this.metroLabel500.Text = "Quadro Kills:";
+            this.metroLabel500.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.White;
+            this.panel17.Controls.Add(this.statsMVP8);
+            this.panel17.Controls.Add(this.metroButton56);
+            this.panel17.Controls.Add(this.metroButton57);
+            this.panel17.Controls.Add(this.metroButton58);
+            this.panel17.Controls.Add(this.metroLabel462);
+            this.panel17.Controls.Add(this.statsNickname8);
+            this.panel17.Controls.Add(this.metroLabel463);
+            this.panel17.Controls.Add(this.statsDeaths8);
+            this.panel17.Controls.Add(this.statsKR8);
+            this.panel17.Controls.Add(this.statsHS8);
+            this.panel17.Controls.Add(this.metroLabel467);
+            this.panel17.Controls.Add(this.statsTripleKills8);
+            this.panel17.Controls.Add(this.statsKD8);
+            this.panel17.Controls.Add(this.metroLabel470);
+            this.panel17.Controls.Add(this.metroLabel471);
+            this.panel17.Controls.Add(this.statsAssists8);
+            this.panel17.Controls.Add(this.metroLabel473);
+            this.panel17.Controls.Add(this.metroLabel474);
+            this.panel17.Controls.Add(this.statsPentaKills8);
+            this.panel17.Controls.Add(this.metroLabel476);
+            this.panel17.Controls.Add(this.metroLabel477);
+            this.panel17.Controls.Add(this.statsQuadroKills8);
+            this.panel17.Controls.Add(this.statsKills8);
+            this.panel17.Controls.Add(this.metroLabel480);
+            this.panel17.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel17.Location = new System.Drawing.Point(512, 186);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(367, 74);
+            this.panel17.TabIndex = 137;
+            // 
+            // statsMVP8
+            // 
+            this.statsMVP8.AutoSize = true;
+            this.statsMVP8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP8.Location = new System.Drawing.Point(53, 56);
+            this.statsMVP8.Name = "statsMVP8";
+            this.statsMVP8.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP8.TabIndex = 118;
+            this.statsMVP8.Text = "10";
+            this.statsMVP8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton56
+            // 
+            this.metroButton56.Location = new System.Drawing.Point(271, 38);
+            this.metroButton56.Name = "metroButton56";
+            this.metroButton56.Size = new System.Drawing.Size(93, 15);
+            this.metroButton56.TabIndex = 115;
+            this.metroButton56.Text = "STEAM";
+            // 
+            // metroButton57
+            // 
+            this.metroButton57.Location = new System.Drawing.Point(271, 56);
+            this.metroButton57.Name = "metroButton57";
+            this.metroButton57.Size = new System.Drawing.Size(93, 15);
+            this.metroButton57.TabIndex = 114;
+            this.metroButton57.Text = "LOAD PROFILE";
+            // 
+            // metroButton58
+            // 
+            this.metroButton58.Location = new System.Drawing.Point(271, 20);
+            this.metroButton58.Name = "metroButton58";
+            this.metroButton58.Size = new System.Drawing.Size(93, 15);
+            this.metroButton58.TabIndex = 113;
+            this.metroButton58.Text = "FACEIT";
+            // 
+            // metroLabel462
+            // 
+            this.metroLabel462.AutoSize = true;
+            this.metroLabel462.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel462.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel462.Location = new System.Drawing.Point(3, 56);
+            this.metroLabel462.Name = "metroLabel462";
+            this.metroLabel462.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel462.TabIndex = 11;
+            this.metroLabel462.Text = "MVPs:";
+            this.metroLabel462.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsNickname8
+            // 
+            this.statsNickname8.BackColor = System.Drawing.Color.White;
+            this.statsNickname8.CustomBackground = true;
+            this.statsNickname8.Location = new System.Drawing.Point(165, 3);
+            this.statsNickname8.Name = "statsNickname8";
+            this.statsNickname8.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname8.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname8.TabIndex = 8;
+            this.statsNickname8.Text = "nickname";
+            this.statsNickname8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statsNickname8.UseStyleColors = true;
+            // 
+            // metroLabel463
+            // 
+            this.metroLabel463.AutoSize = true;
+            this.metroLabel463.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel463.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel463.Location = new System.Drawing.Point(3, 5);
+            this.metroLabel463.Name = "metroLabel463";
+            this.metroLabel463.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel463.TabIndex = 9;
+            this.metroLabel463.Text = "HS:";
+            // 
+            // statsDeaths8
+            // 
+            this.statsDeaths8.AutoSize = true;
+            this.statsDeaths8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths8.Location = new System.Drawing.Point(224, 56);
+            this.statsDeaths8.Name = "statsDeaths8";
+            this.statsDeaths8.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths8.TabIndex = 122;
+            this.statsDeaths8.Text = "100";
+            // 
+            // statsKR8
+            // 
+            this.statsKR8.AutoSize = true;
+            this.statsKR8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR8.Location = new System.Drawing.Point(53, 38);
+            this.statsKR8.Name = "statsKR8";
+            this.statsKR8.Size = new System.Drawing.Size(28, 15);
+            this.statsKR8.TabIndex = 123;
+            this.statsKR8.Text = "1.00";
+            // 
+            // statsHS8
+            // 
+            this.statsHS8.AutoSize = true;
+            this.statsHS8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS8.Location = new System.Drawing.Point(34, 5);
+            this.statsHS8.Name = "statsHS8";
+            this.statsHS8.Size = new System.Drawing.Size(64, 15);
+            this.statsHS8.TabIndex = 117;
+            this.statsHS8.Text = "100 (100%)";
+            // 
+            // metroLabel467
+            // 
+            this.metroLabel467.AutoSize = true;
+            this.metroLabel467.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel467.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel467.Location = new System.Drawing.Point(3, 20);
+            this.metroLabel467.Name = "metroLabel467";
+            this.metroLabel467.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel467.TabIndex = 14;
+            this.metroLabel467.Text = "K\\D Rat.:";
+            // 
+            // statsTripleKills8
+            // 
+            this.statsTripleKills8.AutoSize = true;
+            this.statsTripleKills8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills8.Location = new System.Drawing.Point(157, 56);
+            this.statsTripleKills8.Name = "statsTripleKills8";
+            this.statsTripleKills8.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills8.TabIndex = 133;
+            this.statsTripleKills8.Text = "10";
+            this.statsTripleKills8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD8
+            // 
+            this.statsKD8.AutoSize = true;
+            this.statsKD8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD8.Location = new System.Drawing.Point(53, 20);
+            this.statsKD8.Name = "statsKD8";
+            this.statsKD8.Size = new System.Drawing.Size(28, 15);
+            this.statsKD8.TabIndex = 120;
+            this.statsKD8.Text = "1.00";
+            // 
+            // metroLabel470
+            // 
+            this.metroLabel470.AutoSize = true;
+            this.metroLabel470.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel470.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel470.Location = new System.Drawing.Point(3, 38);
+            this.metroLabel470.Name = "metroLabel470";
+            this.metroLabel470.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel470.TabIndex = 132;
+            this.metroLabel470.Text = "K\\R Rat.:";
+            // 
+            // metroLabel471
+            // 
+            this.metroLabel471.AutoSize = true;
+            this.metroLabel471.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel471.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel471.Location = new System.Drawing.Point(87, 20);
+            this.metroLabel471.Name = "metroLabel471";
+            this.metroLabel471.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel471.TabIndex = 133;
+            this.metroLabel471.Text = "Penta Kills:";
+            this.metroLabel471.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsAssists8
+            // 
+            this.statsAssists8.AutoSize = true;
+            this.statsAssists8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists8.Location = new System.Drawing.Point(224, 38);
+            this.statsAssists8.Name = "statsAssists8";
+            this.statsAssists8.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists8.TabIndex = 121;
+            this.statsAssists8.Text = "100";
+            // 
+            // metroLabel473
+            // 
+            this.metroLabel473.AutoSize = true;
+            this.metroLabel473.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel473.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel473.Location = new System.Drawing.Point(182, 56);
+            this.metroLabel473.Name = "metroLabel473";
+            this.metroLabel473.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel473.TabIndex = 111;
+            this.metroLabel473.Text = "Deaths:";
+            // 
+            // metroLabel474
+            // 
+            this.metroLabel474.AutoSize = true;
+            this.metroLabel474.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel474.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel474.Location = new System.Drawing.Point(87, 56);
+            this.metroLabel474.Name = "metroLabel474";
+            this.metroLabel474.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel474.TabIndex = 135;
+            this.metroLabel474.Text = "Triple Kills:";
+            this.metroLabel474.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsPentaKills8
+            // 
+            this.statsPentaKills8.AutoSize = true;
+            this.statsPentaKills8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills8.Location = new System.Drawing.Point(157, 20);
+            this.statsPentaKills8.Name = "statsPentaKills8";
+            this.statsPentaKills8.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills8.TabIndex = 134;
+            this.statsPentaKills8.Text = "10";
+            this.statsPentaKills8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel476
+            // 
+            this.metroLabel476.AutoSize = true;
+            this.metroLabel476.BackColor = System.Drawing.Color.Black;
+            this.metroLabel476.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel476.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel476.Location = new System.Drawing.Point(182, 20);
+            this.metroLabel476.Name = "metroLabel476";
+            this.metroLabel476.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel476.TabIndex = 12;
+            this.metroLabel476.Text = "Kills:";
+            this.metroLabel476.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel477
+            // 
+            this.metroLabel477.AutoSize = true;
+            this.metroLabel477.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel477.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel477.Location = new System.Drawing.Point(182, 38);
+            this.metroLabel477.Name = "metroLabel477";
+            this.metroLabel477.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel477.TabIndex = 108;
+            this.metroLabel477.Text = "Assists:";
+            // 
+            // statsQuadroKills8
+            // 
+            this.statsQuadroKills8.AutoSize = true;
+            this.statsQuadroKills8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills8.Location = new System.Drawing.Point(157, 38);
+            this.statsQuadroKills8.Name = "statsQuadroKills8";
+            this.statsQuadroKills8.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills8.TabIndex = 135;
+            this.statsQuadroKills8.Text = "10";
+            this.statsQuadroKills8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills8
+            // 
+            this.statsKills8.AutoSize = true;
+            this.statsKills8.BackColor = System.Drawing.Color.Black;
+            this.statsKills8.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills8.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills8.Location = new System.Drawing.Point(224, 20);
+            this.statsKills8.Name = "statsKills8";
+            this.statsKills8.Size = new System.Drawing.Size(25, 15);
+            this.statsKills8.TabIndex = 119;
+            this.statsKills8.Text = "100";
+            this.statsKills8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel480
+            // 
+            this.metroLabel480.AutoSize = true;
+            this.metroLabel480.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel480.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel480.Location = new System.Drawing.Point(87, 38);
+            this.metroLabel480.Name = "metroLabel480";
+            this.metroLabel480.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel480.TabIndex = 134;
+            this.metroLabel480.Text = "Quadro Kills:";
+            this.metroLabel480.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.Color.White;
+            this.panel16.Controls.Add(this.statsMVP7);
+            this.panel16.Controls.Add(this.metroButton53);
+            this.panel16.Controls.Add(this.metroButton54);
+            this.panel16.Controls.Add(this.metroButton55);
+            this.panel16.Controls.Add(this.metroLabel442);
+            this.panel16.Controls.Add(this.statsNickname7);
+            this.panel16.Controls.Add(this.metroLabel443);
+            this.panel16.Controls.Add(this.statsDeaths7);
+            this.panel16.Controls.Add(this.statsKR7);
+            this.panel16.Controls.Add(this.statsHS7);
+            this.panel16.Controls.Add(this.metroLabel447);
+            this.panel16.Controls.Add(this.statsTripleKills7);
+            this.panel16.Controls.Add(this.statsKD7);
+            this.panel16.Controls.Add(this.metroLabel450);
+            this.panel16.Controls.Add(this.metroLabel451);
+            this.panel16.Controls.Add(this.statsAssists7);
+            this.panel16.Controls.Add(this.metroLabel453);
+            this.panel16.Controls.Add(this.metroLabel454);
+            this.panel16.Controls.Add(this.statsPentaKills7);
+            this.panel16.Controls.Add(this.metroLabel456);
+            this.panel16.Controls.Add(this.metroLabel457);
+            this.panel16.Controls.Add(this.statsQuadroKills7);
+            this.panel16.Controls.Add(this.statsKills7);
+            this.panel16.Controls.Add(this.metroLabel460);
+            this.panel16.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel16.Location = new System.Drawing.Point(512, 92);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(367, 74);
+            this.panel16.TabIndex = 137;
+            // 
+            // statsMVP7
+            // 
+            this.statsMVP7.AutoSize = true;
+            this.statsMVP7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP7.Location = new System.Drawing.Point(53, 56);
+            this.statsMVP7.Name = "statsMVP7";
+            this.statsMVP7.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP7.TabIndex = 118;
+            this.statsMVP7.Text = "10";
+            this.statsMVP7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton53
+            // 
+            this.metroButton53.Location = new System.Drawing.Point(271, 38);
+            this.metroButton53.Name = "metroButton53";
+            this.metroButton53.Size = new System.Drawing.Size(93, 15);
+            this.metroButton53.TabIndex = 115;
+            this.metroButton53.Text = "STEAM";
+            // 
+            // metroButton54
+            // 
+            this.metroButton54.Location = new System.Drawing.Point(271, 56);
+            this.metroButton54.Name = "metroButton54";
+            this.metroButton54.Size = new System.Drawing.Size(93, 15);
+            this.metroButton54.TabIndex = 114;
+            this.metroButton54.Text = "LOAD PROFILE";
+            // 
+            // metroButton55
+            // 
+            this.metroButton55.Location = new System.Drawing.Point(271, 20);
+            this.metroButton55.Name = "metroButton55";
+            this.metroButton55.Size = new System.Drawing.Size(93, 15);
+            this.metroButton55.TabIndex = 113;
+            this.metroButton55.Text = "FACEIT";
+            // 
+            // metroLabel442
+            // 
+            this.metroLabel442.AutoSize = true;
+            this.metroLabel442.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel442.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel442.Location = new System.Drawing.Point(3, 56);
+            this.metroLabel442.Name = "metroLabel442";
+            this.metroLabel442.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel442.TabIndex = 11;
+            this.metroLabel442.Text = "MVPs:";
+            this.metroLabel442.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsNickname7
+            // 
+            this.statsNickname7.BackColor = System.Drawing.Color.White;
+            this.statsNickname7.CustomBackground = true;
+            this.statsNickname7.Location = new System.Drawing.Point(165, 3);
+            this.statsNickname7.Name = "statsNickname7";
+            this.statsNickname7.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname7.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname7.TabIndex = 8;
+            this.statsNickname7.Text = "nickname";
+            this.statsNickname7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statsNickname7.UseStyleColors = true;
+            // 
+            // metroLabel443
+            // 
+            this.metroLabel443.AutoSize = true;
+            this.metroLabel443.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel443.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel443.Location = new System.Drawing.Point(3, 5);
+            this.metroLabel443.Name = "metroLabel443";
+            this.metroLabel443.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel443.TabIndex = 9;
+            this.metroLabel443.Text = "HS:";
+            // 
+            // statsDeaths7
+            // 
+            this.statsDeaths7.AutoSize = true;
+            this.statsDeaths7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths7.Location = new System.Drawing.Point(224, 56);
+            this.statsDeaths7.Name = "statsDeaths7";
+            this.statsDeaths7.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths7.TabIndex = 122;
+            this.statsDeaths7.Text = "100";
+            // 
+            // statsKR7
+            // 
+            this.statsKR7.AutoSize = true;
+            this.statsKR7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR7.Location = new System.Drawing.Point(53, 38);
+            this.statsKR7.Name = "statsKR7";
+            this.statsKR7.Size = new System.Drawing.Size(28, 15);
+            this.statsKR7.TabIndex = 123;
+            this.statsKR7.Text = "1.00";
+            // 
+            // statsHS7
+            // 
+            this.statsHS7.AutoSize = true;
+            this.statsHS7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS7.Location = new System.Drawing.Point(34, 5);
+            this.statsHS7.Name = "statsHS7";
+            this.statsHS7.Size = new System.Drawing.Size(64, 15);
+            this.statsHS7.TabIndex = 117;
+            this.statsHS7.Text = "100 (100%)";
+            // 
+            // metroLabel447
+            // 
+            this.metroLabel447.AutoSize = true;
+            this.metroLabel447.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel447.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel447.Location = new System.Drawing.Point(3, 20);
+            this.metroLabel447.Name = "metroLabel447";
+            this.metroLabel447.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel447.TabIndex = 14;
+            this.metroLabel447.Text = "K\\D Rat.:";
+            // 
+            // statsTripleKills7
+            // 
+            this.statsTripleKills7.AutoSize = true;
+            this.statsTripleKills7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills7.Location = new System.Drawing.Point(157, 56);
+            this.statsTripleKills7.Name = "statsTripleKills7";
+            this.statsTripleKills7.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills7.TabIndex = 133;
+            this.statsTripleKills7.Text = "10";
+            this.statsTripleKills7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD7
+            // 
+            this.statsKD7.AutoSize = true;
+            this.statsKD7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD7.Location = new System.Drawing.Point(53, 20);
+            this.statsKD7.Name = "statsKD7";
+            this.statsKD7.Size = new System.Drawing.Size(28, 15);
+            this.statsKD7.TabIndex = 120;
+            this.statsKD7.Text = "1.00";
+            // 
+            // metroLabel450
+            // 
+            this.metroLabel450.AutoSize = true;
+            this.metroLabel450.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel450.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel450.Location = new System.Drawing.Point(3, 38);
+            this.metroLabel450.Name = "metroLabel450";
+            this.metroLabel450.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel450.TabIndex = 132;
+            this.metroLabel450.Text = "K\\R Rat.:";
+            // 
+            // metroLabel451
+            // 
+            this.metroLabel451.AutoSize = true;
+            this.metroLabel451.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel451.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel451.Location = new System.Drawing.Point(87, 20);
+            this.metroLabel451.Name = "metroLabel451";
+            this.metroLabel451.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel451.TabIndex = 133;
+            this.metroLabel451.Text = "Penta Kills:";
+            this.metroLabel451.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsAssists7
+            // 
+            this.statsAssists7.AutoSize = true;
+            this.statsAssists7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists7.Location = new System.Drawing.Point(224, 38);
+            this.statsAssists7.Name = "statsAssists7";
+            this.statsAssists7.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists7.TabIndex = 121;
+            this.statsAssists7.Text = "100";
+            // 
+            // metroLabel453
+            // 
+            this.metroLabel453.AutoSize = true;
+            this.metroLabel453.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel453.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel453.Location = new System.Drawing.Point(182, 56);
+            this.metroLabel453.Name = "metroLabel453";
+            this.metroLabel453.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel453.TabIndex = 111;
+            this.metroLabel453.Text = "Deaths:";
+            // 
+            // metroLabel454
+            // 
+            this.metroLabel454.AutoSize = true;
+            this.metroLabel454.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel454.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel454.Location = new System.Drawing.Point(87, 56);
+            this.metroLabel454.Name = "metroLabel454";
+            this.metroLabel454.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel454.TabIndex = 135;
+            this.metroLabel454.Text = "Triple Kills:";
+            this.metroLabel454.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsPentaKills7
+            // 
+            this.statsPentaKills7.AutoSize = true;
+            this.statsPentaKills7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills7.Location = new System.Drawing.Point(157, 20);
+            this.statsPentaKills7.Name = "statsPentaKills7";
+            this.statsPentaKills7.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills7.TabIndex = 134;
+            this.statsPentaKills7.Text = "10";
+            this.statsPentaKills7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel456
+            // 
+            this.metroLabel456.AutoSize = true;
+            this.metroLabel456.BackColor = System.Drawing.Color.Black;
+            this.metroLabel456.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel456.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel456.Location = new System.Drawing.Point(182, 20);
+            this.metroLabel456.Name = "metroLabel456";
+            this.metroLabel456.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel456.TabIndex = 12;
+            this.metroLabel456.Text = "Kills:";
+            this.metroLabel456.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel457
+            // 
+            this.metroLabel457.AutoSize = true;
+            this.metroLabel457.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel457.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel457.Location = new System.Drawing.Point(182, 38);
+            this.metroLabel457.Name = "metroLabel457";
+            this.metroLabel457.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel457.TabIndex = 108;
+            this.metroLabel457.Text = "Assists:";
+            // 
+            // statsQuadroKills7
+            // 
+            this.statsQuadroKills7.AutoSize = true;
+            this.statsQuadroKills7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills7.Location = new System.Drawing.Point(157, 38);
+            this.statsQuadroKills7.Name = "statsQuadroKills7";
+            this.statsQuadroKills7.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills7.TabIndex = 135;
+            this.statsQuadroKills7.Text = "10";
+            this.statsQuadroKills7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills7
+            // 
+            this.statsKills7.AutoSize = true;
+            this.statsKills7.BackColor = System.Drawing.Color.Black;
+            this.statsKills7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills7.Location = new System.Drawing.Point(224, 20);
+            this.statsKills7.Name = "statsKills7";
+            this.statsKills7.Size = new System.Drawing.Size(25, 15);
+            this.statsKills7.TabIndex = 119;
+            this.statsKills7.Text = "100";
+            this.statsKills7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel460
+            // 
+            this.metroLabel460.AutoSize = true;
+            this.metroLabel460.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel460.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel460.Location = new System.Drawing.Point(87, 38);
+            this.metroLabel460.Name = "metroLabel460";
+            this.metroLabel460.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel460.TabIndex = 134;
+            this.metroLabel460.Text = "Quadro Kills:";
+            this.metroLabel460.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Controls.Add(this.statsMVP5);
+            this.panel13.Controls.Add(this.metroButton44);
+            this.panel13.Controls.Add(this.metroLabel356);
+            this.panel13.Controls.Add(this.statsHS5);
+            this.panel13.Controls.Add(this.metroButton45);
+            this.panel13.Controls.Add(this.metroLabel384);
+            this.panel13.Controls.Add(this.statsKR5);
+            this.panel13.Controls.Add(this.statsDeaths5);
+            this.panel13.Controls.Add(this.metroButton46);
+            this.panel13.Controls.Add(this.statsNickname5);
+            this.panel13.Controls.Add(this.metroLabel387);
+            this.panel13.Controls.Add(this.statsTripleKills5);
+            this.panel13.Controls.Add(this.statsKD5);
+            this.panel13.Controls.Add(this.statsAssists5);
+            this.panel13.Controls.Add(this.statsPentaKills5);
+            this.panel13.Controls.Add(this.metroLabel392);
+            this.panel13.Controls.Add(this.metroLabel393);
+            this.panel13.Controls.Add(this.metroLabel394);
+            this.panel13.Controls.Add(this.statsQuadroKills5);
+            this.panel13.Controls.Add(this.metroLabel396);
+            this.panel13.Controls.Add(this.metroLabel397);
+            this.panel13.Controls.Add(this.statsKills5);
+            this.panel13.Controls.Add(this.metroLabel399);
+            this.panel13.Controls.Add(this.metroLabel400);
+            this.panel13.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel13.Location = new System.Drawing.Point(0, 374);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(367, 74);
+            this.panel13.TabIndex = 137;
+            // 
+            // statsMVP5
+            // 
+            this.statsMVP5.AutoSize = true;
+            this.statsMVP5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP5.Location = new System.Drawing.Point(321, 56);
+            this.statsMVP5.Name = "statsMVP5";
+            this.statsMVP5.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP5.TabIndex = 118;
+            this.statsMVP5.Text = "10";
+            this.statsMVP5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton44
+            // 
+            this.metroButton44.Location = new System.Drawing.Point(3, 38);
+            this.metroButton44.Name = "metroButton44";
+            this.metroButton44.Size = new System.Drawing.Size(93, 15);
+            this.metroButton44.TabIndex = 115;
+            this.metroButton44.Text = "STEAM";
+            // 
+            // metroLabel356
+            // 
+            this.metroLabel356.AutoSize = true;
+            this.metroLabel356.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel356.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel356.Location = new System.Drawing.Point(271, 56);
+            this.metroLabel356.Name = "metroLabel356";
+            this.metroLabel356.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel356.TabIndex = 11;
+            this.metroLabel356.Text = "MVPs:";
+            this.metroLabel356.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsHS5
+            // 
+            this.statsHS5.AutoSize = true;
+            this.statsHS5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS5.Location = new System.Drawing.Point(302, 5);
+            this.statsHS5.Name = "statsHS5";
+            this.statsHS5.Size = new System.Drawing.Size(64, 15);
+            this.statsHS5.TabIndex = 117;
+            this.statsHS5.Text = "100 (100%)";
+            // 
+            // metroButton45
+            // 
+            this.metroButton45.Location = new System.Drawing.Point(3, 56);
+            this.metroButton45.Name = "metroButton45";
+            this.metroButton45.Size = new System.Drawing.Size(93, 15);
+            this.metroButton45.TabIndex = 114;
+            this.metroButton45.Text = "LOAD PROFILE";
+            // 
+            // metroLabel384
+            // 
+            this.metroLabel384.AutoSize = true;
+            this.metroLabel384.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel384.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel384.Location = new System.Drawing.Point(271, 5);
+            this.metroLabel384.Name = "metroLabel384";
+            this.metroLabel384.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel384.TabIndex = 9;
+            this.metroLabel384.Text = "HS:";
+            // 
+            // statsKR5
+            // 
+            this.statsKR5.AutoSize = true;
+            this.statsKR5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR5.Location = new System.Drawing.Point(321, 38);
+            this.statsKR5.Name = "statsKR5";
+            this.statsKR5.Size = new System.Drawing.Size(28, 15);
+            this.statsKR5.TabIndex = 123;
+            this.statsKR5.Text = "1.00";
+            // 
+            // statsDeaths5
+            // 
+            this.statsDeaths5.AutoSize = true;
+            this.statsDeaths5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths5.Location = new System.Drawing.Point(144, 56);
+            this.statsDeaths5.Name = "statsDeaths5";
+            this.statsDeaths5.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths5.TabIndex = 122;
+            this.statsDeaths5.Text = "100";
+            // 
+            // metroButton46
+            // 
+            this.metroButton46.Location = new System.Drawing.Point(3, 20);
+            this.metroButton46.Name = "metroButton46";
+            this.metroButton46.Size = new System.Drawing.Size(93, 15);
+            this.metroButton46.TabIndex = 113;
+            this.metroButton46.Text = "FACEIT";
+            // 
+            // statsNickname5
+            // 
+            this.statsNickname5.BackColor = System.Drawing.Color.White;
+            this.statsNickname5.CustomBackground = true;
+            this.statsNickname5.Location = new System.Drawing.Point(3, 3);
+            this.statsNickname5.Name = "statsNickname5";
+            this.statsNickname5.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname5.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname5.TabIndex = 8;
+            this.statsNickname5.Text = "nickname";
+            this.statsNickname5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statsNickname5.UseStyleColors = true;
+            // 
+            // metroLabel387
+            // 
+            this.metroLabel387.AutoSize = true;
+            this.metroLabel387.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel387.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel387.Location = new System.Drawing.Point(271, 38);
+            this.metroLabel387.Name = "metroLabel387";
+            this.metroLabel387.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel387.TabIndex = 132;
+            this.metroLabel387.Text = "K\\R Rat.:";
+            // 
+            // statsTripleKills5
+            // 
+            this.statsTripleKills5.AutoSize = true;
+            this.statsTripleKills5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills5.Location = new System.Drawing.Point(246, 56);
+            this.statsTripleKills5.Name = "statsTripleKills5";
+            this.statsTripleKills5.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills5.TabIndex = 133;
+            this.statsTripleKills5.Text = "10";
+            this.statsTripleKills5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD5
+            // 
+            this.statsKD5.AutoSize = true;
+            this.statsKD5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD5.Location = new System.Drawing.Point(321, 20);
+            this.statsKD5.Name = "statsKD5";
+            this.statsKD5.Size = new System.Drawing.Size(28, 15);
+            this.statsKD5.TabIndex = 120;
+            this.statsKD5.Text = "1.00";
+            this.statsKD5.Click += new System.EventHandler(this.metroLabel389_Click);
+            // 
+            // statsAssists5
+            // 
+            this.statsAssists5.AutoSize = true;
+            this.statsAssists5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists5.Location = new System.Drawing.Point(144, 38);
+            this.statsAssists5.Name = "statsAssists5";
+            this.statsAssists5.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists5.TabIndex = 121;
+            this.statsAssists5.Text = "100";
+            // 
+            // statsPentaKills5
+            // 
+            this.statsPentaKills5.AutoSize = true;
+            this.statsPentaKills5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills5.Location = new System.Drawing.Point(246, 20);
+            this.statsPentaKills5.Name = "statsPentaKills5";
+            this.statsPentaKills5.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills5.TabIndex = 134;
+            this.statsPentaKills5.Text = "10";
+            this.statsPentaKills5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel392
+            // 
+            this.metroLabel392.AutoSize = true;
+            this.metroLabel392.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel392.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel392.Location = new System.Drawing.Point(271, 20);
+            this.metroLabel392.Name = "metroLabel392";
+            this.metroLabel392.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel392.TabIndex = 14;
+            this.metroLabel392.Text = "K\\D Rat.:";
+            // 
+            // metroLabel393
+            // 
+            this.metroLabel393.AutoSize = true;
+            this.metroLabel393.BackColor = System.Drawing.Color.Black;
+            this.metroLabel393.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel393.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel393.Location = new System.Drawing.Point(102, 20);
+            this.metroLabel393.Name = "metroLabel393";
+            this.metroLabel393.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel393.TabIndex = 12;
+            this.metroLabel393.Text = "Kills:";
+            this.metroLabel393.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel394
+            // 
+            this.metroLabel394.AutoSize = true;
+            this.metroLabel394.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel394.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel394.Location = new System.Drawing.Point(102, 38);
+            this.metroLabel394.Name = "metroLabel394";
+            this.metroLabel394.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel394.TabIndex = 108;
+            this.metroLabel394.Text = "Assists:";
+            // 
+            // statsQuadroKills5
+            // 
+            this.statsQuadroKills5.AutoSize = true;
+            this.statsQuadroKills5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills5.Location = new System.Drawing.Point(246, 38);
+            this.statsQuadroKills5.Name = "statsQuadroKills5";
+            this.statsQuadroKills5.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills5.TabIndex = 135;
+            this.statsQuadroKills5.Text = "10";
+            this.statsQuadroKills5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel396
+            // 
+            this.metroLabel396.AutoSize = true;
+            this.metroLabel396.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel396.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel396.Location = new System.Drawing.Point(102, 56);
+            this.metroLabel396.Name = "metroLabel396";
+            this.metroLabel396.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel396.TabIndex = 111;
+            this.metroLabel396.Text = "Deaths:";
+            // 
+            // metroLabel397
+            // 
+            this.metroLabel397.AutoSize = true;
+            this.metroLabel397.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel397.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel397.Location = new System.Drawing.Point(176, 56);
+            this.metroLabel397.Name = "metroLabel397";
+            this.metroLabel397.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel397.TabIndex = 135;
+            this.metroLabel397.Text = "Triple Kills:";
+            this.metroLabel397.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills5
+            // 
+            this.statsKills5.AutoSize = true;
+            this.statsKills5.BackColor = System.Drawing.Color.Black;
+            this.statsKills5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills5.Location = new System.Drawing.Point(144, 20);
+            this.statsKills5.Name = "statsKills5";
+            this.statsKills5.Size = new System.Drawing.Size(25, 15);
+            this.statsKills5.TabIndex = 119;
+            this.statsKills5.Text = "100";
+            this.statsKills5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel399
+            // 
+            this.metroLabel399.AutoSize = true;
+            this.metroLabel399.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel399.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel399.Location = new System.Drawing.Point(176, 20);
+            this.metroLabel399.Name = "metroLabel399";
+            this.metroLabel399.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel399.TabIndex = 133;
+            this.metroLabel399.Text = "Penta Kills:";
+            this.metroLabel399.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel400
+            // 
+            this.metroLabel400.AutoSize = true;
+            this.metroLabel400.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel400.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel400.Location = new System.Drawing.Point(176, 38);
+            this.metroLabel400.Name = "metroLabel400";
+            this.metroLabel400.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel400.TabIndex = 134;
+            this.metroLabel400.Text = "Quadro Kills:";
+            this.metroLabel400.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Controls.Add(this.statsMVP4);
+            this.panel14.Controls.Add(this.metroButton47);
+            this.panel14.Controls.Add(this.metroLabel402);
+            this.panel14.Controls.Add(this.statsHS4);
+            this.panel14.Controls.Add(this.metroButton48);
+            this.panel14.Controls.Add(this.metroLabel404);
+            this.panel14.Controls.Add(this.statsKR4);
+            this.panel14.Controls.Add(this.statsDeaths4);
+            this.panel14.Controls.Add(this.metroButton49);
+            this.panel14.Controls.Add(this.statsNickname4);
+            this.panel14.Controls.Add(this.metroLabel407);
+            this.panel14.Controls.Add(this.statsTripleKills4);
+            this.panel14.Controls.Add(this.statsKD4);
+            this.panel14.Controls.Add(this.statsAssists4);
+            this.panel14.Controls.Add(this.statsPentaKills4);
+            this.panel14.Controls.Add(this.metroLabel412);
+            this.panel14.Controls.Add(this.metroLabel413);
+            this.panel14.Controls.Add(this.metroLabel414);
+            this.panel14.Controls.Add(this.statsQuadroKills4);
+            this.panel14.Controls.Add(this.metroLabel416);
+            this.panel14.Controls.Add(this.metroLabel417);
+            this.panel14.Controls.Add(this.statsKills4);
+            this.panel14.Controls.Add(this.metroLabel419);
+            this.panel14.Controls.Add(this.metroLabel420);
+            this.panel14.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel14.Location = new System.Drawing.Point(0, 281);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(367, 74);
+            this.panel14.TabIndex = 137;
+            // 
+            // statsMVP4
+            // 
+            this.statsMVP4.AutoSize = true;
+            this.statsMVP4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP4.Location = new System.Drawing.Point(321, 56);
+            this.statsMVP4.Name = "statsMVP4";
+            this.statsMVP4.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP4.TabIndex = 118;
+            this.statsMVP4.Text = "10";
+            this.statsMVP4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton47
+            // 
+            this.metroButton47.Location = new System.Drawing.Point(3, 38);
+            this.metroButton47.Name = "metroButton47";
+            this.metroButton47.Size = new System.Drawing.Size(93, 15);
+            this.metroButton47.TabIndex = 115;
+            this.metroButton47.Text = "STEAM";
+            // 
+            // metroLabel402
+            // 
+            this.metroLabel402.AutoSize = true;
+            this.metroLabel402.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel402.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel402.Location = new System.Drawing.Point(271, 56);
+            this.metroLabel402.Name = "metroLabel402";
+            this.metroLabel402.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel402.TabIndex = 11;
+            this.metroLabel402.Text = "MVPs:";
+            this.metroLabel402.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsHS4
+            // 
+            this.statsHS4.AutoSize = true;
+            this.statsHS4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS4.Location = new System.Drawing.Point(302, 5);
+            this.statsHS4.Name = "statsHS4";
+            this.statsHS4.Size = new System.Drawing.Size(64, 15);
+            this.statsHS4.TabIndex = 117;
+            this.statsHS4.Text = "100 (100%)";
+            // 
+            // metroButton48
+            // 
+            this.metroButton48.Location = new System.Drawing.Point(3, 56);
+            this.metroButton48.Name = "metroButton48";
+            this.metroButton48.Size = new System.Drawing.Size(93, 15);
+            this.metroButton48.TabIndex = 114;
+            this.metroButton48.Text = "LOAD PROFILE";
+            // 
+            // metroLabel404
+            // 
+            this.metroLabel404.AutoSize = true;
+            this.metroLabel404.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel404.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel404.Location = new System.Drawing.Point(271, 5);
+            this.metroLabel404.Name = "metroLabel404";
+            this.metroLabel404.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel404.TabIndex = 9;
+            this.metroLabel404.Text = "HS:";
+            // 
+            // statsKR4
+            // 
+            this.statsKR4.AutoSize = true;
+            this.statsKR4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR4.Location = new System.Drawing.Point(321, 38);
+            this.statsKR4.Name = "statsKR4";
+            this.statsKR4.Size = new System.Drawing.Size(28, 15);
+            this.statsKR4.TabIndex = 123;
+            this.statsKR4.Text = "1.00";
+            // 
+            // statsDeaths4
+            // 
+            this.statsDeaths4.AutoSize = true;
+            this.statsDeaths4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths4.Location = new System.Drawing.Point(144, 56);
+            this.statsDeaths4.Name = "statsDeaths4";
+            this.statsDeaths4.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths4.TabIndex = 122;
+            this.statsDeaths4.Text = "100";
+            // 
+            // metroButton49
+            // 
+            this.metroButton49.Location = new System.Drawing.Point(3, 20);
+            this.metroButton49.Name = "metroButton49";
+            this.metroButton49.Size = new System.Drawing.Size(93, 15);
+            this.metroButton49.TabIndex = 113;
+            this.metroButton49.Text = "FACEIT";
+            // 
+            // statsNickname4
+            // 
+            this.statsNickname4.BackColor = System.Drawing.Color.White;
+            this.statsNickname4.CustomBackground = true;
+            this.statsNickname4.Location = new System.Drawing.Point(3, 3);
+            this.statsNickname4.Name = "statsNickname4";
+            this.statsNickname4.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname4.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname4.TabIndex = 8;
+            this.statsNickname4.Text = "nickname";
+            this.statsNickname4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statsNickname4.UseStyleColors = true;
+            // 
+            // metroLabel407
+            // 
+            this.metroLabel407.AutoSize = true;
+            this.metroLabel407.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel407.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel407.Location = new System.Drawing.Point(271, 38);
+            this.metroLabel407.Name = "metroLabel407";
+            this.metroLabel407.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel407.TabIndex = 132;
+            this.metroLabel407.Text = "K\\R Rat.:";
+            // 
+            // statsTripleKills4
+            // 
+            this.statsTripleKills4.AutoSize = true;
+            this.statsTripleKills4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills4.Location = new System.Drawing.Point(246, 56);
+            this.statsTripleKills4.Name = "statsTripleKills4";
+            this.statsTripleKills4.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills4.TabIndex = 133;
+            this.statsTripleKills4.Text = "10";
+            this.statsTripleKills4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD4
+            // 
+            this.statsKD4.AutoSize = true;
+            this.statsKD4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD4.Location = new System.Drawing.Point(321, 20);
+            this.statsKD4.Name = "statsKD4";
+            this.statsKD4.Size = new System.Drawing.Size(28, 15);
+            this.statsKD4.TabIndex = 120;
+            this.statsKD4.Text = "1.00";
+            // 
+            // statsAssists4
+            // 
+            this.statsAssists4.AutoSize = true;
+            this.statsAssists4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists4.Location = new System.Drawing.Point(144, 38);
+            this.statsAssists4.Name = "statsAssists4";
+            this.statsAssists4.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists4.TabIndex = 121;
+            this.statsAssists4.Text = "100";
+            // 
+            // statsPentaKills4
+            // 
+            this.statsPentaKills4.AutoSize = true;
+            this.statsPentaKills4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills4.Location = new System.Drawing.Point(246, 20);
+            this.statsPentaKills4.Name = "statsPentaKills4";
+            this.statsPentaKills4.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills4.TabIndex = 134;
+            this.statsPentaKills4.Text = "10";
+            this.statsPentaKills4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel412
+            // 
+            this.metroLabel412.AutoSize = true;
+            this.metroLabel412.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel412.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel412.Location = new System.Drawing.Point(271, 20);
+            this.metroLabel412.Name = "metroLabel412";
+            this.metroLabel412.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel412.TabIndex = 14;
+            this.metroLabel412.Text = "K\\D Rat.:";
+            // 
+            // metroLabel413
+            // 
+            this.metroLabel413.AutoSize = true;
+            this.metroLabel413.BackColor = System.Drawing.Color.Black;
+            this.metroLabel413.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel413.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel413.Location = new System.Drawing.Point(102, 20);
+            this.metroLabel413.Name = "metroLabel413";
+            this.metroLabel413.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel413.TabIndex = 12;
+            this.metroLabel413.Text = "Kills:";
+            this.metroLabel413.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel414
+            // 
+            this.metroLabel414.AutoSize = true;
+            this.metroLabel414.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel414.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel414.Location = new System.Drawing.Point(102, 38);
+            this.metroLabel414.Name = "metroLabel414";
+            this.metroLabel414.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel414.TabIndex = 108;
+            this.metroLabel414.Text = "Assists:";
+            // 
+            // statsQuadroKills4
+            // 
+            this.statsQuadroKills4.AutoSize = true;
+            this.statsQuadroKills4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills4.Location = new System.Drawing.Point(246, 38);
+            this.statsQuadroKills4.Name = "statsQuadroKills4";
+            this.statsQuadroKills4.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills4.TabIndex = 135;
+            this.statsQuadroKills4.Text = "10";
+            this.statsQuadroKills4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel416
+            // 
+            this.metroLabel416.AutoSize = true;
+            this.metroLabel416.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel416.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel416.Location = new System.Drawing.Point(102, 56);
+            this.metroLabel416.Name = "metroLabel416";
+            this.metroLabel416.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel416.TabIndex = 111;
+            this.metroLabel416.Text = "Deaths:";
+            // 
+            // metroLabel417
+            // 
+            this.metroLabel417.AutoSize = true;
+            this.metroLabel417.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel417.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel417.Location = new System.Drawing.Point(176, 56);
+            this.metroLabel417.Name = "metroLabel417";
+            this.metroLabel417.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel417.TabIndex = 135;
+            this.metroLabel417.Text = "Triple Kills:";
+            this.metroLabel417.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills4
+            // 
+            this.statsKills4.AutoSize = true;
+            this.statsKills4.BackColor = System.Drawing.Color.Black;
+            this.statsKills4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills4.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills4.Location = new System.Drawing.Point(144, 20);
+            this.statsKills4.Name = "statsKills4";
+            this.statsKills4.Size = new System.Drawing.Size(25, 15);
+            this.statsKills4.TabIndex = 119;
+            this.statsKills4.Text = "100";
+            this.statsKills4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel419
+            // 
+            this.metroLabel419.AutoSize = true;
+            this.metroLabel419.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel419.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel419.Location = new System.Drawing.Point(176, 20);
+            this.metroLabel419.Name = "metroLabel419";
+            this.metroLabel419.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel419.TabIndex = 133;
+            this.metroLabel419.Text = "Penta Kills:";
+            this.metroLabel419.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel420
+            // 
+            this.metroLabel420.AutoSize = true;
+            this.metroLabel420.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel420.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel420.Location = new System.Drawing.Point(176, 38);
+            this.metroLabel420.Name = "metroLabel420";
+            this.metroLabel420.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel420.TabIndex = 134;
+            this.metroLabel420.Text = "Quadro Kills:";
+            this.metroLabel420.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Controls.Add(this.statsMVP2);
+            this.panel12.Controls.Add(this.metroButton41);
+            this.panel12.Controls.Add(this.metroLabel336);
+            this.panel12.Controls.Add(this.statsHS2);
+            this.panel12.Controls.Add(this.metroButton42);
+            this.panel12.Controls.Add(this.metroLabel338);
+            this.panel12.Controls.Add(this.statsKR2);
+            this.panel12.Controls.Add(this.statsDeaths2);
+            this.panel12.Controls.Add(this.metroButton43);
+            this.panel12.Controls.Add(this.metroLabel341);
+            this.panel12.Controls.Add(this.statsTripleKills2);
+            this.panel12.Controls.Add(this.statsKD2);
+            this.panel12.Controls.Add(this.statsAssists2);
+            this.panel12.Controls.Add(this.statsPentaKills2);
+            this.panel12.Controls.Add(this.metroLabel346);
+            this.panel12.Controls.Add(this.metroLabel347);
+            this.panel12.Controls.Add(this.metroLabel348);
+            this.panel12.Controls.Add(this.statsQuadroKills2);
+            this.panel12.Controls.Add(this.metroLabel350);
+            this.panel12.Controls.Add(this.metroLabel351);
+            this.panel12.Controls.Add(this.statsKills2);
+            this.panel12.Controls.Add(this.metroLabel353);
+            this.panel12.Controls.Add(this.metroLabel354);
+            this.panel12.Controls.Add(this.statsNickname2);
+            this.panel12.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel12.Location = new System.Drawing.Point(0, 92);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(367, 74);
+            this.panel12.TabIndex = 136;
+            // 
+            // statsMVP2
+            // 
+            this.statsMVP2.AutoSize = true;
+            this.statsMVP2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP2.Location = new System.Drawing.Point(321, 56);
+            this.statsMVP2.Name = "statsMVP2";
+            this.statsMVP2.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP2.TabIndex = 118;
+            this.statsMVP2.Text = "10";
+            this.statsMVP2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton41
+            // 
+            this.metroButton41.Location = new System.Drawing.Point(3, 38);
+            this.metroButton41.Name = "metroButton41";
+            this.metroButton41.Size = new System.Drawing.Size(93, 15);
+            this.metroButton41.TabIndex = 115;
+            this.metroButton41.Text = "STEAM";
+            // 
+            // metroLabel336
+            // 
+            this.metroLabel336.AutoSize = true;
+            this.metroLabel336.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel336.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel336.Location = new System.Drawing.Point(271, 56);
+            this.metroLabel336.Name = "metroLabel336";
+            this.metroLabel336.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel336.TabIndex = 11;
+            this.metroLabel336.Text = "MVPs:";
+            this.metroLabel336.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsHS2
+            // 
+            this.statsHS2.AutoSize = true;
+            this.statsHS2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS2.Location = new System.Drawing.Point(302, 5);
+            this.statsHS2.Name = "statsHS2";
+            this.statsHS2.Size = new System.Drawing.Size(64, 15);
+            this.statsHS2.TabIndex = 117;
+            this.statsHS2.Text = "100 (100%)";
+            // 
+            // metroButton42
+            // 
+            this.metroButton42.Location = new System.Drawing.Point(3, 56);
+            this.metroButton42.Name = "metroButton42";
+            this.metroButton42.Size = new System.Drawing.Size(93, 15);
+            this.metroButton42.TabIndex = 114;
+            this.metroButton42.Text = "LOAD PROFILE";
+            // 
+            // metroLabel338
+            // 
+            this.metroLabel338.AutoSize = true;
+            this.metroLabel338.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel338.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel338.Location = new System.Drawing.Point(271, 5);
+            this.metroLabel338.Name = "metroLabel338";
+            this.metroLabel338.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel338.TabIndex = 9;
+            this.metroLabel338.Text = "HS:";
+            // 
+            // statsKR2
+            // 
+            this.statsKR2.AutoSize = true;
+            this.statsKR2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR2.Location = new System.Drawing.Point(321, 38);
+            this.statsKR2.Name = "statsKR2";
+            this.statsKR2.Size = new System.Drawing.Size(28, 15);
+            this.statsKR2.TabIndex = 123;
+            this.statsKR2.Text = "1.00";
+            // 
+            // statsDeaths2
+            // 
+            this.statsDeaths2.AutoSize = true;
+            this.statsDeaths2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths2.Location = new System.Drawing.Point(144, 56);
+            this.statsDeaths2.Name = "statsDeaths2";
+            this.statsDeaths2.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths2.TabIndex = 122;
+            this.statsDeaths2.Text = "100";
+            // 
+            // metroButton43
+            // 
+            this.metroButton43.Location = new System.Drawing.Point(3, 20);
+            this.metroButton43.Name = "metroButton43";
+            this.metroButton43.Size = new System.Drawing.Size(93, 15);
+            this.metroButton43.TabIndex = 113;
+            this.metroButton43.Text = "FACEIT";
+            // 
+            // metroLabel341
+            // 
+            this.metroLabel341.AutoSize = true;
+            this.metroLabel341.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel341.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel341.Location = new System.Drawing.Point(271, 38);
+            this.metroLabel341.Name = "metroLabel341";
+            this.metroLabel341.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel341.TabIndex = 132;
+            this.metroLabel341.Text = "K\\R Rat.:";
+            // 
+            // statsTripleKills2
+            // 
+            this.statsTripleKills2.AutoSize = true;
+            this.statsTripleKills2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills2.Location = new System.Drawing.Point(246, 56);
+            this.statsTripleKills2.Name = "statsTripleKills2";
+            this.statsTripleKills2.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills2.TabIndex = 133;
+            this.statsTripleKills2.Text = "10";
+            this.statsTripleKills2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD2
+            // 
+            this.statsKD2.AutoSize = true;
+            this.statsKD2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD2.Location = new System.Drawing.Point(321, 20);
+            this.statsKD2.Name = "statsKD2";
+            this.statsKD2.Size = new System.Drawing.Size(28, 15);
+            this.statsKD2.TabIndex = 120;
+            this.statsKD2.Text = "1.00";
+            // 
+            // statsAssists2
+            // 
+            this.statsAssists2.AutoSize = true;
+            this.statsAssists2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists2.Location = new System.Drawing.Point(144, 38);
+            this.statsAssists2.Name = "statsAssists2";
+            this.statsAssists2.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists2.TabIndex = 121;
+            this.statsAssists2.Text = "100";
+            // 
+            // statsPentaKills2
+            // 
+            this.statsPentaKills2.AutoSize = true;
+            this.statsPentaKills2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills2.Location = new System.Drawing.Point(246, 20);
+            this.statsPentaKills2.Name = "statsPentaKills2";
+            this.statsPentaKills2.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills2.TabIndex = 134;
+            this.statsPentaKills2.Text = "10";
+            this.statsPentaKills2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel346
+            // 
+            this.metroLabel346.AutoSize = true;
+            this.metroLabel346.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel346.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel346.Location = new System.Drawing.Point(271, 20);
+            this.metroLabel346.Name = "metroLabel346";
+            this.metroLabel346.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel346.TabIndex = 14;
+            this.metroLabel346.Text = "K\\D Rat.:";
+            // 
+            // metroLabel347
+            // 
+            this.metroLabel347.AutoSize = true;
+            this.metroLabel347.BackColor = System.Drawing.Color.Black;
+            this.metroLabel347.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel347.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel347.Location = new System.Drawing.Point(102, 20);
+            this.metroLabel347.Name = "metroLabel347";
+            this.metroLabel347.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel347.TabIndex = 12;
+            this.metroLabel347.Text = "Kills:";
+            this.metroLabel347.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel348
+            // 
+            this.metroLabel348.AutoSize = true;
+            this.metroLabel348.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel348.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel348.Location = new System.Drawing.Point(102, 38);
+            this.metroLabel348.Name = "metroLabel348";
+            this.metroLabel348.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel348.TabIndex = 108;
+            this.metroLabel348.Text = "Assists:";
+            // 
+            // statsQuadroKills2
+            // 
+            this.statsQuadroKills2.AutoSize = true;
+            this.statsQuadroKills2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills2.Location = new System.Drawing.Point(246, 38);
+            this.statsQuadroKills2.Name = "statsQuadroKills2";
+            this.statsQuadroKills2.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills2.TabIndex = 135;
+            this.statsQuadroKills2.Text = "10";
+            this.statsQuadroKills2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel350
+            // 
+            this.metroLabel350.AutoSize = true;
+            this.metroLabel350.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel350.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel350.Location = new System.Drawing.Point(102, 56);
+            this.metroLabel350.Name = "metroLabel350";
+            this.metroLabel350.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel350.TabIndex = 111;
+            this.metroLabel350.Text = "Deaths:";
+            // 
+            // metroLabel351
+            // 
+            this.metroLabel351.AutoSize = true;
+            this.metroLabel351.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel351.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel351.Location = new System.Drawing.Point(176, 56);
+            this.metroLabel351.Name = "metroLabel351";
+            this.metroLabel351.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel351.TabIndex = 135;
+            this.metroLabel351.Text = "Triple Kills:";
+            this.metroLabel351.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills2
+            // 
+            this.statsKills2.AutoSize = true;
+            this.statsKills2.BackColor = System.Drawing.Color.Black;
+            this.statsKills2.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills2.Location = new System.Drawing.Point(144, 20);
+            this.statsKills2.Name = "statsKills2";
+            this.statsKills2.Size = new System.Drawing.Size(25, 15);
+            this.statsKills2.TabIndex = 119;
+            this.statsKills2.Text = "100";
+            this.statsKills2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel353
+            // 
+            this.metroLabel353.AutoSize = true;
+            this.metroLabel353.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel353.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel353.Location = new System.Drawing.Point(176, 20);
+            this.metroLabel353.Name = "metroLabel353";
+            this.metroLabel353.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel353.TabIndex = 133;
+            this.metroLabel353.Text = "Penta Kills:";
+            this.metroLabel353.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel354
+            // 
+            this.metroLabel354.AutoSize = true;
+            this.metroLabel354.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel354.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel354.Location = new System.Drawing.Point(176, 38);
+            this.metroLabel354.Name = "metroLabel354";
+            this.metroLabel354.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel354.TabIndex = 134;
+            this.metroLabel354.Text = "Quadro Kills:";
+            this.metroLabel354.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsNickname2
+            // 
+            this.statsNickname2.BackColor = System.Drawing.Color.White;
+            this.statsNickname2.CustomBackground = true;
+            this.statsNickname2.Location = new System.Drawing.Point(3, 3);
+            this.statsNickname2.Name = "statsNickname2";
+            this.statsNickname2.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname2.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname2.TabIndex = 8;
+            this.statsNickname2.Text = "nickname";
+            this.statsNickname2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statsNickname2.UseStyleColors = true;
+            this.statsNickname2.Click += new System.EventHandler(this.statsNickname2_Click);
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.statsMVP3);
+            this.panel15.Controls.Add(this.metroButton50);
+            this.panel15.Controls.Add(this.metroLabel422);
+            this.panel15.Controls.Add(this.statsHS3);
+            this.panel15.Controls.Add(this.metroButton51);
+            this.panel15.Controls.Add(this.metroLabel424);
+            this.panel15.Controls.Add(this.statsKR3);
+            this.panel15.Controls.Add(this.statsDeaths3);
+            this.panel15.Controls.Add(this.metroButton52);
+            this.panel15.Controls.Add(this.statsNickname3);
+            this.panel15.Controls.Add(this.metroLabel427);
+            this.panel15.Controls.Add(this.statsTripleKills3);
+            this.panel15.Controls.Add(this.statsKD3);
+            this.panel15.Controls.Add(this.statsAssists3);
+            this.panel15.Controls.Add(this.statsPentaKills3);
+            this.panel15.Controls.Add(this.metroLabel432);
+            this.panel15.Controls.Add(this.metroLabel433);
+            this.panel15.Controls.Add(this.metroLabel434);
+            this.panel15.Controls.Add(this.statsQuadroKills3);
+            this.panel15.Controls.Add(this.metroLabel436);
+            this.panel15.Controls.Add(this.metroLabel437);
+            this.panel15.Controls.Add(this.statsKills3);
+            this.panel15.Controls.Add(this.metroLabel439);
+            this.panel15.Controls.Add(this.metroLabel440);
+            this.panel15.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel15.Location = new System.Drawing.Point(0, 186);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(367, 74);
+            this.panel15.TabIndex = 137;
+            // 
+            // statsMVP3
+            // 
+            this.statsMVP3.AutoSize = true;
+            this.statsMVP3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP3.Location = new System.Drawing.Point(321, 56);
+            this.statsMVP3.Name = "statsMVP3";
+            this.statsMVP3.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP3.TabIndex = 118;
+            this.statsMVP3.Text = "10";
+            this.statsMVP3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton50
+            // 
+            this.metroButton50.Location = new System.Drawing.Point(3, 38);
+            this.metroButton50.Name = "metroButton50";
+            this.metroButton50.Size = new System.Drawing.Size(93, 15);
+            this.metroButton50.TabIndex = 115;
+            this.metroButton50.Text = "STEAM";
+            // 
+            // metroLabel422
+            // 
+            this.metroLabel422.AutoSize = true;
+            this.metroLabel422.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel422.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel422.Location = new System.Drawing.Point(271, 56);
+            this.metroLabel422.Name = "metroLabel422";
+            this.metroLabel422.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel422.TabIndex = 11;
+            this.metroLabel422.Text = "MVPs:";
+            this.metroLabel422.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsHS3
+            // 
+            this.statsHS3.AutoSize = true;
+            this.statsHS3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS3.Location = new System.Drawing.Point(302, 5);
+            this.statsHS3.Name = "statsHS3";
+            this.statsHS3.Size = new System.Drawing.Size(64, 15);
+            this.statsHS3.TabIndex = 117;
+            this.statsHS3.Text = "100 (100%)";
+            // 
+            // metroButton51
+            // 
+            this.metroButton51.Location = new System.Drawing.Point(3, 56);
+            this.metroButton51.Name = "metroButton51";
+            this.metroButton51.Size = new System.Drawing.Size(93, 15);
+            this.metroButton51.TabIndex = 114;
+            this.metroButton51.Text = "LOAD PROFILE";
+            // 
+            // metroLabel424
+            // 
+            this.metroLabel424.AutoSize = true;
+            this.metroLabel424.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel424.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel424.Location = new System.Drawing.Point(271, 5);
+            this.metroLabel424.Name = "metroLabel424";
+            this.metroLabel424.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel424.TabIndex = 9;
+            this.metroLabel424.Text = "HS:";
+            // 
+            // statsKR3
+            // 
+            this.statsKR3.AutoSize = true;
+            this.statsKR3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR3.Location = new System.Drawing.Point(321, 38);
+            this.statsKR3.Name = "statsKR3";
+            this.statsKR3.Size = new System.Drawing.Size(28, 15);
+            this.statsKR3.TabIndex = 123;
+            this.statsKR3.Text = "1.00";
+            // 
+            // statsDeaths3
+            // 
+            this.statsDeaths3.AutoSize = true;
+            this.statsDeaths3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths3.Location = new System.Drawing.Point(144, 56);
+            this.statsDeaths3.Name = "statsDeaths3";
+            this.statsDeaths3.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths3.TabIndex = 122;
+            this.statsDeaths3.Text = "100";
+            // 
+            // metroButton52
+            // 
+            this.metroButton52.Location = new System.Drawing.Point(3, 20);
+            this.metroButton52.Name = "metroButton52";
+            this.metroButton52.Size = new System.Drawing.Size(93, 15);
+            this.metroButton52.TabIndex = 113;
+            this.metroButton52.Text = "FACEIT";
+            // 
+            // statsNickname3
+            // 
+            this.statsNickname3.BackColor = System.Drawing.Color.White;
+            this.statsNickname3.CustomBackground = true;
+            this.statsNickname3.Location = new System.Drawing.Point(3, 3);
+            this.statsNickname3.Name = "statsNickname3";
+            this.statsNickname3.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname3.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname3.TabIndex = 8;
+            this.statsNickname3.Text = "nickname";
+            this.statsNickname3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.statsNickname3.UseStyleColors = true;
+            // 
+            // metroLabel427
+            // 
+            this.metroLabel427.AutoSize = true;
+            this.metroLabel427.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel427.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel427.Location = new System.Drawing.Point(271, 38);
+            this.metroLabel427.Name = "metroLabel427";
+            this.metroLabel427.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel427.TabIndex = 132;
+            this.metroLabel427.Text = "K\\R Rat.:";
+            // 
+            // statsTripleKills3
+            // 
+            this.statsTripleKills3.AutoSize = true;
+            this.statsTripleKills3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills3.Location = new System.Drawing.Point(246, 56);
+            this.statsTripleKills3.Name = "statsTripleKills3";
+            this.statsTripleKills3.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills3.TabIndex = 133;
+            this.statsTripleKills3.Text = "10";
+            this.statsTripleKills3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD3
+            // 
+            this.statsKD3.AutoSize = true;
+            this.statsKD3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD3.Location = new System.Drawing.Point(321, 20);
+            this.statsKD3.Name = "statsKD3";
+            this.statsKD3.Size = new System.Drawing.Size(28, 15);
+            this.statsKD3.TabIndex = 120;
+            this.statsKD3.Text = "1.00";
+            // 
+            // statsAssists3
+            // 
+            this.statsAssists3.AutoSize = true;
+            this.statsAssists3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists3.Location = new System.Drawing.Point(144, 38);
+            this.statsAssists3.Name = "statsAssists3";
+            this.statsAssists3.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists3.TabIndex = 121;
+            this.statsAssists3.Text = "100";
+            // 
+            // statsPentaKills3
+            // 
+            this.statsPentaKills3.AutoSize = true;
+            this.statsPentaKills3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills3.Location = new System.Drawing.Point(246, 20);
+            this.statsPentaKills3.Name = "statsPentaKills3";
+            this.statsPentaKills3.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills3.TabIndex = 134;
+            this.statsPentaKills3.Text = "10";
+            this.statsPentaKills3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel432
+            // 
+            this.metroLabel432.AutoSize = true;
+            this.metroLabel432.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel432.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel432.Location = new System.Drawing.Point(271, 20);
+            this.metroLabel432.Name = "metroLabel432";
+            this.metroLabel432.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel432.TabIndex = 14;
+            this.metroLabel432.Text = "K\\D Rat.:";
+            // 
+            // metroLabel433
+            // 
+            this.metroLabel433.AutoSize = true;
+            this.metroLabel433.BackColor = System.Drawing.Color.Black;
+            this.metroLabel433.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel433.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel433.Location = new System.Drawing.Point(102, 20);
+            this.metroLabel433.Name = "metroLabel433";
+            this.metroLabel433.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel433.TabIndex = 12;
+            this.metroLabel433.Text = "Kills:";
+            this.metroLabel433.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel434
+            // 
+            this.metroLabel434.AutoSize = true;
+            this.metroLabel434.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel434.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel434.Location = new System.Drawing.Point(102, 38);
+            this.metroLabel434.Name = "metroLabel434";
+            this.metroLabel434.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel434.TabIndex = 108;
+            this.metroLabel434.Text = "Assists:";
+            // 
+            // statsQuadroKills3
+            // 
+            this.statsQuadroKills3.AutoSize = true;
+            this.statsQuadroKills3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills3.Location = new System.Drawing.Point(246, 38);
+            this.statsQuadroKills3.Name = "statsQuadroKills3";
+            this.statsQuadroKills3.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills3.TabIndex = 135;
+            this.statsQuadroKills3.Text = "10";
+            this.statsQuadroKills3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel436
+            // 
+            this.metroLabel436.AutoSize = true;
+            this.metroLabel436.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel436.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel436.Location = new System.Drawing.Point(102, 56);
+            this.metroLabel436.Name = "metroLabel436";
+            this.metroLabel436.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel436.TabIndex = 111;
+            this.metroLabel436.Text = "Deaths:";
+            // 
+            // metroLabel437
+            // 
+            this.metroLabel437.AutoSize = true;
+            this.metroLabel437.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel437.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel437.Location = new System.Drawing.Point(176, 56);
+            this.metroLabel437.Name = "metroLabel437";
+            this.metroLabel437.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel437.TabIndex = 135;
+            this.metroLabel437.Text = "Triple Kills:";
+            this.metroLabel437.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills3
+            // 
+            this.statsKills3.AutoSize = true;
+            this.statsKills3.BackColor = System.Drawing.Color.Black;
+            this.statsKills3.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills3.Location = new System.Drawing.Point(144, 20);
+            this.statsKills3.Name = "statsKills3";
+            this.statsKills3.Size = new System.Drawing.Size(25, 15);
+            this.statsKills3.TabIndex = 119;
+            this.statsKills3.Text = "100";
+            this.statsKills3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel439
+            // 
+            this.metroLabel439.AutoSize = true;
+            this.metroLabel439.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel439.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel439.Location = new System.Drawing.Point(176, 20);
+            this.metroLabel439.Name = "metroLabel439";
+            this.metroLabel439.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel439.TabIndex = 133;
+            this.metroLabel439.Text = "Penta Kills:";
+            this.metroLabel439.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel440
+            // 
+            this.metroLabel440.AutoSize = true;
+            this.metroLabel440.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel440.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel440.Location = new System.Drawing.Point(176, 38);
+            this.metroLabel440.Name = "metroLabel440";
+            this.metroLabel440.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel440.TabIndex = 134;
+            this.metroLabel440.Text = "Quadro Kills:";
+            this.metroLabel440.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Controls.Add(this.statsMVP6);
+            this.panel11.Controls.Add(this.metroButton38);
+            this.panel11.Controls.Add(this.metroButton39);
+            this.panel11.Controls.Add(this.metroButton40);
+            this.panel11.Controls.Add(this.metroLabel310);
+            this.panel11.Controls.Add(this.statsNickname6);
+            this.panel11.Controls.Add(this.metroLabel312);
+            this.panel11.Controls.Add(this.statsDeaths6);
+            this.panel11.Controls.Add(this.statsKR6);
+            this.panel11.Controls.Add(this.statsHS6);
+            this.panel11.Controls.Add(this.metroLabel320);
+            this.panel11.Controls.Add(this.statsTripleKills6);
+            this.panel11.Controls.Add(this.statsKD6);
+            this.panel11.Controls.Add(this.metroLabel315);
+            this.panel11.Controls.Add(this.metroLabel327);
+            this.panel11.Controls.Add(this.statsAssists6);
+            this.panel11.Controls.Add(this.metroLabel324);
+            this.panel11.Controls.Add(this.metroLabel325);
+            this.panel11.Controls.Add(this.statsPentaKills6);
+            this.panel11.Controls.Add(this.metroLabel321);
+            this.panel11.Controls.Add(this.metroLabel322);
+            this.panel11.Controls.Add(this.statsQuadroKills6);
+            this.panel11.Controls.Add(this.statsKills6);
+            this.panel11.Controls.Add(this.metroLabel328);
+            this.panel11.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel11.Location = new System.Drawing.Point(512, 3);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(367, 74);
+            this.panel11.TabIndex = 136;
+            // 
+            // statsMVP6
+            // 
+            this.statsMVP6.AutoSize = true;
+            this.statsMVP6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsMVP6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsMVP6.Location = new System.Drawing.Point(53, 56);
+            this.statsMVP6.Name = "statsMVP6";
+            this.statsMVP6.Size = new System.Drawing.Size(19, 15);
+            this.statsMVP6.TabIndex = 118;
+            this.statsMVP6.Text = "10";
+            this.statsMVP6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroButton38
+            // 
+            this.metroButton38.Location = new System.Drawing.Point(271, 38);
+            this.metroButton38.Name = "metroButton38";
+            this.metroButton38.Size = new System.Drawing.Size(93, 15);
+            this.metroButton38.TabIndex = 115;
+            this.metroButton38.Text = "STEAM";
+            // 
+            // metroButton39
+            // 
+            this.metroButton39.Location = new System.Drawing.Point(271, 56);
+            this.metroButton39.Name = "metroButton39";
+            this.metroButton39.Size = new System.Drawing.Size(93, 15);
+            this.metroButton39.TabIndex = 114;
+            this.metroButton39.Text = "LOAD PROFILE";
+            // 
+            // metroButton40
+            // 
+            this.metroButton40.Location = new System.Drawing.Point(271, 20);
+            this.metroButton40.Name = "metroButton40";
+            this.metroButton40.Size = new System.Drawing.Size(93, 15);
+            this.metroButton40.TabIndex = 113;
+            this.metroButton40.Text = "FACEIT";
+            // 
+            // metroLabel310
+            // 
+            this.metroLabel310.AutoSize = true;
+            this.metroLabel310.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel310.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel310.Location = new System.Drawing.Point(3, 56);
+            this.metroLabel310.Name = "metroLabel310";
+            this.metroLabel310.Size = new System.Drawing.Size(40, 15);
+            this.metroLabel310.TabIndex = 11;
+            this.metroLabel310.Text = "MVPs:";
+            this.metroLabel310.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsNickname6
+            // 
+            this.statsNickname6.BackColor = System.Drawing.Color.White;
+            this.statsNickname6.CustomBackground = true;
+            this.statsNickname6.Location = new System.Drawing.Point(165, 3);
+            this.statsNickname6.Name = "statsNickname6";
+            this.statsNickname6.Size = new System.Drawing.Size(199, 17);
+            this.statsNickname6.Style = MetroFramework.MetroColorStyle.Black;
+            this.statsNickname6.TabIndex = 8;
+            this.statsNickname6.Text = "nickname";
+            this.statsNickname6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.statsNickname6.UseStyleColors = true;
+            // 
+            // metroLabel312
+            // 
+            this.metroLabel312.AutoSize = true;
+            this.metroLabel312.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel312.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel312.Location = new System.Drawing.Point(3, 5);
+            this.metroLabel312.Name = "metroLabel312";
+            this.metroLabel312.Size = new System.Drawing.Size(25, 15);
+            this.metroLabel312.TabIndex = 9;
+            this.metroLabel312.Text = "HS:";
+            // 
+            // statsDeaths6
+            // 
+            this.statsDeaths6.AutoSize = true;
+            this.statsDeaths6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsDeaths6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsDeaths6.Location = new System.Drawing.Point(224, 56);
+            this.statsDeaths6.Name = "statsDeaths6";
+            this.statsDeaths6.Size = new System.Drawing.Size(25, 15);
+            this.statsDeaths6.TabIndex = 122;
+            this.statsDeaths6.Text = "100";
+            // 
+            // statsKR6
+            // 
+            this.statsKR6.AutoSize = true;
+            this.statsKR6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKR6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKR6.Location = new System.Drawing.Point(53, 38);
+            this.statsKR6.Name = "statsKR6";
+            this.statsKR6.Size = new System.Drawing.Size(28, 15);
+            this.statsKR6.TabIndex = 123;
+            this.statsKR6.Text = "1.00";
+            // 
+            // statsHS6
+            // 
+            this.statsHS6.AutoSize = true;
+            this.statsHS6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsHS6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsHS6.Location = new System.Drawing.Point(34, 5);
+            this.statsHS6.Name = "statsHS6";
+            this.statsHS6.Size = new System.Drawing.Size(64, 15);
+            this.statsHS6.TabIndex = 117;
+            this.statsHS6.Text = "100 (100%)";
+            // 
+            // metroLabel320
+            // 
+            this.metroLabel320.AutoSize = true;
+            this.metroLabel320.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel320.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel320.Location = new System.Drawing.Point(3, 20);
+            this.metroLabel320.Name = "metroLabel320";
+            this.metroLabel320.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel320.TabIndex = 14;
+            this.metroLabel320.Text = "K\\D Rat.:";
+            // 
+            // statsTripleKills6
+            // 
+            this.statsTripleKills6.AutoSize = true;
+            this.statsTripleKills6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsTripleKills6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsTripleKills6.Location = new System.Drawing.Point(157, 56);
+            this.statsTripleKills6.Name = "statsTripleKills6";
+            this.statsTripleKills6.Size = new System.Drawing.Size(19, 15);
+            this.statsTripleKills6.TabIndex = 133;
+            this.statsTripleKills6.Text = "10";
+            this.statsTripleKills6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKD6
+            // 
+            this.statsKD6.AutoSize = true;
+            this.statsKD6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKD6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKD6.Location = new System.Drawing.Point(53, 20);
+            this.statsKD6.Name = "statsKD6";
+            this.statsKD6.Size = new System.Drawing.Size(28, 15);
+            this.statsKD6.TabIndex = 120;
+            this.statsKD6.Text = "1.00";
+            // 
+            // metroLabel315
+            // 
+            this.metroLabel315.AutoSize = true;
+            this.metroLabel315.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel315.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel315.Location = new System.Drawing.Point(3, 38);
+            this.metroLabel315.Name = "metroLabel315";
+            this.metroLabel315.Size = new System.Drawing.Size(52, 15);
+            this.metroLabel315.TabIndex = 132;
+            this.metroLabel315.Text = "K\\R Rat.:";
+            // 
+            // metroLabel327
+            // 
+            this.metroLabel327.AutoSize = true;
+            this.metroLabel327.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel327.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel327.Location = new System.Drawing.Point(87, 20);
+            this.metroLabel327.Name = "metroLabel327";
+            this.metroLabel327.Size = new System.Drawing.Size(64, 15);
+            this.metroLabel327.TabIndex = 133;
+            this.metroLabel327.Text = "Penta Kills:";
+            this.metroLabel327.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsAssists6
+            // 
+            this.statsAssists6.AutoSize = true;
+            this.statsAssists6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsAssists6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsAssists6.Location = new System.Drawing.Point(224, 38);
+            this.statsAssists6.Name = "statsAssists6";
+            this.statsAssists6.Size = new System.Drawing.Size(25, 15);
+            this.statsAssists6.TabIndex = 121;
+            this.statsAssists6.Text = "100";
+            // 
+            // metroLabel324
+            // 
+            this.metroLabel324.AutoSize = true;
+            this.metroLabel324.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel324.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel324.Location = new System.Drawing.Point(182, 56);
+            this.metroLabel324.Name = "metroLabel324";
+            this.metroLabel324.Size = new System.Drawing.Size(46, 15);
+            this.metroLabel324.TabIndex = 111;
+            this.metroLabel324.Text = "Deaths:";
+            // 
+            // metroLabel325
+            // 
+            this.metroLabel325.AutoSize = true;
+            this.metroLabel325.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel325.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel325.Location = new System.Drawing.Point(87, 56);
+            this.metroLabel325.Name = "metroLabel325";
+            this.metroLabel325.Size = new System.Drawing.Size(63, 15);
+            this.metroLabel325.TabIndex = 135;
+            this.metroLabel325.Text = "Triple Kills:";
+            this.metroLabel325.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsPentaKills6
+            // 
+            this.statsPentaKills6.AutoSize = true;
+            this.statsPentaKills6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsPentaKills6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsPentaKills6.Location = new System.Drawing.Point(157, 20);
+            this.statsPentaKills6.Name = "statsPentaKills6";
+            this.statsPentaKills6.Size = new System.Drawing.Size(19, 15);
+            this.statsPentaKills6.TabIndex = 134;
+            this.statsPentaKills6.Text = "10";
+            this.statsPentaKills6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel321
+            // 
+            this.metroLabel321.AutoSize = true;
+            this.metroLabel321.BackColor = System.Drawing.Color.Black;
+            this.metroLabel321.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel321.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel321.Location = new System.Drawing.Point(182, 20);
+            this.metroLabel321.Name = "metroLabel321";
+            this.metroLabel321.Size = new System.Drawing.Size(31, 15);
+            this.metroLabel321.TabIndex = 12;
+            this.metroLabel321.Text = "Kills:";
+            this.metroLabel321.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel322
+            // 
+            this.metroLabel322.AutoSize = true;
+            this.metroLabel322.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel322.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel322.Location = new System.Drawing.Point(182, 38);
+            this.metroLabel322.Name = "metroLabel322";
+            this.metroLabel322.Size = new System.Drawing.Size(45, 15);
+            this.metroLabel322.TabIndex = 108;
+            this.metroLabel322.Text = "Assists:";
+            // 
+            // statsQuadroKills6
+            // 
+            this.statsQuadroKills6.AutoSize = true;
+            this.statsQuadroKills6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsQuadroKills6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsQuadroKills6.Location = new System.Drawing.Point(157, 38);
+            this.statsQuadroKills6.Name = "statsQuadroKills6";
+            this.statsQuadroKills6.Size = new System.Drawing.Size(19, 15);
+            this.statsQuadroKills6.TabIndex = 135;
+            this.statsQuadroKills6.Text = "10";
+            this.statsQuadroKills6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statsKills6
+            // 
+            this.statsKills6.AutoSize = true;
+            this.statsKills6.BackColor = System.Drawing.Color.Black;
+            this.statsKills6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.statsKills6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.statsKills6.Location = new System.Drawing.Point(224, 20);
+            this.statsKills6.Name = "statsKills6";
+            this.statsKills6.Size = new System.Drawing.Size(25, 15);
+            this.statsKills6.TabIndex = 119;
+            this.statsKills6.Text = "100";
+            this.statsKills6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // metroLabel328
+            // 
+            this.metroLabel328.AutoSize = true;
+            this.metroLabel328.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel328.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel328.Location = new System.Drawing.Point(87, 38);
+            this.metroLabel328.Name = "metroLabel328";
+            this.metroLabel328.Size = new System.Drawing.Size(74, 15);
+            this.metroLabel328.TabIndex = 134;
+            this.metroLabel328.Text = "Quadro Kills:";
+            this.metroLabel328.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroTabControl1
             // 
             this.metroTabControl1.Controls.Add(this.metroTabPage6);
-            this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
+            this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Location = new System.Drawing.Point(5, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 2;
             this.metroTabControl1.Size = new System.Drawing.Size(891, 538);
             this.metroTabControl1.TabIndex = 5;
             // 
@@ -3200,6 +7958,123 @@
             this.metroTabPage6.TabIndex = 4;
             this.metroTabPage6.Text = "Profile #1";
             this.metroTabPage6.VerticalScrollbarBarColor = true;
+            // 
+            // metroPanel1
+            // 
+            this.metroPanel1.Controls.Add(this.metroPanel4);
+            this.metroPanel1.HorizontalScrollbarBarColor = true;
+            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(5, 3);
+            this.metroPanel1.Name = "metroPanel1";
+            this.metroPanel1.Size = new System.Drawing.Size(878, 489);
+            this.metroPanel1.TabIndex = 268;
+            this.metroPanel1.VerticalScrollbarBarColor = true;
+            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // metroPanel4
+            // 
+            this.metroPanel4.Controls.Add(this.metroCheckBox2);
+            this.metroPanel4.Controls.Add(this.metroRadioButton3);
+            this.metroPanel4.Controls.Add(this.metroRadioButton2);
+            this.metroPanel4.Controls.Add(this.metroRadioButton1);
+            this.metroPanel4.Controls.Add(this.metroCheckBox3);
+            this.metroPanel4.Controls.Add(this.metroLabel1);
+            this.metroPanel4.Controls.Add(this.metroCheckBox1);
+            this.metroPanel4.HorizontalScrollbarBarColor = true;
+            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.HorizontalScrollbarSize = 10;
+            this.metroPanel4.Location = new System.Drawing.Point(190, 58);
+            this.metroPanel4.Name = "metroPanel4";
+            this.metroPanel4.Size = new System.Drawing.Size(471, 59);
+            this.metroPanel4.TabIndex = 142;
+            this.metroPanel4.VerticalScrollbarBarColor = true;
+            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.VerticalScrollbarSize = 10;
+            this.metroPanel4.Visible = false;
+            // 
+            // metroCheckBox2
+            // 
+            this.metroCheckBox2.AutoSize = true;
+            this.metroCheckBox2.Checked = true;
+            this.metroCheckBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.metroCheckBox2.Location = new System.Drawing.Point(3, 19);
+            this.metroCheckBox2.Name = "metroCheckBox2";
+            this.metroCheckBox2.Size = new System.Drawing.Size(91, 15);
+            this.metroCheckBox2.TabIndex = 3;
+            this.metroCheckBox2.Text = "Load Avatars";
+            this.metroCheckBox2.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton3
+            // 
+            this.metroRadioButton3.AutoSize = true;
+            this.metroRadioButton3.Location = new System.Drawing.Point(291, 35);
+            this.metroRadioButton3.Name = "metroRadioButton3";
+            this.metroRadioButton3.Size = new System.Drawing.Size(114, 15);
+            this.metroRadioButton3.TabIndex = 57;
+            this.metroRadioButton3.Text = "Not load pictures";
+            this.metroRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton2
+            // 
+            this.metroRadioButton2.AutoSize = true;
+            this.metroRadioButton2.Location = new System.Drawing.Point(290, 19);
+            this.metroRadioButton2.Name = "metroRadioButton2";
+            this.metroRadioButton2.Size = new System.Drawing.Size(177, 15);
+            this.metroRadioButton2.TabIndex = 56;
+            this.metroRadioButton2.Text = "Load pictures from local data";
+            this.metroRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // metroRadioButton1
+            // 
+            this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Checked = true;
+            this.metroRadioButton1.Location = new System.Drawing.Point(291, 2);
+            this.metroRadioButton1.Name = "metroRadioButton1";
+            this.metroRadioButton1.Size = new System.Drawing.Size(176, 15);
+            this.metroRadioButton1.TabIndex = 55;
+            this.metroRadioButton1.TabStop = true;
+            this.metroRadioButton1.Text = "Load pictures from all source";
+            this.metroRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // metroCheckBox3
+            // 
+            this.metroCheckBox3.AutoSize = true;
+            this.metroCheckBox3.Checked = true;
+            this.metroCheckBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.metroCheckBox3.Location = new System.Drawing.Point(3, 35);
+            this.metroCheckBox3.Name = "metroCheckBox3";
+            this.metroCheckBox3.Size = new System.Drawing.Size(61, 15);
+            this.metroCheckBox3.TabIndex = 4;
+            this.metroCheckBox3.Text = "SysELO";
+            this.metroCheckBox3.UseVisualStyleBackColor = true;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.BackColor = System.Drawing.Color.White;
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel1.Location = new System.Drawing.Point(70, 35);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(69, 15);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroLabel1.TabIndex = 54;
+            this.metroLabel1.Text = "debugLabel";
+            this.metroLabel1.UseStyleColors = true;
+            // 
+            // metroCheckBox1
+            // 
+            this.metroCheckBox1.AutoSize = true;
+            this.metroCheckBox1.Checked = true;
+            this.metroCheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.metroCheckBox1.Location = new System.Drawing.Point(3, 2);
+            this.metroCheckBox1.Name = "metroCheckBox1";
+            this.metroCheckBox1.Size = new System.Drawing.Size(125, 15);
+            this.metroCheckBox1.TabIndex = 2;
+            this.metroCheckBox1.Text = "Show info of teams";
+            this.metroCheckBox1.UseVisualStyleBackColor = true;
             // 
             // nicknameProfile1
             // 
@@ -5607,19 +10482,6 @@
             this.metroLabel382.TabIndex = 265;
             this.metroLabel382.Text = "Avg. Assists: ";
             // 
-            // metroPanel1
-            // 
-            this.metroPanel1.HorizontalScrollbarBarColor = true;
-            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(-4, 0);
-            this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(891, 503);
-            this.metroPanel1.TabIndex = 268;
-            this.metroPanel1.VerticalScrollbarBarColor = true;
-            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 10;
-            // 
             // metroTabPage1
             // 
             this.metroTabPage1.Controls.Add(this.metroPanel2);
@@ -5665,6 +10527,19 @@
             this.metroTabPage1.TabIndex = 5;
             this.metroTabPage1.Text = "Profile #2";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
+            // 
+            // metroPanel2
+            // 
+            this.metroPanel2.HorizontalScrollbarBarColor = true;
+            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel2.HorizontalScrollbarSize = 10;
+            this.metroPanel2.Location = new System.Drawing.Point(-4, 0);
+            this.metroPanel2.Name = "metroPanel2";
+            this.metroPanel2.Size = new System.Drawing.Size(891, 503);
+            this.metroPanel2.TabIndex = 268;
+            this.metroPanel2.VerticalScrollbarBarColor = true;
+            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel2.VerticalScrollbarSize = 10;
             // 
             // nicknameProfile2
             // 
@@ -8070,23 +12945,10 @@
             this.metroLabel282.TabIndex = 265;
             this.metroLabel282.Text = "Avg. Assists: ";
             // 
-            // metroPanel2
-            // 
-            this.metroPanel2.HorizontalScrollbarBarColor = true;
-            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(-4, 0);
-            this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(891, 503);
-            this.metroPanel2.TabIndex = 268;
-            this.metroPanel2.VerticalScrollbarBarColor = true;
-            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.VerticalScrollbarSize = 10;
-            // 
             // settings1
             // 
             this.settings1.Highlight = true;
-            this.settings1.Location = new System.Drawing.Point(778, 10);
+            this.settings1.Location = new System.Drawing.Point(817, 29);
             this.settings1.Name = "settings1";
             this.settings1.Size = new System.Drawing.Size(75, 19);
             this.settings1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -8094,6 +12956,28 @@
             this.settings1.Text = "Settings";
             this.settings1.Visible = false;
             this.settings1.Click += new System.EventHandler(this.settings1_Click);
+            // 
+            // metroProgressBar1
+            // 
+            this.metroProgressBar1.FontSize = MetroFramework.MetroProgressBarSize.Small;
+            this.metroProgressBar1.HideProgressText = false;
+            this.metroProgressBar1.Location = new System.Drawing.Point(687, 10);
+            this.metroProgressBar1.Maximum = 9;
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.Size = new System.Drawing.Size(128, 19);
+            this.metroProgressBar1.TabIndex = 55;
+            // 
+            // metroProgressBar3
+            // 
+            this.metroProgressBar3.FontSize = MetroFramework.MetroProgressBarSize.Small;
+            this.metroProgressBar3.HideProgressText = false;
+            this.metroProgressBar3.Location = new System.Drawing.Point(687, 30);
+            this.metroProgressBar3.Maximum = 9;
+            this.metroProgressBar3.Name = "metroProgressBar3";
+            this.metroProgressBar3.Size = new System.Drawing.Size(128, 19);
+            this.metroProgressBar3.Step = 100;
+            this.metroProgressBar3.TabIndex = 144;
+            this.metroProgressBar3.Visible = false;
             // 
             // Form1
             // 
@@ -8103,6 +12987,8 @@
             this.AutoSize = true;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(900, 600);
+            this.Controls.Add(this.metroProgressBar3);
+            this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.settings1);
             this.Controls.Add(this.CompareProfiles1);
             this.Controls.Add(this.metroLabel181);
@@ -8129,59 +13015,96 @@
             this.metroTabPage2.ResumeLayout(false);
             this.metroPanel3.ResumeLayout(false);
             this.metroPanel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel10)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat10)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel9)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat9)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel8)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat8)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel7)).EndInit();
-            this.mPanel6.ResumeLayout(false);
-            this.mPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mAvatar6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mCountry6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel6)).EndInit();
-            this.mPanel5.ResumeLayout(false);
-            this.mPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat7)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry5)).EndInit();
-            this.mPanel4.ResumeLayout(false);
-            this.mPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel4)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry4)).EndInit();
-            this.mPanel3.ResumeLayout(false);
-            this.mPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel3)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry3)).EndInit();
-            this.mPanel2.ResumeLayout(false);
-            this.mPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mAvatar6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mCountry6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countryServerImg1)).EndInit();
             this.mPanel1.ResumeLayout(false);
             this.mPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mLevel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mLevelPicture1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAnticheat1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAvatar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mCountry1)).EndInit();
+            this.metroTabPage5.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.metroPanel5.ResumeLayout(false);
+            this.metroPanel5.PerformLayout();
+            this.panel19.ResumeLayout(false);
+            this.panel19.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage6.ResumeLayout(false);
             this.metroTabPage6.PerformLayout();
+            this.metroPanel1.ResumeLayout(false);
+            this.metroPanel4.ResumeLayout(false);
+            this.metroPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarProfile1)).EndInit();
             this.metroTabControl3.ResumeLayout(false);
             this.metroTabPage9.ResumeLayout(false);
@@ -8205,205 +13128,12 @@
         private MetroFramework.Controls.MetroButton getProfile1;
         private MetroFramework.Controls.MetroTextBox login1;
         private MetroFramework.Controls.MetroLabel metroLabel24;
-        private MetroFramework.Controls.MetroTextBox matchIDbox1;
         private MetroFramework.Controls.MetroButton GetInfoMatch1;
         private MetroFramework.Controls.MetroLabel metroLabel69;
         private MetroFramework.Controls.MetroButton getProfile2;
         private MetroFramework.Controls.MetroTextBox login2;
         private MetroFramework.Controls.MetroLabel metroLabel181;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
-        private MetroFramework.Controls.MetroPanel metroPanel3;
-        private MetroFramework.Controls.MetroLabel metroLabel98;
-        private MetroFramework.Controls.MetroLabel avgWinRateTeamB;
-        private MetroFramework.Controls.MetroLabel metroLabel104;
-        private MetroFramework.Controls.MetroLabel avgMatchesTeamB;
-        private MetroFramework.Controls.MetroLabel metroLabel87;
-        private MetroFramework.Controls.MetroLabel avgRankingTeamB;
-        private System.Windows.Forms.Panel panel4;
-        private MetroFramework.Controls.MetroLabel metroLabel140;
-        private MetroFramework.Controls.MetroLabel mRanking10;
-        private MetroFramework.Controls.MetroLabel metroLabel151;
-        private System.Windows.Forms.PictureBox mAvatar10;
-        private MetroFramework.Controls.MetroComboBox mLobby10;
-        private System.Windows.Forms.PictureBox mCountry10;
-        private MetroFramework.Controls.MetroLabel mAvgHS10;
-        private MetroFramework.Controls.MetroLabel mKD10;
-        private MetroFramework.Controls.MetroLabel mMatches10;
-        private MetroFramework.Controls.MetroLabel mJoinType10;
-        private MetroFramework.Controls.MetroLink mNickname10;
-        private MetroFramework.Controls.MetroLabel mElo10;
-        private System.Windows.Forms.PictureBox mLevel10;
-        private MetroFramework.Controls.MetroLabel mWinRate10;
-        private System.Windows.Forms.Panel panel3;
-        private MetroFramework.Controls.MetroLabel metroLabel138;
-        private MetroFramework.Controls.MetroLabel mRanking9;
-        private MetroFramework.Controls.MetroLabel metroLabel143;
-        private System.Windows.Forms.PictureBox mAvatar9;
-        private MetroFramework.Controls.MetroComboBox mLobby9;
-        private System.Windows.Forms.PictureBox mCountry9;
-        private MetroFramework.Controls.MetroLabel mAvgHS9;
-        private MetroFramework.Controls.MetroLabel mKD9;
-        private MetroFramework.Controls.MetroLabel mMatches9;
-        private MetroFramework.Controls.MetroLabel mJoinType9;
-        private MetroFramework.Controls.MetroLink mNickname9;
-        private MetroFramework.Controls.MetroLabel mElo9;
-        private System.Windows.Forms.PictureBox mLevel9;
-        private MetroFramework.Controls.MetroLabel mWinRate9;
-        private System.Windows.Forms.Panel panel2;
-        private MetroFramework.Controls.MetroLabel metroLabel105;
-        private MetroFramework.Controls.MetroLabel mRanking8;
-        private MetroFramework.Controls.MetroLabel metroLabel135;
-        private System.Windows.Forms.PictureBox mAvatar8;
-        private MetroFramework.Controls.MetroComboBox mLobby8;
-        private System.Windows.Forms.PictureBox mCountry8;
-        private MetroFramework.Controls.MetroLabel mAvgHS8;
-        private MetroFramework.Controls.MetroLabel mKD8;
-        private MetroFramework.Controls.MetroLabel mMatches8;
-        private MetroFramework.Controls.MetroLabel mJoinType8;
-        private MetroFramework.Controls.MetroLink mNickname8;
-        private MetroFramework.Controls.MetroLabel mElo8;
-        private System.Windows.Forms.PictureBox mLevel8;
-        private MetroFramework.Controls.MetroLabel mWinRate8;
-        private System.Windows.Forms.Panel panel1;
-        private MetroFramework.Controls.MetroLabel metroLabel106;
-        private MetroFramework.Controls.MetroLabel mRanking7;
-        private MetroFramework.Controls.MetroLabel metroLabel102;
-        private System.Windows.Forms.PictureBox mAvatar7;
-        private MetroFramework.Controls.MetroComboBox mLobby7;
-        private System.Windows.Forms.PictureBox mCountry7;
-        private MetroFramework.Controls.MetroLabel mAvgHS7;
-        private MetroFramework.Controls.MetroLabel mKD7;
-        private MetroFramework.Controls.MetroLabel mMatches7;
-        private MetroFramework.Controls.MetroLabel mJoinType7;
-        private MetroFramework.Controls.MetroLink mNickname7;
-        private MetroFramework.Controls.MetroLabel mElo7;
-        private System.Windows.Forms.PictureBox mLevel7;
-        private MetroFramework.Controls.MetroLabel mWinRate7;
-        private System.Windows.Forms.Panel mPanel6;
-        private MetroFramework.Controls.MetroLabel metroLabel133;
-        private MetroFramework.Controls.MetroLabel mRanking6;
-        private MetroFramework.Controls.MetroLabel metroLabel100;
-        private System.Windows.Forms.PictureBox mAvatar6;
-        private MetroFramework.Controls.MetroComboBox mLobby6;
-        private System.Windows.Forms.PictureBox mCountry6;
-        private MetroFramework.Controls.MetroLabel mAvgHS6;
-        private MetroFramework.Controls.MetroLabel mKD6;
-        private MetroFramework.Controls.MetroLabel mMatches6;
-        private MetroFramework.Controls.MetroLabel mJoinType6;
-        private MetroFramework.Controls.MetroLink mNickname6;
-        private MetroFramework.Controls.MetroLabel mElo6;
-        private System.Windows.Forms.PictureBox mLevel6;
-        private MetroFramework.Controls.MetroLabel mWinRate6;
-        private System.Windows.Forms.Panel mPanel5;
-        private MetroFramework.Controls.MetroLabel metroLabel134;
-        private MetroFramework.Controls.MetroLabel mRanking5;
-        private MetroFramework.Controls.MetroComboBox mLobby5;
-        private MetroFramework.Controls.MetroLabel metroLabel146;
-        private MetroFramework.Controls.MetroLabel mElo5;
-        private System.Windows.Forms.PictureBox mLevel5;
-        private System.Windows.Forms.PictureBox mAvatar5;
-        private System.Windows.Forms.PictureBox mCountry5;
-        private MetroFramework.Controls.MetroLink mNickname5;
-        private MetroFramework.Controls.MetroLabel mMatches5;
-        private MetroFramework.Controls.MetroLabel mAvgHS5;
-        private MetroFramework.Controls.MetroLabel mJoinType5;
-        private MetroFramework.Controls.MetroLabel mKD5;
-        private MetroFramework.Controls.MetroLabel mWinRate5;
-        private System.Windows.Forms.Panel mPanel4;
-        private MetroFramework.Controls.MetroLabel metroLabel136;
-        private MetroFramework.Controls.MetroLabel mRanking4;
-        private MetroFramework.Controls.MetroComboBox mLobby4;
-        private MetroFramework.Controls.MetroLabel metroLabel139;
-        private MetroFramework.Controls.MetroLabel mElo4;
-        private System.Windows.Forms.PictureBox mLevel4;
-        private System.Windows.Forms.PictureBox mAvatar4;
-        private System.Windows.Forms.PictureBox mCountry4;
-        private MetroFramework.Controls.MetroLink mNickname4;
-        private MetroFramework.Controls.MetroLabel mMatches4;
-        private MetroFramework.Controls.MetroLabel mAvgHS4;
-        private MetroFramework.Controls.MetroLabel mJoinType4;
-        private MetroFramework.Controls.MetroLabel mKD4;
-        private MetroFramework.Controls.MetroLabel mWinRate4;
-        private System.Windows.Forms.Panel mPanel3;
-        private MetroFramework.Controls.MetroLabel metroLabel137;
-        private MetroFramework.Controls.MetroLabel mRanking3;
-        private MetroFramework.Controls.MetroComboBox mLobby3;
-        private MetroFramework.Controls.MetroLabel metroLabel107;
-        private MetroFramework.Controls.MetroLabel mElo3;
-        private System.Windows.Forms.PictureBox mLevel3;
-        private System.Windows.Forms.PictureBox mAvatar3;
-        private System.Windows.Forms.PictureBox mCountry3;
-        private MetroFramework.Controls.MetroLink mNickname3;
-        private MetroFramework.Controls.MetroLabel mMatches3;
-        private MetroFramework.Controls.MetroLabel mAvgHS3;
-        private MetroFramework.Controls.MetroLabel mJoinType3;
-        private MetroFramework.Controls.MetroLabel mKD3;
-        private MetroFramework.Controls.MetroLabel mWinRate3;
-        private System.Windows.Forms.Panel mPanel2;
-        private MetroFramework.Controls.MetroLabel mRanking2;
-        private MetroFramework.Controls.MetroComboBox mLobby2;
-        private MetroFramework.Controls.MetroLabel metroLabel99;
-        private MetroFramework.Controls.MetroLabel mElo2;
-        private System.Windows.Forms.PictureBox mLevel2;
-        private System.Windows.Forms.PictureBox mAvatar2;
-        private MetroFramework.Controls.MetroLabel metroLabel103;
-        private System.Windows.Forms.PictureBox mCountry2;
-        private MetroFramework.Controls.MetroLink mNickname2;
-        private MetroFramework.Controls.MetroLabel mMatches2;
-        private MetroFramework.Controls.MetroLabel mAvgHS2;
-        private MetroFramework.Controls.MetroLabel mJoinType2;
-        private MetroFramework.Controls.MetroLabel mKD2;
-        private MetroFramework.Controls.MetroLabel mWinRate2;
-        private MetroFramework.Controls.MetroLabel metroLabel73;
-        private MetroFramework.Controls.MetroLabel avgRankingTeamA;
-        private MetroFramework.Controls.MetroLabel metroLabel92;
-        private MetroFramework.Controls.MetroLabel avgWinRateTeamA;
-        private MetroFramework.Controls.MetroLabel metroLabel97;
-        private MetroFramework.Controls.MetroLabel avgMatchesTeamA;
-        private System.Windows.Forms.Panel mPanel1;
-        private MetroFramework.Controls.MetroLabel metroLabel96;
-        private MetroFramework.Controls.MetroLabel mRanking1;
-        private MetroFramework.Controls.MetroComboBox mLobby1;
-        private MetroFramework.Controls.MetroLabel metroLabel71;
-        private MetroFramework.Controls.MetroLabel mElo1;
-        private System.Windows.Forms.PictureBox mLevel1;
-        private System.Windows.Forms.PictureBox mAvatar1;
-        private System.Windows.Forms.PictureBox mCountry1;
-        private MetroFramework.Controls.MetroLink mNickname1;
-        private MetroFramework.Controls.MetroLabel mMatches1;
-        private MetroFramework.Controls.MetroLabel mAvgHS1;
-        private MetroFramework.Controls.MetroLabel mJoinType1;
-        private MetroFramework.Controls.MetroLabel mKD1;
-        private MetroFramework.Controls.MetroLabel mWinRate1;
-        private MetroFramework.Controls.MetroLabel metroLabel83;
-        private MetroFramework.Controls.MetroLabel avgKDTeamB;
-        private MetroFramework.Controls.MetroLabel metroLabel91;
-        private MetroFramework.Controls.MetroLabel avgHSTeamB;
-        private MetroFramework.Controls.MetroLabel metroLabel93;
-        private MetroFramework.Controls.MetroLabel avgEloTeamB;
-        private MetroFramework.Controls.MetroLabel metroLabel84;
-        private MetroFramework.Controls.MetroLabel avgKDTeamA;
-        private MetroFramework.Controls.MetroLabel metroLabel81;
-        private MetroFramework.Controls.MetroLabel avgHSTeamA;
-        private MetroFramework.Controls.MetroLabel metroLabel89;
-        private MetroFramework.Controls.MetroLabel avgEloTeamA;
-        private MetroFramework.Controls.MetroLabel metroLabel79;
-        private MetroFramework.Controls.MetroLabel metroLabel77;
-        private MetroFramework.Controls.MetroLink downloadDemo1;
-        private MetroFramework.Controls.MetroLabel metroLabel75;
-        private MetroFramework.Controls.MetroLink OpenInWeb1;
-        private MetroFramework.Controls.MetroLabel gameType1;
-        private MetroFramework.Controls.MetroLabel countryServer1;
-        private MetroFramework.Controls.MetroLabel mapName1;
-        private MetroFramework.Controls.MetroLabel bestOfMatch1;
-        private MetroFramework.Controls.MetroLabel metroLabel174;
-        private MetroFramework.Controls.MetroLabel statusMatch1;
-        private MetroFramework.Controls.MetroLabel teamnameB;
-        private MetroFramework.Controls.MetroLabel scoreTeamB;
-        private MetroFramework.Controls.MetroLabel matchBestOf1;
-        private MetroFramework.Controls.MetroLabel scoreTeamA;
-        private MetroFramework.Controls.MetroLabel teamnameA;
-        private MetroFramework.Controls.MetroTabControl metroTabControl1;
         private MetroFramework.Controls.MetroButton settings1;
         public MetroFramework.Controls.MetroButton CompareProfiles1;
         private MetroFramework.Controls.MetroTabControl metroTabControl2;
@@ -8830,6 +13560,569 @@
         private MetroFramework.Controls.MetroLabel profile1last20profile2;
         private MetroFramework.Controls.MetroLabel metroLabel18;
         private MetroFramework.Controls.MetroLabel metroLabel20;
+        public MetroFramework.Controls.MetroLabel metroLabel1;
+        public MetroFramework.Controls.MetroTextBox matchIDbox1;
+        public MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
+        public MetroFramework.Controls.MetroPanel metroPanel3;
+        private MetroFramework.Controls.MetroLabel metroLabel51;
+        private MetroFramework.Controls.MetroLabel finishedDate1;
+        private MetroFramework.Controls.MetroLabel metroLabel45;
+        private MetroFramework.Controls.MetroLabel startedDate1;
+        private MetroFramework.Controls.MetroLabel metroLabel23;
+        private MetroFramework.Controls.MetroLabel configuredDate1;
+        private MetroFramework.Controls.MetroLabel metroLabel98;
+        private MetroFramework.Controls.MetroLabel avgWinRateTeamB;
+        private MetroFramework.Controls.MetroLabel metroLabel104;
+        private MetroFramework.Controls.MetroLabel avgMatchesTeamB;
+        private MetroFramework.Controls.MetroLabel metroLabel87;
+        private MetroFramework.Controls.MetroLabel avgRankingTeamB;
+        private MetroFramework.Controls.MetroLabel metroLabel73;
+        private MetroFramework.Controls.MetroLabel avgRankingTeamA;
+        private MetroFramework.Controls.MetroLabel metroLabel92;
+        private MetroFramework.Controls.MetroLabel avgWinRateTeamA;
+        private MetroFramework.Controls.MetroLabel metroLabel97;
+        private MetroFramework.Controls.MetroLabel avgMatchesTeamA;
+        private System.Windows.Forms.Panel mPanel1;
+        private MetroFramework.Controls.MetroLabel mLevel1;
+        private MetroFramework.Controls.MetroLabel mAvgHS1;
+        private MetroFramework.Controls.MetroLabel mKD1;
+        private MetroFramework.Controls.MetroLabel mElo1;
+        private MetroFramework.Controls.MetroLabel mMatches1;
+        private MetroFramework.Controls.MetroLabel mWinRate1;
+        private System.Windows.Forms.PictureBox mAnticheat1;
+        private MetroFramework.Controls.MetroButton mSteamBtn1;
+        private MetroFramework.Controls.MetroButton mLoadProfileBtn1;
+        private MetroFramework.Controls.MetroLabel metroLabel243233;
+        private MetroFramework.Controls.MetroButton mFaceitBtn1;
+        private MetroFramework.Controls.MetroLabel metroLabel34;
+        private System.Windows.Forms.PictureBox mLevelPicture1;
+        private System.Windows.Forms.PictureBox mAvatar1;
+        private MetroFramework.Controls.MetroLabel metroLabel37;
+        private MetroFramework.Controls.MetroLabel metroLabel35;
+        private System.Windows.Forms.PictureBox mCountry1;
+        private MetroFramework.Controls.MetroLabel metroLabel32;
+        private MetroFramework.Controls.MetroLabel metroLabel29;
+        private MetroFramework.Controls.MetroLink mNickname1;
+        private MetroFramework.Controls.MetroLabel metroLabel83;
+        private MetroFramework.Controls.MetroLabel avgKDTeamB;
+        private MetroFramework.Controls.MetroLabel metroLabel91;
+        private MetroFramework.Controls.MetroLabel avgHSTeamB;
+        private MetroFramework.Controls.MetroLabel metroLabel93;
+        private MetroFramework.Controls.MetroLabel avgEloTeamB;
+        private MetroFramework.Controls.MetroLabel metroLabel84;
+        private MetroFramework.Controls.MetroLabel avgKDTeamA;
+        private MetroFramework.Controls.MetroLabel metroLabel81;
+        private MetroFramework.Controls.MetroLabel avgHSTeamA;
+        private MetroFramework.Controls.MetroLabel metroLabel89;
+        private MetroFramework.Controls.MetroLabel avgEloTeamA;
+        private MetroFramework.Controls.MetroLabel metroLabel79;
+        private MetroFramework.Controls.MetroLabel metroLabel77;
+        private MetroFramework.Controls.MetroLink downloadDemo1;
+        private MetroFramework.Controls.MetroLabel metroLabel75;
+        private MetroFramework.Controls.MetroLink OpenInWeb1;
+        private MetroFramework.Controls.MetroLabel gameType1;
+        private MetroFramework.Controls.MetroLabel mapName1;
+        private MetroFramework.Controls.MetroLabel bestOfMatch1;
+        private MetroFramework.Controls.MetroLabel metroLabel174;
+        private MetroFramework.Controls.MetroLabel statusMatch1;
+        private MetroFramework.Controls.MetroLabel teamnameB;
+        private MetroFramework.Controls.MetroLabel scoreTeamB;
+        private MetroFramework.Controls.MetroLabel matchBestOf1;
+        private MetroFramework.Controls.MetroLabel scoreTeamA;
+        private MetroFramework.Controls.MetroLabel teamnameA;
+        private System.Windows.Forms.PictureBox countryServerImg1;
+        private MetroFramework.Controls.MetroLabel mWinRate6;
+        private MetroFramework.Controls.MetroLabel mMatches6;
+        private MetroFramework.Controls.MetroLabel mLevel6;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox mAvatar6;
+        private System.Windows.Forms.PictureBox mCountry6;
+        private MetroFramework.Controls.MetroLink mNickname6;
+        private MetroFramework.Controls.MetroLabel metroLabel96;
+        private MetroFramework.Controls.MetroLabel mKD6;
+        private MetroFramework.Controls.MetroLabel mAvgHS6;
+        private MetroFramework.Controls.MetroLabel metroLabel95;
+        private MetroFramework.Controls.MetroLabel metroLabel80;
+        private MetroFramework.Controls.MetroLabel countryServer1;
+        private MetroFramework.Controls.MetroLabel metroLabel94;
+        private MetroFramework.Controls.MetroLabel mElo6;
+        private MetroFramework.Controls.MetroLabel metroLabel88;
+        private MetroFramework.Controls.MetroLabel metroLabel82;
+        private MetroFramework.Controls.MetroButton metroButton9;
+        private MetroFramework.Controls.MetroButton metroButton8;
+        private System.Windows.Forms.PictureBox mAnticheat6;
+        private MetroFramework.Controls.MetroButton metroButton10;
+        private System.Windows.Forms.PictureBox mLevelPicture6;
+        private MetroFramework.Controls.MetroLabel statsAssists1;
+        private MetroFramework.Controls.MetroLabel statsDeaths1;
+        private MetroFramework.Controls.MetroLabel statsKills1;
+        private MetroFramework.Controls.MetroLabel statsKD1;
+        private MetroFramework.Controls.MetroLabel statsMVP1;
+        private MetroFramework.Controls.MetroLabel metroLabel290;
+        private System.Windows.Forms.Panel panel10;
+        private MetroFramework.Controls.MetroButton metroButton35;
+        private MetroFramework.Controls.MetroButton metroButton36;
+        private MetroFramework.Controls.MetroButton metroButton37;
+        private MetroFramework.Controls.MetroLink statsNickname1;
+        private MetroFramework.Controls.MetroLabel metroLabel296;
+        private MetroFramework.Controls.MetroLabel statsHS1;
+        private MetroFramework.Controls.MetroLabel metroLabel289;
+        private MetroFramework.Controls.MetroLabel metroLabel298;
+        private MetroFramework.Controls.MetroLabel metroLabel300;
+        private MetroFramework.Controls.MetroLabel metroLabel299;
+        private System.Windows.Forms.Panel panel13;
+        private MetroFramework.Controls.MetroLabel statsMVP5;
+        private MetroFramework.Controls.MetroButton metroButton44;
+        private MetroFramework.Controls.MetroLabel metroLabel356;
+        private MetroFramework.Controls.MetroLabel statsHS5;
+        private MetroFramework.Controls.MetroButton metroButton45;
+        private MetroFramework.Controls.MetroLabel metroLabel384;
+        private MetroFramework.Controls.MetroLabel statsKR5;
+        private MetroFramework.Controls.MetroLabel statsDeaths5;
+        private MetroFramework.Controls.MetroButton metroButton46;
+        private MetroFramework.Controls.MetroLink statsNickname5;
+        private MetroFramework.Controls.MetroLabel metroLabel387;
+        private MetroFramework.Controls.MetroLabel statsTripleKills5;
+        private MetroFramework.Controls.MetroLabel statsKD5;
+        private MetroFramework.Controls.MetroLabel statsAssists5;
+        private MetroFramework.Controls.MetroLabel statsPentaKills5;
+        private MetroFramework.Controls.MetroLabel metroLabel392;
+        private MetroFramework.Controls.MetroLabel metroLabel393;
+        private MetroFramework.Controls.MetroLabel metroLabel394;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills5;
+        private MetroFramework.Controls.MetroLabel metroLabel396;
+        private MetroFramework.Controls.MetroLabel metroLabel397;
+        private MetroFramework.Controls.MetroLabel statsKills5;
+        private MetroFramework.Controls.MetroLabel metroLabel399;
+        private MetroFramework.Controls.MetroLabel metroLabel400;
+        private System.Windows.Forms.Panel panel14;
+        private MetroFramework.Controls.MetroLabel statsMVP4;
+        private MetroFramework.Controls.MetroButton metroButton47;
+        private MetroFramework.Controls.MetroLabel metroLabel402;
+        private MetroFramework.Controls.MetroLabel statsHS4;
+        private MetroFramework.Controls.MetroButton metroButton48;
+        private MetroFramework.Controls.MetroLabel metroLabel404;
+        private MetroFramework.Controls.MetroLabel statsKR4;
+        private MetroFramework.Controls.MetroLabel statsDeaths4;
+        private MetroFramework.Controls.MetroButton metroButton49;
+        private MetroFramework.Controls.MetroLink statsNickname4;
+        private MetroFramework.Controls.MetroLabel metroLabel407;
+        private MetroFramework.Controls.MetroLabel statsTripleKills4;
+        private MetroFramework.Controls.MetroLabel statsKD4;
+        private MetroFramework.Controls.MetroLabel statsAssists4;
+        private MetroFramework.Controls.MetroLabel statsPentaKills4;
+        private MetroFramework.Controls.MetroLabel metroLabel412;
+        private MetroFramework.Controls.MetroLabel metroLabel413;
+        private MetroFramework.Controls.MetroLabel metroLabel414;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills4;
+        private MetroFramework.Controls.MetroLabel metroLabel416;
+        private MetroFramework.Controls.MetroLabel metroLabel417;
+        private MetroFramework.Controls.MetroLabel statsKills4;
+        private MetroFramework.Controls.MetroLabel metroLabel419;
+        private MetroFramework.Controls.MetroLabel metroLabel420;
+        private System.Windows.Forms.Panel panel12;
+        private MetroFramework.Controls.MetroLabel statsMVP2;
+        private MetroFramework.Controls.MetroButton metroButton41;
+        private MetroFramework.Controls.MetroLabel metroLabel336;
+        private MetroFramework.Controls.MetroLabel statsHS2;
+        private MetroFramework.Controls.MetroButton metroButton42;
+        private MetroFramework.Controls.MetroLabel metroLabel338;
+        private MetroFramework.Controls.MetroLabel statsKR2;
+        private MetroFramework.Controls.MetroLabel statsDeaths2;
+        private MetroFramework.Controls.MetroButton metroButton43;
+        private MetroFramework.Controls.MetroLink statsNickname2;
+        private MetroFramework.Controls.MetroLabel metroLabel341;
+        private MetroFramework.Controls.MetroLabel statsTripleKills2;
+        private MetroFramework.Controls.MetroLabel statsKD2;
+        private MetroFramework.Controls.MetroLabel statsAssists2;
+        private MetroFramework.Controls.MetroLabel statsPentaKills2;
+        private MetroFramework.Controls.MetroLabel metroLabel346;
+        private MetroFramework.Controls.MetroLabel metroLabel347;
+        private MetroFramework.Controls.MetroLabel metroLabel348;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills2;
+        private MetroFramework.Controls.MetroLabel metroLabel350;
+        private MetroFramework.Controls.MetroLabel metroLabel351;
+        private MetroFramework.Controls.MetroLabel statsKills2;
+        private MetroFramework.Controls.MetroLabel metroLabel353;
+        private MetroFramework.Controls.MetroLabel metroLabel354;
+        private System.Windows.Forms.Panel panel15;
+        private MetroFramework.Controls.MetroLabel statsMVP3;
+        private MetroFramework.Controls.MetroButton metroButton50;
+        private MetroFramework.Controls.MetroLabel metroLabel422;
+        private MetroFramework.Controls.MetroLabel statsHS3;
+        private MetroFramework.Controls.MetroButton metroButton51;
+        private MetroFramework.Controls.MetroLabel metroLabel424;
+        private MetroFramework.Controls.MetroLabel statsKR3;
+        private MetroFramework.Controls.MetroLabel statsDeaths3;
+        private MetroFramework.Controls.MetroButton metroButton52;
+        private MetroFramework.Controls.MetroLink statsNickname3;
+        private MetroFramework.Controls.MetroLabel metroLabel427;
+        private MetroFramework.Controls.MetroLabel statsTripleKills3;
+        private MetroFramework.Controls.MetroLabel statsKD3;
+        private MetroFramework.Controls.MetroLabel statsAssists3;
+        private MetroFramework.Controls.MetroLabel statsPentaKills3;
+        private MetroFramework.Controls.MetroLabel metroLabel432;
+        private MetroFramework.Controls.MetroLabel metroLabel433;
+        private MetroFramework.Controls.MetroLabel metroLabel434;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills3;
+        private MetroFramework.Controls.MetroLabel metroLabel436;
+        private MetroFramework.Controls.MetroLabel metroLabel437;
+        private MetroFramework.Controls.MetroLabel statsKills3;
+        private MetroFramework.Controls.MetroLabel metroLabel439;
+        private MetroFramework.Controls.MetroLabel metroLabel440;
+        private MetroFramework.Controls.MetroLabel metroLabel334;
+        private MetroFramework.Controls.MetroLabel metroLabel333;
+        private MetroFramework.Controls.MetroLabel metroLabel332;
+        private MetroFramework.Controls.MetroLabel metroLabel331;
+        private MetroFramework.Controls.MetroLabel metroLabel330;
+        private MetroFramework.Controls.MetroLabel metroLabel329;
+        private System.Windows.Forms.Panel panel11;
+        private MetroFramework.Controls.MetroLabel statsMVP6;
+        private MetroFramework.Controls.MetroButton metroButton38;
+        private MetroFramework.Controls.MetroLabel metroLabel310;
+        private MetroFramework.Controls.MetroLabel statsHS6;
+        private MetroFramework.Controls.MetroButton metroButton39;
+        private MetroFramework.Controls.MetroLabel metroLabel312;
+        private MetroFramework.Controls.MetroLabel statsKR6;
+        private MetroFramework.Controls.MetroLabel statsDeaths6;
+        private MetroFramework.Controls.MetroButton metroButton40;
+        private MetroFramework.Controls.MetroLink statsNickname6;
+        private MetroFramework.Controls.MetroLabel metroLabel315;
+        private MetroFramework.Controls.MetroLabel statsTripleKills6;
+        private MetroFramework.Controls.MetroLabel statsKD6;
+        private MetroFramework.Controls.MetroLabel statsAssists6;
+        private MetroFramework.Controls.MetroLabel statsPentaKills6;
+        private MetroFramework.Controls.MetroLabel metroLabel320;
+        private MetroFramework.Controls.MetroLabel metroLabel321;
+        private MetroFramework.Controls.MetroLabel metroLabel322;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills6;
+        private MetroFramework.Controls.MetroLabel metroLabel324;
+        private MetroFramework.Controls.MetroLabel metroLabel325;
+        private MetroFramework.Controls.MetroLabel statsKills6;
+        private MetroFramework.Controls.MetroLabel metroLabel327;
+        private MetroFramework.Controls.MetroLabel metroLabel328;
+        private MetroFramework.Controls.MetroLabel statsKR1;
+        private MetroFramework.Controls.MetroLabel metroLabel301;
+        private MetroFramework.Controls.MetroLabel statsTripleKills1;
+        private MetroFramework.Controls.MetroLabel statsPentaKills1;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills1;
+        private MetroFramework.Controls.MetroLabel metroLabel305;
+        private MetroFramework.Controls.MetroLabel metroLabel303;
+        private MetroFramework.Controls.MetroLabel metroLabel304;
+        private System.Windows.Forms.Panel panel19;
+        private MetroFramework.Controls.MetroLabel statsMVP10;
+        private MetroFramework.Controls.MetroButton metroButton62;
+        private MetroFramework.Controls.MetroButton metroButton63;
+        private MetroFramework.Controls.MetroButton metroButton64;
+        private MetroFramework.Controls.MetroLabel metroLabel502;
+        private MetroFramework.Controls.MetroLink statsNickname10;
+        private MetroFramework.Controls.MetroLabel metroLabel503;
+        private MetroFramework.Controls.MetroLabel statsDeaths10;
+        private MetroFramework.Controls.MetroLabel statsKR10;
+        private MetroFramework.Controls.MetroLabel statsHS10;
+        private MetroFramework.Controls.MetroLabel metroLabel507;
+        private MetroFramework.Controls.MetroLabel statsTripleKills10;
+        private MetroFramework.Controls.MetroLabel statsKD10;
+        private MetroFramework.Controls.MetroLabel metroLabel510;
+        private MetroFramework.Controls.MetroLabel metroLabel511;
+        private MetroFramework.Controls.MetroLabel statsAssists10;
+        private MetroFramework.Controls.MetroLabel metroLabel513;
+        private MetroFramework.Controls.MetroLabel metroLabel514;
+        private MetroFramework.Controls.MetroLabel statsPentaKills10;
+        private MetroFramework.Controls.MetroLabel metroLabel516;
+        private MetroFramework.Controls.MetroLabel metroLabel517;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills10;
+        private MetroFramework.Controls.MetroLabel statsKills10;
+        private MetroFramework.Controls.MetroLabel metroLabel520;
+        private System.Windows.Forms.Panel panel18;
+        private MetroFramework.Controls.MetroLabel statsMVP9;
+        private MetroFramework.Controls.MetroButton metroButton59;
+        private MetroFramework.Controls.MetroButton metroButton60;
+        private MetroFramework.Controls.MetroButton metroButton61;
+        private MetroFramework.Controls.MetroLabel metroLabel482;
+        private MetroFramework.Controls.MetroLink statsNickname9;
+        private MetroFramework.Controls.MetroLabel metroLabel483;
+        private MetroFramework.Controls.MetroLabel statsDeaths9;
+        private MetroFramework.Controls.MetroLabel statsKR9;
+        private MetroFramework.Controls.MetroLabel statsHS9;
+        private MetroFramework.Controls.MetroLabel metroLabel487;
+        private MetroFramework.Controls.MetroLabel statsTripleKills9;
+        private MetroFramework.Controls.MetroLabel statsKD9;
+        private MetroFramework.Controls.MetroLabel metroLabel490;
+        private MetroFramework.Controls.MetroLabel metroLabel491;
+        private MetroFramework.Controls.MetroLabel statsAssists9;
+        private MetroFramework.Controls.MetroLabel metroLabel493;
+        private MetroFramework.Controls.MetroLabel metroLabel494;
+        private MetroFramework.Controls.MetroLabel statsPentaKills9;
+        private MetroFramework.Controls.MetroLabel metroLabel496;
+        private MetroFramework.Controls.MetroLabel metroLabel497;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills9;
+        private MetroFramework.Controls.MetroLabel statsKills9;
+        private MetroFramework.Controls.MetroLabel metroLabel500;
+        private System.Windows.Forms.Panel panel17;
+        private MetroFramework.Controls.MetroLabel statsMVP8;
+        private MetroFramework.Controls.MetroButton metroButton56;
+        private MetroFramework.Controls.MetroButton metroButton57;
+        private MetroFramework.Controls.MetroButton metroButton58;
+        private MetroFramework.Controls.MetroLabel metroLabel462;
+        private MetroFramework.Controls.MetroLink statsNickname8;
+        private MetroFramework.Controls.MetroLabel metroLabel463;
+        private MetroFramework.Controls.MetroLabel statsDeaths8;
+        private MetroFramework.Controls.MetroLabel statsKR8;
+        private MetroFramework.Controls.MetroLabel statsHS8;
+        private MetroFramework.Controls.MetroLabel metroLabel467;
+        private MetroFramework.Controls.MetroLabel statsTripleKills8;
+        private MetroFramework.Controls.MetroLabel statsKD8;
+        private MetroFramework.Controls.MetroLabel metroLabel470;
+        private MetroFramework.Controls.MetroLabel metroLabel471;
+        private MetroFramework.Controls.MetroLabel statsAssists8;
+        private MetroFramework.Controls.MetroLabel metroLabel473;
+        private MetroFramework.Controls.MetroLabel metroLabel474;
+        private MetroFramework.Controls.MetroLabel statsPentaKills8;
+        private MetroFramework.Controls.MetroLabel metroLabel476;
+        private MetroFramework.Controls.MetroLabel metroLabel477;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills8;
+        private MetroFramework.Controls.MetroLabel statsKills8;
+        private MetroFramework.Controls.MetroLabel metroLabel480;
+        private System.Windows.Forms.Panel panel16;
+        private MetroFramework.Controls.MetroLabel statsMVP7;
+        private MetroFramework.Controls.MetroButton metroButton53;
+        private MetroFramework.Controls.MetroButton metroButton54;
+        private MetroFramework.Controls.MetroButton metroButton55;
+        private MetroFramework.Controls.MetroLabel metroLabel442;
+        private MetroFramework.Controls.MetroLink statsNickname7;
+        private MetroFramework.Controls.MetroLabel metroLabel443;
+        private MetroFramework.Controls.MetroLabel statsDeaths7;
+        private MetroFramework.Controls.MetroLabel statsKR7;
+        private MetroFramework.Controls.MetroLabel statsHS7;
+        private MetroFramework.Controls.MetroLabel metroLabel447;
+        private MetroFramework.Controls.MetroLabel statsTripleKills7;
+        private MetroFramework.Controls.MetroLabel statsKD7;
+        private MetroFramework.Controls.MetroLabel metroLabel450;
+        private MetroFramework.Controls.MetroLabel metroLabel451;
+        private MetroFramework.Controls.MetroLabel statsAssists7;
+        private MetroFramework.Controls.MetroLabel metroLabel453;
+        private MetroFramework.Controls.MetroLabel metroLabel454;
+        private MetroFramework.Controls.MetroLabel statsPentaKills7;
+        private MetroFramework.Controls.MetroLabel metroLabel456;
+        private MetroFramework.Controls.MetroLabel metroLabel457;
+        private MetroFramework.Controls.MetroLabel statsQuadroKills7;
+        private MetroFramework.Controls.MetroLabel statsKills7;
+        private MetroFramework.Controls.MetroLabel metroLabel460;
+        private MetroFramework.Controls.MetroPanel metroPanel4;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox3;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox2;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton3;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
+        private MetroFramework.Controls.MetroLabel mRanking1;
+        private MetroFramework.Controls.MetroLabel metroLabel43;
+        private System.Windows.Forms.Panel panel9;
+        private MetroFramework.Controls.MetroLabel metroLabel522;
+        private MetroFramework.Controls.MetroLabel mRanking10;
+        private MetroFramework.Controls.MetroLabel mElo10;
+        private MetroFramework.Controls.MetroLabel metroLabel525;
+        private MetroFramework.Controls.MetroLabel mLevel10;
+        private MetroFramework.Controls.MetroLabel mKD10;
+        private MetroFramework.Controls.MetroLabel mMatches10;
+        private MetroFramework.Controls.MetroLabel mAvgHS10;
+        private MetroFramework.Controls.MetroLabel mWinRate10;
+        private MetroFramework.Controls.MetroLabel metroLabel531;
+        private MetroFramework.Controls.MetroButton metroButton29;
+        private MetroFramework.Controls.MetroButton metroButton30;
+        private MetroFramework.Controls.MetroButton metroButton31;
+        private System.Windows.Forms.PictureBox mAvatar10;
+        private System.Windows.Forms.PictureBox mCountry10;
+        private MetroFramework.Controls.MetroLabel metroLabel532;
+        private MetroFramework.Controls.MetroLabel metroLabel533;
+        private MetroFramework.Controls.MetroLabel metroLabel534;
+        private MetroFramework.Controls.MetroLink mNickname10;
+        private System.Windows.Forms.PictureBox mLevelPicture10;
+        private MetroFramework.Controls.MetroLabel metroLabel535;
+        private System.Windows.Forms.PictureBox mAnticheat10;
+        private System.Windows.Forms.Panel panel8;
+        private MetroFramework.Controls.MetroLabel metroLabel236;
+        private MetroFramework.Controls.MetroLabel mRanking9;
+        private MetroFramework.Controls.MetroLabel mElo9;
+        private MetroFramework.Controls.MetroLabel metroLabel239;
+        private MetroFramework.Controls.MetroLabel mLevel9;
+        private MetroFramework.Controls.MetroLabel mKD9;
+        private MetroFramework.Controls.MetroLabel mMatches9;
+        private MetroFramework.Controls.MetroLabel mAvgHS9;
+        private MetroFramework.Controls.MetroLabel mWinRate9;
+        private MetroFramework.Controls.MetroLabel metroLabel285;
+        private MetroFramework.Controls.MetroButton metroButton26;
+        private MetroFramework.Controls.MetroButton metroButton27;
+        private MetroFramework.Controls.MetroButton metroButton28;
+        private System.Windows.Forms.PictureBox mAvatar9;
+        private System.Windows.Forms.PictureBox mCountry9;
+        private MetroFramework.Controls.MetroLabel metroLabel286;
+        private MetroFramework.Controls.MetroLabel metroLabel287;
+        private MetroFramework.Controls.MetroLabel metroLabel288;
+        private MetroFramework.Controls.MetroLink mNickname9;
+        private System.Windows.Forms.PictureBox mLevelPicture9;
+        private MetroFramework.Controls.MetroLabel metroLabel521;
+        private System.Windows.Forms.PictureBox mAnticheat9;
+        private System.Windows.Forms.Panel panel7;
+        private MetroFramework.Controls.MetroLabel metroLabel222;
+        private MetroFramework.Controls.MetroLabel mRanking8;
+        private MetroFramework.Controls.MetroLabel mElo8;
+        private MetroFramework.Controls.MetroLabel metroLabel225;
+        private MetroFramework.Controls.MetroLabel mLevel8;
+        private MetroFramework.Controls.MetroLabel mKD8;
+        private MetroFramework.Controls.MetroLabel mMatches8;
+        private MetroFramework.Controls.MetroLabel mAvgHS8;
+        private MetroFramework.Controls.MetroLabel mWinRate8;
+        private MetroFramework.Controls.MetroLabel metroLabel231;
+        private MetroFramework.Controls.MetroButton metroButton23;
+        private MetroFramework.Controls.MetroButton metroButton24;
+        private MetroFramework.Controls.MetroButton metroButton25;
+        private System.Windows.Forms.PictureBox mAvatar8;
+        private System.Windows.Forms.PictureBox mCountry8;
+        private MetroFramework.Controls.MetroLabel metroLabel232;
+        private MetroFramework.Controls.MetroLabel metroLabel233;
+        private MetroFramework.Controls.MetroLabel metroLabel234;
+        private MetroFramework.Controls.MetroLink mNickname8;
+        private System.Windows.Forms.PictureBox mLevelPicture8;
+        private MetroFramework.Controls.MetroLabel metroLabel235;
+        private System.Windows.Forms.PictureBox mAnticheat8;
+        private System.Windows.Forms.Panel panel6;
+        private MetroFramework.Controls.MetroLabel metroLabel164;
+        private MetroFramework.Controls.MetroLabel mRanking7;
+        private MetroFramework.Controls.MetroLabel mElo7;
+        private MetroFramework.Controls.MetroLabel metroLabel167;
+        private MetroFramework.Controls.MetroLabel mLevel7;
+        private MetroFramework.Controls.MetroLabel mKD7;
+        private MetroFramework.Controls.MetroLabel mMatches7;
+        private MetroFramework.Controls.MetroLabel mAvgHS7;
+        private MetroFramework.Controls.MetroLabel mWinRate7;
+        private MetroFramework.Controls.MetroLabel metroLabel217;
+        private MetroFramework.Controls.MetroButton metroButton20;
+        private MetroFramework.Controls.MetroButton metroButton21;
+        private MetroFramework.Controls.MetroButton metroButton22;
+        private System.Windows.Forms.PictureBox mAvatar7;
+        private System.Windows.Forms.PictureBox mCountry7;
+        private MetroFramework.Controls.MetroLabel metroLabel218;
+        private MetroFramework.Controls.MetroLabel metroLabel219;
+        private MetroFramework.Controls.MetroLabel metroLabel220;
+        private MetroFramework.Controls.MetroLink mNickname7;
+        private System.Windows.Forms.PictureBox mLevelPicture7;
+        private MetroFramework.Controls.MetroLabel metroLabel221;
+        private System.Windows.Forms.PictureBox mAnticheat7;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.PictureBox mLevelPicture5;
+        private MetroFramework.Controls.MetroLabel mLevel5;
+        private MetroFramework.Controls.MetroLabel metroLabel149;
+        private MetroFramework.Controls.MetroLabel mAvgHS5;
+        private MetroFramework.Controls.MetroLabel mRanking5;
+        private System.Windows.Forms.PictureBox mAnticheat5;
+        private MetroFramework.Controls.MetroLabel mElo5;
+        private MetroFramework.Controls.MetroLabel metroLabel153;
+        private MetroFramework.Controls.MetroLabel mKD5;
+        private MetroFramework.Controls.MetroLabel metroLabel157;
+        private MetroFramework.Controls.MetroLabel mMatches5;
+        private MetroFramework.Controls.MetroLabel mWinRate5;
+        private MetroFramework.Controls.MetroButton metroButton17;
+        private MetroFramework.Controls.MetroButton metroButton18;
+        private MetroFramework.Controls.MetroButton metroButton19;
+        private System.Windows.Forms.PictureBox mAvatar5;
+        private MetroFramework.Controls.MetroLabel metroLabel160;
+        private MetroFramework.Controls.MetroLabel metroLabel161;
+        private System.Windows.Forms.PictureBox mCountry5;
+        private MetroFramework.Controls.MetroLabel metroLabel162;
+        private MetroFramework.Controls.MetroLabel metroLabel163;
+        private MetroFramework.Controls.MetroLink mNickname5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox mLevelPicture4;
+        private MetroFramework.Controls.MetroLabel mLevel4;
+        private MetroFramework.Controls.MetroLabel metroLabel134;
+        private MetroFramework.Controls.MetroLabel mAvgHS4;
+        private MetroFramework.Controls.MetroLabel mRanking4;
+        private System.Windows.Forms.PictureBox mAnticheat4;
+        private MetroFramework.Controls.MetroLabel mElo4;
+        private MetroFramework.Controls.MetroLabel metroLabel138;
+        private MetroFramework.Controls.MetroLabel mKD4;
+        private MetroFramework.Controls.MetroLabel metroLabel140;
+        private MetroFramework.Controls.MetroLabel mMatches4;
+        private MetroFramework.Controls.MetroLabel mWinRate4;
+        private MetroFramework.Controls.MetroButton metroButton14;
+        private MetroFramework.Controls.MetroButton metroButton15;
+        private MetroFramework.Controls.MetroButton metroButton16;
+        private System.Windows.Forms.PictureBox mAvatar4;
+        private MetroFramework.Controls.MetroLabel metroLabel144;
+        private MetroFramework.Controls.MetroLabel metroLabel145;
+        private System.Windows.Forms.PictureBox mCountry4;
+        private MetroFramework.Controls.MetroLabel metroLabel146;
+        private MetroFramework.Controls.MetroLabel metroLabel147;
+        private MetroFramework.Controls.MetroLink mNickname4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox mLevelPicture3;
+        private MetroFramework.Controls.MetroLabel mLevel3;
+        private MetroFramework.Controls.MetroLabel metroLabel115;
+        private MetroFramework.Controls.MetroLabel mAvgHS3;
+        private MetroFramework.Controls.MetroLabel mRanking3;
+        private System.Windows.Forms.PictureBox mAnticheat3;
+        private MetroFramework.Controls.MetroLabel mElo3;
+        private MetroFramework.Controls.MetroLabel metroLabel121;
+        private MetroFramework.Controls.MetroLabel mKD3;
+        private MetroFramework.Controls.MetroLabel metroLabel123;
+        private MetroFramework.Controls.MetroLabel mMatches3;
+        private MetroFramework.Controls.MetroLabel mWinRate3;
+        private MetroFramework.Controls.MetroButton metroButton11;
+        private MetroFramework.Controls.MetroButton metroButton12;
+        private MetroFramework.Controls.MetroButton metroButton13;
+        private System.Windows.Forms.PictureBox mAvatar3;
+        private MetroFramework.Controls.MetroLabel metroLabel126;
+        private MetroFramework.Controls.MetroLabel metroLabel127;
+        private System.Windows.Forms.PictureBox mCountry3;
+        private MetroFramework.Controls.MetroLabel metroLabel130;
+        private MetroFramework.Controls.MetroLabel metroLabel131;
+        private MetroFramework.Controls.MetroLink mNickname3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox mLevelPicture2;
+        private MetroFramework.Controls.MetroLabel mLevel2;
+        private MetroFramework.Controls.MetroLabel metroLabel99;
+        private MetroFramework.Controls.MetroLabel mAvgHS2;
+        private MetroFramework.Controls.MetroLabel mRanking2;
+        private System.Windows.Forms.PictureBox mAnticheat2;
+        private MetroFramework.Controls.MetroLabel mElo2;
+        private MetroFramework.Controls.MetroLabel metroLabel105;
+        private MetroFramework.Controls.MetroLabel mKD2;
+        private MetroFramework.Controls.MetroLabel metroLabel107;
+        private MetroFramework.Controls.MetroLabel mMatches2;
+        private MetroFramework.Controls.MetroLabel mWinRate2;
+        private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroButton metroButton3;
+        private MetroFramework.Controls.MetroButton metroButton4;
+        private System.Windows.Forms.PictureBox mAvatar2;
+        private MetroFramework.Controls.MetroLabel metroLabel110;
+        private MetroFramework.Controls.MetroLabel metroLabel111;
+        private System.Windows.Forms.PictureBox mCountry2;
+        private MetroFramework.Controls.MetroLabel metroLabel112;
+        private MetroFramework.Controls.MetroLabel metroLabel113;
+        private MetroFramework.Controls.MetroLink mNickname2;
+        private MetroFramework.Controls.MetroLabel metroLabel41;
+        private MetroFramework.Controls.MetroLabel mRanking6;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar3;
+        private MetroFramework.Controls.MetroLabel teamAResult;
+        private MetroFramework.Controls.MetroLabel teamBResult;
+        private MetroFramework.Controls.MetroLabel teamATeamHS;
+        private MetroFramework.Controls.MetroLabel teamBTeamHS;
+        private MetroFramework.Controls.MetroLabel teamBOTScore;
+        private MetroFramework.Controls.MetroLabel teamAOTScore;
+        private MetroFramework.Controls.MetroLabel teamBSecondHalfScore;
+        private MetroFramework.Controls.MetroLabel teamASecondHalfScore;
+        private MetroFramework.Controls.MetroLabel teamBFirstHalfScore;
+        private MetroFramework.Controls.MetroLabel teamAFirstHalfScore;
+        private MetroFramework.Controls.MetroLabel teamBFinalScore;
+        private MetroFramework.Controls.MetroLabel teamAFinalScore;
+        private MetroFramework.Controls.MetroLabel teamAPremade;
+        private MetroFramework.Controls.MetroLabel teamBPremade;
+        private MetroFramework.Controls.MetroLabel metroLabel60;
+        private MetroFramework.Controls.MetroPanel metroPanel5;
+        private MetroFramework.Controls.MetroPanel metroPanel6;
     }
 }
 

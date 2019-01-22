@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -18,6 +19,11 @@ namespace WindowsFormsApp1
         {
             Form2 form = new Form2();
             form.Close();
+        }
+
+        private void errorMsg_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(errorMsg.Text);
         }
     }
 }

@@ -1,346 +1,137 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
+using Newtonsoft.Json;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using FaceitAPI.Match.Details;
+using FaceitAPI;
+using FaceitAPI.Player.Details;
+using FaceitAPI.Match.Stats;
+using FaceitAPI.Player.History;
+using FaceitAPI.Player.Statistics;
+using FaceitAPI.Player;
+using FaceitAPI.Player.Statistics.Extension;
 using System.Text;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        public enum LOADING_IMAGES { fromAllSources, fromLocal, fromWww }
+        public enum loadedLogins { None, login1, login2 }
+        public enum LOADING_STATUS { None, Preparing, Process, Good, Bad }
+        #region Login1
+        public PlayerCSGO profile;
+        public CSGOPlayerStatisticsProfileSegment last20Profile1;
+        public bool isLogin1Loaded = false;
+        #endregion
+
+        #region Login2
+        public PlayerCSGO profile2;
+        public CSGOPlayerStatisticsProfileSegment last20Profile2;
+        public bool isLogin2Loaded = false;
+        #endregion
+
+        #region Main
+
+        #endregion
+
+        #region Match
+        public bool isMatchLoaded = false;
+        public bool isMatchLoading = false;
+        public List<CSGOMatchStatsTeamPlayer> playerS = new List<CSGOMatchStatsTeamPlayer>();
+        #region Details
+        public CSGOMatchDetails matchDetails;
+        #endregion
+
+        #region Stats
+        public CSGOMatchStats matchStatistics;
+        #endregion
+
+        #endregion
 
         #region Variables
-        public Profile profile;
-        public Profile profile2;
-        public Match match;
 
-        public bool isLogin1Loaded = false;
-        public bool isLogin2Loaded = false;
-        public bool isMatchLoaded = false;
+        public delegate void OnLoadingLoginChange(loadedLogins login);
+        public event OnLoadingLoginChange OnLoadedLogin;
 
+        public delegate void OnStatusLoginChange(LOADING_STATUS status);
+        public event OnStatusLoginChange OnStatusLogin;
+
+        public LOADING_IMAGES loadingImages = LOADING_IMAGES.fromAllSources;
+        BackgroundWorker thread1 = new BackgroundWorker();
+        BackgroundWorker thread2 = new BackgroundWorker();
+        BackgroundWorker thread3 = new BackgroundWorker();
+        BackgroundWorker thread4 = new BackgroundWorker();
+        public Engine faceit = new Engine("c275df18-34f8-467f-a03b-e44bb7fcf581");
+        public List<PlayerCSGO> players = new List<PlayerCSGO>();
+        public int tabMatchint;
+        public int tabProfile1int;
+        public int tabProfile2int;
+        public List<SysELO> sysElo = new List<SysELO>();
+        public string filePatchElo = Application.StartupPath + "/elo.json";
+        public loadedLogins lastLoadedLogin = loadedLogins.None;
+        public loadedLogins currentlyloadingLogin = loadedLogins.None;
+        public LOADING_STATUS statusLoadedLogin = LOADING_STATUS.None;
         public bool showDEmaps = true;
         public bool showAIMmaps = true;
         public bool loadAvatars = true;
 
-        public int tabMatchint;
-        public int tabProfile1int;
-        public int tabProfile2int;
 
-        public List<Member> members;
+        #region UI
         public List<MetroFramework.Controls.MetroLink> lNickname = new List<MetroFramework.Controls.MetroLink>();
         public List<MetroFramework.Controls.MetroLabel> lAVGHSS = new List<MetroFramework.Controls.MetroLabel>();
         public List<MetroFramework.Controls.MetroLabel> lMatches = new List<MetroFramework.Controls.MetroLabel>();
         public List<MetroFramework.Controls.MetroLabel> lWinRate = new List<MetroFramework.Controls.MetroLabel>();
         public List<MetroFramework.Controls.MetroLabel> lELO = new List<MetroFramework.Controls.MetroLabel>();
-        public List<MetroFramework.Controls.MetroLabel> lJoinType = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> lLevel = new List<MetroFramework.Controls.MetroLabel>();
         public List<MetroFramework.Controls.MetroLabel> lKD = new List<MetroFramework.Controls.MetroLabel>();
         public List<MetroFramework.Controls.MetroLabel> lRanking = new List<MetroFramework.Controls.MetroLabel>();
-        public List<MetroFramework.Controls.MetroComboBox> lLobby = new List<MetroFramework.Controls.MetroComboBox>();
         public List<PictureBox> lAvatar = new List<PictureBox>();
         public List<PictureBox> lCountry = new List<PictureBox>();
-        public List<PictureBox> lLevel = new List<PictureBox>();
-        
-        private static string client_key_api = "Bearer 3a043af9-c274-4842-8985-83fdb68b7e1c";
+        public List<PictureBox> lLevelPict = new List<PictureBox>();
+        public List<PictureBox> lAnticheat = new List<PictureBox>();
 
+        public List<MetroFramework.Controls.MetroLink> sNickname = new List<MetroFramework.Controls.MetroLink>();
+        public List<MetroFramework.Controls.MetroLabel> sKills = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sAssists = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sDeaths = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sPentaKills = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sQuadroKills = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sTripleKills = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sAvgKD = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sAvgKR = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sMVP = new List<MetroFramework.Controls.MetroLabel>();
+        public List<MetroFramework.Controls.MetroLabel> sHS = new List<MetroFramework.Controls.MetroLabel>();
+        #endregion
+
+        public loadedLogins loadingLogin
+        {
+            get { return currentlyloadingLogin; }
+            set
+            {
+                currentlyloadingLogin = value;
+                OnLoadedLogin(value);
+            }
+        }
+        public LOADING_STATUS statusLogin
+        {
+            get { return statusLoadedLogin; }
+            set
+            {
+                statusLoadedLogin = value;
+                OnStatusLogin(value);
+            }
+        }
         #endregion
 
         #region Get
-        public static JObject GetAPI(string nickname)
-        {
-            if(ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/players?nickname=" + nickname + "&game=csgo");
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    WebResponse res = req.GetResponse();
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return JObject.Parse(sr.ReadToEnd());
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Profile or CS: GO stats not found.";
-                    form.ShowDialog();
-                    return new JObject();
-                }
-            }
-            else if(ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.LimitedAccess)
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return new JObject();
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return new JObject();
-            }
-        }
-        public static JObject GetProfile(string guid, bool csgo)
-        {
-            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/players/" + guid + (csgo ? "/stats/csgo" : ""));
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    using (WebResponse res = req.GetResponse())
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return JObject.Parse(sr.ReadToEnd());
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    JObject json = (JObject)ex.Response.ToString();
-                    form.errorMsg.Text = "Profile or CS: GO not found.";
-                    form.ShowDialog();
-                    return new JObject();
-                }
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return null;
-            }
-            
-        }
-        public static string GetProfile(string guid)
-        {
-            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/players/" + guid + "/stats/csgo");
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    using (WebResponse res = req.GetResponse())
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return sr.ReadToEnd();
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Profile or CS: GO stats not found.";
-                    form.ShowDialog();
-                    return null;
-                }
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return null;
-            }
-        }
-        public static JObject GetStats(string playerID)
-        {
-            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/players/" + playerID + "/stats/csgo");
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    using (WebResponse res = req.GetResponse())
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return JObject.Parse(sr.ReadToEnd());
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Account not have csgo stats.";
-                    form.Show();
-                    return new JObject();
-                }
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return new JObject();
-            }
-            
-        }
-        public static JObject GetMatch(string MatchID)
-        {
-            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/matches/" + MatchID);
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    using (WebResponse res = req.GetResponse())
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return JObject.Parse(sr.ReadToEnd());
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Bad Match ID. Match not found.";
-                    form.ShowDialog();
-                    return new JObject();
-                }
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return new JObject();
-            }
-
-        }
-        public static JObject GetStatsMatch(string MatchID)
-        {
-            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/matches/" + MatchID + "/stats");
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    using (WebResponse res = req.GetResponse())
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return JObject.Parse(sr.ReadToEnd());
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Bad Match ID. Match not found.";
-                    form.ShowDialog();
-                    return new JObject();
-                }
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                form.Show();
-                return new JObject();
-            }
-
-        }
-        public static JObject GetHistory(string playerID, int matches)
-        {
-            
-            WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/players/" + playerID + "/history?game=csgo&from=0&limit=" + matches);
-            req.Method = "GET";
-            req.Headers.Add("Authorization", client_key_api);
-            req.ContentType = "application / json";
-            try
-            {
-                using (WebResponse res = req.GetResponse())
-                using (Stream receiveStream = res.GetResponseStream())
-                using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                {
-                    return JObject.Parse(sr.ReadToEnd());
-                }
-            }
-            catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-            {
-                if (ex.Response == null) throw; // Убрать в C# 6
-
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Match histrory is not loaded.";
-                form.ShowDialog();
-                return new JObject();
-            }
-
-        }
-
-        public static string GetRanking(string region, string guid)
-        {
-            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
-            {
-                WebRequest req = WebRequest.Create("https://open.faceit.com/data/v4/rankings/games/csgo/regions/" + region.ToUpper() + "/players/" + guid);
-                req.Method = "GET";
-                req.Timeout = 10000;
-                req.Headers.Add("Authorization", client_key_api);
-                req.ContentType = "application / json";
-                try
-                {
-                    using (WebResponse res = req.GetResponse())
-                    using (Stream receiveStream = res.GetResponseStream())
-                    using (StreamReader sr = new StreamReader(receiveStream, Encoding.UTF8))
-                    {
-                        return sr.ReadToEnd();
-                    }
-                }
-                catch (WebException ex) when (ex.Response != null) // Раскоментировать в C#
-                {
-                    if (ex.Response == null) throw; // Убрать в C# 6
-
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Ranking not loaded. Try later...";
-                    form.ShowDialog();
-                    return null;
-                }
-            }
-            else
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Plz check internet connection.";
-                return null;
-            }
-        }
 
         public static Image GetAvatar(string avatarURL)
         {
@@ -376,6 +167,33 @@ namespace WindowsFormsApp1
                 Form2 form = new Form2();
                 form.errorMsg.Text = "Plz check internet connection.";
                 return Image.FromFile(Application.StartupPath + @"\level\10.png");
+            }
+        }
+        public static Image GetImageServer(string serverURL)
+        {
+            if (ConnectivityChecker.CheckInternet() == ConnectivityChecker.ConnectionStatus.Connected)
+            {
+                try
+                {
+                    WebRequest req = WebRequest.Create(serverURL);
+                    WebResponse res = req.GetResponse();
+                    return Image.FromStream(res.GetResponseStream());
+                }
+                catch (WebException ex) when (ex.Response != null)
+                {
+                    if (ex.Response == null) throw; // Убрать в C# 6
+
+                    Form2 form = new Form2();
+                    form.errorMsg.Text = "Server image not loaded. Try later...";
+                    form.ShowDialog();
+                    return null;
+                }
+            }
+            else
+            {
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Plz check internet connection.";
+                return null;
             }
         }
         public static bool GetCountry(string countryCode, out Image img)
@@ -416,26 +234,41 @@ namespace WindowsFormsApp1
                 return false;
             }
         }
-
-        public static Uri SetUri(string URL)
-        {
-            return new Uri(URL.Replace("{lang}", "en"));
-        }
-
+        
         public static Image GetImageLevel(int level)
         {
             Image img = Image.FromFile(Application.StartupPath + @"\level\" + level + ".png");
             return img;
         }
-
+        public static Image GetImageAnticheat(bool anticheat)
+        {
+            if (anticheat)
+            {
+                Image img = Image.FromFile(Application.StartupPath + @"\anticheat\anticheat_enabled.png");
+                return img;
+            }
+            else
+            {
+                Image img = Image.FromFile(Application.StartupPath + @"\anticheat\anticheat_disabled.png");
+                return img;
+            }
+            
+        }
         #endregion
 
+        private void OnEvent()
+        {
+            OnLoadedLogin += OnLoadingLogin;
+            OnStatusLogin += OnStatusLogining;
+        }
         public Form1()
         {
+            OnEvent();
             InitializeComponent();
+            InitializeBackgroundWorker();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             Main();
-            GetInfoMatch1.Enabled = false;
+            //GetInfoMatch1.Enabled = false;
             lNickname.Add(mNickname1);
             lNickname.Add(mNickname2);
             lNickname.Add(mNickname3);
@@ -480,16 +313,16 @@ namespace WindowsFormsApp1
             lWinRate.Add(mWinRate9);
             lWinRate.Add(mWinRate10);
 
-            lJoinType.Add(mJoinType1);
-            lJoinType.Add(mJoinType2);
-            lJoinType.Add(mJoinType3);
-            lJoinType.Add(mJoinType4);
-            lJoinType.Add(mJoinType5);
-            lJoinType.Add(mJoinType6);
-            lJoinType.Add(mJoinType7);
-            lJoinType.Add(mJoinType8);
-            lJoinType.Add(mJoinType9);
-            lJoinType.Add(mJoinType10);
+            lAnticheat.Add(mAnticheat1);
+            lAnticheat.Add(mAnticheat2);
+            lAnticheat.Add(mAnticheat3);
+            lAnticheat.Add(mAnticheat4);
+            lAnticheat.Add(mAnticheat5);
+            lAnticheat.Add(mAnticheat6);
+            lAnticheat.Add(mAnticheat7);
+            lAnticheat.Add(mAnticheat8);
+            lAnticheat.Add(mAnticheat9);
+            lAnticheat.Add(mAnticheat10);
 
             lELO.Add(mElo1);
             lELO.Add(mElo2);
@@ -546,6 +379,17 @@ namespace WindowsFormsApp1
             lCountry.Add(mCountry9);
             lCountry.Add(mCountry10);
 
+            lLevelPict.Add(mLevelPicture1);
+            lLevelPict.Add(mLevelPicture2);
+            lLevelPict.Add(mLevelPicture3);
+            lLevelPict.Add(mLevelPicture4);
+            lLevelPict.Add(mLevelPicture5);
+            lLevelPict.Add(mLevelPicture6);
+            lLevelPict.Add(mLevelPicture7);
+            lLevelPict.Add(mLevelPicture8);
+            lLevelPict.Add(mLevelPicture9);
+            lLevelPict.Add(mLevelPicture10);
+
             lLevel.Add(mLevel1);
             lLevel.Add(mLevel2);
             lLevel.Add(mLevel3);
@@ -557,99 +401,393 @@ namespace WindowsFormsApp1
             lLevel.Add(mLevel9);
             lLevel.Add(mLevel10);
 
-            lLobby.Add(mLobby1);
-            lLobby.Add(mLobby2);
-            lLobby.Add(mLobby3);
-            lLobby.Add(mLobby4);
-            lLobby.Add(mLobby5);
-            lLobby.Add(mLobby6);
-            lLobby.Add(mLobby7);
-            lLobby.Add(mLobby8);
-            lLobby.Add(mLobby9);
-            lLobby.Add(mLobby10);
+            sNickname.Add(statsNickname1);
+            sNickname.Add(statsNickname2);
+            sNickname.Add(statsNickname3);
+            sNickname.Add(statsNickname4);
+            sNickname.Add(statsNickname5);
+            sNickname.Add(statsNickname6);
+            sNickname.Add(statsNickname7);
+            sNickname.Add(statsNickname8);
+            sNickname.Add(statsNickname9);
+            sNickname.Add(statsNickname10);
+
+            sKills.Add(statsKills1);
+            sKills.Add(statsKills2);
+            sKills.Add(statsKills3);
+            sKills.Add(statsKills4);
+            sKills.Add(statsKills5);
+            sKills.Add(statsKills6);
+            sKills.Add(statsKills7);
+            sKills.Add(statsKills8);
+            sKills.Add(statsKills9);
+            sKills.Add(statsKills10);
+
+            sDeaths.Add(statsDeaths1);
+            sDeaths.Add(statsDeaths2);
+            sDeaths.Add(statsDeaths3);
+            sDeaths.Add(statsDeaths4);
+            sDeaths.Add(statsDeaths5);
+            sDeaths.Add(statsDeaths6);
+            sDeaths.Add(statsDeaths7);
+            sDeaths.Add(statsDeaths8);
+            sDeaths.Add(statsDeaths9);
+            sDeaths.Add(statsDeaths10);
+
+            sAssists.Add(statsAssists1);
+            sAssists.Add(statsAssists2);
+            sAssists.Add(statsAssists3);
+            sAssists.Add(statsAssists4);
+            sAssists.Add(statsAssists5);
+            sAssists.Add(statsAssists6);
+            sAssists.Add(statsAssists7);
+            sAssists.Add(statsAssists8);
+            sAssists.Add(statsAssists9);
+            sAssists.Add(statsAssists10);
+
+            sPentaKills.Add(statsPentaKills1);
+            sPentaKills.Add(statsPentaKills2);
+            sPentaKills.Add(statsPentaKills3);
+            sPentaKills.Add(statsPentaKills4);
+            sPentaKills.Add(statsPentaKills5);
+            sPentaKills.Add(statsPentaKills6);
+            sPentaKills.Add(statsPentaKills7);
+            sPentaKills.Add(statsPentaKills8);
+            sPentaKills.Add(statsPentaKills9);
+            sPentaKills.Add(statsPentaKills10);
+
+            sQuadroKills.Add(statsQuadroKills1);
+            sQuadroKills.Add(statsQuadroKills2);
+            sQuadroKills.Add(statsQuadroKills3);
+            sQuadroKills.Add(statsQuadroKills4);
+            sQuadroKills.Add(statsQuadroKills5);
+            sQuadroKills.Add(statsQuadroKills6);
+            sQuadroKills.Add(statsQuadroKills7);
+            sQuadroKills.Add(statsQuadroKills8);
+            sQuadroKills.Add(statsQuadroKills9);
+            sQuadroKills.Add(statsQuadroKills10);
+
+            sTripleKills.Add(statsTripleKills1);
+            sTripleKills.Add(statsTripleKills2);
+            sTripleKills.Add(statsTripleKills3);
+            sTripleKills.Add(statsTripleKills4);
+            sTripleKills.Add(statsTripleKills5);
+            sTripleKills.Add(statsTripleKills6);
+            sTripleKills.Add(statsTripleKills7);
+            sTripleKills.Add(statsTripleKills8);
+            sTripleKills.Add(statsTripleKills9);
+            sTripleKills.Add(statsTripleKills10);
+
+            sAvgKD.Add(statsKD1);
+            sAvgKD.Add(statsKD2);
+            sAvgKD.Add(statsKD3);
+            sAvgKD.Add(statsKD4);
+            sAvgKD.Add(statsKD5);
+            sAvgKD.Add(statsKD6);
+            sAvgKD.Add(statsKD7);
+            sAvgKD.Add(statsKD8);
+            sAvgKD.Add(statsKD9);
+            sAvgKD.Add(statsKD10);
+
+            sAvgKR.Add(statsKR1);
+            sAvgKR.Add(statsKR2);
+            sAvgKR.Add(statsKR3);
+            sAvgKR.Add(statsKR4);
+            sAvgKR.Add(statsKR5);
+            sAvgKR.Add(statsKR6);
+            sAvgKR.Add(statsKR7);
+            sAvgKR.Add(statsKR8);
+            sAvgKR.Add(statsKR9);
+            sAvgKR.Add(statsKR10);
+
+            sMVP.Add(statsMVP1);
+            sMVP.Add(statsMVP2);
+            sMVP.Add(statsMVP3);
+            sMVP.Add(statsMVP4);
+            sMVP.Add(statsMVP5);
+            sMVP.Add(statsMVP6);
+            sMVP.Add(statsMVP7);
+            sMVP.Add(statsMVP8);
+            sMVP.Add(statsMVP9);
+            sMVP.Add(statsMVP10);
+
+            sHS.Add(statsHS1);
+            sHS.Add(statsHS2);
+            sHS.Add(statsHS3);
+            sHS.Add(statsHS4);
+            sHS.Add(statsHS5);
+            sHS.Add(statsHS6);
+            sHS.Add(statsHS7);
+            sHS.Add(statsHS8);
+            sHS.Add(statsHS9);
+            sHS.Add(statsHS10);
+
         }
 
-        public void LoadMapInComboBox(ComboBox box, List<Map> maps)
+        public void OnLoadingLogin(loadedLogins login)
+        {
+            if (loadingLogin == loadedLogins.None) return;
+            
+            DisableStatsCompareProfile();
+            statusLogin = LOADING_STATUS.Preparing;
+            CheckOnLoadedLogins();
+        }
+        public void OnStatusLogining(LOADING_STATUS status)
+        {
+            if(loadingLogin == loadedLogins.login1)
+            {
+                if(statusLogin == LOADING_STATUS.Preparing)
+                {
+                    ClearProfileTab();
+                    isLogin1Loaded = false;
+                    getProfile1.Enabled = false; //отключение кнопки
+                    login1.Enabled = false; //отключение поля с никнеймом
+                    metroPanel1.Visible = true; //скрытие UI
+                    statusLogin = LOADING_STATUS.Process;
+                }
+                else if(statusLogin == LOADING_STATUS.Process)
+                {
+                    thread3.RunWorkerAsync();
+                }
+                else if(statusLogin == LOADING_STATUS.Good)
+                {
+                    ShowInfoProfileTab(profile);
+                    Last20StyleProfile1_DefaultStyle();
+                    loginProfileProfile1_defaultStyle();
+                    loginMapBox1Profile1_defaultStyle();
+                    loginMapBox2Profile1_defaultStyle();
+                    if (profile.detail.friends_Ids.Count != 0)
+                    {
+                        friendsBoxProfile1.Enabled = true;
+                        getFriendInfoProfile1.Enabled = true;
+                        friendsBoxProfile1.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        friendsBoxProfile1.Enabled = false;
+                        getFriendInfoProfile1.Enabled = false;
+                    }
+                    Load20MatchesProfile1History();
+                    metroTabControl1.SelectTab(tabProfile1int);
+                    metroPanel1.Visible = false;
+                    metroProgressBar3.Value = 0;
+                    lastLoadedLogin = loadedLogins.login1;
+                    login1.Enabled = true;
+                    getProfile1.Enabled = true;
+                }
+                else if(statusLogin == LOADING_STATUS.Bad)
+                {
+
+                }
+            }
+            else if(loadingLogin == loadedLogins.login2)
+            {
+                if (statusLogin == LOADING_STATUS.Preparing)
+                {
+                    ClearProfile2Tab();
+                    isLogin2Loaded = false;
+                    getProfile2.Enabled = false; //отключение кнопки
+                    login2.Enabled = false; //отключение поля с никнеймом
+                    metroPanel2.Visible = true; //скрытие UI
+                    statusLogin = LOADING_STATUS.Process;
+                }
+                else if (statusLogin == LOADING_STATUS.Process)
+                {
+                    thread3.RunWorkerAsync();
+                }
+                else if (statusLogin == LOADING_STATUS.Good)
+                {
+                    ShowInfoProfile2Tab(profile2);
+                    Last20StyleProfile2_DefaultStyle();
+                    loginProfileProfile2_defaultStyle();
+                    loginMapBox1Profile2_defaultStyle();
+                    loginMapBox2Profile2_defaultStyle();
+                    if (profile2.detail.friends_Ids.Count != 0)
+                    {
+                        friendsBoxProfile2.Enabled = true;
+                        getFriendInfoProfile2.Enabled = true;
+                        friendsBoxProfile2.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        friendsBoxProfile2.Enabled = false;
+                        getFriendInfoProfile2.Enabled = false;
+                    }
+                    Load20MatchesProfile2History();
+                    metroTabControl1.SelectTab(tabProfile2int);
+                    metroPanel2.Visible = false;
+                    metroProgressBar3.Value = 0;
+                    lastLoadedLogin = loadedLogins.login2;
+                    login2.Enabled = true;
+                    getProfile2.Enabled = true;
+                }
+                else if (statusLogin == LOADING_STATUS.Bad)
+                {
+
+                }
+            }
+        }
+        public void LoadMapInComboBox(ComboBox box, List<CSGOPlayerStatisticsProfileSegment> maps)
         {
             for (int i = 0; i < maps.Count; i++)
             {
 
-                if (maps[i].mapName.StartsWith("aim_"))
+                if (maps[i].label.StartsWith("aim_"))
                 {
-                    box.Items.Add(maps[i].mapName + " (" + maps[i].mode + ")");
+                    box.Items.Add(maps[i].label + " (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_cache")
+                if (maps[i].label == "de_cache")
                 {
 
                     box.Items.Add("Cache (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_cbble")
+                if (maps[i].label == "de_cbble")
                 {
                     box.Items.Add("Cobblestone (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_dust2")
+                if (maps[i].label == "de_dust2")
                 {
                     box.Items.Add("Dust2 (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_mirage")
+                if (maps[i].label == "de_mirage")
                 {
                     box.Items.Add("Mirage (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_inferno")
+                if (maps[i].label == "de_inferno")
                 {
                     box.Items.Add("Inferno (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_nuke")
+                if (maps[i].label == "de_nuke")
                 {
                     box.Items.Add("Nuke (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_train")
+                if (maps[i].label == "de_train")
                 {
                     box.Items.Add("Train (" + maps[i].mode + ")");
                 }
-                if (maps[i].mapName == "de_overpass")
+                if (maps[i].label == "de_overpass")
                 {
                     box.Items.Add("Overpass (" + maps[i].mode + ")");
                 }
             }
         }
 
+        //Cancel Process
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Check if background worker is doing anything and send a cancellation if it is
+            //if (backgroundWorker.IsBusy)
+            //{
+                //backgroundWorker.CancelAsync();
+            //}
+
+        }
+
+        
         public void LoadMembers()
         {
-            for (int i = 0; i < members.Count; i++)
+            List<CSGOMatchDetailsTeamPlayer> plays = new List<CSGOMatchDetailsTeamPlayer>();
+            foreach(CSGOMatchDetailsTeamPlayer play in matchDetails.faction1.roster)
             {
-                Member memb = members[i];
-                lNickname[i].Text = memb.nickname;
-                lAVGHSS[i].Text = "Avg. HS: " + memb.avgHS.ToString() + "%";
-                lMatches[i].Text = "Matches: " + memb.matches.ToString();
-                lWinRate[i].Text = "Win Rate: " + memb.winRate.ToString() + "%";
-                lELO[i].Text = memb.faceit_elo + " ELO";
-                lJoinType[i].Text = memb.join_type;
-                lKD[i].Text = "Avg. KD: " + memb.avgKDr.ToString();
-                lRanking[i].Text = "Ranking: " + memb.ranking;
+                plays.Add(play);
+            }
+            foreach (CSGOMatchDetailsTeamPlayer play in matchDetails.faction2.roster)
+            {
+                plays.Add(play);
+            }
 
+            for (int i = 0; i < plays.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if(players[k].detail.player_Id == plays[i].player_Id)
+                    {
+                        lNickname[i].Text = players[k].detail.nickname;
+                        lAVGHSS[i].Text = players[k].statistics.average_Headshots_Percentage.ToString() + "%";
+                        lMatches[i].Text = players[k].statistics.matches.ToString();
+                        lWinRate[i].Text = players[k].statistics.win_Rate.ToString() + "%";
+                        lELO[i].Text = players[k].detail.faceit_Elo.ToString();
+                        lKD[i].Text = players[k].statistics.average_KD_Ratio.ToString();
+                        lRanking[i].Text = players[k].ranking.position.ToString();
+                        lLevel[i].Text = players[k].detail.skill_Level.ToString();
+                        if(loadingImages == LOADING_IMAGES.fromAllSources)
+                        {
+                            if (GetCountry(players[k].detail.country, out Image img))
+                            {
+                                lCountry[i].Image = img;
+                            }
+                            lAvatar[i].Image = GetAvatar(players[k].detail.avatar.ToString());
+                            lLevelPict[i].Image = GetImageLevel(players[k].detail.skill_Level);
+                            lAnticheat[i].Image = GetImageAnticheat(plays[i].anticheat_Required);
+                        }
+                        else if(loadingImages == LOADING_IMAGES.fromLocal)
+                        {
+                            lLevelPict[i].Image = GetImageLevel(players[k].detail.skill_Level);
+                            lAnticheat[i].Image = GetImageAnticheat(plays[i].anticheat_Required);
+                        }
+                        else
+                        {
+                            if (GetCountry(players[k].detail.country, out Image img))
+                            {
+                                lCountry[i].Image = img;
+                            }
+                            lAvatar[i].Image = GetAvatar(players[k].detail.avatar.ToString());
+                        }
+                        if(players[k].detail.player_Id == matchDetails.faction1.leader)
+                        {
+                            lNickname[i].Style = MetroFramework.MetroColorStyle.Blue;
+                        }
+                        else if(players[k].detail.player_Id == matchDetails.faction2.leader)
+                        {
+                            lNickname[i].Style = MetroFramework.MetroColorStyle.Blue;
+                        }
+                        else
+                        {
+                            lNickname[i].Style = MetroFramework.MetroColorStyle.Black;
+                        }
+                    }
+                }
+                
+                /* Недоступно в API версии 2
+                lJoinType[i].Text = plays[i].joit_Type; недоступно в API версии 2
                 for (int r = 0; r < memb.select_members_id.Count; r++)
                 {
                     JObject dec = GetProfile(memb.select_members_id[r], false);
                     lLobby[i].Items.Add(dec["nickname"].ToString());
                 }
                 lLobby[i].SelectedIndex = 0;
-                if (GetCountry(memb.country, out Image img))
-                {
-                    lCountry[i].Image = img;
-                }
-                lAvatar[i].Image = memb.avatar;
-                if (memb.join_type == "mix")
-                {
-                    lJoinType[i].Style = MetroFramework.MetroColorStyle.Blue;
-                }
-                else
-                {
-                    lJoinType[i].Style = MetroFramework.MetroColorStyle.Green;
-                }
+                */
             }
+           
         } //Вывод тиммейтов
         
+        private bool GetAPI(string matchID, out JObject value)
+        {
+            value = null;
+            StreamReader sr = null;
+            HttpWebRequest req = WebRequest.CreateHttp("https://open.faceit.com/data/v4/matches/" + matchID);
+            req.Headers.Add("Authorization", "Bearer c275df18-34f8-467f-a03b-e44bb7fcf581");
+            req.ContentType = "application / json";
+            try
+            {
+                HttpWebResponse wdwdw = (HttpWebResponse)req.GetResponse();
+                using (sr = new StreamReader(wdwdw.GetResponseStream(), Encoding.UTF8))
+                {
+                    value = JObject.Parse(sr.ReadToEnd());
+                    return true;
+                }
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse response = (HttpWebResponse)e.Response;
+                Form2 form = new Form2();
+                form.errorMsg.Text = response.StatusCode.ToString();
+                form.Show();
+                value = null;
+                return false;
+            }
+
+        }
         private void Main()
         {
             metroPanel1.Visible = true;
@@ -699,33 +837,38 @@ namespace WindowsFormsApp1
         }
 
         // Показать информацию профиля
-        public void ShowInfoProfileTab(Profile acc)
+        public void ShowInfoProfileTab(PlayerCSGO acc)
         {
             if (isLogin1Loaded)
             {
-                for (int i = 0; i < profile.friends.Count; i++)
+                for (int i = 0; i < acc.detail.friends_Ids.Count; i++)
                 {
-                    if(profile.friends[i] != null)
+                    if(acc.detail.friends_Ids[i] != null)
                     {
-                        friendsBoxProfile1.Items.Add(profile.friends[i]);
+                        PlayerDetails pl_det = new PlayerDetails();
+                        pl_det.faceit = faceit;
+                        if (pl_det.GetMatchDetailsCSGO_PlayerID(acc.detail.friends_Ids[i], out CSGOPlayerDetails value))
+                        {
+                            friendsBoxProfile1.Items.Add(value.nickname);
+                        }
                     }
                 }
-                avatarProfile1.Image = profile.imgAvatar;
-                levelProfile1.Text = profile.faceit_level.ToString();
-                eloProfile1.Text = profile.faceit_elo.ToString();
-                nicknameProfile1.Text = profile.nickname;
-                countryProfile1.Text = profile.country;
-                membershipProfile1.Text = profile.membership_type;
-                steamid64Profile1.Text = profile.steamid64;
-                avgHSProfile1.Text = profile.avgHS.ToString() + "%";
-                avgKDProfile1.Text = profile.avgKD.ToString();
-                curWinStrikeProfile1.Text = profile.currrentWinStreak.ToString();
-                longestWinStrikeProfile1.Text = profile.longestWinStreak.ToString();
-                matchesProfile1.Text = profile.matches.ToString();
-                winMatchesProfile1.Text = profile.winMatches.ToString();
-                winRateProfile1.Text = profile.winRate.ToString() + "%";
-                LoadMapInComboBox(map1BoxProfile1, profile.maps);
-                LoadMapInComboBox(map2BoxProfile1, profile.maps);
+                avatarProfile1.Image = GetAvatar(acc.detail.avatar.ToString());
+                levelProfile1.Text = acc.detail.skill_Level.ToString();
+                eloProfile1.Text = acc.detail.faceit_Elo.ToString();
+                nicknameProfile1.Text = acc.detail.nickname;
+                countryProfile1.Text = acc.detail.country;
+                membershipProfile1.Text = acc.detail.membership_Type;
+                steamid64Profile1.Text = acc.detail.steam_Id_64.ToString();
+                avgHSProfile1.Text = acc.statistics.average_Headshots_Percentage.ToString() + "%";
+                avgKDProfile1.Text = acc.statistics.average_KD_Ratio.ToString();
+                curWinStrikeProfile1.Text = acc.statistics.current_Win_Streak.ToString();
+                longestWinStrikeProfile1.Text = acc.statistics.longest_Win_Streak.ToString();
+                matchesProfile1.Text = acc.statistics.matches.ToString();
+                winMatchesProfile1.Text = acc.statistics.wins.ToString();
+                winRateProfile1.Text = acc.statistics.win_Rate.ToString() + "%";
+                LoadMapInComboBox(map1BoxProfile1, acc.statistics.segments);
+                LoadMapInComboBox(map2BoxProfile1, acc.statistics.segments);
                 map1BoxProfile1.SelectedIndex = 0;
                 map2BoxProfile1.SelectedIndex = 0;
             }
@@ -735,64 +878,64 @@ namespace WindowsFormsApp1
         public void UpdateMapBox()
         {
             int index = map1BoxProfile1.SelectedIndex;
-            modeProfile1Map1.Text = profile.maps[index].mode;
-            matchesProfile1Map1.Text = profile.maps[index].matches.ToString();
-            winsProfile1Map1.Text = profile.maps[index].wins.ToString();
-            winRateProfile1Map1.Text = profile.maps[index].winRate.ToString() + "%";
-            roundsProfile1Map1.Text = profile.maps[index].rounds.ToString();
-            killsProfile1Map1.Text = profile.maps[index].kills.ToString();
-            deathProfile1Map1.Text = profile.maps[index].death.ToString();
-            kdRatioProfile1Map1.Text = profile.maps[index].kdratio.ToString();
-            krRatioProfile1Map1.Text = profile.maps[index].krratio.ToString();
-            mvpsProfile1Map1.Text = profile.maps[index].mvps.ToString();
-            totalHSProfile1Map1.Text = profile.maps[index].totalHeadshots.ToString();
-            assistsProfile1Map1.Text = profile.maps[index].assist.ToString();
-            avgKDRatioProfile1Map1.Text = profile.maps[index].avgKDr.ToString();
-            avgKRRatioProfile1Map1.Text = profile.maps[index].avgKRr.ToString();
-            pentaKillsProfile1Map1.Text = profile.maps[index].pentaKills.ToString();
-            avgPentaKillsProfile1Map1.Text = profile.maps[index].avgPentaK.ToString();
-            quadroKillsProfile1Map1.Text = profile.maps[index].quadroKills.ToString();
-            avgQuadroKillsProfile1Map1.Text = profile.maps[index].avgQuadroK.ToString();
-            tripleKillsProfile1Map1.Text = profile.maps[index].tripleKills.ToString();
-            avgTripleKillsProfile1Map1.Text = profile.maps[index].avgTripleK.ToString();
-            hsPerMatchProfile1Map1.Text = profile.maps[index].hsPerMatch.ToString();
-            avgKillsProfile1Map1.Text = profile.maps[index].avgKills.ToString();
-            avgDeathProfile1Map1.Text = profile.maps[index].avgDeath.ToString();
-            avgMVPsProfile1Map1.Text = profile.maps[index].avgMVPs.ToString();
-            avgAssistsProfile1Map1.Text = profile.maps[index].avgAssist.ToString();
-            avgHSsProfile1Map1.Text = profile.maps[index].avgHS.ToString();
+            modeProfile1Map1.Text = profile.statistics.segments[index].mode;
+            matchesProfile1Map1.Text = profile.statistics.segments[index].matches.ToString();
+            winsProfile1Map1.Text = profile.statistics.segments[index].wins.ToString();
+            winRateProfile1Map1.Text = profile.statistics.segments[index].win_Rate_Percantage.ToString() + "%";
+            roundsProfile1Map1.Text = profile.statistics.segments[index].rounds.ToString();
+            killsProfile1Map1.Text = profile.statistics.segments[index].kills.ToString();
+            deathProfile1Map1.Text = profile.statistics.segments[index].deaths.ToString();
+            kdRatioProfile1Map1.Text = profile.statistics.segments[index].kd_Ratio.ToString();
+            krRatioProfile1Map1.Text = profile.statistics.segments[index].kr_Ratio.ToString();
+            mvpsProfile1Map1.Text = profile.statistics.segments[index].mvps.ToString();
+            totalHSProfile1Map1.Text = profile.statistics.segments[index].total_Headshot_Percentage.ToString();
+            assistsProfile1Map1.Text = profile.statistics.segments[index].assists.ToString();
+            avgKDRatioProfile1Map1.Text = profile.statistics.segments[index].average_KD_Ratio.ToString();
+            avgKRRatioProfile1Map1.Text = profile.statistics.segments[index].average_KR_Ratio.ToString();
+            pentaKillsProfile1Map1.Text = profile.statistics.segments[index].penta_Kills.ToString();
+            avgPentaKillsProfile1Map1.Text = profile.statistics.segments[index].average_Penta_Kills.ToString();
+            quadroKillsProfile1Map1.Text = profile.statistics.segments[index].quadro_Kills.ToString();
+            avgQuadroKillsProfile1Map1.Text = profile.statistics.segments[index].average_Quadro_Kills.ToString();
+            tripleKillsProfile1Map1.Text = profile.statistics.segments[index].triple_Kills.ToString();
+            avgTripleKillsProfile1Map1.Text = profile.statistics.segments[index].average_Triple_Kills.ToString();
+            hsPerMatchProfile1Map1.Text = profile.statistics.segments[index].headshots_Per_match.ToString();
+            avgKillsProfile1Map1.Text = profile.statistics.segments[index].average_Kills.ToString();
+            avgDeathProfile1Map1.Text = profile.statistics.segments[index].average_Deaths.ToString();
+            avgMVPsProfile1Map1.Text = profile.statistics.segments[index].average_MVPs.ToString();
+            avgAssistsProfile1Map1.Text = profile.statistics.segments[index].average_Assists.ToString();
+            avgHSsProfile1Map1.Text = profile.statistics.segments[index].average_Headshot_Percentage.ToString();
         }
 
         // Обновить информацию о map2
         public void UpdateMapBox2()
         {
             int index = map2BoxProfile1.SelectedIndex;
-            modeProfile1Map2.Text = profile.maps[index].mode;
-            matchesProfile1Map2.Text = profile.maps[index].matches.ToString();
-            winsProfile1Map2.Text = profile.maps[index].wins.ToString();
-            winRateProfile1Map2.Text = profile.maps[index].winRate.ToString() + "%";
-            roundsProfile1Map2.Text = profile.maps[index].rounds.ToString();
-            killsProfile1Map2.Text = profile.maps[index].kills.ToString();
-            deathProfile1Map2.Text = profile.maps[index].death.ToString();
-            kdRatioProfile1Map2.Text = profile.maps[index].kdratio.ToString();
-            krRatioProfile1Map2.Text = profile.maps[index].krratio.ToString();
-            mvpsProfile1Map2.Text = profile.maps[index].mvps.ToString();
-            totalHSProfile1Map2.Text = profile.maps[index].totalHeadshots.ToString();
-            assistsProfile1Map2.Text = profile.maps[index].assist.ToString();
-            avgKDRatioProfile1Map2.Text = profile.maps[index].avgKDr.ToString();
-            avgKRRatioProfile1Map2.Text = profile.maps[index].avgKRr.ToString();
-            pentaKillsProfile1Map2.Text = profile.maps[index].pentaKills.ToString();
-            avgPentaKillsProfile1Map2.Text = profile.maps[index].avgPentaK.ToString();
-            quadroKillsProfile1Map2.Text = profile.maps[index].quadroKills.ToString();
-            avgQuadroKillsProfile1Map2.Text = profile.maps[index].avgQuadroK.ToString();
-            tripleKillsProfile1Map2.Text = profile.maps[index].tripleKills.ToString();
-            avgTripleKillsProfile1Map2.Text = profile.maps[index].avgTripleK.ToString();
-            hsPerMatchProfile1Map2.Text = profile.maps[index].hsPerMatch.ToString();
-            avgKillsProfile1Map2.Text = profile.maps[index].avgKills.ToString();
-            avgDeathProfile1Map2.Text = profile.maps[index].avgDeath.ToString();
-            avgMVPsProfile1Map2.Text = profile.maps[index].avgMVPs.ToString();
-            avgAssistsProfile1Map2.Text = profile.maps[index].avgAssist.ToString();
-            avgHSsProfile1Map2.Text = profile.maps[index].avgHS.ToString();
+            modeProfile1Map2.Text = profile.statistics.segments[index].mode;
+            matchesProfile1Map2.Text = profile.statistics.segments[index].matches.ToString();
+            winsProfile1Map2.Text = profile.statistics.segments[index].wins.ToString();
+            winRateProfile1Map2.Text = profile.statistics.segments[index].win_Rate_Percantage.ToString() + "%";
+            roundsProfile1Map2.Text = profile.statistics.segments[index].rounds.ToString();
+            killsProfile1Map2.Text = profile.statistics.segments[index].kills.ToString();
+            deathProfile1Map2.Text = profile.statistics.segments[index].deaths.ToString();
+            kdRatioProfile1Map2.Text = profile.statistics.segments[index].kd_Ratio.ToString();
+            krRatioProfile1Map2.Text = profile.statistics.segments[index].kr_Ratio.ToString();
+            mvpsProfile1Map2.Text = profile.statistics.segments[index].mvps.ToString();
+            totalHSProfile1Map2.Text = profile.statistics.segments[index].total_Headshot_Percentage.ToString();
+            assistsProfile1Map2.Text = profile.statistics.segments[index].assists.ToString();
+            avgKDRatioProfile1Map2.Text = profile.statistics.segments[index].average_KD_Ratio.ToString();
+            avgKRRatioProfile1Map2.Text = profile.statistics.segments[index].average_KR_Ratio.ToString();
+            pentaKillsProfile1Map2.Text = profile.statistics.segments[index].penta_Kills.ToString();
+            avgPentaKillsProfile1Map2.Text = profile.statistics.segments[index].average_Penta_Kills.ToString();
+            quadroKillsProfile1Map2.Text = profile.statistics.segments[index].quadro_Kills.ToString();
+            avgQuadroKillsProfile1Map2.Text = profile.statistics.segments[index].average_Quadro_Kills.ToString();
+            tripleKillsProfile1Map2.Text = profile.statistics.segments[index].triple_Kills.ToString();
+            avgTripleKillsProfile1Map2.Text = profile.statistics.segments[index].average_Triple_Kills.ToString();
+            hsPerMatchProfile1Map2.Text = profile.statistics.segments[index].headshots_Per_match.ToString();
+            avgKillsProfile1Map2.Text = profile.statistics.segments[index].average_Kills.ToString();
+            avgDeathProfile1Map2.Text = profile.statistics.segments[index].average_Deaths.ToString();
+            avgMVPsProfile1Map2.Text = profile.statistics.segments[index].average_MVPs.ToString();
+            avgAssistsProfile1Map2.Text = profile.statistics.segments[index].average_Assists.ToString();
+            avgHSsProfile1Map2.Text = profile.statistics.segments[index].average_Headshot_Percentage.ToString();
         }
 
         //
@@ -809,58 +952,116 @@ namespace WindowsFormsApp1
         //
         private void goToFaceITProfile1_Click(object sender, EventArgs e)
         {
-            Process.Start(profile.faceit_url);
+            Process.Start(profile.detail.faceit_Url.ToString());
         }
 
         //
         private void goToSteamProfile1_Click(object sender, EventArgs e)
         {
-            Process.Start("https://steamcommunity.com/profiles/" + profile.steamid64);
+            Process.Start("https://steamcommunity.com/profiles/" + profile.detail.steam_Id_64);
+        }
+
+        public void Load20MatchesProfile1History()
+        {
+            List<CSGOMatchStatsTeamPlayerStats> statLast20 = new List<CSGOMatchStatsTeamPlayerStats>();
+            MatchStats match_Stats = new MatchStats();
+            match_Stats.faceit = faceit;
+            CSGOPlayerStatisticsProfileSegment last20Profile1 = new CSGOPlayerStatisticsProfileSegment();
+
+            for (int i = 0; i < profile.history.matches.Count; i++)
+            {
+                if (match_Stats.GetMatchStatsCSGO(profile.history.matches[i].match_Id, out CSGOMatchStats value))
+                {
+                    last20Profile1.rounds += value.rounds;
+                    statLast20.Add(value.GetStatsPlayer(profile.detail.player_Id));
+                }
+                else
+                {
+                    Form2 form = new Form2();
+                    form.errorMsg.Text = "Error: " + match_Stats.GetLastError;
+                    form.Show();
+                    return;
+                }
+            }
+
+            for (int i = 0; i < statLast20.Count; i++)
+            {
+                last20Profile1.assists += statLast20[i].assists;
+                last20Profile1.deaths += statLast20[i].deaths;
+                last20Profile1.headshots += statLast20[i].headshot;
+                last20Profile1.total_Headshot_Percentage += statLast20[i].headshot_Percentage;
+                last20Profile1.kd_Ratio += statLast20[i].kd_Ratio;
+                last20Profile1.kills += statLast20[i].kills;
+                last20Profile1.kr_Ratio += statLast20[i].kr_Ratio;
+                last20Profile1.mvps += statLast20[i].mvps;
+                last20Profile1.penta_Kills += statLast20[i].penta_Kills;
+                last20Profile1.quadro_Kills += statLast20[i].quadro_Kills;
+                last20Profile1.triple_Kills += statLast20[i].triple_Kills;
+                last20Profile1.wins += statLast20[i].result;
+
+            }
+            last20Profile1.matches = statLast20.Count + 1;
+            last20Profile1.average_Assists = last20Profile1.assists / last20Profile1.matches;
+            last20Profile1.average_Deaths = last20Profile1.deaths / last20Profile1.matches;
+            last20Profile1.average_Headshot_Percentage = last20Profile1.headshots * 100 / last20Profile1.matches;
+            last20Profile1.average_KD_Ratio = last20Profile1.kd_Ratio / last20Profile1.matches;
+            last20Profile1.average_KR_Ratio = last20Profile1.kr_Ratio / last20Profile1.matches;
+            last20Profile1.average_Kills = last20Profile1.kills / last20Profile1.matches;
+            last20Profile1.average_MVPs = last20Profile1.mvps / last20Profile1.matches;
+            last20Profile1.average_Penta_Kills = last20Profile1.penta_Kills / last20Profile1.matches;
+            last20Profile1.average_Quadro_Kills = last20Profile1.quadro_Kills / last20Profile1.matches;
+            last20Profile1.average_Triple_Kills = last20Profile1.triple_Kills / last20Profile1.matches;
+            last20Profile1.headshots_Per_match = last20Profile1.headshots / last20Profile1.matches;
+            last20Profile1.win_Rate_Percantage += last20Profile1.wins * 100 / last20Profile1.matches;
+            
+            Combine20MatchesProfile1(last20Profile1);
         }
 
         //
-        public void Combine20MatchesProfile1(List<Statistics> stats)
+        public void Combine20MatchesProfile1(CSGOPlayerStatisticsProfileSegment last20)
         {
-            Statistics last20 = profile.last20;
-            profileLast20mode.Text = "";
+            /*profileLast20mode.Text = "";
             for (int i = 0; i < stats.Count; i++)
             {
                 if (!profileLast20mode.Text.Contains(stats[i].mode))
                 {
                     profileLast20mode.Text += '"' + stats[i].mode + '"' + " ";
                 }
-            }
-            profile1Last20Death.Text = last20.death.ToString();
+            }*/
+
+            double average_Rounds = last20.rounds / last20.matches;
+            double average_Headshot = last20.headshots / last20.matches;
+            profile1Last20Death.Text = last20.deaths.ToString();
             profile1Last20Assists.Text = last20.assists.ToString();
             profile1Last20Kills.Text = last20.kills.ToString();
-            profile1Last20KDr.Text = last20.kdRatio.ToString();
-            profile1Last20KRr.Text = last20.krRatio.ToString();
-            profile1Last20Matches.Text = stats.Count.ToString();
+            profile1Last20KDr.Text = last20.kd_Ratio.ToString();
+            profile1Last20KRr.Text = last20.kr_Ratio.ToString();
+            profile1Last20Matches.Text = last20.matches.ToString();
             profile1Last20MVPs.Text = last20.mvps.ToString();
-            profile1Last20Penta.Text = last20.pentaKills.ToString();
-            profile1Last20Quadro.Text = last20.quadroKills.ToString();
-            profile1Last20Triple.Text = last20.tripleKills.ToString();
-            profile1Last20WinRate.Text = Math.Round(last20.winRate, 0).ToString() + "%";
+            profile1Last20Penta.Text = last20.penta_Kills.ToString();
+            profile1Last20Quadro.Text = last20.quadro_Kills.ToString();
+            profile1Last20Triple.Text = last20.triple_Kills.ToString();
+            profile1Last20WinRate.Text = last20.win_Rate_Percantage.ToString() + "%";
             profile1Last20Wins.Text = last20.wins.ToString();
-            profileLast20HS.Text = last20.totalHeadshots.ToString();
-            profile1Last20Rounds.Text = last20.roudns.ToString();
-            profileLast20HSperMatch.Text = last20.hsPerMatch.ToString();
-            profile1Last20avgRounds.Text = Math.Round(last20.avgRounds, 2).ToString();
-            profile1Last20avgKills.Text = Math.Round(last20.avgKills, 2).ToString();
-            profile1Last20avgDeath.Text = Math.Round(last20.avgDeaths, 2).ToString();
-            profile1Last20avgAssists.Text = Math.Round(last20.avgAssists, 2).ToString();
-            profile1Last20avgHSs.Text = Math.Round(last20.avgHSs, 2).ToString();
-            profile1Last20avgHSp.Text = Math.Round(last20.avgHSPercent, 2).ToString() + "%";
-            profile1Last20avgKDR.Text = Math.Round(last20.avgKDRation, 2).ToString();
-            profile1Last20avgKRR.Text = Math.Round(last20.avgKRRatio, 2).ToString();
-            profile1Last20avgMVPs.Text = Math.Round(last20.avgMVPs, 2).ToString();
-            profile1Last20avgPenta.Text = Math.Round(last20.avgPentaKills, 2).ToString();
-            profile1Last20avgQuadro.Text = Math.Round(last20.avgQuadroKills, 2).ToString();
-            profile1Last20avgTriple.Text = Math.Round(last20.avgTripleKills, 2).ToString();
+            profileLast20HS.Text = last20.headshots.ToString();
+            profile1Last20Rounds.Text = last20.rounds.ToString();
+            profileLast20HSperMatch.Text = last20.headshots_Per_match.ToString();
+            profile1Last20avgRounds.Text = Math.Round(average_Rounds, 2).ToString();
+            profile1Last20avgKills.Text = Math.Round(last20.average_Kills, 2).ToString();
+            profile1Last20avgDeath.Text = Math.Round(last20.average_Deaths, 2).ToString();
+            profile1Last20avgAssists.Text = Math.Round(last20.average_Assists, 2).ToString();
+            profile1Last20avgHSs.Text = Math.Round(average_Headshot, 2).ToString();
+            profile1Last20avgHSp.Text = last20.average_Headshot_Percentage.ToString() + "%";
+            profile1Last20avgKDR.Text = Math.Round(last20.average_KD_Ratio, 2).ToString();
+            profile1Last20avgKRR.Text = Math.Round(last20.average_KR_Ratio, 2).ToString();
+            profile1Last20avgMVPs.Text = Math.Round(last20.average_MVPs, 2).ToString();
+            profile1Last20avgPenta.Text = Math.Round(last20.average_Penta_Kills, 2).ToString();
+            profile1Last20avgQuadro.Text = Math.Round(last20.average_Quadro_Kills, 2).ToString();
+            profile1Last20avgTriple.Text = Math.Round(last20.average_Triple_Kills, 2).ToString();
         }
 
-    //
-    private void map1BoxProfile1_SelectedIndexChanged_1(object sender, EventArgs e)
+        //
+        private void map1BoxProfile1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             UpdateMapBox();
             loginMapBox1Profile1_defaultStyle();
@@ -887,104 +1088,105 @@ namespace WindowsFormsApp1
         #region Login2
 
         // 
-        public void ShowInfoProfile2Tab(Profile acc)
+        public void ShowInfoProfile2Tab(PlayerCSGO acc)
         {
             if (isLogin2Loaded)
             {
-                for (int i = 0; i < profile2.friends.Count; i++)
+                for (int i = 0; i < acc.detail.friends_Ids.Count; i++)
                 {
-                    if (profile2.friends[i] != null)
+                    if (acc.detail.friends_Ids[i] != null)
                     {
-                        friendsBoxProfile2.Items.Add(profile2.friends[i]);
+                        PlayerDetails pl_det = new PlayerDetails();
+                        pl_det.faceit = faceit;
+                        if(pl_det.GetMatchDetailsCSGO_PlayerID(acc.detail.friends_Ids[i], out CSGOPlayerDetails value))
+                        {
+                            friendsBoxProfile2.Items.Add(value.nickname);
+                        }
                     }
                 }
-
-                avatarProfile2.Image = profile2.imgAvatar;
-                levelProfile2.Text = profile2.faceit_level.ToString();
-                eloProfile2.Text = profile2.faceit_elo.ToString();
-                nicknameProfile2.Text = profile2.nickname;
-                countryProfile2.Text = profile2.country;
-                membershipProfile2.Text = profile2.membership_type;
-                steamid64Profile2.Text = profile2.steamid64;
-
-                avgHSProfile2.Text = profile2.avgHS.ToString() + "%";
-                avgKDProfile2.Text = profile2.avgKD.ToString();
-                curWinStrikeProfile2.Text = profile2.currrentWinStreak.ToString();
-                longestWinStrikeProfile2.Text = profile2.longestWinStreak.ToString();
-                matchesProfile2.Text = profile2.matches.ToString();
-                winMatchesProfile2.Text = profile2.winMatches.ToString();
-                winRateProfile2.Text = profile2.winRate.ToString() + "%";
-                LoadMapInComboBox(map1BoxProfile2, profile2.maps);
-                LoadMapInComboBox(map2BoxProfile2, profile2.maps);
+                avatarProfile2.Image = GetAvatar(acc.detail.avatar.ToString());
+                levelProfile2.Text = acc.detail.skill_Level.ToString();
+                eloProfile2.Text = acc.detail.faceit_Elo.ToString();
+                nicknameProfile2.Text = acc.detail.nickname;
+                countryProfile2.Text = acc.detail.country;
+                membershipProfile2.Text = acc.detail.membership_Type;
+                steamid64Profile2.Text = acc.detail.steam_Id_64.ToString();
+                avgHSProfile2.Text = acc.statistics.average_Headshots_Percentage.ToString() + "%";
+                avgKDProfile2.Text = acc.statistics.average_KD_Ratio.ToString();
+                curWinStrikeProfile2.Text = acc.statistics.current_Win_Streak.ToString();
+                longestWinStrikeProfile2.Text = acc.statistics.longest_Win_Streak.ToString();
+                matchesProfile2.Text = acc.statistics.matches.ToString();
+                winMatchesProfile2.Text = acc.statistics.wins.ToString();
+                winRateProfile2.Text = acc.statistics.win_Rate.ToString() + "%";
+                LoadMapInComboBox(map1BoxProfile2, acc.statistics.segments);
+                LoadMapInComboBox(map2BoxProfile2, acc.statistics.segments);
                 map1BoxProfile2.SelectedIndex = 0;
                 map2BoxProfile2.SelectedIndex = 0;
-                metroPanel2.Visible = false;
-            }   
-            
+            }
         }
 
         // Обновить информацию о map1
         public void UpdateMapBoxProfile2()
         {
             int index = map1BoxProfile2.SelectedIndex;
-            modeProfile2Map1.Text = profile2.maps[index].mode;
-            matchesProfile2Map1.Text = profile2.maps[index].matches.ToString();
-            winsProfile2Map1.Text = profile2.maps[index].wins.ToString();
-            winRateProfile2Map1.Text = profile2.maps[index].winRate.ToString() + "%";
-            roundsProfile2Map1.Text = profile2.maps[index].rounds.ToString();
-            killsProfile2Map1.Text = profile2.maps[index].kills.ToString();
-            deathProfile2Map1.Text = profile2.maps[index].death.ToString();
-            kdRatioProfile2Map1.Text = profile2.maps[index].kdratio.ToString();
-            krRatioProfile2Map1.Text = profile2.maps[index].krratio.ToString();
-            mvpsProfile2Map1.Text = profile2.maps[index].mvps.ToString();
-            totalHSProfile2Map1.Text = profile2.maps[index].totalHeadshots.ToString();
-            assistsProfile2Map1.Text = profile2.maps[index].assist.ToString();
-            avgKDRatioProfile2Map1.Text = profile2.maps[index].avgKDr.ToString();
-            avgKRRatioProfile2Map1.Text = profile2.maps[index].avgKRr.ToString();
-            pentaKillsProfile2Map1.Text = profile2.maps[index].pentaKills.ToString();
-            avgPentaKillsProfile2Map1.Text = profile2.maps[index].avgPentaK.ToString();
-            quadroKillsProfile2Map1.Text = profile2.maps[index].quadroKills.ToString();
-            avgQuadroKillsProfile2Map1.Text = profile2.maps[index].avgQuadroK.ToString();
-            tripleKillsProfile2Map1.Text = profile2.maps[index].tripleKills.ToString();
-            avgTripleKillsProfile2Map1.Text = profile2.maps[index].avgTripleK.ToString();
-            hsPerMatchProfile2Map1.Text = profile2.maps[index].hsPerMatch.ToString();
-            avgKillsProfile2Map1.Text = profile2.maps[index].avgKills.ToString();
-            avgDeathProfile2Map1.Text = profile2.maps[index].avgDeath.ToString();
-            avgMVPsProfile2Map1.Text = profile2.maps[index].avgMVPs.ToString();
-            avgAssistsProfile2Map1.Text = profile2.maps[index].avgAssist.ToString();
-            avgHSsProfile2Map1.Text = profile2.maps[index].avgHS.ToString();
+            modeProfile2Map1.Text = profile2.statistics.segments[index].mode;
+            matchesProfile2Map1.Text = profile2.statistics.segments[index].matches.ToString();
+            winsProfile2Map1.Text = profile2.statistics.segments[index].wins.ToString();
+            winRateProfile2Map1.Text = profile2.statistics.segments[index].win_Rate_Percantage.ToString() + "%";
+            roundsProfile2Map1.Text = profile2.statistics.segments[index].rounds.ToString();
+            killsProfile2Map1.Text = profile2.statistics.segments[index].kills.ToString();
+            deathProfile2Map1.Text = profile2.statistics.segments[index].deaths.ToString();
+            kdRatioProfile2Map1.Text = profile2.statistics.segments[index].kd_Ratio.ToString();
+            krRatioProfile2Map1.Text = profile2.statistics.segments[index].kr_Ratio.ToString();
+            mvpsProfile2Map1.Text = profile2.statistics.segments[index].mvps.ToString();
+            totalHSProfile2Map1.Text = profile2.statistics.segments[index].total_Headshot_Percentage.ToString();
+            assistsProfile2Map1.Text = profile2.statistics.segments[index].assists.ToString();
+            avgKDRatioProfile2Map1.Text = profile2.statistics.segments[index].average_KD_Ratio.ToString();
+            avgKRRatioProfile2Map1.Text = profile2.statistics.segments[index].average_KR_Ratio.ToString();
+            pentaKillsProfile2Map1.Text = profile2.statistics.segments[index].penta_Kills.ToString();
+            avgPentaKillsProfile2Map1.Text = profile2.statistics.segments[index].average_Penta_Kills.ToString();
+            quadroKillsProfile2Map1.Text = profile2.statistics.segments[index].quadro_Kills.ToString();
+            avgQuadroKillsProfile2Map1.Text = profile2.statistics.segments[index].average_Quadro_Kills.ToString();
+            tripleKillsProfile2Map1.Text = profile2.statistics.segments[index].triple_Kills.ToString();
+            avgTripleKillsProfile2Map1.Text = profile2.statistics.segments[index].average_Triple_Kills.ToString();
+            hsPerMatchProfile2Map1.Text = profile2.statistics.segments[index].headshots_Per_match.ToString();
+            avgKillsProfile2Map1.Text = profile2.statistics.segments[index].average_Kills.ToString();
+            avgDeathProfile2Map1.Text = profile2.statistics.segments[index].average_Deaths.ToString();
+            avgMVPsProfile2Map1.Text = profile2.statistics.segments[index].average_MVPs.ToString();
+            avgAssistsProfile2Map1.Text = profile2.statistics.segments[index].average_Assists.ToString();
+            avgHSsProfile2Map1.Text = profile2.statistics.segments[index].average_Headshot_Percentage.ToString();
         }
 
         // Обновить информацию о map2
         public void UpdateMap2BoxProfile2()
         {
             int index = map2BoxProfile2.SelectedIndex;
-            modeProfile2Map2.Text = profile2.maps[index].mode;
-            matchesProfile2Map2.Text = profile2.maps[index].matches.ToString();
-            winsProfile2Map2.Text = profile2.maps[index].wins.ToString();
-            winRateProfile2Map2.Text = profile2.maps[index].winRate.ToString() + "%";
-            roundsProfile2Map2.Text = profile2.maps[index].rounds.ToString();
-            killsProfile2Map2.Text = profile2.maps[index].kills.ToString();
-            deathProfile2Map2.Text = profile2.maps[index].death.ToString();
-            kdRatioProfile2Map2.Text = profile2.maps[index].kdratio.ToString();
-            krRatioProfile2Map2.Text = profile2.maps[index].krratio.ToString();
-            mvpsProfile2Map2.Text = profile2.maps[index].mvps.ToString();
-            totalHSProfile2Map2.Text = profile2.maps[index].totalHeadshots.ToString();
-            assistsProfile2Map2.Text = profile2.maps[index].assist.ToString();
-            avgKDRatioProfile2Map2.Text = profile2.maps[index].avgKDr.ToString();
-            avgKRRatioProfile2Map2.Text = profile2.maps[index].avgKRr.ToString();
-            pentaKillsProfile2Map2.Text = profile2.maps[index].pentaKills.ToString();
-            avgPentaKillsProfile2Map2.Text = profile2.maps[index].avgPentaK.ToString();
-            quadroKillsProfile2Map2.Text = profile2.maps[index].quadroKills.ToString();
-            avgQuadroKillsProfile2Map2.Text = profile2.maps[index].avgQuadroK.ToString();
-            tripleKillsProfile2Map2.Text = profile2.maps[index].tripleKills.ToString();
-            avgTripleKillsProfile2Map2.Text = profile2.maps[index].avgTripleK.ToString();
-            hsPerMatchProfile2Map2.Text = profile2.maps[index].hsPerMatch.ToString();
-            avgKillsProfile2Map2.Text = profile2.maps[index].avgKills.ToString();
-            avgDeathProfile2Map2.Text = profile2.maps[index].avgDeath.ToString();
-            avgMVPsProfile2Map2.Text = profile2.maps[index].avgMVPs.ToString();
-            avgAssistsProfile2Map2.Text = profile2.maps[index].avgAssist.ToString();
-            avgHSsProfile2Map2.Text = profile2.maps[index].avgHS.ToString();
+            modeProfile2Map2.Text = profile2.statistics.segments[index].mode;
+            matchesProfile2Map2.Text = profile2.statistics.segments[index].matches.ToString();
+            winsProfile2Map2.Text = profile2.statistics.segments[index].wins.ToString();
+            winRateProfile2Map2.Text = profile2.statistics.segments[index].win_Rate_Percantage.ToString() + "%";
+            roundsProfile2Map2.Text = profile2.statistics.segments[index].rounds.ToString();
+            killsProfile2Map2.Text = profile2.statistics.segments[index].kills.ToString();
+            deathProfile2Map2.Text = profile2.statistics.segments[index].deaths.ToString();
+            kdRatioProfile2Map2.Text = profile2.statistics.segments[index].kd_Ratio.ToString();
+            krRatioProfile2Map2.Text = profile2.statistics.segments[index].kr_Ratio.ToString();
+            mvpsProfile2Map2.Text = profile2.statistics.segments[index].mvps.ToString();
+            totalHSProfile2Map2.Text = profile2.statistics.segments[index].total_Headshot_Percentage.ToString();
+            assistsProfile2Map2.Text = profile2.statistics.segments[index].assists.ToString();
+            avgKDRatioProfile2Map2.Text = profile2.statistics.segments[index].average_KD_Ratio.ToString();
+            avgKRRatioProfile2Map2.Text = profile2.statistics.segments[index].average_KR_Ratio.ToString();
+            pentaKillsProfile2Map2.Text = profile2.statistics.segments[index].penta_Kills.ToString();
+            avgPentaKillsProfile2Map2.Text = profile2.statistics.segments[index].average_Penta_Kills.ToString();
+            quadroKillsProfile2Map2.Text = profile2.statistics.segments[index].quadro_Kills.ToString();
+            avgQuadroKillsProfile2Map2.Text = profile2.statistics.segments[index].average_Quadro_Kills.ToString();
+            tripleKillsProfile2Map2.Text = profile2.statistics.segments[index].triple_Kills.ToString();
+            avgTripleKillsProfile2Map2.Text = profile2.statistics.segments[index].average_Triple_Kills.ToString();
+            hsPerMatchProfile2Map2.Text = profile2.statistics.segments[index].headshots_Per_match.ToString();
+            avgKillsProfile2Map2.Text = profile2.statistics.segments[index].average_Kills.ToString();
+            avgDeathProfile2Map2.Text = profile2.statistics.segments[index].average_Deaths.ToString();
+            avgMVPsProfile2Map2.Text = profile2.statistics.segments[index].average_MVPs.ToString();
+            avgAssistsProfile2Map2.Text = profile2.statistics.segments[index].average_Assists.ToString();
+            avgHSsProfile2Map2.Text = profile2.statistics.segments[index].average_Headshot_Percentage.ToString();
         }
 
         // Показать информацию о map1
@@ -1024,44 +1226,8 @@ namespace WindowsFormsApp1
         // Загрузка login2
         private void metroButton4_Click(object sender, EventArgs e)
         {
-            Last20StyleProfile2_DefaultStyle();
-            isLogin2Loaded = false;
-            CheckOnLoadedLogins();
-            metroPanel2.Visible = true;
-            ClearProfile2Tab();
-            profile2 = new Profile();
-            profile2.SetInfo(login2.Text);
-            if (profile2.json.HasValues & profile2.json.Type != JTokenType.Null)
-            {
-                if (profile2.dec.HasValues & profile2.dec.Type != JTokenType.Null)
-                {
-                    friendsBoxProfile2.Enabled = true;
-                    getFriendInfoProfile2.Enabled = true;
-                    isLogin2Loaded = true;
-                    ShowInfoProfile2Tab(profile2);
-                    CheckOnLoadedLogins();
-                    DisableStatsCompareProfile();
-                    loginProfileProfile2_defaultStyle();
-                    loginMapBox1Profile2_defaultStyle();
-                    loginMapBox2Profile2_defaultStyle();
-                    metroTabControl1.SelectTab(tabProfile2int);
-                    if (profile2.friends.Count != 0)
-                    {
-                        friendsBoxProfile2.Enabled = true;
-                        getFriendInfoProfile2.Enabled = true;
-                        friendsBoxProfile2.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        friendsBoxProfile2.Enabled = false;
-                        getFriendInfoProfile2.Enabled = false;
-                    }
-                    profile2.LoadMatchHistory();
-                    Combine20MatchesProfile2(profile2.stats20matches);
-                    metroPanel2.Visible = false;
-                }
-            }
-
+            if (login2.Text == null) return;
+            loadingLogin = loadedLogins.login2;
         }
 
         //
@@ -1071,250 +1237,566 @@ namespace WindowsFormsApp1
             getProfile1.PerformClick();
         }
 
-        //
-        public void Combine20MatchesProfile2(List<Statistics> stats)
+        public void Load20MatchesProfile2History()
         {
-            Statistics last20 = profile2.last20;
-            profile2Last20mode.Text = "";
-            for (int i = 0; i < stats.Count; i++)
+            List<CSGOMatchStatsTeamPlayerStats> statLast20 = new List<CSGOMatchStatsTeamPlayerStats>();
+            MatchStats match_Stats = new MatchStats();
+            match_Stats.faceit = faceit;
+            CSGOPlayerStatisticsProfileSegment last20Profile2 = new CSGOPlayerStatisticsProfileSegment();
+
+            for (int i = 0; i < profile2.history.matches.Count; i++)
             {
-                if (!profile2Last20mode.Text.Contains(stats[i].mode))
+                if (profile2.history.matches.Count == 19)
                 {
-                    profile2Last20mode.Text += '"' + stats[i].mode + '"' + " ";
+                    CSGOMatchStatsTeamPlayerStats stats = new CSGOMatchStatsTeamPlayerStats();
+                    if (match_Stats.GetMatchStatsCSGO(profile2.history.matches[i].match_Id, out CSGOMatchStats value))
+                    {
+                        stats = value.GetStatsPlayer(profile2.detail.player_Id);
+                        last20Profile2.rounds += value.rounds;
+                        statLast20.Add(stats);
+                    }
+                    else
+                    {
+                        Form2 form = new Form2();
+                        form.errorMsg.Text = "Error: " + match_Stats.GetLastError;
+                        form.Show();
+                    }
+                    break;
+                }
+                else
+                {
+                    CSGOMatchStatsTeamPlayerStats stats = new CSGOMatchStatsTeamPlayerStats();
+                    if (match_Stats.GetMatchStatsCSGO(profile2.history.matches[i].match_Id, out CSGOMatchStats value))
+                    {
+                        stats = value.GetStatsPlayer(profile2.detail.player_Id);
+                        last20Profile2.rounds += value.rounds;
+                        statLast20.Add(stats);
+                    }
+                    else
+                    {
+                        Form2 form = new Form2();
+                        form.errorMsg.Text = "Error: " + match_Stats.GetLastError;
+                        form.Show();
+                    }
                 }
             }
-            profile2Last20Death.Text = last20.death.ToString();
+
+            for (int i = 0; i < statLast20.Count; i++)
+            {
+                last20Profile2.assists += statLast20[i].assists;
+                last20Profile2.deaths += statLast20[i].deaths;
+                last20Profile2.headshots += statLast20[i].headshot;
+                last20Profile2.total_Headshot_Percentage += statLast20[i].headshot_Percentage;
+                last20Profile2.kd_Ratio += statLast20[i].kd_Ratio;
+                last20Profile2.kills += statLast20[i].kills;
+                last20Profile2.kr_Ratio += statLast20[i].kr_Ratio;
+                last20Profile2.mvps += statLast20[i].mvps;
+                last20Profile2.penta_Kills += statLast20[i].penta_Kills;
+                last20Profile2.quadro_Kills += statLast20[i].quadro_Kills;
+                last20Profile2.triple_Kills += statLast20[i].triple_Kills;
+                last20Profile2.wins += statLast20[i].result;
+
+            }
+            last20Profile2.matches = statLast20.Count + 1;
+            last20Profile2.average_Assists = last20Profile2.assists / last20Profile2.matches;
+            last20Profile2.average_Deaths = last20Profile2.deaths / last20Profile2.matches;
+            last20Profile2.average_Headshot_Percentage = last20Profile2.headshots * 100 / last20Profile2.matches;
+            last20Profile2.average_KD_Ratio = last20Profile2.kd_Ratio / last20Profile2.matches;
+            last20Profile2.average_KR_Ratio = last20Profile2.kr_Ratio / last20Profile2.matches;
+            last20Profile2.average_Kills = last20Profile2.kills / last20Profile2.matches;
+            last20Profile2.average_MVPs = last20Profile2.mvps / last20Profile2.matches;
+            last20Profile2.average_Penta_Kills = last20Profile2.penta_Kills / last20Profile2.matches;
+            last20Profile2.average_Quadro_Kills = last20Profile2.quadro_Kills / last20Profile2.matches;
+            last20Profile2.average_Triple_Kills = last20Profile2.triple_Kills / last20Profile2.matches;
+            last20Profile2.headshots_Per_match = last20Profile2.headshots / last20Profile2.matches;
+            last20Profile2.win_Rate_Percantage += last20Profile2.wins * 100 / last20Profile2.matches;
+            Combine20MatchesProfile2(last20Profile2);
+        }
+        public void Combine20MatchesProfile2(CSGOPlayerStatisticsProfileSegment last20)
+        {
+            /*profileLast20mode.Text = "";
+            for (int i = 0; i < stats.Count; i++)
+            {
+                if (!profileLast20mode.Text.Contains(stats[i].mode))
+                {
+                    profileLast20mode.Text += '"' + stats[i].mode + '"' + " ";
+                }
+            }*/
+
+            double average_Rounds = last20.rounds / last20.matches;
+            double average_Headshot = last20.headshots / last20.matches;
+            profile2Last20Death.Text = last20.deaths.ToString();
             profile2Last20Assists.Text = last20.assists.ToString();
             profile2Last20Kills.Text = last20.kills.ToString();
-            profile2Last20KDr.Text = last20.kdRatio.ToString();
-            profile2Last20KRr.Text = last20.krRatio.ToString();
-            profile2Last20Matches.Text = stats.Count.ToString();
+            profile2Last20KDr.Text = last20.kd_Ratio.ToString();
+            profile2Last20KRr.Text = last20.kr_Ratio.ToString();
+            profile2Last20Matches.Text = last20.matches.ToString();
             profile2Last20MVPs.Text = last20.mvps.ToString();
-            profile2Last20Penta.Text = last20.pentaKills.ToString();
-            profile2Last20Quadro.Text = last20.quadroKills.ToString();
-            profile2Last20Triple.Text = last20.tripleKills.ToString();
-            profile2Last20WinRate.Text = Math.Round(last20.winRate, 0).ToString() + "%";
+            profile2Last20Penta.Text = last20.penta_Kills.ToString();
+            profile2Last20Quadro.Text = last20.quadro_Kills.ToString();
+            profile2Last20Triple.Text = last20.triple_Kills.ToString();
+            profile2Last20WinRate.Text = last20.win_Rate_Percantage.ToString() + "%";
             profile2Last20Wins.Text = last20.wins.ToString();
-            profile2Last20HS.Text = last20.totalHeadshots.ToString();
-            profile2Last20Rounds.Text = last20.roudns.ToString();
-            profile2Last20HSperMatch.Text = last20.hsPerMatch.ToString();
-            profile2Last20avgKills.Text = Math.Round(last20.avgKills, 2).ToString();
-            profile2Last20avgDeath.Text = Math.Round(last20.avgDeaths, 2).ToString();
-            profile2Last20avgAssists.Text = Math.Round(last20.avgAssists, 2).ToString();
-            profile2Last20avgHSs.Text = Math.Round(last20.avgHSs, 2).ToString();
-            profile2Last20avgHSp.Text = Math.Round(last20.avgHSPercent, 2).ToString() + "%";
-            profile2Last20avgKDR.Text = Math.Round(last20.avgKDRation, 2).ToString();
-            profile2Last20avgKRR.Text = Math.Round(last20.avgKRRatio, 2).ToString();
-            profile2Last20avgMVPs.Text = Math.Round(last20.avgMVPs, 2).ToString();
-            profile2Last20avgPenta.Text = Math.Round(last20.avgPentaKills, 2).ToString();
-            profile2Last20avgQuadro.Text = Math.Round(last20.avgQuadroKills, 2).ToString();
-            profile2Last20avgTriple.Text = Math.Round(last20.avgTripleKills, 2).ToString();
-            profile2Last20avgRounds.Text = Math.Round(last20.avgRounds, 2).ToString();
+            profile2Last20HS.Text = last20.headshots.ToString();
+            profile2Last20Rounds.Text = last20.rounds.ToString();
+            profile2Last20HSperMatch.Text = last20.headshots_Per_match.ToString();
+            profile2Last20avgRounds.Text = Math.Round(average_Rounds, 2).ToString();
+            profile2Last20avgKills.Text = Math.Round(last20.average_Kills, 2).ToString();
+            profile2Last20avgDeath.Text = Math.Round(last20.average_Deaths, 2).ToString();
+            profile2Last20avgAssists.Text = Math.Round(last20.average_Assists, 2).ToString();
+            profile2Last20avgHSs.Text = Math.Round(average_Headshot, 2).ToString();
+            profile2Last20avgHSp.Text = last20.average_Headshot_Percentage.ToString() + "%";
+            profile2Last20avgKDR.Text = Math.Round(last20.average_KD_Ratio, 2).ToString();
+            profile2Last20avgKRR.Text = Math.Round(last20.average_KR_Ratio, 2).ToString();
+            profile2Last20avgMVPs.Text = Math.Round(last20.average_MVPs, 2).ToString();
+            profile2Last20avgPenta.Text = Math.Round(last20.average_Penta_Kills, 2).ToString();
+            profile2Last20avgQuadro.Text = Math.Round(last20.average_Quadro_Kills, 2).ToString();
+            profile2Last20avgTriple.Text = Math.Round(last20.average_Triple_Kills, 2).ToString();
         }
+
         #endregion
 
         #region Match
 
+        public int GetAvgElo(List<CSGOMatchDetailsTeamPlayer> play_det, out int elo)
+        {
+            elo = 0;
+            int mem = 0;
+            for (int i = 0; i < play_det.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if (players[k].detail.player_Id == play_det[i].player_Id)
+                    {
+                        if(players[k].detail.faceit_Elo != 0)
+                        {
+                            elo += players[k].detail.faceit_Elo;
+                            mem += 1;
+                        }
+                    }
+                }
+            }
+            return elo / mem;
+        }
+        public int GetAvgRanking(List<CSGOMatchDetailsTeamPlayer> play_det, out int rank)
+        {
+            rank = 0;
+            int mem = 0;
+            for (int i = 0; i < play_det.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if (players[k].detail.player_Id == play_det[i].player_Id)
+                    {
+                        rank += players[k].ranking.position;
+                        mem += 1;
+                    }
+                }
+            }
+            return rank / mem;
+        }
+        public double GetAvgHS(List<CSGOMatchDetailsTeamPlayer> play_det, out double avghs)
+        {
+            avghs = 0;
+            double mem = 0;
+            for (int i = 0; i < play_det.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if (players[k].detail.player_Id == play_det[i].player_Id)
+                    {
+                        avghs += players[k].statistics.average_Headshots_Percentage;
+                        mem += 1;
+                    }
+                }
+            }
+            return avghs / mem;
+        }
+        public double GetAvgKD(List<CSGOMatchDetailsTeamPlayer> play_det, out double avgkd)
+        {
+            avgkd = 0;
+            double mem = 0;
+            for (int i = 0; i < play_det.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if (players[k].detail.player_Id == play_det[i].player_Id)
+                    {
+                        avgkd += players[k].statistics.average_KD_Ratio;
+                        mem += 1;
+                    }
+                }
+            }
+            return avgkd / mem;
+        }
+        public double GetAvgMatches(List<CSGOMatchDetailsTeamPlayer> play_det, out double matches)
+        {
+            matches = 0;
+            double mem = 0;
+            for (int i = 0; i < play_det.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if (players[k].detail.player_Id == play_det[i].player_Id)
+                    {
+                        matches += players[k].statistics.matches;
+                        mem += 1;
+                    }
+                }
+            }
+            return matches / mem;
+        }
+        public double GetAvgWinRate(List<CSGOMatchDetailsTeamPlayer> play_det, out double winrate)
+        {
+            winrate = 0;
+            double mem = 0;
+            for (int i = 0; i < play_det.Count; i++)
+            {
+                for (int k = 0; k < players.Count; k++)
+                {
+                    if (players[k].detail.player_Id == play_det[i].player_Id)
+                    {
+                        winrate += players[k].statistics.win_Rate;
+                        mem += 1;
+                    }
+                }
+            }
+            return winrate / mem;
+        }
+
         // Открыть в браузере и скачать демо файл
         private void downloadDemo1_Click(object sender, EventArgs e)
         {
-            Process.Start(match.demoURL.ToString());
+            Process.Start(matchDetails.demo_Url[0].ToString());
         }
         // Открыть в браузере комнату матча
         private void OpenMatchInWeb1_Click(object sender, EventArgs e)
         {
-            Process.Start(match.matchURL.ToString());
+            Process.Start(matchDetails.faceit_Url.ToString());
         }
-        // Открытие профиля в браузере
-        private void mNickname1_Click(object sender, EventArgs e)
+        private string FromDateTimeToString(DateTime dt)
         {
-            Process.Start(match.TeamA.leader.faceit_profile.ToString());
+            return dt.Hour + ":" + dt.Minute + ":" + dt.Second + " " + dt.Day + "." + dt.Month + "." + dt.Year;
         }
         // Показать информацию о матче
-        public void ShowInfoMatch()
+        private void ShowInfoMatch()
         {
-            if (match.TeamA.leader != null)
+            //LoadMembers();
+            
+            //настройка матча
+            teamnameA.Text = matchDetails.faction1.name;
+            teamnameB.Text = matchDetails.faction2.name;
+            scoreTeamA.Text = matchDetails.score_Faction1.ToString();
+            scoreTeamB.Text = matchDetails.score_Faction2.ToString();
+            statusMatch1.Text = matchDetails.status;
+
+            mapName1.Text = string.Empty;
+            for (int i = 0; i < matchDetails.map_Pick.Count; i++)
             {
-                //Настройка игроков
+                mapName1.Text += matchDetails.map_Pick[i];
+            }
 
-                LoadMembers();
-
-                //настройка матча
-                teamnameA.Text = match.TeamA.teamName;
-                teamnameB.Text = match.TeamB.teamName;
-                scoreTeamA.Text = match.scoreTeamA;
-                scoreTeamB.Text = match.scoreTeamB;
-                statusMatch1.Text = match.status;
-                mapName1.Text = match.map;
-                gameType1.Text = match.type_match;
-                matchBestOf1.Text = match.bestOf.ToString();
-                countryServer1.Text = match.serverCountry;
-
-                int memberOldA = 0;
-                List<Member> membOldA = new List<Member>();
-
-                membOldA.Add(match.TeamA.leader);
-                membOldA.Add(match.TeamA.member2);
-                membOldA.Add(match.TeamA.member3);
-                membOldA.Add(match.TeamA.member4);
-                membOldA.Add(match.TeamA.member5);
-                for(int i = 0; i < membOldA.Count; i++)
+            gameType1.Text = matchDetails.competition_Type;
+            matchBestOf1.Text = matchDetails.best_Of.ToString();
+            countryServer1.Text = "";
+            for (int i = 0; i < matchDetails.location_Entities.Count; i++)
+            {
+                if(matchDetails.location_Entities[i].name == matchDetails.location_Pick[0])
                 {
-                    if(membOldA[i].faceit_elo != 0)
-                    {
-                        memberOldA += 1;
-                    }
+                    countryServerImg1.Image = GetImageServer((matchDetails.location_Entities[i].image_Lg.ToString()));
                 }
+            }
+            for (int i = 0; i < matchDetails.location_Pick.Count; i++)
+            {
+                countryServer1.Text += matchDetails.location_Pick[i];
+            }
+            
+            scoreTeamA.Text = matchStatistics.team_A.final_score.ToString();
+            scoreTeamB.Text = matchStatistics.team_B.final_score.ToString();
+            configuredDate1.Text = FromDateTimeToString(matchDetails.configured_At);
+            startedDate1.Text = FromDateTimeToString(matchDetails.started_At);
+            finishedDate1.Text = FromDateTimeToString(matchDetails.finished_At);
+            
+            
+            int memberOldA = 0;
+            List<CSGOMatchDetailsTeamPlayer> membOldA = new List<CSGOMatchDetailsTeamPlayer>();
 
-                int memberOldB = 0;
-                List<Member> membOldB = new List<Member>();
-                membOldB.Add(match.TeamB.leader);
-                membOldB.Add(match.TeamB.member2);
-                membOldB.Add(match.TeamB.member3);
-                membOldB.Add(match.TeamB.member4);
-                membOldB.Add(match.TeamB.member5);
-                for (int i = 0; i < membOldB.Count; i++)
+            for (int i = 0; i < matchDetails.faction1.roster.Count; i++)
+            {
+                membOldA.Add(matchDetails.faction1.roster[i]);
+            }
+            for (int i = 0; i < membOldA.Count; i++)
+            {
+                if (membOldA[i].game_Skill_Level != 0)
                 {
-                    if (membOldB[i].faceit_elo != 0)
-                    {
-                        memberOldB += 1;
-                    }
+                    memberOldA += 1;
                 }
+            }
 
-                int avgeloteama = 0;
-                avgeloteama = (match.TeamA.leader.faceit_elo + match.TeamA.member2.faceit_elo + match.TeamA.member3.faceit_elo + match.TeamA.member4.faceit_elo + match.TeamA.member5.faceit_elo) / memberOldA;
-                double avghsteama = 0;
-                avghsteama = (match.TeamA.leader.avgHS + match.TeamA.member2.avgHS + match.TeamA.member3.avgHS + match.TeamA.member4.avgHS + match.TeamA.member5.avgHS) / memberOldA;
-                double avgkdteama = 0;
-                avgkdteama = (match.TeamA.leader.avgKDr + match.TeamA.member2.avgKDr + match.TeamA.member3.avgKDr + match.TeamA.member4.avgKDr + match.TeamA.member5.avgKDr) / memberOldA;
-                int avgrankingteama = 0;
-                avgrankingteama = (match.TeamA.leader.ranking + match.TeamA.member2.ranking + match.TeamA.member3.ranking + match.TeamA.member4.ranking + match.TeamA.member5.ranking) / memberOldA;
-                double avgmatchesteama = 0;
-                avgmatchesteama = (match.TeamA.leader.matches + match.TeamA.member2.matches + match.TeamA.member3.matches + match.TeamA.member4.matches + match.TeamA.member5.matches) / memberOldA;
-                double avgwinrateteama = 0;
-                avgwinrateteama = (match.TeamA.leader.winRate + match.TeamA.member2.winRate + match.TeamA.member3.winRate + match.TeamA.member4.winRate + match.TeamA.member5.winRate) / memberOldA;
+            int memberOldB = 0;
+            List<CSGOMatchDetailsTeamPlayer> membOldB = new List<CSGOMatchDetailsTeamPlayer>();
 
-                int avgeloteamb = 0;
-                avgeloteamb = (match.TeamB.leader.faceit_elo + match.TeamB.member2.faceit_elo + match.TeamB.member3.faceit_elo + match.TeamB.member4.faceit_elo + match.TeamB.member5.faceit_elo) / memberOldB;
-                double avghsteamb = 0;
-                avghsteamb = (match.TeamB.leader.avgHS + match.TeamB.member2.avgHS + match.TeamB.member3.avgHS + match.TeamB.member4.avgHS + match.TeamB.member5.avgHS) / memberOldB;
-                double avgkdteamb = 0;
-                avgkdteamb = (match.TeamB.leader.avgKDr + match.TeamB.member2.avgKDr + match.TeamB.member3.avgKDr + match.TeamB.member4.avgKDr + match.TeamB.member5.avgKDr) / memberOldB;
-                int avgrankingteamb = 0;
-                avgrankingteamb = (match.TeamB.leader.ranking + match.TeamB.member2.ranking + match.TeamB.member3.ranking + match.TeamB.member4.ranking + match.TeamB.member5.ranking) / memberOldB;
-                double avgmatchesteamb = 0;
-                avgmatchesteamb = (match.TeamB.leader.matches + match.TeamB.member2.matches + match.TeamB.member3.matches + match.TeamB.member4.matches + match.TeamB.member5.matches) / memberOldB;
-                double avgwinrateteamb = 0;
-                avgwinrateteamb = (match.TeamB.leader.winRate + match.TeamB.member2.winRate + match.TeamB.member3.winRate + match.TeamB.member4.winRate + match.TeamB.member5.winRate) / memberOldB;
-
-                avgEloTeamA.Text = avgeloteama.ToString();
-                avgHSTeamA.Text = avghsteama.ToString() + "%";
-                avgKDTeamA.Text = avgkdteama.ToString();
-                avgRankingTeamA.Text = avgrankingteama.ToString();
-                avgMatchesTeamA.Text = avgmatchesteama.ToString();
-                avgWinRateTeamA.Text = avgwinrateteama.ToString() + "%";
-
-                avgEloTeamB.Text = avgeloteamb.ToString();
-                avgHSTeamB.Text = avghsteamb.ToString() + "%";
-                avgKDTeamB.Text = avgkdteamb.ToString();
-                avgRankingTeamB.Text = avgrankingteamb.ToString();
-                avgMatchesTeamB.Text = avgmatchesteamb.ToString();
-                avgWinRateTeamB.Text = avgwinrateteamb.ToString() + "%";
-
-                if (avgeloteama > avgeloteamb)
+            for (int i = 0; i < matchDetails.faction2.roster.Count; i++)
+            {
+                membOldB.Add(matchDetails.faction2.roster[i]);
+            }
+            for (int i = 0; i < membOldB.Count; i++)
+            {
+                if (membOldB[i].game_Skill_Level != 0)
                 {
-                    avgEloTeamB.Style = MetroFramework.MetroColorStyle.Red;
-                    avgEloTeamA.Style = MetroFramework.MetroColorStyle.Green;
+                    memberOldB += 1;
                 }
-                else if (avgeloteama < avgeloteamb)
+            }
+            
+            avgEloTeamA.Text = GetAvgElo(membOldA, out int eloA).ToString();
+            avgHSTeamA.Text = GetAvgHS(membOldA, out double avghsA).ToString() + "%";
+            avgKDTeamA.Text = GetAvgKD(membOldA, out double avgkdA).ToString();
+            avgRankingTeamA.Text = GetAvgRanking(membOldA, out int rankA).ToString();
+            avgMatchesTeamA.Text = GetAvgMatches(membOldA, out double matchesA).ToString();
+            avgWinRateTeamA.Text = GetAvgWinRate(membOldA, out double winrateA).ToString() + "%";
+
+            avgEloTeamB.Text = GetAvgElo(membOldB, out int eloB).ToString();
+            avgHSTeamB.Text = GetAvgHS(membOldB, out double avghsB).ToString() + "%";
+            avgKDTeamB.Text = GetAvgKD(membOldB, out double avgkdB).ToString();
+            avgRankingTeamB.Text = GetAvgRanking(membOldB, out int rankB).ToString();
+            avgMatchesTeamB.Text = GetAvgMatches(membOldB, out double matchesB).ToString();
+            avgWinRateTeamB.Text = GetAvgWinRate(membOldB, out double winrateB).ToString() + "%";
+            
+            if (eloA > eloB)
+            {
+                avgEloTeamB.Style = MetroFramework.MetroColorStyle.Red;
+                avgEloTeamA.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (eloA < eloB)
+            {
+                avgEloTeamB.Style = MetroFramework.MetroColorStyle.Green;
+                avgEloTeamA.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                avgEloTeamB.Style = MetroFramework.MetroColorStyle.Blue;
+                avgEloTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (avghsA > avghsB)
+            {
+                avgHSTeamB.Style = MetroFramework.MetroColorStyle.Red;
+                avgHSTeamA.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (avghsA < avghsB)
+            {
+                avgHSTeamB.Style = MetroFramework.MetroColorStyle.Green;
+                avgHSTeamA.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                avgHSTeamB.Style = MetroFramework.MetroColorStyle.Blue;
+                avgHSTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (avgkdA > avgkdB)
+            {
+                avgKDTeamB.Style = MetroFramework.MetroColorStyle.Red;
+                avgKDTeamA.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (avgkdA < avgkdB)
+            {
+                avgKDTeamB.Style = MetroFramework.MetroColorStyle.Green;
+                avgKDTeamA.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                avgKDTeamB.Style = MetroFramework.MetroColorStyle.Blue;
+                avgKDTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (rankA < rankB)
+            {
+                avgRankingTeamB.Style = MetroFramework.MetroColorStyle.Red;
+                avgRankingTeamA.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (rankA > rankB)
+            {
+                avgRankingTeamB.Style = MetroFramework.MetroColorStyle.Green;
+                avgRankingTeamA.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                avgRankingTeamB.Style = MetroFramework.MetroColorStyle.Blue;
+                avgRankingTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (matchesA > matchesB)
+            {
+                avgMatchesTeamB.Style = MetroFramework.MetroColorStyle.Red;
+                avgMatchesTeamA.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (matchesA < matchesB)
+            {
+                avgMatchesTeamB.Style = MetroFramework.MetroColorStyle.Green;
+                avgMatchesTeamA.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                avgMatchesTeamB.Style = MetroFramework.MetroColorStyle.Blue;
+                avgMatchesTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            if (winrateA > winrateB)
+            {
+                avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Red;
+                avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else if (winrateA < winrateB)
+            {
+                avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Green;
+                avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Blue;
+                avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+            
+        }
+
+        private void ShowStatMatch()
+        {
+            teamAFinalScore.Text = matchStatistics.team_A.final_score.ToString();
+            teamBFinalScore.Text = matchStatistics.team_B.final_score.ToString();
+            if (matchStatistics.team_A.final_score > matchStatistics.team_B.final_score)
+            {
+                teamAFinalScore.Style = MetroFramework.MetroColorStyle.Green;
+                teamBFinalScore.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                teamAFinalScore.Style = MetroFramework.MetroColorStyle.Red;
+                teamBFinalScore.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            teamAFirstHalfScore.Text = matchStatistics.team_A.first_Half_Score.ToString();
+            teamBFirstHalfScore.Text = matchStatistics.team_B.first_Half_Score.ToString();
+            if (matchStatistics.team_A.first_Half_Score > matchStatistics.team_B.first_Half_Score)
+            {
+                teamAFirstHalfScore.Style = MetroFramework.MetroColorStyle.Green;
+                teamBFirstHalfScore.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                teamAFirstHalfScore.Style = MetroFramework.MetroColorStyle.Red;
+                teamBFirstHalfScore.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            teamASecondHalfScore.Text = matchStatistics.team_A.second_Half_Score.ToString();
+            teamBSecondHalfScore.Text = matchStatistics.team_B.second_Half_Score.ToString();
+            if (matchStatistics.team_A.second_Half_Score > matchStatistics.team_B.second_Half_Score)
+            {
+                teamASecondHalfScore.Style = MetroFramework.MetroColorStyle.Green;
+                teamBSecondHalfScore.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                teamASecondHalfScore.Style = MetroFramework.MetroColorStyle.Red;
+                teamBSecondHalfScore.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            teamAOTScore.Text = matchStatistics.team_A.overtime_Score.ToString();
+            teamBOTScore.Text = matchStatistics.team_B.overtime_Score.ToString();
+            if (matchStatistics.team_A.overtime_Score > matchStatistics.team_B.overtime_Score)
+            {
+                teamAOTScore.Style = MetroFramework.MetroColorStyle.Green;
+                teamBOTScore.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else if (matchStatistics.team_A.overtime_Score < matchStatistics.team_B.overtime_Score)
+            {
+                teamAOTScore.Style = MetroFramework.MetroColorStyle.Red;
+                teamBOTScore.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else
+            {
+                teamAOTScore.Style = MetroFramework.MetroColorStyle.Blue;
+                teamBOTScore.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            teamATeamHS.Text = matchStatistics.team_A.team_Headshot.ToString();
+            teamBTeamHS.Text = matchStatistics.team_B.team_Headshot.ToString();
+            if (matchStatistics.team_A.team_Headshot > matchStatistics.team_B.team_Headshot)
+            {
+                teamATeamHS.Style = MetroFramework.MetroColorStyle.Green;
+                teamBTeamHS.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else if (matchStatistics.team_A.team_Headshot < matchStatistics.team_B.team_Headshot)
+            {
+                teamATeamHS.Style = MetroFramework.MetroColorStyle.Red;
+                teamBTeamHS.Style = MetroFramework.MetroColorStyle.Green;
+            }
+            else
+            {
+                teamATeamHS.Style = MetroFramework.MetroColorStyle.Blue;
+                teamBTeamHS.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+
+            teamAResult.Text = matchStatistics.team_A.team_Win.ToString();
+            teamBResult.Text = matchStatistics.team_B.team_Win.ToString();
+            if (matchStatistics.team_A.team_Win > matchStatistics.team_B.team_Win)
+            {
+                teamAResult.Style = MetroFramework.MetroColorStyle.Green;
+                teamBResult.Style = MetroFramework.MetroColorStyle.Red;
+            }
+            else
+            {
+                teamAResult.Style = MetroFramework.MetroColorStyle.Red;
+                teamBResult.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            teamAPremade.Text = matchStatistics.team_A.premade.ToString();
+            teamBPremade.Text = matchStatistics.team_B.premade.ToString();
+            if (matchStatistics.team_A.premade == matchStatistics.team_B.premade)
+            {
+                teamAPremade.Style = MetroFramework.MetroColorStyle.Blue;
+                teamBPremade.Style = MetroFramework.MetroColorStyle.Blue;
+            }
+            else
+            {
+                teamAPremade.Style = MetroFramework.MetroColorStyle.Green;
+                teamBPremade.Style = MetroFramework.MetroColorStyle.Green;
+            }
+
+            List<CSGOMatchStatsTeamPlayer> pl_stats = new List<CSGOMatchStatsTeamPlayer>();
+            foreach(CSGOMatchStatsTeamPlayer pl in matchStatistics.team_A.players)
+            {
+                pl_stats.Add(pl);
+            }
+            foreach (CSGOMatchStatsTeamPlayer pl in matchStatistics.team_B.players)
+            {
+                pl_stats.Add(pl);
+            }
+
+            for (int i = 0; i < pl_stats.Count; i++)
+            {
+                sNickname[i].Text = pl_stats[i].nickname;
+                sKills[i].Text = pl_stats[i].stats.kills.ToString();
+                sAssists[i].Text = pl_stats[i].stats.assists.ToString();
+                sDeaths[i].Text = pl_stats[i].stats.deaths.ToString();
+                sPentaKills[i].Text = pl_stats[i].stats.penta_Kills.ToString();
+                sQuadroKills[i].Text = pl_stats[i].stats.quadro_Kills.ToString();
+                sTripleKills[i].Text = pl_stats[i].stats.triple_Kills.ToString();
+                sAvgKR[i].Text = pl_stats[i].stats.kr_Ratio.ToString();
+                sAvgKD[i].Text = pl_stats[i].stats.kd_Ratio.ToString();
+                sMVP[i].Text = pl_stats[i].stats.mvps.ToString();
+                sHS[i].Text = pl_stats[i].stats.headshot.ToString() + "(" + pl_stats[i].stats.headshot_Percentage + "%)";
+                if (pl_stats[i].player_Id == matchDetails.faction1.leader)
                 {
-                    avgEloTeamB.Style = MetroFramework.MetroColorStyle.Green;
-                    avgEloTeamA.Style = MetroFramework.MetroColorStyle.Red;
+                    sNickname[i].Style = MetroFramework.MetroColorStyle.Blue;
+                }
+                else if (pl_stats[i].player_Id == matchDetails.faction2.leader)
+                {
+                    sNickname[i].Style = MetroFramework.MetroColorStyle.Blue;
                 }
                 else
                 {
-                    avgEloTeamB.Style = MetroFramework.MetroColorStyle.Blue;
-                    avgEloTeamA.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-
-                if (avghsteama > avghsteamb)
-                {
-                    avgHSTeamB.Style = MetroFramework.MetroColorStyle.Red;
-                    avgHSTeamA.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                else if (avghsteama < avghsteamb)
-                {
-                    avgHSTeamB.Style = MetroFramework.MetroColorStyle.Green;
-                    avgHSTeamA.Style = MetroFramework.MetroColorStyle.Red;
-                }
-                else
-                {
-                    avgHSTeamB.Style = MetroFramework.MetroColorStyle.Blue;
-                    avgHSTeamA.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-
-                if (avgkdteama > avgkdteamb)
-                {
-                    avgKDTeamB.Style = MetroFramework.MetroColorStyle.Red;
-                    avgKDTeamA.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                else if (avgkdteama < avgkdteamb)
-                {
-                    avgKDTeamB.Style = MetroFramework.MetroColorStyle.Green;
-                    avgKDTeamA.Style = MetroFramework.MetroColorStyle.Red;
-                }
-                else
-                {
-                    avgKDTeamB.Style = MetroFramework.MetroColorStyle.Blue;
-                    avgKDTeamA.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-
-                if (avgrankingteama < avgrankingteamb)
-                {
-                    avgRankingTeamB.Style = MetroFramework.MetroColorStyle.Red;
-                    avgRankingTeamA.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                else if (avgrankingteama > avgrankingteamb)
-                {
-                    avgRankingTeamB.Style = MetroFramework.MetroColorStyle.Green;
-                    avgRankingTeamA.Style = MetroFramework.MetroColorStyle.Red;
-                }
-                else
-                {
-                    avgRankingTeamB.Style = MetroFramework.MetroColorStyle.Blue;
-                    avgRankingTeamA.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-
-                if (avgmatchesteama > avgmatchesteamb)
-                {
-                    avgMatchesTeamB.Style = MetroFramework.MetroColorStyle.Red;
-                    avgMatchesTeamA.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                else if (avgmatchesteama < avgmatchesteamb)
-                {
-                    avgMatchesTeamB.Style = MetroFramework.MetroColorStyle.Green;
-                    avgMatchesTeamA.Style = MetroFramework.MetroColorStyle.Red;
-                }
-                else
-                {
-                    avgMatchesTeamB.Style = MetroFramework.MetroColorStyle.Blue;
-                    avgMatchesTeamA.Style = MetroFramework.MetroColorStyle.Blue;
-                }
-
-                if (avgwinrateteama > avgwinrateteamb)
-                {
-                    avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Red;
-                    avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Green;
-                }
-                else if (avgwinrateteama < avgwinrateteamb)
-                {
-                    avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Green;
-                    avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Red;
-                }
-                else
-                {
-                    avgWinRateTeamB.Style = MetroFramework.MetroColorStyle.Blue;
-                    avgWinRateTeamA.Style = MetroFramework.MetroColorStyle.Blue;
+                    sNickname[i].Style = MetroFramework.MetroColorStyle.Black;
                 }
             }
         }
@@ -1405,8 +1887,8 @@ namespace WindowsFormsApp1
         {
             int index1 = map1BoxProfile1.SelectedIndex;
             int index2 = map2BoxProfile1.SelectedIndex;
-            Map map1 = profile.maps[index1];
-            Map map2 = profile.maps[index2];
+            CSGOPlayerStatisticsProfileSegment map1 = profile.statistics.segments[index1];
+            CSGOPlayerStatisticsProfileSegment map2 = profile.statistics.segments[index2];
 
             if (map1.wins > map2.wins)
             {
@@ -1440,12 +1922,12 @@ namespace WindowsFormsApp1
                 matchesProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.winRate > map2.winRate)
+            if (map1.win_Rate_Percantage > map2.win_Rate_Percantage)
             {
                 winRateProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 winRateProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.winRate < map2.winRate)
+            else if (map1.win_Rate_Percantage < map2.win_Rate_Percantage)
             {
                 winRateProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 winRateProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1456,12 +1938,12 @@ namespace WindowsFormsApp1
                 winRateProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.kdratio > map2.kdratio)
+            if (map1.kr_Ratio > map2.kr_Ratio)
             {
                 kdRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 kdRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.kdratio < map2.kdratio)
+            else if (map1.kr_Ratio < map2.kr_Ratio)
             {
                 kdRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 kdRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1472,12 +1954,12 @@ namespace WindowsFormsApp1
                 kdRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgHS > map2.avgHS)
+            if (map1.average_Headshot_Percentage > map2.average_Headshot_Percentage)
             {
                 avgHSsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgHSsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgHS < map2.avgHS)
+            else if (map1.average_Headshot_Percentage < map2.average_Headshot_Percentage)
             {
                 avgHSsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgHSsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1531,12 +2013,12 @@ namespace WindowsFormsApp1
                 killsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.death < map2.death)
+            if (map1.deaths < map2.deaths)
             {
                 deathProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 deathProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.death > map2.death)
+            else if (map1.deaths > map2.deaths)
             {
                 deathProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 deathProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1547,12 +2029,12 @@ namespace WindowsFormsApp1
                 deathProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.krratio > map2.krratio)
+            if (map1.kr_Ratio > map2.kr_Ratio)
             {
                 krRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 krRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.krratio < map2.krratio)
+            else if (map1.kr_Ratio < map2.kr_Ratio)
             {
                 krRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 krRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1579,12 +2061,12 @@ namespace WindowsFormsApp1
                 mvpsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.assist > map2.assist)
+            if (map1.assists > map2.assists)
             {
                 assistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 assistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.assist < map2.assist)
+            else if (map1.assists < map2.assists)
             {
                 assistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 assistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1595,12 +2077,12 @@ namespace WindowsFormsApp1
                 assistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.pentaKills > map2.pentaKills)
+            if (map1.penta_Kills > map2.penta_Kills)
             {
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.pentaKills < map2.pentaKills)
+            else if (map1.penta_Kills < map2.penta_Kills)
             {
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1611,12 +2093,12 @@ namespace WindowsFormsApp1
                 pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.quadroKills > map2.quadroKills)
+            if (map1.quadro_Kills > map2.quadro_Kills)
             {
                 quadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 quadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.quadroKills < map2.quadroKills)
+            else if (map1.quadro_Kills < map2.quadro_Kills)
             {
                 quadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 quadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1627,12 +2109,12 @@ namespace WindowsFormsApp1
                 quadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.tripleKills > map2.tripleKills)
+            if (map1.triple_Kills > map2.triple_Kills)
             {
                 tripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 tripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.tripleKills < map2.tripleKills)
+            else if (map1.triple_Kills < map2.triple_Kills)
             {
                 tripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 tripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1643,12 +2125,12 @@ namespace WindowsFormsApp1
                 tripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.hsPerMatch > map2.hsPerMatch)
+            if (map1.headshots_Per_match > map2.headshots_Per_match)
             {
                 hsPerMatchProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 hsPerMatchProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.hsPerMatch < map2.hsPerMatch)
+            else if (map1.headshots_Per_match < map2.headshots_Per_match)
             {
                 hsPerMatchProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 hsPerMatchProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1659,12 +2141,12 @@ namespace WindowsFormsApp1
                 hsPerMatchProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKills > map2.avgKills)
+            if (map1.average_Kills > map2.average_Kills)
             {
                 avgKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgKills < map2.avgKills)
+            else if (map1.average_Kills < map2.average_Kills)
             {
                 avgKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1675,12 +2157,12 @@ namespace WindowsFormsApp1
                 avgKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgDeath < map2.avgDeath)
+            if (map1.average_Deaths < map2.average_Deaths)
             {
                 avgDeathProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgDeathProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgDeath > map2.avgDeath)
+            else if (map1.average_Deaths > map2.average_Deaths)
             {
                 avgDeathProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgDeathProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1691,12 +2173,12 @@ namespace WindowsFormsApp1
                 avgDeathProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.totalHeadshots > map2.totalHeadshots)
+            if (map1.total_Headshot_Percentage > map2.total_Headshot_Percentage)
             {
                 totalHSProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 totalHSProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.totalHeadshots < map2.totalHeadshots)
+            else if (map1.total_Headshot_Percentage < map2.total_Headshot_Percentage)
             {
                 totalHSProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 totalHSProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1707,12 +2189,12 @@ namespace WindowsFormsApp1
                 totalHSProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgAssist > map2.avgAssist)
+            if (map1.average_Assists > map2.average_Assists)
             {
                 avgAssistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgAssistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgAssist < map2.avgAssist)
+            else if (map1.average_Assists < map2.average_Assists)
             {
                 avgAssistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgAssistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1723,12 +2205,12 @@ namespace WindowsFormsApp1
                 avgAssistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgMVPs > map2.avgMVPs)
+            if (map1.average_MVPs > map2.average_MVPs)
             {
                 avgMVPsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgMVPsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgMVPs < map2.avgMVPs)
+            else if (map1.average_MVPs < map2.average_MVPs)
             {
                 avgMVPsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgMVPsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1739,12 +2221,12 @@ namespace WindowsFormsApp1
                 avgMVPsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgPentaK > map2.avgPentaK)
+            if (map1.average_Penta_Kills > map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgPentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgPentaK < map2.avgPentaK)
+            else if (map1.average_Penta_Kills < map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgPentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1755,12 +2237,12 @@ namespace WindowsFormsApp1
                 avgPentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgQuadroK > map2.avgQuadroK)
+            if (map1.average_Quadro_Kills > map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgQuadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgQuadroK < map2.avgQuadroK)
+            else if (map1.average_Quadro_Kills < map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgQuadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1771,12 +2253,12 @@ namespace WindowsFormsApp1
                 avgQuadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgTripleK > map2.avgTripleK)
+            if (map1.average_Triple_Kills > map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgTripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgTripleK < map2.avgTripleK)
+            else if (map1.average_Triple_Kills < map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgTripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1787,12 +2269,12 @@ namespace WindowsFormsApp1
                 avgTripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKRr > map2.avgKRr)
+            if (map1.average_KR_Ratio > map2.average_KR_Ratio)
             {
                 avgKRRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKRRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgKRr < map2.avgKRr)
+            else if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 avgKRRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKRRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1803,12 +2285,12 @@ namespace WindowsFormsApp1
                 avgKRRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKDr > map2.avgKDr)
+            if (map1.average_KD_Ratio > map2.average_KD_Ratio)
             {
                 avgKDRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKDRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgKDr < map2.avgKDr)
+            else if (map1.average_KD_Ratio < map2.average_KD_Ratio)
             {
                 avgKDRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKDRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -1823,8 +2305,8 @@ namespace WindowsFormsApp1
         // Сравнение карт
         public void SelectBestMapProfile1()
         {
-            Map map1 = profile.maps[map1BoxProfile1.SelectedIndex];
-            Map map2 = profile.maps[map2BoxProfile1.SelectedIndex];
+            CSGOPlayerStatisticsProfileSegment map1 = profile.statistics.segments[map1BoxProfile1.SelectedIndex];
+            CSGOPlayerStatisticsProfileSegment map2 = profile.statistics.segments[map2BoxProfile1.SelectedIndex];
 
             int indexMap1 = 0;
             int indexMap2 = 0;
@@ -1847,29 +2329,29 @@ namespace WindowsFormsApp1
                 indexMap1 += 1;
             }
 
-            if (map1.winRate < map2.winRate)
+            if (map1.win_Rate_Percantage < map2.win_Rate_Percantage)
             {
                 indexMap2 += 1;
             }
-            else if (map1.winRate > map2.winRate)
+            else if (map1.win_Rate_Percantage > map2.win_Rate_Percantage)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.kdratio < map2.kdratio)
+            if (map1.kd_Ratio < map2.kd_Ratio)
             {
                 indexMap2 += 1;
             }
-            else if (map1.kdratio > map2.kdratio)
+            else if (map1.kd_Ratio > map2.kd_Ratio)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgHS < map2.avgHS)
+            if (map1.average_Headshot_Percentage < map2.average_Headshot_Percentage)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgHS > map2.avgHS)
+            else if (map1.average_Headshot_Percentage > map2.average_Headshot_Percentage)
             {
                 indexMap1 += 1;
             }
@@ -1892,20 +2374,20 @@ namespace WindowsFormsApp1
                 indexMap1 += 1;
             }
 
-            if (map1.death > map2.death)
+            if (map1.deaths > map2.deaths)
             {
                 indexMap2 += 1;
             }
-            else if (map1.death < map2.death)
+            else if (map1.deaths < map2.deaths)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.krratio < map2.krratio)
+            if (map1.kr_Ratio < map2.kr_Ratio)
             {
                 indexMap2 += 1;
             }
-            else if (map1.krratio > map2.krratio)
+            else if (map1.kr_Ratio > map2.kr_Ratio)
             {
                 indexMap1 += 1;
             }
@@ -1919,128 +2401,128 @@ namespace WindowsFormsApp1
                 indexMap1 += 1;
             }
 
-            if (map1.assist < map2.assist)
+            if (map1.assists < map2.assists)
             {
                 indexMap2 += 1;
             }
-            else if (map1.assist > map2.assist)
+            else if (map1.assists > map2.assists)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.pentaKills < map2.pentaKills)
+            if (map1.penta_Kills < map2.penta_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.pentaKills > map2.pentaKills)
+            else if (map1.penta_Kills > map2.penta_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.quadroKills < map2.quadroKills)
+            if (map1.quadro_Kills < map2.quadro_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.quadroKills > map2.quadroKills)
+            else if (map1.quadro_Kills > map2.quadro_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.tripleKills < map2.tripleKills)
+            if (map1.triple_Kills < map2.triple_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.tripleKills > map2.tripleKills)
+            else if (map1.triple_Kills > map2.triple_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.hsPerMatch < map2.hsPerMatch)
+            if (map1.headshots_Per_match < map2.headshots_Per_match)
             {
                 indexMap2 += 1;
             }
-            else if (map1.hsPerMatch > map2.hsPerMatch)
+            else if (map1.headshots_Per_match > map2.headshots_Per_match)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgKills < map2.avgKills)
+            if (map1.average_Kills < map2.average_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgKills > map2.avgKills)
+            else if (map1.average_Kills > map2.average_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgDeath > map2.avgDeath)
+            if (map1.average_Deaths > map2.average_Deaths)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgDeath < map2.avgDeath)
+            else if (map1.average_Deaths < map2.average_Deaths)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgAssist < map2.avgAssist)
+            if (map1.average_Assists < map2.average_Assists)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgAssist > map2.avgAssist)
+            else if (map1.average_Assists > map2.average_Assists)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgMVPs < map2.avgMVPs)
+            if (map1.average_MVPs < map2.average_MVPs)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgMVPs > map2.avgMVPs)
+            else if (map1.average_MVPs > map2.average_MVPs)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgPentaK < map2.avgPentaK)
+            if (map1.average_Penta_Kills < map2.average_Penta_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgPentaK > map2.avgPentaK)
+            else if (map1.average_Penta_Kills > map2.average_Penta_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgQuadroK < map2.avgQuadroK)
+            if (map1.average_Quadro_Kills < map2.average_Quadro_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgQuadroK > map2.avgQuadroK)
+            else if (map1.average_Quadro_Kills > map2.average_Quadro_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgTripleK < map2.avgTripleK)
+            if (map1.average_Triple_Kills < map2.average_Triple_Kills)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgTripleK > map2.avgTripleK)
+            else if (map1.average_Triple_Kills > map2.average_Triple_Kills)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgKDr < map2.avgKDr)
+            if (map1.average_KD_Ratio < map2.average_KD_Ratio)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgKDr > map2.avgKDr)
+            else if (map1.average_KD_Ratio > map2.average_KD_Ratio)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgKRr < map2.avgKRr)
+            if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgKRr > map2.avgKRr)
+            else if (map1.average_KR_Ratio > map2.average_KR_Ratio)
             {
                 indexMap1 += 1;
             }
@@ -2153,10 +2635,10 @@ namespace WindowsFormsApp1
         // Загрузить стили сравнения карт
         public void CompareMap1andMap2Profile2_Style()
         {
-            int index1 = map1BoxProfile2.SelectedIndex;
-            int index2 = map2BoxProfile2.SelectedIndex;
-            Map map1 = profile2.maps[index1];
-            Map map2 = profile2.maps[index2];
+            int index1 = map1BoxProfile1.SelectedIndex;
+            int index2 = map2BoxProfile1.SelectedIndex;
+            CSGOPlayerStatisticsProfileSegment map1 = profile.statistics.segments[index1];
+            CSGOPlayerStatisticsProfileSegment map2 = profile.statistics.segments[index2];
 
             if (map1.wins > map2.wins)
             {
@@ -2190,12 +2672,12 @@ namespace WindowsFormsApp1
                 matchesProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.winRate > map2.winRate)
+            if (map1.win_Rate_Percantage > map2.win_Rate_Percantage)
             {
                 winRateProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 winRateProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.winRate < map2.winRate)
+            else if (map1.win_Rate_Percantage < map2.win_Rate_Percantage)
             {
                 winRateProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 winRateProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2206,12 +2688,12 @@ namespace WindowsFormsApp1
                 winRateProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.kdratio > map2.kdratio)
+            if (map1.kd_Ratio > map2.kd_Ratio)
             {
                 kdRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 kdRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.kdratio < map2.kdratio)
+            else if (map1.kd_Ratio < map2.kd_Ratio)
             {
                 kdRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 kdRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2222,12 +2704,12 @@ namespace WindowsFormsApp1
                 kdRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgHS > map2.avgHS)
+            if (map1.average_Headshot_Percentage > map2.average_Headshot_Percentage)
             {
                 avgHSsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgHSsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgHS < map2.avgHS)
+            else if (map1.average_Headshot_Percentage < map2.average_Headshot_Percentage)
             {
                 avgHSsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgHSsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2281,12 +2763,12 @@ namespace WindowsFormsApp1
                 killsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.death < map2.death)
+            if (map1.deaths < map2.deaths)
             {
                 deathProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 deathProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.death > map2.death)
+            else if (map1.deaths > map2.deaths)
             {
                 deathProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 deathProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2297,12 +2779,12 @@ namespace WindowsFormsApp1
                 deathProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.krratio > map2.krratio)
+            if (map1.kr_Ratio > map2.kr_Ratio)
             {
                 krRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 krRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.krratio < map2.krratio)
+            else if (map1.kr_Ratio < map2.kr_Ratio)
             {
                 krRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 krRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2329,12 +2811,12 @@ namespace WindowsFormsApp1
                 mvpsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.assist > map2.assist)
+            if (map1.assists > map2.assists)
             {
                 assistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 assistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.assist < map2.assist)
+            else if (map1.assists < map2.assists)
             {
                 assistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 assistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2345,12 +2827,12 @@ namespace WindowsFormsApp1
                 assistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.pentaKills > map2.pentaKills)
+            if (map1.penta_Kills > map2.penta_Kills)
             {
                 pentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 pentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.pentaKills < map2.pentaKills)
+            else if (map1.penta_Kills < map2.penta_Kills)
             {
                 pentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 pentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2361,12 +2843,12 @@ namespace WindowsFormsApp1
                 pentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.quadroKills > map2.quadroKills)
+            if (map1.quadro_Kills > map2.quadro_Kills)
             {
                 quadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 quadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.quadroKills < map2.quadroKills)
+            else if (map1.quadro_Kills < map2.quadro_Kills)
             {
                 quadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 quadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2377,12 +2859,12 @@ namespace WindowsFormsApp1
                 quadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.tripleKills > map2.tripleKills)
+            if (map1.triple_Kills > map2.triple_Kills)
             {
                 tripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 tripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.tripleKills < map2.tripleKills)
+            else if (map1.triple_Kills < map2.triple_Kills)
             {
                 tripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 tripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2393,12 +2875,12 @@ namespace WindowsFormsApp1
                 tripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.hsPerMatch > map2.hsPerMatch)
+            if (map1.headshots_Per_match > map2.headshots_Per_match)
             {
                 hsPerMatchProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 hsPerMatchProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.hsPerMatch < map2.hsPerMatch)
+            else if (map1.headshots_Per_match < map2.headshots_Per_match)
             {
                 hsPerMatchProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 hsPerMatchProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2409,12 +2891,12 @@ namespace WindowsFormsApp1
                 hsPerMatchProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKills > map2.avgKills)
+            if (map1.average_Kills > map2.average_Kills)
             {
                 avgKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgKills < map2.avgKills)
+            else if (map1.average_Kills < map2.average_Kills)
             {
                 avgKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2425,12 +2907,12 @@ namespace WindowsFormsApp1
                 avgKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgDeath < map2.avgDeath)
+            if (map1.average_Deaths < map2.average_Deaths)
             {
                 avgDeathProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgDeathProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgDeath > map2.avgDeath)
+            else if (map1.average_Deaths > map2.average_Deaths)
             {
                 avgDeathProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgDeathProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2441,12 +2923,12 @@ namespace WindowsFormsApp1
                 avgDeathProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.totalHeadshots > map2.totalHeadshots)
+            if (map1.total_Headshot_Percentage > map2.total_Headshot_Percentage)
             {
                 totalHSProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 totalHSProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.totalHeadshots < map2.totalHeadshots)
+            else if (map1.total_Headshot_Percentage < map2.total_Headshot_Percentage)
             {
                 totalHSProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 totalHSProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2457,12 +2939,12 @@ namespace WindowsFormsApp1
                 totalHSProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgAssist > map2.avgAssist)
+            if (map1.average_Assists > map2.average_Assists)
             {
                 avgAssistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgAssistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgAssist < map2.avgAssist)
+            else if (map1.average_Assists < map2.average_Assists)
             {
                 avgAssistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgAssistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2473,12 +2955,12 @@ namespace WindowsFormsApp1
                 avgAssistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgMVPs > map2.avgMVPs)
+            if (map1.average_MVPs > map2.average_MVPs)
             {
                 avgMVPsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgMVPsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgMVPs < map2.avgMVPs)
+            else if (map1.average_MVPs < map2.average_MVPs)
             {
                 avgMVPsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgMVPsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2489,12 +2971,12 @@ namespace WindowsFormsApp1
                 avgMVPsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgPentaK > map2.avgPentaK)
+            if (map1.average_Penta_Kills > map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgPentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgPentaK < map2.avgPentaK)
+            else if (map1.average_Penta_Kills < map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgPentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2505,12 +2987,12 @@ namespace WindowsFormsApp1
                 avgPentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgQuadroK > map2.avgQuadroK)
+            if (map1.average_Quadro_Kills > map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgQuadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgQuadroK < map2.avgQuadroK)
+            else if (map1.average_Quadro_Kills < map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgQuadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2521,12 +3003,12 @@ namespace WindowsFormsApp1
                 avgQuadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgTripleK > map2.avgTripleK)
+            if (map1.average_Triple_Kills > map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgTripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgTripleK < map2.avgTripleK)
+            else if (map1.average_Triple_Kills < map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgTripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2537,12 +3019,12 @@ namespace WindowsFormsApp1
                 avgTripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKRr > map2.avgKRr)
+            if (map1.average_KR_Ratio > map2.average_KR_Ratio)
             {
                 avgKRRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKRRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgKRr < map2.avgKRr)
+            else if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 avgKRRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKRRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2553,12 +3035,12 @@ namespace WindowsFormsApp1
                 avgKRRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKDr > map2.avgKDr)
+            if (map1.average_KD_Ratio > map2.average_KD_Ratio)
             {
                 avgKDRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKDRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
             }
-            else if (map1.avgKDr < map2.avgKDr)
+            else if (map1.average_KD_Ratio < map2.average_KD_Ratio)
             {
                 avgKDRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKDRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -2573,8 +3055,8 @@ namespace WindowsFormsApp1
         // Сравнение карт
         public void SelectBestMapProfile2()
         {
-            Map map1 = profile2.maps[map1BoxProfile2.SelectedIndex];
-            Map map2 = profile2.maps[map2BoxProfile2.SelectedIndex];
+            CSGOPlayerStatisticsProfileSegment map1 = profile.statistics.segments[map1BoxProfile1.SelectedIndex];
+            CSGOPlayerStatisticsProfileSegment map2 = profile.statistics.segments[map2BoxProfile1.SelectedIndex];
 
             int indexMap1 = 0;
             int indexMap2 = 0;
@@ -2597,29 +3079,29 @@ namespace WindowsFormsApp1
                 indexMap1 += 1;
             }
 
-            if (map1.winRate / map1.matches < map2.winRate / map2.matches)
+            if (map1.win_Rate_Percantage / map1.matches < map2.win_Rate_Percantage / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.winRate / map1.matches > map2.winRate / map2.matches)
+            else if (map1.win_Rate_Percantage / map1.matches > map2.win_Rate_Percantage / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.kdratio / map1.matches / map1.matches < map2.kdratio / map2.matches)
+            if (map1.kd_Ratio / map1.matches / map1.matches < map2.kd_Ratio / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.kdratio / map1.matches / map1.matches > map2.kdratio / map2.matches)
+            else if (map1.kd_Ratio / map1.matches / map1.matches > map2.kd_Ratio / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgHS / map1.matches < map2.avgHS / map2.matches)
+            if (map1.average_Headshot_Percentage / map1.matches < map2.average_Headshot_Percentage / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgHS / map1.matches > map2.avgHS / map2.matches)
+            else if (map1.average_Headshot_Percentage / map1.matches > map2.average_Headshot_Percentage / map2.matches)
             {
                 indexMap1 += 1;
             }
@@ -2642,20 +3124,20 @@ namespace WindowsFormsApp1
                 indexMap1 += 1;
             }
 
-            if (map1.death / map1.matches > map2.death / map2.matches)
+            if (map1.deaths / map1.matches > map2.deaths / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.death / map1.matches < map2.death / map2.matches)
+            else if (map1.deaths / map1.matches < map2.deaths / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.krratio / map1.matches < map2.krratio / map2.matches)
+            if (map1.kr_Ratio / map1.matches < map2.kr_Ratio / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.krratio / map1.matches > map2.krratio / map2.matches)
+            else if (map1.kr_Ratio / map1.matches > map2.kr_Ratio / map2.matches)
             {
                 indexMap1 += 1;
             }
@@ -2669,128 +3151,128 @@ namespace WindowsFormsApp1
                 indexMap1 += 1;
             }
 
-            if (map1.assist / map1.matches < map2.assist / map2.matches)
+            if (map1.assists / map1.matches < map2.assists / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.assist / map1.matches > map2.assist / map2.matches)
+            else if (map1.assists / map1.matches > map2.assists / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.pentaKills / map1.matches < map2.pentaKills / map2.matches)
+            if (map1.penta_Kills / map1.matches < map2.penta_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.pentaKills / map1.matches > map2.pentaKills / map2.matches)
+            else if (map1.penta_Kills / map1.matches > map2.penta_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.quadroKills / map1.matches < map2.quadroKills / map2.matches)
+            if (map1.quadro_Kills / map1.matches < map2.quadro_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.quadroKills / map1.matches > map2.quadroKills / map2.matches)
+            else if (map1.quadro_Kills / map1.matches > map2.quadro_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.tripleKills / map1.matches < map2.tripleKills / map2.matches)
+            if (map1.triple_Kills / map1.matches < map2.triple_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.tripleKills / map1.matches > map2.tripleKills / map2.matches)
+            else if (map1.triple_Kills / map1.matches > map2.triple_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.hsPerMatch / map1.matches < map2.hsPerMatch / map2.matches)
+            if (map1.headshots_Per_match / map1.matches < map2.headshots_Per_match / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.hsPerMatch / map1.matches > map2.hsPerMatch / map2.matches)
+            else if (map1.headshots_Per_match / map1.matches > map2.headshots_Per_match / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgKills / map1.matches < map2.avgKills / map2.matches)
+            if (map1.average_Kills / map1.matches < map2.average_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgKills / map1.matches > map2.avgKills / map2.matches)
+            else if (map1.average_Kills / map1.matches > map2.average_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgDeath / map1.matches > map2.avgDeath / map2.matches)
+            if (map1.average_Deaths / map1.matches > map2.average_Deaths / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgDeath / map1.matches < map2.avgDeath / map2.matches)
+            else if (map1.average_Deaths / map1.matches < map2.average_Deaths / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgAssist / map1.matches < map2.avgAssist / map2.matches)
+            if (map1.average_Assists / map1.matches < map2.average_Assists / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgAssist / map1.matches > map2.avgAssist / map2.matches)
+            else if (map1.average_Assists / map1.matches > map2.average_Assists / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgMVPs / map1.matches < map2.avgMVPs / map2.matches)
+            if (map1.average_MVPs / map1.matches < map2.average_MVPs / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgMVPs / map1.matches > map2.avgMVPs / map2.matches)
+            else if (map1.average_MVPs / map1.matches > map2.average_MVPs / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgPentaK / map1.matches < map2.avgPentaK / map2.matches)
+            if (map1.average_Penta_Kills / map1.matches < map2.average_Penta_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgPentaK / map1.matches > map2.avgPentaK / map2.matches)
+            else if (map1.average_Penta_Kills / map1.matches > map2.average_Penta_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgQuadroK / map1.matches < map2.avgQuadroK / map2.matches)
+            if (map1.average_Quadro_Kills / map1.matches < map2.average_Quadro_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgQuadroK / map1.matches > map2.avgQuadroK / map2.matches)
+            else if (map1.average_Quadro_Kills / map1.matches > map2.average_Quadro_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgTripleK / map1.matches < map2.avgTripleK / map2.matches)
+            if (map1.average_Triple_Kills / map1.matches < map2.average_Triple_Kills / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgTripleK / map1.matches > map2.avgTripleK / map2.matches)
+            else if (map1.average_Triple_Kills / map1.matches > map2.average_Triple_Kills / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgKDr / map1.matches < map2.avgKDr / map2.matches)
+            if (map1.average_KD_Ratio / map1.matches < map2.average_KD_Ratio / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgKDr / map1.matches > map2.avgKDr / map2.matches)
+            else if (map1.average_KD_Ratio / map1.matches > map2.average_KD_Ratio / map2.matches)
             {
                 indexMap1 += 1;
             }
 
-            if (map1.avgKRr / map1.matches < map2.avgKRr / map2.matches)
+            if (map1.average_KR_Ratio / map1.matches < map2.average_KR_Ratio / map2.matches)
             {
                 indexMap2 += 1;
             }
-            else if (map1.avgKRr / map1.matches > map2.avgKRr / map2.matches)
+            else if (map1.average_KR_Ratio / map1.matches > map2.average_KR_Ratio / map2.matches)
             {
                 indexMap1 += 1;
             }
@@ -2932,6 +3414,18 @@ namespace WindowsFormsApp1
 
         #endregion
 
+        public string Get(string player_Id)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                if(players[i].detail.player_Id == player_Id)
+                {
+                    return players[i].detail.faceit_Url.ToString();
+                }
+            }
+            return "";
+        }
+
         #region Main
         // Проверка все ли профили загружены
         public void CheckOnLoadedLogins()
@@ -2946,129 +3440,87 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void GetInfoMatch1_Click(object sender, EventArgs e)
+        public void GetInfoMatch1_Click(object sender, EventArgs e)
         {
-            metroPanel3.Visible = false;
-            members = new List<Member>();
-            mLobby1.Items.Clear();
-            mLobby2.Items.Clear();
-            mLobby3.Items.Clear();
-            mLobby4.Items.Clear();
-            mLobby5.Items.Clear();
-            mLobby6.Items.Clear();
-            mLobby7.Items.Clear();
-            mLobby8.Items.Clear();
-            mLobby9.Items.Clear();
-            mLobby10.Items.Clear();
-            match = new Match();
-            match.GetInfoMatch(matchIDbox1.Text);
-            if((match.json.HasValues && match.json.Type != JTokenType.Null) && match.TeamA.leader != null)
+            if (!isMatchLoading)
             {
-                isMatchLoaded = true;
-                ShowInfoMatch();
-                metroPanel3.Visible = true;
-                metroTabControl1.SelectTab(tabMatchint);
+                metroPanel6.Visible = true;
+                matchIDbox1.Enabled = false;
+                isMatchLoading = true;
+                InitializeBackgroundWorker();
+                metroLabel1.Text = "";
+                metroPanel3.Visible = false; // изменить после тестов
+                thread1.RunWorkerAsync(); //Start Process
+                //ShowInfoMatch();
+                GetInfoMatch1.Enabled = false;
+            }
+            else
+            {
+                thread1.CancelAsync();
+                thread2.CancelAsync();
+                GetInfoMatch1.Enabled = true;
             }
         }
-
         private void getProfile1_Click_1(object sender, EventArgs e)
         {
-            Last20StyleProfile2_DefaultStyle();
-            isLogin1Loaded = false;
-            CheckOnLoadedLogins();
-            metroPanel1.Visible = true;
-            ClearProfileTab();
-            profile = new Profile();
-            profile.SetInfo(login1.Text);
-            if (profile.json.HasValues & profile.json.Type != JTokenType.Null)
-            {
-                if (profile.dec.HasValues & profile.dec.Type != JTokenType.Null)
-                {
-                    isLogin1Loaded = true;
-                    ShowInfoProfileTab(profile);
-                    CheckOnLoadedLogins();
-                    DisableStatsCompareProfile();
-                    loginProfileProfile1_defaultStyle();
-                    loginMapBox1Profile1_defaultStyle();
-                    loginMapBox2Profile1_defaultStyle();
-                    metroTabControl1.SelectTab(tabProfile1int);
-                    if(profile.friends.Count != 0)
-                    {
-                        friendsBoxProfile1.Enabled = true;
-                        getFriendInfoProfile1.Enabled = true;
-                        friendsBoxProfile1.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        friendsBoxProfile1.Enabled = false;
-                        getFriendInfoProfile1.Enabled = false;
-                    }
-                    profile.LoadMatchHistory();
-                    Combine20MatchesProfile1(profile.stats20matches);
-                    metroPanel1.Visible = false;
-                }
-            }
+            if (login1.Text == null) return;
+            loadingLogin = loadedLogins.login1;
+            
+            //thread3.RunWorkerAsync();
         }
-
         private void Quit1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-
         private void goToFaceitProfile2_Click(object sender, EventArgs e)
         {
-            Process.Start(profile2.faceit_url);
+            Process.Start(profile2.detail.faceit_Url.ToString());
         }
-
         private void goToSteamProfile2_Click(object sender, EventArgs e)
         {
-            Process.Start("https://steamcommunity.com/profiles/" + profile2.steamid64);
+            Process.Start("https://steamcommunity.com/profiles/" + profile2.detail.steam_Id_64.ToString());
         }
 
+        // Открытие профиля в браузере
+        private void mNickname1_Click(object sender, EventArgs e)
+        {
+            Process.Start(Get(matchDetails.faction1.roster[0].player_Id));
+        }
         private void mNickname2_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamA.member2.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction1.roster[1].player_Id));
         }
-
         private void mNickname3_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamA.member3.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction1.roster[2].player_Id));
         }
-
         private void mNickname4_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamA.member4.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction1.roster[3].player_Id));
         }
-
         private void mNickname5_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamA.member5.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction1.roster[4].player_Id));
         }
-
         private void mNickname6_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamB.leader.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction2.roster[0].player_Id));
         }
-
         private void mNickname7_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamB.member2.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction2.roster[1].player_Id));
         }
-
         private void mNickname8_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamB.member3.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction2.roster[2].player_Id));
         }
-
         private void mNickname9_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamB.member4.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction2.roster[3].player_Id));
         }
-
         private void mNickname10_Click(object sender, EventArgs e)
         {
-            Process.Start(match.TeamB.member5.faceit_profile.ToString());
+            Process.Start(Get(matchDetails.faction2.roster[4].player_Id));
         }
 
         #endregion
@@ -3079,8 +3531,8 @@ namespace WindowsFormsApp1
             SelectBestMapProfile2();
             int index1 = map1BoxProfile1.SelectedIndex;
             int index2 = map1BoxProfile2.SelectedIndex;
-            Map map1 = profile.maps[index1];
-            Map map2 = profile2.maps[index2];
+            CSGOPlayerStatisticsProfileSegment map1 = profile.statistics.segments[index1];
+            CSGOPlayerStatisticsProfileSegment map2 = profile2.statistics.segments[index2];
 
             int indexMap1Profile1 = 0;
             int indexMap1Profile2 = 0;
@@ -3135,13 +3587,13 @@ namespace WindowsFormsApp1
                 matchesProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.winRate > map2.winRate)
+            if (map1.win_Rate_Percantage > map2.win_Rate_Percantage)
             {
                 winRateProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 winRateProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.winRate < map2.winRate)
+            else if (map1.win_Rate_Percantage < map2.win_Rate_Percantage)
             {
                 winRateProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 winRateProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3153,13 +3605,13 @@ namespace WindowsFormsApp1
                 winRateProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.kdratio > map2.kdratio)
+            if (map1.kd_Ratio > map2.kd_Ratio)
             {
                 kdRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 kdRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.kdratio < map2.kdratio)
+            else if (map1.kd_Ratio < map2.kd_Ratio)
             {
                 kdRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 kdRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3171,13 +3623,13 @@ namespace WindowsFormsApp1
                 kdRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgHS > map2.avgHS)
+            if (map1.average_Headshot_Percentage > map2.average_Headshot_Percentage)
             {
                 avgHSsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgHSsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgHS < map2.avgHS)
+            else if (map1.average_Headshot_Percentage < map2.average_Headshot_Percentage)
             {
                 avgHSsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgHSsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3236,13 +3688,13 @@ namespace WindowsFormsApp1
                 killsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.death < map2.death)
+            if (map1.deaths < map2.deaths)
             {
                 deathProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 deathProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.death > map2.death)
+            else if (map1.deaths > map2.deaths)
             {
                 deathProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 deathProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3254,13 +3706,13 @@ namespace WindowsFormsApp1
                 deathProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.krratio > map2.krratio)
+            if (map1.kr_Ratio > map2.kr_Ratio)
             {
                 krRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 krRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.krratio < map2.krratio)
+            else if (map1.kr_Ratio < map2.kr_Ratio)
             {
                 krRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 krRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3290,13 +3742,13 @@ namespace WindowsFormsApp1
                 mvpsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.assist > map2.assist)
+            if (map1.assists > map2.assists)
             {
                 assistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 assistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.assist < map2.assist)
+            else if (map1.assists < map2.assists)
             {
                 assistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 assistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3308,13 +3760,13 @@ namespace WindowsFormsApp1
                 assistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.pentaKills > map2.pentaKills)
+            if (map1.penta_Kills > map2.penta_Kills)
             {
                 pentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.pentaKills < map2.pentaKills)
+            else if (map1.penta_Kills < map2.penta_Kills)
             {
                 pentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3326,13 +3778,13 @@ namespace WindowsFormsApp1
                 pentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.quadroKills > map2.quadroKills)
+            if (map1.quadro_Kills > map2.quadro_Kills)
             {
                 quadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 quadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.quadroKills < map2.quadroKills)
+            else if (map1.quadro_Kills < map2.quadro_Kills)
             {
                 quadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 quadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3344,13 +3796,13 @@ namespace WindowsFormsApp1
                 quadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.tripleKills > map2.tripleKills)
+            if (map1.triple_Kills > map2.triple_Kills)
             {
                 tripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 tripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.tripleKills < map2.tripleKills)
+            else if (map1.triple_Kills < map2.triple_Kills)
             {
                 tripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 tripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3362,13 +3814,13 @@ namespace WindowsFormsApp1
                 tripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.hsPerMatch > map2.hsPerMatch)
+            if (map1.headshots_Per_match > map2.headshots_Per_match)
             {
                 hsPerMatchProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 hsPerMatchProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.hsPerMatch < map2.hsPerMatch)
+            else if (map1.headshots_Per_match < map2.headshots_Per_match)
             {
                 hsPerMatchProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 hsPerMatchProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3380,13 +3832,13 @@ namespace WindowsFormsApp1
                 hsPerMatchProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKills > map2.avgKills)
+            if (map1.average_Kills > map2.average_Kills)
             {
                 avgKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgKills < map2.avgKills)
+            else if (map1.average_Kills < map2.average_Kills)
             {
                 avgKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3398,13 +3850,13 @@ namespace WindowsFormsApp1
                 avgKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgDeath < map2.avgDeath)
+            if (map1.average_Deaths < map2.average_Deaths)
             {
                 avgDeathProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgDeathProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgDeath > map2.avgDeath)
+            else if (map1.average_Deaths > map2.average_Deaths)
             {
                 avgDeathProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgDeathProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3416,13 +3868,13 @@ namespace WindowsFormsApp1
                 avgDeathProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.totalHeadshots > map2.totalHeadshots)
+            if (map1.total_Headshot_Percentage > map2.total_Headshot_Percentage)
             {
                 totalHSProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 totalHSProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.totalHeadshots < map2.totalHeadshots)
+            else if (map1.total_Headshot_Percentage < map2.total_Headshot_Percentage)
             {
                 totalHSProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 totalHSProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3434,13 +3886,13 @@ namespace WindowsFormsApp1
                 totalHSProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgAssist > map2.avgAssist)
+            if (map1.average_Assists > map2.average_Assists)
             {
                 avgAssistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgAssistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgAssist < map2.avgAssist)
+            else if (map1.average_Assists < map2.average_Assists)
             {
                 avgAssistsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgAssistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3452,13 +3904,13 @@ namespace WindowsFormsApp1
                 avgAssistsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgMVPs > map2.avgMVPs)
+            if (map1.average_MVPs > map2.average_MVPs)
             {
                 avgMVPsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgMVPsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgMVPs < map2.avgMVPs)
+            else if (map1.average_MVPs < map2.average_MVPs)
             {
                 avgMVPsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgMVPsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3470,13 +3922,13 @@ namespace WindowsFormsApp1
                 avgMVPsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgPentaK > map2.avgPentaK)
+            if (map1.average_Penta_Kills > map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgPentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgPentaK < map2.avgPentaK)
+            else if (map1.average_Penta_Kills < map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgPentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3488,13 +3940,13 @@ namespace WindowsFormsApp1
                 avgPentaKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgQuadroK > map2.avgQuadroK)
+            if (map1.average_Quadro_Kills > map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgQuadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgQuadroK < map2.avgQuadroK)
+            else if (map1.average_Quadro_Kills < map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgQuadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3506,13 +3958,13 @@ namespace WindowsFormsApp1
                 avgQuadroKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgTripleK > map2.avgTripleK)
+            if (map1.average_Triple_Kills > map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgTripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgTripleK < map2.avgTripleK)
+            else if (map1.average_Triple_Kills < map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgTripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3524,13 +3976,13 @@ namespace WindowsFormsApp1
                 avgTripleKillsProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKRr > map2.avgKRr)
+            if (map1.average_KR_Ratio > map2.average_KR_Ratio)
             {
                 avgKRRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgKRRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgKRr < map2.avgKRr)
+            else if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 avgKRRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgKRRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3542,13 +3994,13 @@ namespace WindowsFormsApp1
                 avgKRRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKDr > map2.avgKDr)
+            if (map1.average_KD_Ratio > map2.average_KR_Ratio)
             {
                 avgKDRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Red;
                 avgKDRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap1Profile1 += 1;
             }
-            else if (map1.avgKDr < map2.avgKDr)
+            else if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 avgKDRatioProfile2Map1.Style = MetroFramework.MetroColorStyle.Green;
                 avgKDRatioProfile1Map1.Style = MetroFramework.MetroColorStyle.Red;
@@ -3561,12 +4013,12 @@ namespace WindowsFormsApp1
             }
             #endregion
 
-            map1 = new Map();
-            map2 = new Map();
+            map1 = new CSGOPlayerStatisticsProfileSegment();
+            map2 = new CSGOPlayerStatisticsProfileSegment();
             index1 = map2BoxProfile1.SelectedIndex;
             index2 = map2BoxProfile2.SelectedIndex;
-            map1 = profile.maps[index1];
-            map2 = profile2.maps[index2];
+            map1 = profile.statistics.segments[index1];
+            map2 = profile2.statistics.segments[index2];
 
             #region Map2
             if (map1.wins > map2.wins)
@@ -3605,13 +4057,13 @@ namespace WindowsFormsApp1
                 matchesProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.winRate > map2.winRate)
+            if (map1.win_Rate_Percantage > map2.win_Rate_Percantage)
             {
                 winRateProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 winRateProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.winRate < map2.winRate)
+            else if (map1.win_Rate_Percantage < map2.win_Rate_Percantage)
             {
                 winRateProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 winRateProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3623,13 +4075,13 @@ namespace WindowsFormsApp1
                 winRateProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.kdratio > map2.kdratio)
+            if (map1.kd_Ratio > map2.kd_Ratio)
             {
                 kdRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 kdRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.kdratio < map2.kdratio)
+            else if (map1.kd_Ratio < map2.kd_Ratio)
             {
                 kdRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 kdRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3641,13 +4093,13 @@ namespace WindowsFormsApp1
                 kdRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgHS > map2.avgHS)
+            if (map1.average_Headshot_Percentage > map2.average_Headshot_Percentage)
             {
                 avgHSsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgHSsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgHS < map2.avgHS)
+            else if (map1.average_Headshot_Percentage < map2.average_Headshot_Percentage)
             {
                 avgHSsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgHSsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3706,13 +4158,13 @@ namespace WindowsFormsApp1
                 killsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.death < map2.death)
+            if (map1.deaths < map2.deaths)
             {
                 deathProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 deathProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.death > map2.death)
+            else if (map1.deaths > map2.deaths)
             {
                 deathProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 deathProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3724,13 +4176,13 @@ namespace WindowsFormsApp1
                 deathProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.krratio > map2.krratio)
+            if (map1.kr_Ratio > map2.kr_Ratio)
             {
                 krRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 krRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.krratio < map2.krratio)
+            else if (map1.kr_Ratio < map2.kr_Ratio)
             {
                 krRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 krRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3760,13 +4212,13 @@ namespace WindowsFormsApp1
                 mvpsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.assist > map2.assist)
+            if (map1.assists > map2.assists)
             {
                 assistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 assistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.assist < map2.assist)
+            else if (map1.assists < map2.assists)
             {
                 assistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 assistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3778,13 +4230,13 @@ namespace WindowsFormsApp1
                 assistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.pentaKills > map2.pentaKills)
+            if (map1.penta_Kills > map2.penta_Kills)
             {
                 pentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.pentaKills < map2.pentaKills)
+            else if (map1.penta_Kills < map2.penta_Kills)
             {
                 pentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3796,13 +4248,13 @@ namespace WindowsFormsApp1
                 pentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.quadroKills > map2.quadroKills)
+            if (map1.quadro_Kills > map2.quadro_Kills)
             {
                 quadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 quadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.quadroKills < map2.quadroKills)
+            else if (map1.quadro_Kills < map2.quadro_Kills)
             {
                 quadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 quadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3814,13 +4266,13 @@ namespace WindowsFormsApp1
                 quadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.tripleKills > map2.tripleKills)
+            if (map1.triple_Kills > map2.triple_Kills)
             {
                 tripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 tripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.tripleKills < map2.tripleKills)
+            else if (map1.triple_Kills < map2.triple_Kills)
             {
                 tripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 tripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3832,13 +4284,13 @@ namespace WindowsFormsApp1
                 tripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.hsPerMatch > map2.hsPerMatch)
+            if (map1.headshots_Per_match > map2.headshots_Per_match)
             {
                 hsPerMatchProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 hsPerMatchProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.hsPerMatch < map2.hsPerMatch)
+            else if (map1.headshots_Per_match < map2.headshots_Per_match)
             {
                 hsPerMatchProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 hsPerMatchProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3850,13 +4302,13 @@ namespace WindowsFormsApp1
                 hsPerMatchProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKills > map2.avgKills)
+            if (map1.average_Kills > map2.average_Kills)
             {
                 avgKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgKills < map2.avgKills)
+            else if (map1.average_Kills < map2.average_Kills)
             {
                 avgKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3868,13 +4320,13 @@ namespace WindowsFormsApp1
                 avgKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgDeath < map2.avgDeath)
+            if (map1.average_Deaths < map2.average_Deaths)
             {
                 avgDeathProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgDeathProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgDeath > map2.avgDeath)
+            else if (map1.average_Deaths > map2.average_Deaths)
             {
                 avgDeathProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgDeathProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3886,13 +4338,13 @@ namespace WindowsFormsApp1
                 avgDeathProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.totalHeadshots > map2.totalHeadshots)
+            if (map1.total_Headshot_Percentage > map2.total_Headshot_Percentage)
             {
                 totalHSProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 totalHSProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.totalHeadshots < map2.totalHeadshots)
+            else if (map1.total_Headshot_Percentage < map2.total_Headshot_Percentage)
             {
                 totalHSProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 totalHSProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3904,13 +4356,13 @@ namespace WindowsFormsApp1
                 totalHSProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgAssist > map2.avgAssist)
+            if (map1.average_Assists > map2.average_Assists)
             {
                 avgAssistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgAssistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgAssist < map2.avgAssist)
+            else if (map1.average_Assists < map2.average_Assists)
             {
                 avgAssistsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgAssistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3922,13 +4374,13 @@ namespace WindowsFormsApp1
                 avgAssistsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgMVPs > map2.avgMVPs)
+            if (map1.average_MVPs > map2.average_MVPs)
             {
                 avgMVPsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgMVPsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgMVPs < map2.avgMVPs)
+            else if (map1.average_MVPs < map2.average_MVPs)
             {
                 avgMVPsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgMVPsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3940,13 +4392,13 @@ namespace WindowsFormsApp1
                 avgMVPsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgPentaK > map2.avgPentaK)
+            if (map1.average_Penta_Kills > map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgPentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgPentaK < map2.avgPentaK)
+            else if (map1.average_Penta_Kills < map2.average_Penta_Kills)
             {
                 avgPentaKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgPentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3958,13 +4410,13 @@ namespace WindowsFormsApp1
                 avgPentaKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgQuadroK > map2.avgQuadroK)
+            if (map1.average_Quadro_Kills > map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgQuadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgQuadroK < map2.avgQuadroK)
+            else if (map1.average_Quadro_Kills < map2.average_Quadro_Kills)
             {
                 avgQuadroKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgQuadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3976,13 +4428,13 @@ namespace WindowsFormsApp1
                 avgQuadroKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgTripleK > map2.avgTripleK)
+            if (map1.average_Triple_Kills > map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgTripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgTripleK < map2.avgTripleK)
+            else if (map1.average_Triple_Kills < map2.average_Triple_Kills)
             {
                 avgTripleKillsProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgTripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -3994,13 +4446,13 @@ namespace WindowsFormsApp1
                 avgTripleKillsProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKRr > map2.avgKRr)
+            if (map1.average_KR_Ratio > map2.average_KR_Ratio)
             {
                 avgKRRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKRRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgKRr < map2.avgKRr)
+            else if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 avgKRRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKRRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4012,13 +4464,13 @@ namespace WindowsFormsApp1
                 avgKRRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (map1.avgKDr > map2.avgKDr)
+            if (map1.average_KR_Ratio > map2.average_KR_Ratio)
             {
                 avgKDRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Red;
                 avgKDRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Green;
                 indexMap2Profile1 += 1;
             }
-            else if (map1.avgKDr < map2.avgKDr)
+            else if (map1.average_KR_Ratio < map2.average_KR_Ratio)
             {
                 avgKDRatioProfile2Map2.Style = MetroFramework.MetroColorStyle.Green;
                 avgKDRatioProfile1Map2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4032,13 +4484,13 @@ namespace WindowsFormsApp1
             #endregion
 
             #region Profile
-            if (profile.faceit_elo < profile2.faceit_elo)
+            if (profile.detail.faceit_Elo < profile2.detail.faceit_Elo)
             {
                 eloProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 eloProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.faceit_elo > profile2.faceit_elo)
+            else if (profile.detail.faceit_Elo > profile2.detail.faceit_Elo)
             {
                 eloProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 eloProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4050,13 +4502,13 @@ namespace WindowsFormsApp1
                 eloProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.faceit_level < profile2.faceit_level)
+            if (profile.detail.skill_Level < profile2.detail.skill_Level)
             {
                 levelProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 levelProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.faceit_level > profile2.faceit_level)
+            else if (profile.detail.skill_Level > profile2.detail.skill_Level)
             {
                 levelProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 levelProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4068,11 +4520,11 @@ namespace WindowsFormsApp1
                 levelProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.membership_type == "premium")
+            if (profile.detail.membership_Type == "premium")
             {
                 membershipProfile1.Style = MetroFramework.MetroColorStyle.Blue;
             }
-            else if (profile.membership_type == "supporter")
+            else if (profile.detail.membership_Type == "supporter")
             {
                 membershipProfile1.Style = MetroFramework.MetroColorStyle.Green;
             }
@@ -4081,11 +4533,11 @@ namespace WindowsFormsApp1
                 membershipProfile1.Style = MetroFramework.MetroColorStyle.Red;
             }
 
-            if (profile2.membership_type == "premium")
+            if (profile2.detail.membership_Type == "premium")
             {
                 membershipProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
-            else if (profile2.membership_type == "supporter")
+            else if (profile2.detail.membership_Type == "supporter")
             {
                 membershipProfile2.Style = MetroFramework.MetroColorStyle.Green;
             }
@@ -4094,13 +4546,13 @@ namespace WindowsFormsApp1
                 membershipProfile2.Style = MetroFramework.MetroColorStyle.Red;
             }
 
-            if (profile.avgHS < profile2.avgHS)
+            if (profile.statistics.average_Headshots_Percentage < profile2.statistics.average_Headshots_Percentage)
             {
                 avgHSProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 avgHSProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.avgHS > profile2.avgHS)
+            else if (profile.statistics.average_Headshots_Percentage > profile2.statistics.average_Headshots_Percentage)
             {
                 avgHSProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 avgHSProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4112,13 +4564,13 @@ namespace WindowsFormsApp1
                 avgHSProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.avgKD < profile2.avgKD)
+            if (profile.statistics.average_KD_Ratio < profile2.statistics.average_KD_Ratio)
             {
                 avgKDProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 avgKDProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.avgKD > profile2.avgKD)
+            else if (profile.statistics.average_KD_Ratio > profile2.statistics.average_KD_Ratio)
             {
                 avgKDProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 avgKDProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4130,13 +4582,13 @@ namespace WindowsFormsApp1
                 avgKDProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.currrentWinStreak < profile2.currrentWinStreak)
+            if (profile.statistics.current_Win_Streak < profile2.statistics.current_Win_Streak)
             {
                 curWinStrikeProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 curWinStrikeProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.currrentWinStreak > profile2.currrentWinStreak)
+            else if (profile.statistics.current_Win_Streak > profile2.statistics.current_Win_Streak)
             {
                 curWinStrikeProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 curWinStrikeProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4148,13 +4600,13 @@ namespace WindowsFormsApp1
                 curWinStrikeProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.longestWinStreak < profile2.longestWinStreak)
+            if (profile.statistics.longest_Win_Streak < profile2.statistics.longest_Win_Streak)
             {
                 longestWinStrikeProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 longestWinStrikeProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.longestWinStreak > profile2.longestWinStreak)
+            else if (profile.statistics.longest_Win_Streak > profile2.statistics.longest_Win_Streak)
             {
                 longestWinStrikeProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 longestWinStrikeProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4166,13 +4618,13 @@ namespace WindowsFormsApp1
                 longestWinStrikeProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.matches < profile2.matches)
+            if (profile.statistics.matches < profile2.statistics.matches)
             {
                 matchesProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 matchesProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.matches > profile2.matches)
+            else if (profile.statistics.matches > profile2.statistics.matches)
             {
                 matchesProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 matchesProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4184,13 +4636,13 @@ namespace WindowsFormsApp1
                 matchesProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.winMatches < profile2.winMatches)
+            if (profile.statistics.wins < profile2.statistics.wins)
             {
                 winMatchesProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 winMatchesProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.winMatches > profile2.winMatches)
+            else if (profile.statistics.wins > profile2.statistics.wins)
             {
                 winMatchesProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 winMatchesProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4202,13 +4654,13 @@ namespace WindowsFormsApp1
                 winMatchesProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.winRate < profile2.winRate)
+            if (profile.statistics.win_Rate < profile2.statistics.win_Rate)
             {
                 winRateProfile1.Style = MetroFramework.MetroColorStyle.Red;
                 winRateProfile2.Style = MetroFramework.MetroColorStyle.Green;
                 indexProfile2 += 1;
             }
-            else if (profile.winRate > profile2.winRate)
+            else if (profile.statistics.win_Rate > profile2.statistics.win_Rate)
             {
                 winRateProfile1.Style = MetroFramework.MetroColorStyle.Green;
                 winRateProfile2.Style = MetroFramework.MetroColorStyle.Red;
@@ -4220,7 +4672,7 @@ namespace WindowsFormsApp1
                 winRateProfile2.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (profile.country == profile2.country)
+            if (profile.detail.country == profile2.detail.country)
             {
                 countryProfile1.Style = MetroFramework.MetroColorStyle.Blue;
                 countryProfile2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -4234,8 +4686,13 @@ namespace WindowsFormsApp1
 
             #region Last20
 
-            Statistics last20profile1 = profile.last20;
-            Statistics last20profile2 = profile2.last20;
+            CSGOPlayerStatisticsProfileSegment last20profile1 = last20Profile1;
+            CSGOPlayerStatisticsProfileSegment last20profile2 = last20Profile2;
+
+            ExtensionPlayerStatistics play1 = new ExtensionPlayerStatistics();
+            play1.SetStats(last20profile1);
+            ExtensionPlayerStatistics play2 = new ExtensionPlayerStatistics();
+            play2.SetStats(last20profile2);
 
             if (last20profile1.kills > last20profile2.kills)
             {
@@ -4255,13 +4712,13 @@ namespace WindowsFormsApp1
                 profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.death < last20profile2.death)
+            if (last20profile1.deaths < last20profile2.deaths)
             {
                 profile1Last20Death.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Death.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.death > last20profile2.death)
+            else if (last20profile1.deaths > last20profile2.deaths)
             {
                 profile1Last20Death.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Death.Style = MetroFramework.MetroColorStyle.Green;
@@ -4309,13 +4766,13 @@ namespace WindowsFormsApp1
                 profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.totalHeadshots > last20profile2.totalHeadshots)
+            if (last20profile1.total_Headshot_Percentage > last20profile2.total_Headshot_Percentage)
             {
                 profileLast20HS.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.totalHeadshots < last20profile2.totalHeadshots)
+            else if (last20profile1.total_Headshot_Percentage < last20profile2.total_Headshot_Percentage)
             {
                 profileLast20HS.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Green;
@@ -4327,13 +4784,13 @@ namespace WindowsFormsApp1
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.kdRatio > last20profile2.kdRatio)
+            if (last20profile1.kd_Ratio > last20profile2.kd_Ratio)
             {
                 profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.kdRatio < last20profile2.kdRatio)
+            else if (last20profile1.kd_Ratio < last20profile2.kd_Ratio)
             {
                 profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
@@ -4345,13 +4802,13 @@ namespace WindowsFormsApp1
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.krRatio > last20profile2.krRatio)
+            if (last20profile1.kr_Ratio > last20profile2.kr_Ratio)
             {
                 profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.krRatio < last20profile2.krRatio)
+            else if (last20profile1.kr_Ratio < last20profile2.kr_Ratio)
             {
                 profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
@@ -4363,13 +4820,13 @@ namespace WindowsFormsApp1
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.tripleKills > last20profile2.tripleKills)
+            if (last20profile1.triple_Kills > last20profile2.triple_Kills)
             {
                 profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.tripleKills < last20profile2.tripleKills)
+            else if (last20profile1.triple_Kills < last20profile2.triple_Kills)
             {
                 profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
@@ -4381,13 +4838,13 @@ namespace WindowsFormsApp1
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.quadroKills > last20profile2.quadroKills)
+            if (last20profile1.quadro_Kills > last20profile2.quadro_Kills)
             {
                 profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.quadroKills < last20profile2.quadroKills)
+            else if (last20profile1.quadro_Kills < last20profile2.quadro_Kills)
             {
                 profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
@@ -4399,13 +4856,13 @@ namespace WindowsFormsApp1
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.pentaKills > last20profile2.pentaKills)
+            if (last20profile1.penta_Kills > last20profile2.penta_Kills)
             {
                 profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.pentaKills < last20profile2.pentaKills)
+            else if (last20profile1.penta_Kills < last20profile2.penta_Kills)
             {
                 profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
@@ -4417,13 +4874,13 @@ namespace WindowsFormsApp1
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.hsPerMatch > last20profile2.hsPerMatch)
+            if (last20profile1.headshots_Per_match > last20profile2.headshots_Per_match)
             {
                 profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.hsPerMatch < last20profile2.hsPerMatch)
+            else if (last20profile1.headshots_Per_match < last20profile2.headshots_Per_match)
             {
                 profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
@@ -4471,13 +4928,13 @@ namespace WindowsFormsApp1
                 profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.winRate > last20profile2.winRate)
+            if (last20profile1.win_Rate_Percantage > last20profile2.win_Rate_Percantage)
             {
                 profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.winRate < last20profile2.winRate)
+            else if (last20profile1.win_Rate_Percantage < last20profile2.win_Rate_Percantage)
             {
                 profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
@@ -4489,13 +4946,13 @@ namespace WindowsFormsApp1
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.roudns > last20profile2.roudns)
+            if (last20profile1.rounds > last20profile2.rounds)
             {
                 profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.roudns < last20profile2.roudns)
+            else if (last20profile1.rounds < last20profile2.rounds)
             {
                 profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
@@ -4518,13 +4975,13 @@ namespace WindowsFormsApp1
                 profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
             }
 
-            if (last20profile1.avgKills > last20profile2.avgKills)
+            if (last20profile1.average_Kills > last20profile2.average_Kills)
             {
                 profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKills < last20profile2.avgKills)
+            else if (last20profile1.average_Kills < last20profile2.average_Kills)
             {
                 profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
@@ -4536,13 +4993,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgDeaths < last20profile2.avgDeaths)
+            if (last20profile1.average_Deaths < last20profile2.average_Deaths)
             {
                 profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgDeaths > last20profile2.avgDeaths)
+            else if (last20profile1.average_Deaths > last20profile2.average_Deaths)
             {
                 profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
@@ -4554,13 +5011,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgAssists > last20profile2.avgAssists)
+            if (last20profile1.average_Assists > last20profile2.average_Assists)
             {
                 profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgAssists < last20profile2.avgAssists)
+            else if (last20profile1.average_Assists < last20profile2.average_Assists)
             {
                 profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
@@ -4572,13 +5029,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgHSs > last20profile2.avgHSs)
+            if (last20profile1.average_Headshot_Percentage > last20profile2.average_Headshot_Percentage)
             {
                 profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgHSs < last20profile2.avgHSs)
+            else if (last20profile1.average_Headshot_Percentage < last20profile2.average_Headshot_Percentage)
             {
                 profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
@@ -4590,13 +5047,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgKDRation > last20profile2.avgKDRation)
+            if (last20profile1.average_KD_Ratio > last20profile2.average_KD_Ratio)
             {
                 profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKDRation < last20profile2.avgKDRation)
+            else if (last20profile1.average_KD_Ratio < last20profile2.average_KD_Ratio)
             {
                 profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
@@ -4608,13 +5065,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgKRRatio > last20profile2.avgKRRatio)
+            if (last20profile1.average_KR_Ratio > last20profile2.average_KR_Ratio)
             {
                 profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKRRatio < last20profile2.avgKRRatio)
+            else if (last20profile1.average_KR_Ratio < last20profile2.average_KR_Ratio)
             {
                 profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
@@ -4626,13 +5083,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgMVPs > last20profile2.avgMVPs)
+            if (last20profile1.average_MVPs > last20profile2.average_MVPs)
             {
                 profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgMVPs < last20profile2.avgMVPs)
+            else if (last20profile1.average_MVPs < last20profile2.average_MVPs)
             {
                 profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
@@ -4644,13 +5101,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgTripleKills > last20profile2.avgTripleKills)
+            if (last20profile1.average_Triple_Kills > last20profile2.average_Triple_Kills)
             {
                 profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgTripleKills < last20profile2.avgTripleKills)
+            else if (last20profile1.average_Triple_Kills < last20profile2.average_Triple_Kills)
             {
                 profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
@@ -4662,13 +5119,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgQuadroKills > last20profile2.avgQuadroKills)
+            if (last20profile1.average_Quadro_Kills > last20profile2.average_Quadro_Kills)
             {
                 profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgQuadroKills < last20profile2.avgQuadroKills)
+            else if (last20profile1.average_Quadro_Kills < last20profile2.average_Quadro_Kills)
             {
                 profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
@@ -4680,13 +5137,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgPentaKills > last20profile2.avgPentaKills)
+            if (last20profile1.average_Penta_Kills > last20profile2.average_Penta_Kills)
             {
                 profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgPentaKills < last20profile2.avgPentaKills)
+            else if (last20profile1.average_Penta_Kills < last20profile2.average_Penta_Kills)
             {
                 profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
@@ -4698,13 +5155,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgRounds > last20profile2.avgRounds)
+            if (play1.average_Rounds > play2.average_Rounds)
             {
                 profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgRounds < last20profile2.avgRounds)
+            else if (play1.average_Rounds < play2.average_Rounds)
             {
                 profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
@@ -4716,13 +5173,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgHSPercent > last20profile2.avgHSPercent)
+            if (play1.average_Headshot > play2.average_Headshot)
             {
                 profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgHSPercent < last20profile2.avgHSPercent)
+            else if (play1.average_Headshot < play2.average_Headshot)
             {
                 profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
@@ -4936,6 +5393,14 @@ namespace WindowsFormsApp1
 
         private void settings1_Click(object sender, EventArgs e)
         {
+            if (metroPanel4.Visible)
+            {
+                metroPanel4.Visible = false;
+            }
+            else
+            {
+                metroPanel4.Visible = true;
+            }
             
         }
 
@@ -4944,18 +5409,18 @@ namespace WindowsFormsApp1
             if (isLogin1Loaded)
             {
                 map1BoxProfile1.Items.Clear();
-                LoadMapInComboBox(map1BoxProfile1, profile.maps);
+                LoadMapInComboBox(map1BoxProfile1, profile.statistics.segments);
                 map2BoxProfile1.Items.Clear();
-                LoadMapInComboBox(map2BoxProfile1, profile.maps);
+                LoadMapInComboBox(map2BoxProfile1, profile.statistics.segments);
                 loginMapBox1Profile1_defaultStyle();
                 loginMapBox2Profile1_defaultStyle();
             }
             if (isLogin2Loaded)
             {
                 map1BoxProfile2.Items.Clear();
-                LoadMapInComboBox(map1BoxProfile2, profile2.maps);
+                LoadMapInComboBox(map1BoxProfile2, profile2.statistics.segments);
                 map2BoxProfile2.Items.Clear();
-                LoadMapInComboBox(map2BoxProfile2, profile2.maps);
+                LoadMapInComboBox(map2BoxProfile2, profile2.statistics.segments);
                 loginMapBox1Profile2_defaultStyle();
                 loginMapBox2Profile2_defaultStyle();
             }
@@ -4966,18 +5431,18 @@ namespace WindowsFormsApp1
             if (isLogin1Loaded)
             {
                 map1BoxProfile1.Items.Clear();
-                LoadMapInComboBox(map1BoxProfile1, profile.maps);
+                LoadMapInComboBox(map1BoxProfile1, profile.statistics.segments);
                 map2BoxProfile1.Items.Clear();
-                LoadMapInComboBox(map2BoxProfile1, profile.maps);
+                LoadMapInComboBox(map2BoxProfile1, profile.statistics.segments);
                 loginMapBox1Profile1_defaultStyle();
                 loginMapBox2Profile1_defaultStyle();
             }
             if (isLogin2Loaded)
             {
                 map1BoxProfile2.Items.Clear();
-                LoadMapInComboBox(map1BoxProfile2, profile2.maps);
+                LoadMapInComboBox(map1BoxProfile2, profile2.statistics.segments);
                 map2BoxProfile2.Items.Clear();
-                LoadMapInComboBox(map2BoxProfile2, profile2.maps);
+                LoadMapInComboBox(map2BoxProfile2, profile2.statistics.segments);
                 loginMapBox1Profile2_defaultStyle();
                 loginMapBox2Profile2_defaultStyle();
             }
@@ -5013,8 +5478,14 @@ namespace WindowsFormsApp1
         {
             int indexLast20Profile1 = 0;
             int indexLast20Profile2 = 0;
-            Statistics last20profile1 = profile.last20;
-            Statistics last20profile2 = profile2.last20;
+            CSGOPlayerStatisticsProfileSegment last20profile1 = last20Profile1;
+            CSGOPlayerStatisticsProfileSegment last20profile2 = last20Profile2;
+
+            ExtensionPlayerStatistics play2 = new ExtensionPlayerStatistics();
+            play2.SetStats(last20profile2);
+            ExtensionPlayerStatistics play1 = new ExtensionPlayerStatistics();
+            play1.SetStats(last20profile2);
+
             if (last20profile1.kills > last20profile2.kills)
             {
                 profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
@@ -5033,13 +5504,13 @@ namespace WindowsFormsApp1
                 profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.death < last20profile2.death)
+            if (last20profile1.deaths < last20profile2.deaths)
             {
                 profile1Last20Death.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Death.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.death > last20profile2.death)
+            else if (last20profile1.deaths > last20profile2.deaths)
             {
                 profile1Last20Death.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Death.Style = MetroFramework.MetroColorStyle.Green;
@@ -5087,13 +5558,13 @@ namespace WindowsFormsApp1
                 profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.totalHeadshots > last20profile2.totalHeadshots)
+            if (last20profile1.total_Headshot_Percentage > last20profile2.total_Headshot_Percentage)
             {
                 profileLast20HS.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.totalHeadshots < last20profile2.totalHeadshots)
+            else if (last20profile1.total_Headshot_Percentage < last20profile2.total_Headshot_Percentage)
             {
                 profileLast20HS.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Green;
@@ -5105,13 +5576,13 @@ namespace WindowsFormsApp1
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.kdRatio > last20profile2.kdRatio)
+            if (last20profile1.kd_Ratio > last20profile2.kd_Ratio)
             {
                 profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.kdRatio < last20profile2.kdRatio)
+            else if (last20profile1.kd_Ratio < last20profile2.kd_Ratio)
             {
                 profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
@@ -5123,13 +5594,13 @@ namespace WindowsFormsApp1
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.krRatio > last20profile2.krRatio)
+            if (last20profile1.kr_Ratio > last20profile2.kr_Ratio)
             {
                 profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.krRatio < last20profile2.krRatio)
+            else if (last20profile1.kr_Ratio < last20profile2.kr_Ratio)
             {
                 profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
@@ -5141,13 +5612,13 @@ namespace WindowsFormsApp1
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.tripleKills > last20profile2.tripleKills)
+            if (last20profile1.triple_Kills > last20profile2.triple_Kills)
             {
                 profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.tripleKills < last20profile2.tripleKills)
+            else if (last20profile1.triple_Kills < last20profile2.triple_Kills)
             {
                 profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
@@ -5159,13 +5630,13 @@ namespace WindowsFormsApp1
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.quadroKills > last20profile2.quadroKills)
+            if (last20profile1.quadro_Kills > last20profile2.quadro_Kills)
             {
                 profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.quadroKills < last20profile2.quadroKills)
+            else if (last20profile1.quadro_Kills < last20profile2.quadro_Kills)
             {
                 profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
@@ -5177,13 +5648,13 @@ namespace WindowsFormsApp1
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.pentaKills > last20profile2.pentaKills)
+            if (last20profile1.penta_Kills > last20profile2.penta_Kills)
             {
                 profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.pentaKills < last20profile2.pentaKills)
+            else if (last20profile1.penta_Kills < last20profile2.penta_Kills)
             {
                 profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
@@ -5195,13 +5666,13 @@ namespace WindowsFormsApp1
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.hsPerMatch > last20profile2.hsPerMatch)
+            if (last20profile1.headshots_Per_match > last20profile2.headshots_Per_match)
             {
                 profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.hsPerMatch < last20profile2.hsPerMatch)
+            else if (last20profile1.headshots_Per_match < last20profile2.headshots_Per_match)
             {
                 profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
@@ -5249,13 +5720,13 @@ namespace WindowsFormsApp1
                 profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.winRate > last20profile2.winRate)
+            if (last20profile1.win_Rate_Percantage > last20profile2.win_Rate_Percantage)
             {
                 profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.winRate < last20profile2.winRate)
+            else if (last20profile1.win_Rate_Percantage < last20profile2.win_Rate_Percantage)
             {
                 profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
@@ -5267,13 +5738,13 @@ namespace WindowsFormsApp1
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.roudns > last20profile2.roudns)
+            if (last20profile1.rounds > last20profile2.rounds)
             {
                 profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.roudns < last20profile2.roudns)
+            else if (last20profile1.rounds < last20profile2.rounds)
             {
                 profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
@@ -5296,13 +5767,13 @@ namespace WindowsFormsApp1
                 profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
             }
 
-            if (last20profile1.avgKills > last20profile2.avgKills)
+            if (last20profile1.average_Kills > last20profile2.average_Kills)
             {
                 profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKills < last20profile2.avgKills)
+            else if (last20profile1.average_Kills < last20profile2.average_Kills)
             {
                 profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
@@ -5314,13 +5785,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgDeaths < last20profile2.avgDeaths)
+            if (last20profile1.average_Deaths < last20profile2.average_Deaths)
             {
                 profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgDeaths > last20profile2.avgDeaths)
+            else if (last20profile1.average_Deaths > last20profile2.average_Deaths)
             {
                 profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
@@ -5332,13 +5803,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgAssists > last20profile2.avgAssists)
+            if (last20profile1.average_Assists > last20profile2.average_Assists)
             {
                 profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgAssists < last20profile2.avgAssists)
+            else if (last20profile1.average_Assists < last20profile2.average_Assists)
             {
                 profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
@@ -5350,13 +5821,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgHSs > last20profile2.avgHSs)
+            if (last20profile1.average_Headshot_Percentage > last20profile2.average_Headshot_Percentage)
             {
                 profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgHSs < last20profile2.avgHSs)
+            else if (last20profile1.average_Headshot_Percentage < last20profile2.average_Headshot_Percentage)
             {
                 profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
@@ -5368,13 +5839,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgKDRation > last20profile2.avgKDRation)
+            if (last20profile1.average_KD_Ratio > last20profile2.average_KD_Ratio)
             {
                 profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKDRation < last20profile2.avgKDRation)
+            else if (last20profile1.average_KD_Ratio < last20profile2.average_KD_Ratio)
             {
                 profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
@@ -5386,13 +5857,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgKRRatio > last20profile2.avgKRRatio)
+            if (last20profile1.average_KR_Ratio > last20profile2.average_KR_Ratio)
             {
                 profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKRRatio < last20profile2.avgKRRatio)
+            else if (last20profile1.average_KR_Ratio < last20profile2.average_KR_Ratio)
             {
                 profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
@@ -5404,13 +5875,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgMVPs > last20profile2.avgMVPs)
+            if (last20profile1.average_MVPs > last20profile2.average_MVPs)
             {
                 profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgMVPs < last20profile2.avgMVPs)
+            else if (last20profile1.average_MVPs < last20profile2.average_MVPs)
             {
                 profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
@@ -5422,13 +5893,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgTripleKills > last20profile2.avgTripleKills)
+            if (last20profile1.average_Triple_Kills > last20profile2.average_Triple_Kills)
             {
                 profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgTripleKills < last20profile2.avgTripleKills)
+            else if (last20profile1.average_Triple_Kills < last20profile2.average_Triple_Kills)
             {
                 profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
@@ -5440,13 +5911,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgQuadroKills > last20profile2.avgQuadroKills)
+            if (last20profile1.average_Quadro_Kills > last20profile2.average_Quadro_Kills)
             {
                 profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgQuadroKills < last20profile2.avgQuadroKills)
+            else if (last20profile1.average_Quadro_Kills < last20profile2.average_Quadro_Kills)
             {
                 profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
@@ -5458,13 +5929,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgPentaKills > last20profile2.avgPentaKills)
+            if (last20profile1.average_Penta_Kills > last20profile2.average_Penta_Kills)
             {
                 profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgPentaKills < last20profile2.avgPentaKills)
+            else if (last20profile1.average_Penta_Kills < last20profile2.average_Penta_Kills)
             {
                 profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
@@ -5476,13 +5947,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgRounds > last20profile2.avgRounds)
+            if (play1.average_Rounds > play2.average_Rounds)
             {
                 profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgRounds < last20profile2.avgRounds)
+            else if (play1.average_Rounds < play2.average_Rounds)
             {
                 profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
@@ -5494,13 +5965,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgHSPercent > last20profile2.avgHSPercent)
+            if (play1.average_Headshot > play2.average_Headshot)
             {
                 profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgHSPercent < last20profile2.avgHSPercent)
+            else if (play1.average_Headshot < play2.average_Headshot)
             {
                 profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
@@ -5563,8 +6034,14 @@ namespace WindowsFormsApp1
         {
             int indexLast20Profile1 = 0;
             int indexLast20Profile2 = 0;
-            Statistics last20profile1 = profile.last20;
-            Statistics last20profile2 = profile2.last20;
+            CSGOPlayerStatisticsProfileSegment last20profile1 = last20Profile1;
+            CSGOPlayerStatisticsProfileSegment last20profile2 = last20Profile2;
+
+            ExtensionPlayerStatistics play2 = new ExtensionPlayerStatistics();
+            play2.SetStats(last20profile2);
+            ExtensionPlayerStatistics play1 = new ExtensionPlayerStatistics();
+            play1.SetStats(last20profile2);
+
             if (last20profile1.kills > last20profile2.kills)
             {
                 profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Green;
@@ -5583,13 +6060,13 @@ namespace WindowsFormsApp1
                 profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.death < last20profile2.death)
+            if (last20profile1.deaths < last20profile2.deaths)
             {
                 profile1Last20Death.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Death.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.death > last20profile2.death)
+            else if (last20profile1.deaths > last20profile2.deaths)
             {
                 profile1Last20Death.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Death.Style = MetroFramework.MetroColorStyle.Green;
@@ -5637,13 +6114,13 @@ namespace WindowsFormsApp1
                 profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.totalHeadshots > last20profile2.totalHeadshots)
+            if (last20profile1.total_Headshot_Percentage > last20profile2.total_Headshot_Percentage)
             {
                 profileLast20HS.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.totalHeadshots < last20profile2.totalHeadshots)
+            else if (last20profile1.total_Headshot_Percentage < last20profile2.total_Headshot_Percentage)
             {
                 profileLast20HS.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Green;
@@ -5655,13 +6132,13 @@ namespace WindowsFormsApp1
                 profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.kdRatio > last20profile2.kdRatio)
+            if (last20profile1.kd_Ratio > last20profile2.kd_Ratio)
             {
                 profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.kdRatio < last20profile2.kdRatio)
+            else if (last20profile1.kd_Ratio < last20profile2.kd_Ratio)
             {
                 profile1Last20KDr.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Green;
@@ -5673,13 +6150,13 @@ namespace WindowsFormsApp1
                 profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.krRatio > last20profile2.krRatio)
+            if (last20profile1.kr_Ratio > last20profile2.kr_Ratio)
             {
                 profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.krRatio < last20profile2.krRatio)
+            else if (last20profile1.kr_Ratio < last20profile2.kr_Ratio)
             {
                 profile1Last20KRr.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Green;
@@ -5691,13 +6168,13 @@ namespace WindowsFormsApp1
                 profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.tripleKills > last20profile2.tripleKills)
+            if (last20profile1.triple_Kills > last20profile2.triple_Kills)
             {
                 profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.tripleKills < last20profile2.tripleKills)
+            else if (last20profile1.triple_Kills < last20profile2.triple_Kills)
             {
                 profile1Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Green;
@@ -5709,13 +6186,13 @@ namespace WindowsFormsApp1
                 profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.quadroKills > last20profile2.quadroKills)
+            if (last20profile1.quadro_Kills > last20profile2.quadro_Kills)
             {
                 profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.quadroKills < last20profile2.quadroKills)
+            else if (last20profile1.quadro_Kills < last20profile2.quadro_Kills)
             {
                 profile1Last20Quadro.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Green;
@@ -5727,13 +6204,13 @@ namespace WindowsFormsApp1
                 profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.pentaKills > last20profile2.pentaKills)
+            if (last20profile1.penta_Kills > last20profile2.penta_Kills)
             {
                 profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.pentaKills < last20profile2.pentaKills)
+            else if (last20profile1.penta_Kills < last20profile2.penta_Kills)
             {
                 profile1Last20Penta.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Green;
@@ -5745,13 +6222,13 @@ namespace WindowsFormsApp1
                 profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.hsPerMatch > last20profile2.hsPerMatch)
+            if (last20profile1.headshots_Per_match > last20profile2.headshots_Per_match)
             {
                 profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.hsPerMatch < last20profile2.hsPerMatch)
+            else if (last20profile1.headshots_Per_match < last20profile2.headshots_Per_match)
             {
                 profileLast20HSperMatch.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Green;
@@ -5799,13 +6276,13 @@ namespace WindowsFormsApp1
                 profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.winRate > last20profile2.winRate)
+            if (last20profile1.win_Rate_Percantage > last20profile2.win_Rate_Percantage)
             {
                 profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.winRate < last20profile2.winRate)
+            else if (last20profile1.win_Rate_Percantage < last20profile2.win_Rate_Percantage)
             {
                 profile1Last20WinRate.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Green;
@@ -5817,13 +6294,13 @@ namespace WindowsFormsApp1
                 profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.roudns > last20profile2.roudns)
+            if (last20profile1.rounds > last20profile2.rounds)
             {
                 profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.roudns < last20profile2.roudns)
+            else if (last20profile1.rounds < last20profile2.rounds)
             {
                 profile1Last20Rounds.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Green;
@@ -5846,13 +6323,13 @@ namespace WindowsFormsApp1
                 profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
             }
 
-            if (last20profile1.avgKills > last20profile2.avgKills)
+            if (last20profile1.average_Kills > last20profile2.average_Kills)
             {
                 profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKills < last20profile2.avgKills)
+            else if (last20profile1.average_Kills < last20profile2.average_Kills)
             {
                 profile1Last20avgKills.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Green;
@@ -5864,13 +6341,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgDeaths < last20profile2.avgDeaths)
+            if (last20profile1.average_Deaths < last20profile2.average_Deaths)
             {
                 profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgDeaths > last20profile2.avgDeaths)
+            else if (last20profile1.average_Deaths > last20profile2.average_Deaths)
             {
                 profile1Last20avgDeath.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Green;
@@ -5882,13 +6359,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgAssists > last20profile2.avgAssists)
+            if (last20profile1.average_Assists > last20profile2.average_Assists)
             {
                 profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgAssists < last20profile2.avgAssists)
+            else if (last20profile1.average_Assists < last20profile2.average_Assists)
             {
                 profile1Last20avgAssists.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
@@ -5900,13 +6377,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgHSs > last20profile2.avgHSs)
+            if (last20profile1.average_Headshot_Percentage > last20profile2.average_Headshot_Percentage)
             {
                 profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgHSs < last20profile2.avgHSs)
+            else if (last20profile1.average_Headshot_Percentage < last20profile2.average_Headshot_Percentage)
             {
                 profile1Last20avgHSs.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Green;
@@ -5918,13 +6395,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgKDRation > last20profile2.avgKDRation)
+            if (last20profile1.average_KD_Ratio > last20profile2.average_KD_Ratio)
             {
                 profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKDRation < last20profile2.avgKDRation)
+            else if (last20profile1.average_KD_Ratio < last20profile2.average_KD_Ratio)
             {
                 profile1Last20avgKDR.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Green;
@@ -5936,13 +6413,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgKRRatio > last20profile2.avgKRRatio)
+            if (last20profile1.average_KR_Ratio > last20profile2.average_KR_Ratio)
             {
                 profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgKRRatio < last20profile2.avgKRRatio)
+            else if (last20profile1.average_KR_Ratio < last20profile2.average_KR_Ratio)
             {
                 profile1Last20avgKRR.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Green;
@@ -5954,13 +6431,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgMVPs > last20profile2.avgMVPs)
+            if (last20profile1.average_MVPs > last20profile2.average_MVPs)
             {
                 profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgMVPs < last20profile2.avgMVPs)
+            else if (last20profile1.average_MVPs < last20profile2.average_MVPs)
             {
                 profile1Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Green;
@@ -5972,13 +6449,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgTripleKills > last20profile2.avgTripleKills)
+            if (last20profile1.average_Triple_Kills > last20profile2.average_Triple_Kills)
             {
                 profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgTripleKills < last20profile2.avgTripleKills)
+            else if (last20profile1.average_Triple_Kills < last20profile2.average_Triple_Kills)
             {
                 profile1Last20avgTriple.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Green;
@@ -5990,13 +6467,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgQuadroKills > last20profile2.avgQuadroKills)
+            if (last20profile1.average_Quadro_Kills > last20profile2.average_Quadro_Kills)
             {
                 profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgQuadroKills < last20profile2.avgQuadroKills)
+            else if (last20profile1.average_Quadro_Kills < last20profile2.average_Quadro_Kills)
             {
                 profile1Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Green;
@@ -6008,13 +6485,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgPentaKills > last20profile2.avgPentaKills)
+            if (last20profile1.average_Penta_Kills > last20profile2.average_Penta_Kills)
             {
                 profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgPentaKills < last20profile2.avgPentaKills)
+            else if (last20profile1.average_Penta_Kills < last20profile2.average_Penta_Kills)
             {
                 profile1Last20avgPenta.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
@@ -6026,13 +6503,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgRounds > last20profile2.avgRounds)
+            if (play1.average_Rounds > play2.average_Rounds)
             {
                 profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgRounds < last20profile2.avgRounds)
+            else if (play1.average_Rounds < play2.average_Rounds)
             {
                 profile1Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Green;
@@ -6044,13 +6521,13 @@ namespace WindowsFormsApp1
                 profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Blue;
             }
 
-            if (last20profile1.avgHSPercent > last20profile2.avgHSPercent)
+            if (play1.average_Headshot > play2.average_Headshot)
             {
                 profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
                 profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
                 indexLast20Profile1 += 1;
             }
-            else if (last20profile1.avgHSPercent < last20profile2.avgHSPercent)
+            else if (play1.average_Headshot < play2.average_Headshot)
             {
                 profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
                 profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Green;
@@ -6063,7 +6540,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void Last20StyleProfile2_DefaultStyle()
+        public void Last20StyleProfile1_DefaultStyle()
         {
             profile1Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
             profile1Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
@@ -6102,6 +6579,45 @@ namespace WindowsFormsApp1
             metroLabel18.Visible = false;
             metroLabel20.Visible = false;
         }
+        public void Last20StyleProfile2_DefaultStyle()
+        {
+            profile2Last20Kills.Style = MetroFramework.MetroColorStyle.Red;
+            profile2Last20avgHSp.Style = MetroFramework.MetroColorStyle.Red;
+            profile2Last20avgRounds.Style = MetroFramework.MetroColorStyle.Red;
+            profile2Last20avgPenta.Style = MetroFramework.MetroColorStyle.Green;
+            profile2Last20avgQuadro.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgTriple.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgMVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgKRR.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgKDR.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgHSs.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgAssists.Style = MetroFramework.MetroColorStyle.Green;
+            profile2Last20avgDeath.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20avgKills.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20mode.Style = MetroFramework.MetroColorStyle.Green;
+            profile2Last20Rounds.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20WinRate.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Wins.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Matches.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20HSperMatch.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Penta.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Quadro.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Triple.Style = MetroFramework.MetroColorStyle.Red;
+            profile2Last20KRr.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20KDr.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20HS.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20MVPs.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Assists.Style = MetroFramework.MetroColorStyle.Blue;
+            profile2Last20Death.Style = MetroFramework.MetroColorStyle.Blue;
+            //Для профиля #1
+            metroLabel28.Visible = false;
+            metroLabel26.Visible = false;
+            metroLabel16.Visible = false;
+            //Для профиля #2
+            metroLabel12.Visible = false;
+            metroLabel18.Visible = false;
+            metroLabel20.Visible = false;
+        }
 
         private void metroButton6_Click(object sender, EventArgs e)
         {
@@ -6111,10 +6627,351 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void InitializeBackgroundWorker()
+        {
+            ThreadMatchDetails_Click();
+            ThreadMatchStatistics_Click();
+            ThreadProfile1_Click();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
 
         }
-    }
 
+        private void SaveEloToFile()
+        {
+            if (!File.Exists(filePatchElo))
+            {
+                File.Create(filePatchElo);
+            }
+            File.WriteAllText(filePatchElo, JsonConvert.SerializeObject(sysElo));
+        }
+        private void ReadEloFromFile()
+        {
+            if (File.Exists(filePatchElo))
+            {
+                JToken token = new JObject(File.ReadAllText(filePatchElo));
+                foreach (JToken json in token)
+                {
+                    sysElo.Add(json.ToObject<SysELO>());
+                }
+            }
+        }
+
+        private void metroLabel41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ThreadMatchDetails_Click()
+        {
+            thread1 = new BackgroundWorker();
+            thread1.WorkerReportsProgress = true;
+            thread1.WorkerSupportsCancellation = true;
+            thread1.DoWork += ThreadMatchDetails_Work;
+            thread1.ProgressChanged += ThreadMatchDetails_ProgressChanged;
+            thread1.RunWorkerCompleted += ThreadMatchDetails_RunWorkerCompleted;
+        }
+        private void ThreadMatchDetails_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            metroProgressBar1.Value = e.ProgressPercentage;
+        }
+        private void ThreadMatchDetails_Work(object sender, DoWorkEventArgs e)
+        {
+            MatchDetails matchDet = new MatchDetails();
+            matchDet.faceit = faceit;
+            if(matchDet.GetMatchDetailsCSGO(matchIDbox1.Text, out CSGOMatchDetails value))
+            {
+                matchDetails = value;
+                isMatchLoaded = true;
+                List<CSGOMatchDetailsTeamPlayer> plays = new List<CSGOMatchDetailsTeamPlayer>();
+                foreach (CSGOMatchDetailsTeamPlayer play in matchDetails.faction1.roster)
+                {
+                    plays.Add(play);
+                }
+                foreach (CSGOMatchDetailsTeamPlayer play in matchDetails.faction2.roster)
+                {
+                    plays.Add(play);
+                }
+
+                for (int i = 0; i < plays.Count; i++)
+                {
+                    PlayerCSGO player = new PlayerCSGO();
+                    player.GetInfo(plays[i].player_Id, faceit);
+                    players.Add(player);
+                    thread1.ReportProgress(i);
+                    Thread.Sleep(50);
+
+                }
+                e.Result = 200;    // будет передано в RunWorkerComрleted
+            }
+            else
+            {
+                e.Result = 201;    // будет передано в RunWorkerComрleted
+            }
+            
+        }
+        private void ThreadMatchDetails_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                metroLabel1.Text = "Process was cancelled";
+                isMatchLoading = false;
+                matchIDbox1.Enabled = true;
+            }
+            else if (e.Error != null)
+            {
+                metroLabel1.Text = e.Error.Message;
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Msg: " + e.Error.Message;
+                form.Show();
+                isMatchLoading = false;
+                matchIDbox1.Enabled = true;
+            }
+            else
+            {
+                metroLabel1.Text = "Process was completed";
+                if(matchDetails.status.ToUpper() == "FINISHED")
+                {
+                    thread2.RunWorkerAsync();
+                }
+                else
+                {
+                    LoadMembers();
+                    ShowInfoMatch();
+                    metroPanel3.Visible = true;
+                    metroTabControl1.SelectTab(tabMatchint);
+                    isMatchLoading = false;
+                    GetInfoMatch1.Enabled = true;
+                    matchIDbox1.Enabled = true;
+                }
+            }
+        }
+
+        private void ThreadMatchStatistics_Click()
+        {
+            thread2 = new BackgroundWorker();
+            thread2.WorkerReportsProgress = true;
+            thread2.WorkerSupportsCancellation = true;
+            thread2.DoWork += ThreadMatchStatistics_Work;
+            thread2.ProgressChanged += ThreadMatchStatistics_ProgressChanged;
+            thread2.RunWorkerCompleted += ThreadMatchStatistics_RunWorkerCompleted;
+        }
+        private void ThreadMatchStatistics_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            metroProgressBar3.Value = e.ProgressPercentage;
+        }
+        private void ThreadMatchStatistics_Work(object sender, DoWorkEventArgs e)
+        {
+            metroProgressBar3.Value = 0;
+            MatchStats matchStats = new MatchStats();
+            thread2.ReportProgress(5);
+            matchStats.faceit = faceit;
+            thread2.ReportProgress(5);
+            if (matchStats.GetMatchStatsCSGO(matchIDbox1.Text, out CSGOMatchStats value))
+            {
+                matchStatistics = value;
+                thread2.ReportProgress(30);
+                playerS = new List<CSGOMatchStatsTeamPlayer>();
+                thread2.ReportProgress(10);
+                foreach (CSGOMatchStatsTeamPlayer play in matchStatistics.team_A.players)
+                {
+                    playerS.Add(play);
+                }
+                thread2.ReportProgress(25);
+                foreach (CSGOMatchStatsTeamPlayer play in matchStatistics.team_B.players)
+                {
+                    playerS.Add(play);
+                }
+                thread2.ReportProgress(25);
+            }
+            else
+            {
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Error: " + matchStats.GetLastError;
+                form.Show();
+            }
+        }
+        private void ThreadMatchStatistics_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                metroLabel1.Text = "Process was cancelled. Stats.";
+
+            }
+            else if (e.Error != null)
+            {
+                metroLabel1.Text = e.Error.Message;
+                Form2 form = new Form2();
+                form.errorMsg.Text = "Msg(S): " + e.Error.Message;
+                form.Show();
+            }
+            else
+            {
+                metroLabel1.Text = "Process was completed. Stats.";
+                LoadMembers();
+                ShowInfoMatch();
+                ShowStatMatch();
+                metroPanel3.Visible = true;
+                metroTabControl1.SelectTab(tabMatchint);
+                metroPanel6.Visible = false;
+            }
+            thread2.Dispose();
+            isMatchLoading = false;
+            GetInfoMatch1.Enabled = true;
+            matchIDbox1.Enabled = true;
+        }
+        
+        private void ThreadProfile1_Click()
+        {
+            thread3 = new BackgroundWorker();
+            thread3.WorkerReportsProgress = true;
+            thread3.WorkerSupportsCancellation = true;
+            thread3.DoWork += ThreadProfile1_Work;
+            thread3.ProgressChanged += ThreadProfile1_ProgressChanged;
+            thread3.RunWorkerCompleted += ThreadProfile1_RunWorkerCompleted;
+        }
+        private void ThreadProfile1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            metroProgressBar3.Value = e.ProgressPercentage;
+        }
+        private void ThreadProfile1_Work(object sender, DoWorkEventArgs e)
+        {
+            CheckOnLoadedLogins();
+            if(loadingLogin == loadedLogins.login1)
+            {
+                profile = null;
+                if (profile == null)
+                {
+                    profile = new PlayerCSGO();
+                    profile.GetInfo(faceit, login1.Text);
+                }
+                isLogin1Loaded = true;
+                e.Result = 200;    // будет передано в RunWorkerComрleted
+                return;
+            }
+            else if(loadingLogin == loadedLogins.login2)
+            {
+                profile2 = null;
+                if (profile2 == null)
+                {
+                    profile2 = new PlayerCSGO();
+                    profile2.GetInfo(faceit, login2.Text);
+                }
+                isLogin2Loaded = true;
+                e.Result = 200;    // будет передано в RunWorkerComрleted
+                return;
+            }
+            e.Result = -1;
+        }
+        private void ThreadProfile1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                metroLabel1.Text = "Process was cancelled. Stats.";
+                statusLoadedLogin = LOADING_STATUS.Bad;
+            }
+            else if (e.Error != null)
+            {
+                metroLabel1.Text = e.Error.Message;
+                Form2 form = new Form2();
+                form.errorMsg.Text = e.Error.Message;
+                form.Show();
+                statusLoadedLogin = LOADING_STATUS.Bad;
+            }
+            else
+            {
+                if((int)e.Result == 200)
+                {
+                    statusLogin = LOADING_STATUS.Good;
+                }
+                else
+                {
+                    statusLogin = LOADING_STATUS.Bad;
+                }
+            }
+        }
+
+        private void LoadProfileFromMatchStats(int i)
+        {
+            List<CSGOMatchStatsTeamPlayer> pl_stats = new List<CSGOMatchStatsTeamPlayer>();
+            foreach (CSGOMatchStatsTeamPlayer pl in matchStatistics.team_A.players)
+            {
+                pl_stats.Add(pl);
+            }
+            foreach (CSGOMatchStatsTeamPlayer pl in matchStatistics.team_B.players)
+            {
+                pl_stats.Add(pl);
+            }
+            
+            if (isLogin1Loaded == false)
+            {
+                login1.Text = pl_stats[i].nickname;
+                getProfile1.PerformClick();
+            }
+            else if (isLogin2Loaded == false)
+            {
+                login2.Text = pl_stats[i].nickname;
+                getProfile2.PerformClick();
+            }
+            else if (lastLoadedLogin == loadedLogins.login1)
+            {
+                login2.Text = pl_stats[i].nickname;
+                getProfile2.PerformClick();
+
+            }
+            else if (lastLoadedLogin == loadedLogins.login2)
+            {
+                login1.Text = pl_stats[i].nickname;
+                getProfile1.PerformClick();
+            }
+            else
+            {
+                login1.Text = pl_stats[i].nickname;
+                getProfile1.PerformClick();
+            }
+        }
+        private void metroLabel289_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel389_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void teamBResult_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroButton36_Click(object sender, EventArgs e)
+        {
+            LoadProfileFromMatchStats(0);
+        }
+
+        private void statsNickname2_Click(object sender, EventArgs e)
+        {
+            LoadProfileFromMatchStats(1);
+        }
+    }
+    public class Remote
+    {
+        public Engine faceit = new Engine("c275df18-34f8-467f-a03b-e44bb7fcf581");
+        public FaceitExeption exeption;
+    }
+    public class SysELO
+    {
+        public long tact;
+        public int elo;
+        public string player_id;
+        public string nickname;
+    }
     public class ParserInteger
     {
         public static int ParsInt(string index)
@@ -6127,582 +6984,6 @@ namespace WindowsFormsApp1
             return double.Parse(temp.Replace(".",","));
         }
     }
-
-    public class Map
-    {
-        public Image imgRegular;
-        public Image imgSmall;
-        public string mapName;
-        public string mode;
-        public string typeMap;
-        public int assist;
-        public double avgAssist;
-        public double avgDeath;
-        public double avgHS;
-        public double avgKDr;
-        public double avgKRr;
-        public double avgKills;
-        public double avgMVPs;
-        public double avgTripleK;
-        public double avgQuadroK;
-        public double avgPentaK;
-        public int death;
-        public int hss;
-        public double hsPerMatch;
-        public double kdratio;
-        public double krratio;
-        public int kills;
-        public int mvps;
-        public int matches;
-        public int pentaKills;
-        public int quadroKills;
-        public int tripleKills;
-        public int rounds;
-        public double totalHeadshots;
-        public double winRate;
-        public int wins;
-    }
-    public class Profile : Form1
-    {
-        public JObject json;
-        public JObject dec = new JObject();
-        public JObject his;
-        public Image imgAvatar;
-        public string faceit_url;
-        public string player_id;
-        public string nickname;
-        public int faceit_elo;
-        public int faceit_level;
-        public string country;
-        public string membership_type;
-        public string steamid64;
-        public List<string> friends_ids = new List<string>();
-        public List<string> friends = new List<string>();
-        public double avgHS;
-        public double avgKD;
-        public int currrentWinStreak;
-        public int longestWinStreak;
-        public int matches;
-        public int winMatches;
-        public double winRate;
-        public List<Map> maps = new List<Map>();
-        public List<Map> allMatches = new List<Map>();
-        public List<Statistics> stats20matches = new List<Statistics>();
-        public Statistics last20 = new Statistics();
-        public void SetInfo(string login)
-        {
-            friends_ids = new List<string>();
-            json = Form1.GetAPI(login);
-            if (json.HasValues & json.Type != JTokenType.Null)
-            {
-                for (int i = 0; i < json["friends_ids"].ToList().Count; i++)
-                {
-                    friends_ids.Add(json["friends_ids"][i].ToString());
-                }
-                if (json["avatar"].Type == JTokenType.Null)
-                {
-                    imgAvatar = Form1.GetAvatar(null);
-                }
-                else
-                {
-                    imgAvatar = Form1.GetAvatar((string)json["avatar"]);
-                }
-
-                nickname = (string)json["nickname"];
-                country = (string)json["country"];
-                membership_type = (string)json["membership_type"];
-                steamid64 = (string)json["steam_id_64"];
-                player_id = (string)json["player_id"];
-                faceit_url = json["faceit_url"].ToString().Replace("{lang}", "en");
-                try
-                {
-                    faceit_level = ParserInteger.ParsInt(json["games"]["csgo"]["skill_level"].ToString());
-                    faceit_elo = ParserInteger.ParsInt(json["games"]["csgo"]["faceit_elo"].ToString());
-                }
-                catch (Exception)
-                {
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Account not have csgo stats.";
-                    form.Show();
-                }
-                SetStats(player_id);
-                LoadFriends();
-            }
-        }
-
-        public void SetStats(string playerID)
-        {
-            dec = Form1.GetStats(playerID);
-            if (dec.HasValues & dec.Type != JTokenType.Null)
-            {
-                maps = new List<Map>();
-                avgHS = ParserInteger.ParsDouble(dec["lifetime"]["Average Headshots %"].ToString());
-                avgKD = ParserInteger.ParsDouble(dec["lifetime"]["Average K/D Ratio"].ToString());
-                currrentWinStreak = ParserInteger.ParsInt(dec["lifetime"]["Current Win Streak"].ToString());
-                longestWinStreak = ParserInteger.ParsInt(dec["lifetime"]["Longest Win Streak"].ToString());
-                matches = ParserInteger.ParsInt(dec["lifetime"]["Matches"].ToString());
-                winMatches = ParserInteger.ParsInt(dec["lifetime"]["Wins"].ToString());
-                winRate = ParserInteger.ParsDouble(dec["lifetime"]["Win Rate %"].ToString());
-                for (int i = 0; i < dec["segments"].ToList().Count; i++)
-                {
-                    Map map = new Map();
-                    map.assist = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Assists"].ToString());
-                    map.avgAssist = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Assists"].ToString());
-                    map.avgDeath = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Deaths"].ToString());
-                    map.avgHS = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Headshots %"].ToString());
-                    map.avgKDr = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average K/D Ratio"].ToString());
-                    map.avgKRr = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average K/R Ratio"].ToString());
-                    map.avgKills = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Kills"].ToString());
-                    map.avgMVPs = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average MVPs"].ToString());
-                    map.avgPentaK = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Penta Kills"].ToString());
-                    map.avgQuadroK = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Quadro Kills"].ToString());
-                    map.avgTripleK = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Average Triple Kills"].ToString());
-                    map.death = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Deaths"].ToString());
-                    map.hsPerMatch = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Headshots per Match"].ToString());
-                    map.hss = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Headshots"].ToString());
-                    map.rounds = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Rounds"].ToString());
-                    map.kdratio = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["K/D Ratio"].ToString());
-                    map.kills = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Kills"].ToString());
-                    map.krratio = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["K/R Ratio"].ToString());
-                    map.mapName = (string)dec["segments"][i]["label"];
-                    map.matches = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Matches"].ToString());
-                    map.mode = (string)dec["segments"][i]["mode"];
-                    map.mvps = ParserInteger.ParsInt(dec["segments"][i]["stats"]["MVPs"].ToString());
-                    map.pentaKills = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Penta Kills"].ToString());
-                    map.quadroKills = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Quadro Kills"].ToString());
-                    map.tripleKills = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Triple Kills"].ToString());
-                    map.typeMap = (string)dec["segments"][i]["type"];
-                    map.winRate = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Win Rate %"].ToString());
-                    map.totalHeadshots = ParserInteger.ParsDouble(dec["segments"][i]["stats"]["Total Headshots %"].ToString());
-                    map.wins = ParserInteger.ParsInt(dec["segments"][i]["stats"]["Wins"].ToString());
-                    maps.Add(map);
-                }
-                maps = maps.OrderBy(maps => maps.mapName).ToList();
-            }
-        }
-        
-        public void LoadFriends()
-        {
-            for(int i = 0; i < friends_ids.Count; i++)
-            {
-                try
-                {
-                    JObject res = Form1.GetProfile(friends_ids[i], false);
-                    if ((string)res["nickname"] != null)
-                    {
-                        friends.Add((string)res["nickname"]);
-                    }
-                }
-                catch (Exception)
-                {
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = "Friend not loaded. Friend №" + i;
-                    form.Show();
-                }
-                
-            }
-        }
-        
-        public void LoadMatchHistory()
-        {
-            stats20matches = new List<Statistics>();
-            last20 = new Statistics();
-            his = GetHistory(player_id, 20);
-            if (his.HasValues & his.Type != JTokenType.Null)
-            {
-                for (int i = 0; i < his["items"].ToList().Count; i++)
-                {
-                    var hir = GetStatsMatch(his["items"][i]["match_id"].ToString());
-                    if (hir.HasValues & hir.Type != JTokenType.Null)
-                    {
-                        for(int a = 0; a < hir["rounds"][0]["teams"].ToList().Count; a++)
-                        {
-                            for(int c = 0; c < hir["rounds"][0]["teams"][a]["players"].ToList().Count; c++)
-                            {
-                                if (hir["rounds"][0]["teams"][a]["players"][c]["nickname"].ToString() == nickname)
-                                {
-                                    Statistics stats = new Statistics();
-                                    stats.assists = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Assists"].ToString());
-                                    stats.kills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Kills"].ToString());
-                                    stats.death = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Deaths"].ToString());
-                                    stats.mvps = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["MVPs"].ToString());
-                                    stats.Headshots = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Headshot"].ToString());
-                                    stats.hsPercent = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Headshots %"].ToString());
-                                    stats.kdRatio = ParserInteger.ParsDouble(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["K/D Ratio"].ToString());
-                                    stats.krRatio = ParserInteger.ParsDouble(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["K/R Ratio"].ToString());
-                                    stats.pentaKills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Penta Kills"].ToString());
-                                    stats.quadroKills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Quadro Kills"].ToString());
-                                    stats.tripleKills = ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Triple Kills"].ToString());
-                                    stats.mode = (hir["rounds"][0]["game_mode"].ToString());
-                                    stats.roudns = ParserInteger.ParsInt(hir["rounds"][0]["round_stats"]["Rounds"].ToString());
-                                    if (ParserInteger.ParsInt(hir["rounds"][0]["teams"][a]["players"][c]["player_stats"]["Result"].ToString()) != 0)
-                                    {
-                                        stats.wins += 1;
-                                    }
-                                    stats20matches.Add(stats);
-                                }
-                            }
-                        }
-                    }
-                }
-                for (int i = 0; i < stats20matches.Count; i++)
-                {
-                    last20.kills += stats20matches[i].kills;
-                    last20.death += stats20matches[i].death;
-                    last20.assists += stats20matches[i].assists;
-                    last20.mvps += stats20matches[i].mvps;
-                    last20.totalHeadshots += stats20matches[i].Headshots;
-                    last20.hsPercent += stats20matches[i].hsPercent;
-                    last20.kdRatio += stats20matches[i].kdRatio;
-                    last20.krRatio += stats20matches[i].krRatio;
-                    last20.pentaKills += stats20matches[i].pentaKills;
-                    last20.quadroKills += stats20matches[i].quadroKills;
-                    last20.tripleKills += stats20matches[i].tripleKills;
-                    last20.wins += stats20matches[i].wins;
-                    last20.roudns += stats20matches[i].roudns;
-                }
-                last20.matches = stats20matches.Count;
-                last20.hsPerMatch = last20.totalHeadshots / last20.matches;
-                last20.winRate = (last20.wins * 100) / last20.matches;
-                last20.avgKills = last20.kills / last20.matches;
-                last20.avgDeaths = last20.death / last20.matches;
-                last20.avgHSs = last20.totalHeadshots / last20.matches;
-                last20.avgHSPercent = last20.hsPercent / last20.matches;
-                last20.avgMVPs = last20.mvps / last20.matches;
-                last20.avgAssists = last20.assists / last20.matches;
-                last20.avgPentaKills = last20.pentaKills / last20.matches;
-                last20.avgQuadroKills = last20.quadroKills / last20.matches;
-                last20.avgTripleKills = last20.tripleKills / last20.matches;
-                last20.avgRounds = last20.roudns / last20.matches;
-                last20.avgKDRation = last20.kdRatio / last20.matches;
-                last20.avgKRRatio = last20.krRatio / last20.matches;
-            }
-        }
-    }
-    public class Statistics
-    {
-        public string mode;
-        public int kills;
-        public int death;
-        public int assists;
-        public int totalHeadshots;
-        public int Headshots;
-        public double hsPercent;
-        public int mvps;
-        public int tripleKills;
-        public int quadroKills;
-        public int pentaKills;
-        public double matches;
-        public int wins;
-        public int roudns;
-        public double winRate;
-        public double kdRatio;
-        public double krRatio;
-        public double hsPerMatch;
-        public double avgKills;
-        public double avgDeaths;
-        public double avgAssists;
-        public double avgHSs;
-        public double avgHSPercent;
-        public double avgMVPs;
-        public double avgKDRation;
-        public double avgKRRatio;
-        public double avgTripleKills;
-        public double avgQuadroKills;
-        public double avgPentaKills;
-        public double avgRounds;
-    }
-
-
-    public class Match
-    {
-        
-        public JObject json;
-        public string serverCountry;
-        public string region;
-        public string type_match;
-        public string map;
-        public Uri demoURL;
-        public int bestOf;
-        public string winOf;
-        public string scoreTeamA;
-        public string scoreTeamB;
-        public string status = null;
-        public Uri matchURL;
-        public Team1 TeamA = new Team1();
-        public Team2 TeamB = new Team2();
-
-        public void GetInfoMatch(string id)
-        {
-            
-            json = Form1.GetMatch(id);
-            if (json.HasValues && json.Type != JTokenType.Null)
-            {
-                region = json["region"].ToString();
-                type_match = json["competition_type"].ToString();
-                bestOf = ParserInteger.ParsInt(json["best_of"].ToString());
-                winOf = json["results"]["winner"].ToString();
-                scoreTeamA = json["results"]["score"]["faction1"].ToString();
-                scoreTeamB = json["results"]["score"]["faction2"].ToString();
-                status = json["status"].ToString();
-                matchURL = Form1.SetUri(json["faceit_url"].ToString());
-                try
-                {
-                    for (int i = 0; i < json["voting"].ToList().Count; i++)
-                    {
-                        serverCountry = json["voting"][i]["location"]["country"].ToString();
-                        map = json["voting"][i]["map"]["name"].ToString();
-                    }
-                    for (int i = 0; i < json["voting"].ToList().Count; i++)
-                    {
-                        demoURL = new Uri(json["demo_url"][i].ToString());
-                    }
-                }
-                catch (Exception)
-                {
-                    Form2 form = new Form2();
-                    form.errorMsg.Text = @"Status of match voting\configuring\ongoing";
-                    form.ShowDialog();
-                }
-                TeamA.SetTeam(json);
-                TeamB.SetTeam(json);
-
-            }
-            
-        }
-    }
-    public class Team1 : Form1
-    {
-        public Member leader;
-        public Member member2;
-        public Member member3;
-        public Member member4;
-        public Member member5;
-        public string leaderID;
-        public string teamName;
-        public string type;
-        public string fraction = "faction1";
-
-        public void SetTeam(JObject dec)
-        {
-            leaderID = dec["teams"]["faction1"]["leader"].ToString();
-            List<Member> memb = new List<Member>();
-            Member mem;
-            try
-            {
-                for (int i = 0; i < dec["teams"]["faction1"]["roster_v1"].ToList().Count; i++)
-                {
-                    mem = new Member();
-                    mem.join_type = dec["teams"]["faction1"]["roster_v1"][i]["quick_match"]["join_type"].ToString();
-                    mem.nickname = dec["teams"]["faction1"]["roster_v1"][i]["nickname"].ToString();
-                    mem.csgoID = dec["teams"]["faction1"]["roster_v1"][i]["csgo_id"].ToString();
-                    mem.guid = dec["teams"]["faction1"]["roster_v1"][i]["guid"].ToString();
-                    for (int k = 0; k < dec["teams"]["faction1"]["roster_v1"][i]["quick_match"]["selected_members_ids"].ToList().Count; k++)
-                    {
-                        mem.select_members_id.Add(dec["teams"]["faction1"]["roster_v1"][i]["quick_match"]["selected_members_ids"][k].ToString());
-                    }
-                    memb.Add(mem);
-                }
-                for (int i = 0; i < memb.Count; i++)
-                {
-                    if (memb[i].guid == leaderID)
-                    {
-                        leader = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member2 == null)
-                    {
-                        member2 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member3 == null)
-                    {
-                        member3 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member4 == null)
-                    {
-                        member4 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member5 == null)
-                    {
-                        member5 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                }
-                teamName = dec["teams"]["faction1"]["name"].ToString();
-                type = dec["teams"]["faction1"]["type"].ToString();
-            }
-            catch (Exception)
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "CS: GO stats not found.";
-                form.errorMsg.Show();
-            }
-        }
-    }
-    public class Team2 : Form1
-    {
-        public Member leader;
-        public Member member2;
-        public Member member3;
-        public Member member4;
-        public Member member5;
-        public string leaderID;
-        public string teamName;
-        public string type;
-        public string fraction = "faction2";
-
-        public void SetTeam(JObject dec)
-        {
-            leaderID = dec["teams"]["faction2"]["leader"].ToString();
-            List<Member> memb = new List<Member>();
-            Member mem;
-            try
-            {
-                for (int i = 0; i < dec["teams"]["faction2"]["roster_v1"].ToList().Count; i++)
-                {
-                    mem = new Member();
-                    mem.join_type = dec["teams"]["faction2"]["roster_v1"][i]["quick_match"]["join_type"].ToString();
-                    mem.nickname = dec["teams"]["faction2"]["roster_v1"][i]["nickname"].ToString();
-                    mem.csgoID = dec["teams"]["faction2"]["roster_v1"][i]["csgo_id"].ToString();
-                    mem.guid = dec["teams"]["faction2"]["roster_v1"][i]["guid"].ToString();
-                    for (int k = 0; k < dec["teams"]["faction2"]["roster_v1"][i]["quick_match"]["selected_members_ids"].ToList().Count; k++)
-                    {
-                        mem.select_members_id.Add(dec["teams"]["faction2"]["roster_v1"][i]["quick_match"]["selected_members_ids"][k].ToString());
-                    }
-                    memb.Add(mem);
-                }
-                for (int i = 0; i < memb.Count; i++)
-                {
-                    if (memb[i].guid == leaderID)
-                    {
-                        leader = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member2 == null)
-                    {
-                        member2 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member3 == null)
-                    {
-                        member3 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member4 == null)
-                    {
-                        member4 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                    else if (member5 == null)
-                    {
-                        member5 = memb[i];
-                        memb[i].GetInfo();
-                        memb[i].GetRanking(dec["region"].ToString());
-                        members.Add(memb[i]);
-                    }
-                }
-                teamName = dec["teams"]["faction2"]["name"].ToString();
-                type = dec["teams"]["faction2"]["type"].ToString();
-            }
-            catch (Exception)
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "CS: GO stats not found.";
-                form.errorMsg.Show();
-            }
-        }
-    }
-    public class Member : Form1
-    {
-        public string country;
-        public Image avatar;
-        public int faceit_level;
-        public string membership_type;
-        public string join_type;
-        public string nickname;
-        public string csgoID;
-        public int wins;
-        public double matches;
-        public double winRate;
-        public int faceit_elo;
-        public double avgHS;
-        public double avgKDr;
-        public int ranking;
-        public Uri faceit_profile;
-        public List<string> select_members_id = new List<string>();
-        public string guid;
-
-        public void GetInfo()
-        {
-            try
-            {
-                JObject dec = Form1.GetAPI(nickname);
-                country = dec["country"].ToString();
-                faceit_level = ParserInteger.ParsInt(dec["games"]["csgo"]["skill_level"].ToString());
-                faceit_elo = ParserInteger.ParsInt(dec["games"]["csgo"]["faceit_elo"].ToString());
-                membership_type = dec["membership_type"].ToString();
-                faceit_profile = Form1.SetUri(dec["faceit_url"].ToString());
-                guid = dec["player_id"].ToString();
-                if (dec["avatar"].Type == JTokenType.Null)
-                {
-                    avatar = Form1.GetAvatar(null);
-                }
-                else
-                {
-                    avatar = Form1.GetAvatar((string)dec["avatar"]);
-                }
-            }
-            catch (Exception)
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Member not loaded.";
-                form.ShowDialog();
-            }
-            try
-            {
-                var dec1 = JObject.Parse(Form1.GetProfile(guid));
-                avgHS = ParserInteger.ParsDouble(dec1["lifetime"]["Average Headshots %"].ToString());
-                avgKDr = ParserInteger.ParsDouble(dec1["lifetime"]["Average K/D Ratio"].ToString());
-                matches = ParserInteger.ParsDouble(dec1["lifetime"]["Matches"].ToString());
-                wins = ParserInteger.ParsInt(dec1["lifetime"]["Wins"].ToString());
-                winRate = ParserInteger.ParsDouble(dec1["lifetime"]["Win Rate %"].ToString());
-            }
-            catch (Exception)
-            {
-                Form2 form = new Form2();
-                form.errorMsg.Text = "Member not loaded. Method 'GetInfo2'.";
-                form.ShowDialog();
-            }
-            
-        }
-        public void GetRanking(string reg)
-        {
-            var dec2 = JObject.Parse(Form1.GetRanking(reg, guid));
-            ranking = ParserInteger.ParsInt(dec2["position"].ToString());
-        }
-    }
-
     public static class JsonExtensions
     {
         public static bool IsNullOrEmpty(this JToken token)
